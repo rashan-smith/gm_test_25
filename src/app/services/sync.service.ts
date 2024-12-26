@@ -1,43 +1,47 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SyncService {
-  private syncFrequency = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+  private syncUrl = 'https://your-backend-api.com/ping-sync';
+  private syncInterval = 2 * 60 * 60 * 1000; // 2 hours
 
-  constructor(
-    private localStorageService: LocalStorageService,
-    private http: HttpClient
-  ) {}
+  constructor(private http: HttpClient, private localStorageService: LocalStorageService) {}
 
   /**
-   * Synchronizes unsynced records with the database.
+   * Syncs unsynced records to the server.
    */
-  async syncData() {
-    const records = this.localStorageService
-      .getPingResults()
-      .filter((record) => !record.synced);
+  async syncPingResults(): Promise<void> {
+    const unsyncedRecords = this.localStorageService.getUnsyncedRecords();
 
-    if (records.length > 0) {
-      try {
-        await this.http
-          .post('/api/connectivity_ping_checks', records)
-          .toPromise();
-        records.forEach((record) => (record.synced = true));
-        this.localStorageService.clearSyncedRecords();
-      } catch (error) {
-        console.error('Sync failed:', error);
-      }
+    if (unsyncedRecords.length === 0) {
+      console.log('No unsynced records to sync.');
+      return;
     }
+
+    try {
+      await this.http.post(this.syncUrl, { records: unsyncedRecords }).toPromise();
+
+      // Mark synced records
+      this.localStorageService.markAsSynced(unsyncedRecords);
+      console.log('Successfully synced records.');
+    } catch (error) {
+      console.error('Failed to sync records:', error);
+    }
+
+    // Clean up old records regardless of sync status
+    this.localStorageService.cleanupOldRecords();
   }
 
   /**
-   * Starts periodic synchronization.
+   * Starts the periodic sync process.
    */
-  startPeriodicSync() {
-    setInterval(() => this.syncData(), this.syncFrequency);
+  startPeriodicSync(): void {
+    setInterval(() => {
+      this.syncPingResults();
+    }, this.syncInterval);
   }
 }

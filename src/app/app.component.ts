@@ -87,10 +87,13 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     // Start periodic checks every 15 minutes (15 * 60 * 1000 ms)
-
-    this.pingService.startPeriodicChecks(15 * 60 * 1000, (result: PingResult) => {
-      console.log('Ping result:', result);
-      this.localStorageService.savePingResult(result);
+    this.pingService.startPeriodicChecks(15 * 60 * 1000, (result: PingResult | null) => {
+      if (result) {
+        console.log('Ping result:', result);
+        this.localStorageService.savePingResult(result);
+      } else {
+        console.log('Ping skipped: Outside active hours.');
+      }
     });
 
     this.syncService.startPeriodicSync();
