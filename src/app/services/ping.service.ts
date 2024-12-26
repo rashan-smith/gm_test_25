@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 import { catchError, map, timeout } from 'rxjs/operators';
 
 export interface PingResult {
@@ -13,16 +13,25 @@ export interface PingResult {
   errorMessage: string | null;
 }
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class PingService {
-  private targetHosts = ['https://google.com', 'https://bing.com', 'https://yahoo.com']; // Example array of target hosts
-  private timeoutDuration = 10000; // Default 10 seconds in milliseconds
+  private targetHosts = ['https://google.com', 'https://bing.com', 'https://yahoo.com'];
+  private timeoutDuration = 10000; // Default timeout: 10 seconds
   private packetsPerHost = 3;
+  private activeHours = { start: 8, end: 20 }; // Active hours: 8 AM to 8 PM
 
   constructor(private http: HttpClient) {}
+
+  /**
+   * Checks if the current time is within the allowed active hours.
+   */
+  private isWithinActiveHours(): boolean {
+    const now = new Date();
+    const currentHour = now.getHours();
+    return currentHour >= this.activeHours.start && currentHour < this.activeHours.end;
+  }
 
   /**
    * Performs a single ping to the given host.
@@ -102,22 +111,29 @@ export class PingService {
   }
 
   /**
-   * Performs a connectivity check.
+   * Performs a connectivity check if within the active hours.
    */
-  async performCheck(): Promise<PingResult> {
+  async performCheck(): Promise<PingResult | null> {
+    if (!this.isWithinActiveHours()) {
+      console.log('Skipping ping: Outside active hours.');
+      return null;
+    }
+
     return await this.pingHosts();
   }
 
   /**
-   * Starts periodic connectivity checks.
+   * Starts periodic connectivity checks, restricted to active hours.
    */
   startPeriodicChecks(
     frequency: number,
-    callback: (result: PingResult) => void
+    callback: (result: PingResult | null) => void
   ) {
     setInterval(async () => {
       const result = await this.performCheck();
-      callback(result);
+      if (result) {
+        callback(result);
+      }
     }, frequency);
   }
 }
