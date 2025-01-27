@@ -5,8 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
   private storageKey = 'connectivity_ping_checks';
-  private syncThreshold = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
-  private retentionPeriod = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+  private retentionPeriod = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
 
   constructor() {}
 
