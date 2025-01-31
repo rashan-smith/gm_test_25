@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../app/services/storage.service';
@@ -7,6 +7,7 @@ import { SharedService } from './services/shared-service.service';
 import { HistoryService } from './services/history.service';
 import { ScheduleService } from './services/schedule.service';
 import { environment } from '../environments/environment'; // './esrc/environments/environment';
+import { App } from '@capacitor/app';
 
 // const shell = require('electron').shell;
 @Component({
@@ -14,7 +15,7 @@ import { environment } from '../environments/environment'; // './esrc/environmen
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   school: any;
   historyState: any;
   availableSettings: any;
@@ -69,9 +70,56 @@ export class AppComponent {
       this.refreshHistory.bind(this)
     );
     this.refreshHistory();
-    setInterval(() => {
-      this.scheduleService.initiate();
-    }, 60000);
+    this.setupEventListener();
+  }
+
+  private setupEventListener() {
+    console.log('[SpeedTest] Setting up event listeners');
+
+    // Add app state change listener
+    App.addListener('appStateChange', ({ isActive }) => {
+      console.log('[SpeedTest] App state changed. Is active:', isActive);
+      if (isActive) {
+        console.log('[SpeedTest] App came to foreground');
+      } else {
+        console.log('[SpeedTest] App went to background');
+      }
+    });
+
+    // Add event listener for our background service
+    window.addEventListener('timeCheck', (event: any) => {
+      console.log('[SpeedTest] Received timeCheck event:', event);
+
+      try {
+        // Parse the event data
+        const eventData = event.detail ? JSON.parse(event.detail) : null;
+        console.log('[SpeedTest] Parsed event data:', eventData);
+
+        // Call your service method
+        this.scheduleService.initiate();
+        console.log('[SpeedTest] Called scheduleService.initiate()');
+      } catch (error) {
+        console.error('[SpeedTest] Error handling timeCheck event:', error);
+      }
+    });
+
+    // Start the background service
+    if ((window as any).SpeedTest) {
+      console.log('[SpeedTest] Starting background service');
+      (window as any).SpeedTest.startBackgroundService()
+        .then(() =>
+          console.log('[SpeedTest] Background service started successfully')
+        )
+        .catch((error: any) =>
+          console.error('[SpeedTest] Error starting background service:', error)
+        );
+    } else {
+      console.error('[SpeedTest] SpeedTest plugin not found!');
+    }
+  }
+
+  ngOnInit() {
+    // Your existing initialization code
   }
 
   openSecond() {

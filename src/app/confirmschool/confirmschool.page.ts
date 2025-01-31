@@ -70,7 +70,7 @@ export class ConfirmschoolPage {
         this.getDeviceId().then((b) => {
           schoolData = {
             giga_id_school: this.school.giga_id_school,
-            mac_address: b.uuid,
+            mac_address: b.identifier,
             os: a.operatingSystem,
             app_version: environment.app_version,
             created: today,
@@ -86,7 +86,7 @@ export class ConfirmschoolPage {
             .registerSchoolDevice(schoolData)
             .subscribe((response) => {
               this.storage.set('deviceType', a.operatingSystem);
-              this.storage.set('macAddress', b.uuid);
+              this.storage.set('macAddress', b.identifier);
               this.storage.set('schoolUserId', response);
               this.storage.set('schoolId', this.schoolId);
               this.storage.set('gigaId', this.school.giga_id_school);
