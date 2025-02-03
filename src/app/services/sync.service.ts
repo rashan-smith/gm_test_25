@@ -6,35 +6,58 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root',
 })
 export class SyncService {
-  private syncUrl = 'https://your-backend-api.com/ping-sync';
+  private syncUrl = 'https://jsonplaceholder.typicode.com/posts';
   private syncInterval = 2 * 60 * 60 * 1000; // 2 hours
 
   constructor(private http: HttpClient, private localStorageService: LocalStorageService) {}
 
-  /**
-   * Syncs unsynced records to the server.
-   */
   async syncPingResults(): Promise<void> {
-    const unsyncedRecords = this.localStorageService.getUnsyncedRecords();
-
+    let unsyncedRecords = this.localStorageService.getUnsyncedRecords();
+  
     if (unsyncedRecords.length === 0) {
       console.log('No unsynced records to sync.');
       return;
     }
-
-    try {
-      await this.http.post(this.syncUrl, { records: unsyncedRecords }).toPromise();
-
-      // Mark synced records
-      this.localStorageService.markAsSynced(unsyncedRecords);
-      console.log('Successfully synced records.');
-    } catch (error) {
-      console.error('Failed to sync records:', error);
+  
+    const batchSize = 5; // Number of records per batch
+    let index = 0;
+  
+    while (index < unsyncedRecords.length) {
+      const batch = unsyncedRecords.slice(index, index + batchSize);
+      
+      try {
+        await this.postWithRetry(batch);
+        this.localStorageService.markAsSynced(batch);
+        console.log(`Successfully synced batch ${index / batchSize + 1}`);
+      } catch (error) {
+        console.error(`Failed to sync batch ${index / batchSize + 1} after retry:`, error);
+        throw error; // Stop processing further if one batch fails after retry
+      }
+  
+      index += batchSize;
     }
-
-    // Clean up old records regardless of sync status
+  
+    // Cleanup old records
     this.localStorageService.cleanupOldRecords();
   }
+  
+  /**
+   * Attempts to sync a batch and retries once if it fails.
+   */
+  private async postWithRetry(batch: any[]): Promise<void> {
+    try {
+      await this.http.post(this.syncUrl, { records: batch }).toPromise();
+    } catch (error) {
+      console.warn('Initial sync attempt failed. Retrying...');
+      try {
+        await this.http.post(this.syncUrl, { records: batch }).toPromise();
+      } catch (retryError) {
+        console.error('Retry failed:', retryError);
+        throw retryError; // Throw error after one retry
+      }
+    }
+  }
+  
 
   /**
    * Starts the periodic sync process.
