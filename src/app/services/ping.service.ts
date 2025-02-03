@@ -1,25 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { catchError, map, timeout } from 'rxjs/operators';
+import { Device } from '@capacitor/device';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface PingResult {
   timestamp: Date;
   isConnected: boolean;
-  responseTimeMs: number | null;
-  targetHost: string;
   errorMessage: string | null;
   diagnostics: {
     platform: string;
     navigatorOnline: boolean;
     userAgent: string;
   };
+  deviceId: string;
+  uuid: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
-export class PingService {;
+export class PingService {
+    ;
   private activeHours = { start: 8, end: 20 }; // Active hours: 8 AM to 8 PM
   private isElectron: boolean;
   private dns: any;
@@ -32,7 +33,7 @@ export class PingService {;
     ports: [53, 443], // DNS and HTTPS ports
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /**
    * Checks if the current time is within the allowed active hours.
@@ -122,10 +123,16 @@ export class PingService {;
     const startTime = Date.now();
     let isConnected = false;
     let errorMessage = null;
+    let deviceId;
+    let uniqueId = uuidv4();
+
 
     try {
       // First check navigator.onLine
       isConnected = await this.checkNavigatorOnline();
+      this.getDeviceId().then((b) => {
+        deviceId = b.uuid;
+      });
 
       if (this.isElectron) {
         // Electron-specific checks
@@ -160,46 +167,51 @@ export class PingService {;
       errorMessage = error.message;
     }
 
-    const endTime = Date.now();
-
+   
     return {
       timestamp: new Date(),
       isConnected,
-      responseTimeMs: isConnected ? endTime - startTime : null,
-      targetHost: this.connectivityChecks.hosts.join(', '),
       errorMessage,
       diagnostics: {
         platform: this.isElectron ? 'electron' : 'browser',
         navigatorOnline: navigator.onLine,
         userAgent: navigator.userAgent,
       },
+      deviceId: deviceId,
+      uuid: uniqueId
     };
   }
+
+  async getDeviceId() {
+    const deviceId = await Device.getId();
+    return deviceId;
+  }
+
 
   /**
    * Performs a connectivity check if within the active hours.
    */
-  async performCheck(): Promise<PingResult | null> {
-    if (!this.isWithinActiveHours()) {
-      console.log('Skipping check: Outside active hours.');
-      return null;
-    }
+  async performCheck(): Promise < PingResult | null > {
+  if(!this.isWithinActiveHours()) {
+  console.log('Skipping check: Outside active hours.');
+  return null;
+}
 
-    return await this.checkConnectivity();
+return await this.checkConnectivity();
   }
 
-  /**
-   * Starts periodic connectivity checks, restricted to active hours.
-   */
-  startPeriodicChecks(
-    frequency: number,
-    callback: (result: PingResult | null) => void
+/**
+ * Starts periodic connectivity checks, restricted to active hours.
+ */
+startPeriodicChecks(
+  frequency: number,
+  callback: (result: PingResult | null) => void
   ) {
-    setInterval(async () => {
-      const result = await this.performCheck();
-      if (result) {
-        callback(result);
-      }
-    }, frequency);
-  }
+  setInterval(async () => {
+    const result = await this.performCheck();
+    if (result) {
+      callback(result);
+    }
+  }, frequency);
+}
 }

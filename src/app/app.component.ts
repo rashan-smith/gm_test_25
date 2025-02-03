@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   availableSettings: any;
   scheduleSemaphore: any;
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  app_version: any;   
+  app_version: any;
   appName = environment.appName;
   showAboutMenu = environment.showAboutMenu;
   constructor(
@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
     );
 
 
-  
+
     //15 min call to 3 diff hosts
     // 2hours save the data from localstorage
     //if it fails thn delete from local storage
@@ -87,16 +87,17 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     // Start periodic checks every 15 minutes (15 * 60 * 1000 ms)
-    this.pingService.startPeriodicChecks(15 * 60 * 1000, (result: PingResult | null) => {
-      if (result) {
-        console.log('Ping result:', result);
-        this.localStorageService.savePingResult(result);
-      } else {
-        console.log('Ping skipped: Outside active hours.');
-      }
-    });
-
-    this.syncService.startPeriodicSync();
+    if (this.storage.get('schoolId')) {
+      this.pingService.startPeriodicChecks(1 * 60 * 1000, (result: PingResult | null) => {
+        if (result) {
+          console.log('Ping result:', result);
+          this.localStorageService.savePingResult(result);
+        } else {
+          console.log('Ping skipped: Outside active hours.');
+        }
+      });
+      this.syncService.startPeriodicSync();
+    }
   }
 
   openSecond() {
