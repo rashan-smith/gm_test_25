@@ -8,7 +8,7 @@ import { HistoryService } from './services/history.service';
 import { ScheduleService } from './services/schedule.service';
 import { environment } from '../environments/environment'; // './esrc/environments/environment';
 import { PingResult, PingService } from './services/ping.service';
-import { LocalStorageService } from './services/local-storage.service';
+import { IndexedDBService } from './services/indexed-db.service';
 import { SyncService } from './services/sync.service';
 
 // const shell = require('electron').shell;
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
     private settingsService: SettingsService,
     private scheduleService: ScheduleService,
     private pingService: PingService,
-    private localStorageService: LocalStorageService,
+    private localStorageService: IndexedDBService,
     private syncService: SyncService
   ) {
     translate.setDefaultLang('en');

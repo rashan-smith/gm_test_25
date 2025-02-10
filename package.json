@@ -40,11 +40,13 @@
     "electron-builder": "^23.5.0",
     "electron-squirrel-startup": "^1.0.0",
     "fs-extra": "^10.0.1",
+    "idb": "^8.0.2",
     "ngx-electron": "^2.2.0",
     "ngx-pipes": "^3.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "update-electron-app": "^2.0.1",
+    "uuid": "^8.3.2",
     "update-node": "^0.1.0",
     "zone.js": "~0.11.4"
   },
