@@ -88,7 +88,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // Start periodic checks every 15 minutes (15 * 60 * 1000 ms)
     if (this.storage.get('schoolId')) {
-      this.pingService.startPeriodicChecks(1 * 60 * 1000, (result: PingResult | null) => {
+      this.pingService.startPeriodicChecks(15 * 60 * 1000, (result: PingResult | null) => {
         if (result) {
           console.log('Ping result:', result);
           this.localStorageService.savePingResult(result);
