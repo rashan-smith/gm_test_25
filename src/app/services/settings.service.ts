@@ -215,31 +215,27 @@ export class SettingsService {
   }
 
   async getFeatureFlags() {
-    const macAddress = this.storageSerivce.get('macAddress');
-    console.log('Checking for flags', { macAddress });
-    if (!macAddress) {
-      console.log('No macAddress found');
+    const gigaId = this.storageSerivce.get('gigaId');
+    console.log('Checking for flags', { giga_id_school: gigaId });
+    if (!gigaId) {
+      console.log('No gigaId found');
       return {};
     }
     let featureFlags = this.storageSerivce.get('featureFlags');
     if (featureFlags) {
       featureFlags = JSON.parse(featureFlags);
     }
-    console.log({ featureFlags, macAddress });
+    console.log({ featureFlags, giga_id_school: gigaId });
     if (featureFlags?.updateDate && new Date(parseInt(featureFlags.updateDate, 10)).getTime() > Date.now() - DAY) {
       return featureFlags;
     };
     try {
-      const newFlags = await this.http.get(environment.restAPI + `dailycheckapp_schools/features_flags`, {
+      const newFlags = await this.http.get(environment.restAPI + `schools/features_flags/${gigaId}`, {
         observe: 'response',
         headers: new HttpHeaders({
           'Content-type': 'application/json',
         }),
-        params: {
-          mac_address: macAddress
-        }
       }).pipe(map((response: any) => response.body)).toPromise();
-      console.log({ newFlags });
       if (!newFlags || newFlags.data.length === 0) {
         return featureFlags;
       }
