@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../app/services/storage.service';
@@ -17,7 +17,7 @@ import { SyncService } from './services/sync.service';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   school: any;
   historyState: any;
   availableSettings: any;
@@ -83,20 +83,33 @@ export class AppComponent implements OnInit {
     this.refreshHistory();
     setInterval(() => {
       this.scheduleService.initiate();
+      this.initiatePingService()
     }, 60000);
   }
-  ngOnInit(): void {
+ 
+  startSyncingPeriodicProcess() {
     // Start periodic checks every 15 minutes (15 * 60 * 1000 ms)
-    if (this.storage.get('schoolId')) {
-      this.pingService.startPeriodicChecks(15 * 60 * 1000, (result: PingResult | null) => {
-        if (result) {
-          console.log('Ping result:', result);
-          this.localStorageService.savePingResult(result);
-        } else {
-          console.log('Ping skipped: Outside active hours.');
-        }
-      });
-      this.syncService.startPeriodicSync();
+    this.pingService.startPeriodicChecks(15 * 60 * 1000, (result: PingResult | null) => {
+      if (result) {
+        console.log('Ping result:', result);
+        this.localStorageService.savePingResult(result);
+      } else {
+        console.log('Ping skipped: Outside active hours.');
+      }
+    });
+    this.syncService.startPeriodicSync();
+  }
+
+  
+  async initiatePingService() {
+    try {
+      if (!this.storage.get('schoolId')) {
+        return console.log('No schoolId found, skipping Ping service');
+      }
+
+      this.startSyncingPeriodicProcess();
+    } catch (error) {
+      console.error('Error during Ping initiation:', error);
     }
   }
 
