@@ -81,9 +81,9 @@ export class AppComponent {
       this.refreshHistory.bind(this)
     );
     this.refreshHistory();
+    this.initiatePingService()
     setInterval(() => {
       this.scheduleService.initiate();
-      this.initiatePingService()
     }, 60000);
   }
  
@@ -106,7 +106,9 @@ export class AppComponent {
       if (!this.storage.get('schoolId')) {
         return console.log('No schoolId found, skipping Ping service');
       }
-
+      if(!(await this.settingsService.getFeatureFlags())?.pingService === true) {
+        return console.log('Ping service is disabled, skipping Ping service');
+      }
       this.startSyncingPeriodicProcess();
     } catch (error) {
       console.error('Error during Ping initiation:', error);
