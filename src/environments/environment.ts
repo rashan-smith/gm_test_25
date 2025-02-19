@@ -10,7 +10,7 @@ export const environment = {
   token: env.mode === 'dev' ? env.tokenDev : token,
   app_version: '1.0.11',
   appName: 'Giga Meter',
-  appNameSuffix: '',
+  appNameSuffix: 'Giga Maps',
   showAboutMenu: true,
   languages: [
     {

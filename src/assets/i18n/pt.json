@@ -72,7 +72,7 @@
         "my-school-id": "<span class=\"hash\">#</span>ID da Minha Escola",
         "version": "VERSÃO {{ app_version }}",
         "about-project-connect": "SOBRE O {{appName}}",
-        "project-connect-desc": "O Projeto Connect está a mapear a conectividade de todas as escolas do mundo. O nosso objetivo é ligar todas as escolas à Internet e todos os jovens e crianças à informação, à oportunidade e à escolha.",
+        "project-connect-desc": "O {{appName}} está a mapear a conectividade de todas as escolas do mundo. O nosso objetivo é ligar todas as escolas à Internet e todos os jovens e crianças à informação, à oportunidade e à escolha.",
         "thank-you": "Obrigado por contribuir para o {{appName}}. Encontre a sua escola e saiba mais no nosso site. Adicionamos novas escolas todos os dias!",
         "view-project-connect": "VER {{appName}}"
     },
