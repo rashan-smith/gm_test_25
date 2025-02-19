@@ -49,15 +49,11 @@ export class HomePage {
       const gigaId = this.storage.get('gigaId');
       const schoolUserId = this.storage.get('schoolUserId');
 
-      try {
-        // get the feature flags
-        settingsService.getFeatureFlags();
-        // check if the gigaId is correct
-        checkRightGigaId(
-          this.storage.get('gigaId'),
-          schoolService,
-          storage
-        ).then((res) => {
+      const getFlagsAndCheckGigaId = async () => {
+        try {
+          // get the feature flags
+          await settingsService.getFeatureFlags();
+          // check if the gigaId is correct
           schoolId = this.storage.get('schoolId');
           removeUnregisterSchool(
             schoolId,
@@ -79,12 +75,12 @@ export class HomePage {
               ]);
             }
           });
-        });
-      } catch (e) {
-        console.log(e);
-        this.router.navigate(['/starttest']);
-        this.loading.dismiss();
-      }
+        } catch (e) {
+          this.router.navigate(['/starttest']);
+          this.loading.dismiss();
+        }
+      };
+      getFlagsAndCheckGigaId();
     } else {
       this.loading.dismiss();
     }
