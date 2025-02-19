@@ -113,9 +113,9 @@ if (!gotTheLock) {
     const dialogOpts = {
       type: 'info',
       buttons: ['Restart / Reinicie. / Перезапуск', 'Later / Después / Позже'],
-      title: 'PCDC Update',
+      title: 'Giga Meter Update',
       message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail: `A new version of UNICEF's Project Connect Daily Check App (PDCA) has been downloaded. Restart the application to apply the updates.\n\nUna nueva version de la aplicación Project Connect Daily Check App de UNICEF (PCDC) ha sido descargada. Reinicie la aplicación para aplicar los cambios.\n\nНовая версия приложения Project Connect Daily Check App (PDCA) загружена . Перезапустите приложение, чтобы применить обновления.`
+      detail: `A new version of UNICEF's Giga Meter has been downloaded. Restart the application to apply the updates.\n\nUna nueva version de la aplicación Giga Meter de UNICEF ha sido descargada. Reinicie la aplicación para aplicar los cambios.\n\nНовая версия приложения Giga Meter  загружена . Перезапустите приложение, чтобы применить обновления.`
     };
     /*
     if (isDownloaded === false) {
@@ -136,9 +136,9 @@ if (!gotTheLock) {
         const dialogOpts = {
           type: 'info',
           buttons: ['Restart / Reinicie. / Перезапуск', 'Later / Después / Позже'],
-          title: 'PCDC Update',
+          title: 'Giga Meter Update',
           message: process.platform === 'win32' ? releaseNotes : releaseName,
-          detail: `A new version of UNICEF's Project Connect Daily Check App (PDCA) has been downloaded. Restart the application to apply the updates.\n\nUna nueva version de la aplicación Project Connect Daily Check App de UNICEF (PCDC) ha sido descargada. Reinicie la aplicación para aplicar los cambios.\n\nНовая версия приложения Project Connect Daily Check App (PDCA) загружена . Перезапустите приложение, чтобы применить обновления.`
+          detail: `A new version of UNICEF's Giga Meter  has been downloaded. Restart the application to apply the updates.\n\nUna nueva version de la aplicación Giga Meter de UNICEF ha sido descargada. Reinicie la aplicación para aplicar los cambios.\n\nНовая версия приложения Giga Meter  загружена . Перезапустите приложение, чтобы применить обновления.`
         };
         dialog.showMessageBox(dialogOpts).then((returnValue) => {
           if (returnValue.response === 0) autoUpdater.quitAndInstall(false, true)
@@ -151,9 +151,9 @@ if (!gotTheLock) {
         const dialogOpts = {
           type: 'info',
           buttons: ['Restart / Reinicie. / Перезапуск', 'Later / Después / Позже'],
-          title: 'PCDC Update',
+          title: 'Giga Meter Update',
           message: process.platform === 'win32' ? releaseNotes : releaseName,
-          detail: `A new version of UNICEF's Project Connect Daily Check App (PDCA) has been downloaded. Restart the application to apply the updates.\n\nUna nueva version de la aplicación Project Connect Daily Check App de UNICEF (PCDC) ha sido descargada. Reinicie la aplicación para aplicar los cambios.\n\nНовая версия приложения Project Connect Daily Check App (PDCA) загружена . Перезапустите приложение, чтобы применить обновления.`
+          detail: `A new version of UNICEF's Giga Meter  has been downloaded. Restart the application to apply the updates.\n\nUna nueva version de la aplicación Giga Meter de UNICEF  ha sido descargada. Reinicie la aplicación para aplicar los cambios.\n\nНовая версия приложения Giga Meter  загружена . Перезапустите приложение, чтобы применить обновления.`
         };
         dialog.showMessageBox(dialogOpts).then((returnValue) => {
           if (returnValue.response === 0) autoUpdater.quitAndInstall(false, true)
