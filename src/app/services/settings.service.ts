@@ -6,6 +6,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 const TEN_MINUTES = 1000 * 60 * 10;
+const MINUTE = 60 * 1000;
+const SIX_HOURS = 1000 * 60 * 60 * 6;
+
 const DAY = 1000 * 60 * 60 * 24;
 @Injectable({
   providedIn: 'root',
@@ -226,23 +229,33 @@ export class SettingsService {
       featureFlags = JSON.parse(featureFlags);
     }
     console.log({ featureFlags, giga_id_school: gigaId });
-    if (featureFlags?.updateDate && new Date(parseInt(featureFlags.updateDate, 10)).getTime() > Date.now() - DAY) {
+    if (
+      featureFlags?.updateDate &&
+      new Date(parseInt(featureFlags.updateDate, 10)).getTime() >
+        Date.now() - SIX_HOURS
+    ) {
       return featureFlags;
-    };
+    }
     try {
-      const newFlags = await this.http.get(environment.restAPI + `schools/features_flags/${gigaId}`, {
-        observe: 'response',
-        headers: new HttpHeaders({
-          'Content-type': 'application/json',
-        }),
-      }).pipe(map((response: any) => response.body)).toPromise();
+      const newFlags = await this.http
+        .get(environment.restAPI + `schools/features_flags/${gigaId}`, {
+          observe: 'response',
+          headers: new HttpHeaders({
+            'Content-type': 'application/json',
+          }),
+        })
+        .pipe(map((response: any) => response.body))
+        .toPromise();
       if (!newFlags || newFlags.data.length === 0) {
         return featureFlags;
       }
 
-      this.storageSerivce.set('featureFlags', JSON.stringify({ ...newFlags.data, updateDate: Date.now() }));
+      this.storageSerivce.set(
+        'featureFlags',
+        JSON.stringify({ ...newFlags.data, updateDate: Date.now() })
+      );
 
-      return newFlags;
+      return newFlags?.data || {};
     } catch (e) {
       console.log(e);
       return featureFlags;
