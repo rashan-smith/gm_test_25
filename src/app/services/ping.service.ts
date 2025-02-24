@@ -18,7 +18,7 @@ export interface PingResult {
   providedIn: 'root',
 })
 export class PingService {
-  private activeHours = { start: 8, end: 24 }; // Active hours: 8 AM to 8 PM
+  private activeHours = { start: 8, end: 20 }; // Active hours: 8 AM to 8 PM
   private isElectron: boolean;
   private dns: any;
   private net: any;
