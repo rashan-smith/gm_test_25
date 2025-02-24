@@ -1,3 +1,5 @@
+/* eslint-disable object-shorthand */
+/* eslint-disable @typescript-eslint/member-ordering */
 import type { CapacitorElectronConfig } from '@capacitor-community/electron';
 import {
   CapElectronEventEmitter,
@@ -6,7 +8,7 @@ import {
 } from '@capacitor-community/electron';
 import chokidar from 'chokidar';
 import type { MenuItemConstructorOptions } from 'electron';
-import { app, BrowserWindow, Menu, MenuItem, nativeImage, Tray, session, shell } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem, nativeImage, Tray, session, shell, globalShortcut } from 'electron';
 import electronIsDev from 'electron-is-dev';
 import electronServe from 'electron-serve';
 import windowStateKeeper from 'electron-window-state';
@@ -237,6 +239,14 @@ export class ElectronCapacitorApp {
       if (!this.CapacitorFileConfig.electron?.hideMainWindowOnLaunch) {
         this.MainWindow.show();
       }
+      globalShortcut.register('Control+Shift+I', () => {
+        if(this.MainWindow.webContents.isDevToolsOpened()){
+          this.MainWindow.webContents.closeDevTools();
+        }
+        else{
+          this.MainWindow.webContents.openDevTools();
+        }
+    });
       setTimeout(() => {
         if (this.CapacitorFileConfig.electron?.electronIsDev) {
           this.MainWindow.webContents.openDevTools();
