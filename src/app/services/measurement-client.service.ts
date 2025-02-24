@@ -216,7 +216,6 @@ export class MeasurementClientService {
       }
     }
 
-    this.historyService.add(measurementRecord);
     this.broadcastMeasurementStatus('complete', {
       passedResults: measurementRecord.results,
       running: false,

@@ -68,7 +68,8 @@ export class AppComponent {
       'history:measurement:change',
       this.refreshHistory.bind(this)
     );
-    this.refreshHistory();
+    // this.refreshHistory();
+    this.cleanHistory();
     setInterval(() => {
       this.scheduleService.initiate();
     }, 60000);
@@ -102,7 +103,9 @@ export class AppComponent {
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
-
+  cleanHistory() {
+    this.historyService.set({});
+  }
   refreshHistory() {
     const data = this.historyService.get();
     const dataConsumed = data.measurements.reduce(
