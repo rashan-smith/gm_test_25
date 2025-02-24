@@ -1,7 +1,7 @@
 {
     "home": {
         "title1": "Boas-vindas ao {{appName}} <span class='daily-chk-blue'>{{appNameSuffix}}</span>",
-        "title2": "Ajude sua escola a obter uma melhor conectividade. Compartilhe diariamente o estado da internet de sua escola com o Projeto Conectividade.",
+        "title2": "Ajude sua escola a obter uma melhor conectividade. Compartilhe diariamente o estado da internet de sua escola com o {{appName}}.",
         "next": "Próximo",
         "learn-more": "SAIBA MAIS SOBRE O {{appName}}"
     },

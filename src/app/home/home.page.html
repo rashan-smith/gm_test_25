@@ -4,7 +4,7 @@
     <div class="welcomebg1">
       <div class="top-layout">
         <div class="welcometxt1" [innerHTML]="'home.title1' | translate:{ appName, appNameSuffix }"></div>
-        <div class="welcometxt2" [translate]="'home.title2'"></div>
+        <div class="welcometxt2" [translate]="'home.title2' | translate:{ appName }"></div>
       </div>
       <div class="bottom-layout">
         <ion-button color="primary" block [routerLink]="['/searchcountry']" class="dailycheck_btn"><span
