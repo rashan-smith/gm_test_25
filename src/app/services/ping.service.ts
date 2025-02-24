@@ -4,6 +4,7 @@ import { Device } from '@capacitor/device';
 import { v4 as uuidv4 } from 'uuid';
 import { IndexedDBService } from './indexed-db.service';
 import { StorageService } from './storage.service';
+import { SettingsService } from './settings.service';
 
 export interface PingResult {
   timestamp: Date;
@@ -17,10 +18,11 @@ export interface PingResult {
   providedIn: 'root',
 })
 export class PingService {
-  private activeHours = { start: 8, end: 20 }; // Active hours: 8 AM to 8 PM
+  private activeHours = { start: 8, end: 24 }; // Active hours: 8 AM to 8 PM
   private isElectron: boolean;
   private dns: any;
   private net: any;
+  private checkInterval: any;
 
   private connectivityChecks = {
     dns: ['8.8.8.8', '1.1.1.1'],
@@ -28,13 +30,19 @@ export class PingService {
     ports: [53, 443],
   };
 
-  constructor(private http: HttpClient, private indexedDBService: IndexedDBService    
+  constructor(
+    private http: HttpClient,
+    private indexedDBService: IndexedDBService,
+    private settingsService: SettingsService
   ) {}
 
   private isWithinActiveHours(): boolean {
     const now = new Date();
     const currentHour = now.getHours();
-    return currentHour >= this.activeHours.start && currentHour < this.activeHours.end;
+    return (
+      currentHour >= this.activeHours.start &&
+      currentHour < this.activeHours.end
+    );
   }
 
   private async checkNavigatorOnline(): Promise<boolean> {
@@ -47,7 +55,10 @@ export class PingService {
     });
   }
 
-  private async checkTCPConnection(host: string, port: number): Promise<boolean> {
+  private async checkTCPConnection(
+    host: string,
+    port: number
+  ): Promise<boolean> {
     return new Promise((resolve) => {
       const socket = new this.net.Socket();
       socket.setTimeout(5000);
@@ -76,11 +87,11 @@ export class PingService {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-      await fetch('https://1.1.1.1/cdn-cgi/trace', {
-        mode: 'no-cors',
+      const response = await fetch('https://1.1.1.1/cdn-cgi/trace', {
         signal: controller.signal,
       });
 
+      console.log(response);
       clearTimeout(timeoutId);
       return true;
     } catch {
@@ -112,7 +123,9 @@ export class PingService {
           this.connectivityChecks.hosts.reduce(
             (acc, host) => [
               ...acc,
-              ...this.connectivityChecks.ports.map((port) => this.checkTCPConnection(host, port)),
+              ...this.connectivityChecks.ports.map((port) =>
+                this.checkTCPConnection(host, port)
+              ),
             ],
             []
           )
@@ -150,14 +163,30 @@ export class PingService {
     return await this.checkConnectivity();
   }
 
-  startPeriodicChecks(frequency: number, callback: (result: PingResult | null) => void) {
-    setInterval(async () => {
-      const result = await this.performCheck();
-      if (result) {
-        console.log('Ping result:', result);
-        this.indexedDBService.savePingResult(result);
+  async startPeriodicChecks(
+    frequency: number,
+    callback: (result: PingResult | null) => void
+  ) {
+    // Clear any existing interval
+    if (this.checkInterval) {
+      clearInterval(this.checkInterval);
+      this.checkInterval = null;
+    }
+
+    this.checkInterval = setInterval(async () => {
+      // Check feature flag on each interval
+      const featureFlags = await this.settingsService.getFeatureFlags();
+
+      if (!featureFlags?.pingService) {
+        console.log('Ping service disabled by feature flags');
       } else {
-        console.log('Ping skipped: Outside active hours.');
+        const result = await this.performCheck();
+        if (result) {
+          console.log('Ping result:', result);
+          this.indexedDBService.savePingResult(result);
+        } else {
+          console.log('Ping skipped: Outside active hours.');
+        }
       }
     }, frequency);
   }
