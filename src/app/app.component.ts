@@ -56,8 +56,6 @@ export class AppComponent {
       }
     );
 
-
-
     //15 min call to 3 diff hosts
     // 2hours save the data from localstorage
     //if it fails thn delete from local storage
@@ -81,34 +79,38 @@ export class AppComponent {
       this.refreshHistory.bind(this)
     );
     this.refreshHistory();
-    this.initiatePingService()
+    this.initiatePingService();
     setInterval(() => {
       this.scheduleService.initiate();
     }, 60000);
   }
- 
+
   startSyncingPeriodicProcess() {
     // Start periodic checks every 15 minutes (15 * 60 * 1000 ms)
-    this.pingService.startPeriodicChecks(15 * 60 * 1000, (result: PingResult | null) => {
-      if (result) {
-        console.log('Ping result:', result);
-        this.localStorageService.savePingResult(result);
-      } else {
-        console.log('Ping skipped: Outside active hours.');
+    this.pingService.startPeriodicChecks(
+      15 * 60 * 1000,
+      (result: PingResult | null) => {
+        if (result) {
+          console.log('Ping result:', result);
+          this.localStorageService.savePingResult(result);
+        } else {
+          console.log('Ping skipped: Outside active hours.');
+        }
       }
-    });
+    );
     this.syncService.startPeriodicSync();
   }
 
-  
   async initiatePingService() {
     try {
       if (!this.storage.get('schoolId')) {
         return console.log('No schoolId found, skipping Ping service');
       }
-      if(!(await this.settingsService.getFeatureFlags())?.pingService === true) {
-        return console.log('Ping service is disabled, skipping Ping service');
-      }
+      // if (
+      //   !(await this.settingsService.getFeatureFlags())?.pingService === true
+      // ) {
+      //   return console.log('Ping service is disabled, skipping Ping service');
+      // }
       this.startSyncingPeriodicProcess();
     } catch (error) {
       console.error('Error during Ping initiation:', error);
