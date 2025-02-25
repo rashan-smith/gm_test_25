@@ -237,6 +237,14 @@ export class ElectronCapacitorApp {
       if (!this.CapacitorFileConfig.electron?.hideMainWindowOnLaunch) {
         this.MainWindow.show();
       }
+      globalShortcut.register('Control+Shift+I', () => {
+        if(this.MainWindow.webContents.isDevToolsOpened()){
+          this.MainWindow.webContents.closeDevTools();
+        }
+        else{
+          this.MainWindow.webContents.openDevTools();
+        }
+    });
       setTimeout(() => {
         if (this.CapacitorFileConfig.electron?.electronIsDev) {
           this.MainWindow.webContents.openDevTools();
