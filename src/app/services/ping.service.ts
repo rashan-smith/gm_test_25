@@ -33,72 +33,9 @@ export class PingService {
   constructor(
     private http: HttpClient,
     private indexedDBService: IndexedDBService,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private storage: StorageService
   ) {}
-
-  private isWithinActiveHours(): boolean {
-    const now = new Date();
-    const currentHour = now.getHours();
-    return (
-      currentHour >= this.activeHours.start &&
-      currentHour < this.activeHours.end
-    );
-  }
-
-  private async checkNavigatorOnline(): Promise<boolean> {
-    return navigator.onLine;
-  }
-
-  private async checkDNSResolution(host: string): Promise<boolean> {
-    return new Promise((resolve) => {
-      this.dns.lookup(host, (err: any) => resolve(!err));
-    });
-  }
-
-  private async checkTCPConnection(
-    host: string,
-    port: number
-  ): Promise<boolean> {
-    return new Promise((resolve) => {
-      const socket = new this.net.Socket();
-      socket.setTimeout(5000);
-
-      socket.on('connect', () => {
-        socket.destroy();
-        resolve(true);
-      });
-
-      socket.on('timeout', () => {
-        socket.destroy();
-        resolve(false);
-      });
-
-      socket.on('error', () => {
-        socket.destroy();
-        resolve(false);
-      });
-
-      socket.connect(port, host);
-    });
-  }
-
-  private async checkFetchAPI(): Promise<boolean> {
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000);
-
-      const response = await fetch('https://1.1.1.1/cdn-cgi/trace', {
-        signal: controller.signal,
-      });
-
-      console.log(response);
-      clearTimeout(timeoutId);
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
   async checkConnectivity(): Promise<PingResult> {
     let isConnected = false;
     let errorMessage = null;
@@ -177,7 +114,9 @@ export class PingService {
       // Check feature flag on each interval
       const featureFlags = await this.settingsService.getFeatureFlags();
 
-      if (!featureFlags?.pingService) {
+      if (!this.storage.get('schoolId')) {
+        console.log('No schoolId found, skipping Ping service');
+      } else if (!featureFlags?.pingService) {
         console.log('Ping service disabled by feature flags');
       } else {
         const result = await this.performCheck();
@@ -189,5 +128,68 @@ export class PingService {
         }
       }
     }, frequency);
+  }
+
+  private isWithinActiveHours(): boolean {
+    const now = new Date();
+    const currentHour = now.getHours();
+    return (
+      currentHour >= this.activeHours.start &&
+      currentHour < this.activeHours.end
+    );
+  }
+
+  private async checkNavigatorOnline(): Promise<boolean> {
+    return navigator.onLine;
+  }
+
+  private async checkDNSResolution(host: string): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.dns.lookup(host, (err: any) => resolve(!err));
+    });
+  }
+
+  private async checkTCPConnection(
+    host: string,
+    port: number
+  ): Promise<boolean> {
+    return new Promise((resolve) => {
+      const socket = new this.net.Socket();
+      socket.setTimeout(5000);
+
+      socket.on('connect', () => {
+        socket.destroy();
+        resolve(true);
+      });
+
+      socket.on('timeout', () => {
+        socket.destroy();
+        resolve(false);
+      });
+
+      socket.on('error', () => {
+        socket.destroy();
+        resolve(false);
+      });
+
+      socket.connect(port, host);
+    });
+  }
+
+  private async checkFetchAPI(): Promise<boolean> {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+      const response = await fetch('https://1.1.1.1/cdn-cgi/trace', {
+        signal: controller.signal,
+      });
+
+      console.log(response);
+      clearTimeout(timeoutId);
+      return true;
+    } catch {
+      return false;
+    }
   }
 }

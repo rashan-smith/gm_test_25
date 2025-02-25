@@ -103,9 +103,7 @@ export class AppComponent {
 
   async initiatePingService() {
     try {
-      if (!this.storage.get('schoolId')) {
-        return console.log('No schoolId found, skipping Ping service');
-      }
+      
       // if (
       //   !(await this.settingsService.getFeatureFlags())?.pingService === true
       // ) {
