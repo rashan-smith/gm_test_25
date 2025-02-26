@@ -17,13 +17,17 @@ import { environment } from '../../environments/environment';
 export class HomePage {
   appName = environment.appName;
   appNameSuffix = environment.appNameSuffix;
+  privacyUrl1 = "https://opendatacommons.org/licenses/odbl/1-0/";
+  privacyUrl2= "https://www.measurementlab.net/privacy/";
+  targetUrl="_blank"
+  isPrivacyChecked = false;
   constructor(
     public router: Router,
     public translate: TranslateService,
     private settingsService: SettingsService,
     private storage: StorageService,
     private loading: LoadingService,
-    private schoolService: SchoolService
+    private readonly schoolService: SchoolService
   ) {
     translate.setDefaultLang('en');
     const applicationLanguage = this.settingsService.get('applicationLanguage');
