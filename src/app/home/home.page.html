@@ -6,12 +6,23 @@
         <div class="welcometxt1" [innerHTML]="'home.title1' | translate:{ appName, appNameSuffix }"></div>
         <div class="welcometxt2" [translate]="'home.title2'"></div>
       </div>
-      <div class="bottom-layout">
-        <ion-button color="primary" block [routerLink]="['/searchcountry']" class="dailycheck_btn"><span
-            class="next-txt" [translate]="'home.next'"></span></ion-button>
-        <div class="learnmore" (click)="openExternalUrl('https://projectconnect.unicef.org/daily-check-app')"
-          [translate]="'home.learn-more' | translate:{ appName: (appName | uppercase)}"></div>
+      <div class="middle-layout">
+        <ion-checkbox class="border" [(ngModel)]="isPrivacyChecked"></ion-checkbox>
+        <div class="learnmore"
+          [innerHTML]="'home.checkbox' | translate:{ privacyUrl1, targetUrl, privacyUrl2, targetUrl }"></div>
+          <div class="further-info" [innerHTML]="'home.privacy' | translate:{  targetUrl }">
+
+          </div>
+          <div class="bottom-layout">
+
+            <ion-button [disabled]="!isPrivacyChecked" color="primary" block [routerLink]="['/searchcountry']"
+              class="dailycheck_btn"><span class="next-txt" [translate]="'home.next'"></span></ion-button>
+            <div class="learnmore" (click)="openExternalUrl('https://projectconnect.unicef.org/daily-check-app')"
+              [translate]="'home.learn-more' | translate:{ appName: (appName | uppercase)}"></div>
+          </div>
       </div>
+      
+      
     </div>
   </div>
 </ion-content>
