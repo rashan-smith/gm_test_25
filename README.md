@@ -125,42 +125,42 @@ Getting Started</h2>
 
 - After cloning the code from the GitHub repository
 ```sh
-https://github.com/unicef/project-connect-daily-check-app
+git clone https://github.com/unicef/project-connect-daily-check-app
 ```
 - Install all the dependencies modules by running this command: 
 ```sh
 npm install 
+cd electron
+npm install 
 ```
+
+Due to some dependency issue we have to modify the file `node_modules/ngx-electron/lib/electron.service.d.ts:17:31`
+```
+17 readonly remote: any;
+```
+
+*Environment*
+Rename and replace the `src\environments\_environment.prod.ts.example` to `src\environments\_environment.prod.ts`
+Set the Api urls and the tokens
+
 - To run the app the application in a browser, run this command:
 ```sh
-Ionic serve 
+npm run start
 ```
 - To run the application directly during the development without creating exe, run the following command from electron folder: 
 ```sh
+npm run ng build 
+npx cap sync @capacitor-community/electron 
+cd electron
 npm run electron:start-live 
 ```
-<b>Ionic build generation</b> 
+Note: to run electron:start-live is needed to use node 16
 
-- To create a build from Ionic, run the following command: 
-```sh
-Ionic build (for development)
-```
-or
-```sh
-Ionic build –prod (for production)
-```
-
-- After running the above command, ionic build will be generated.  
-
-- To transfer the build to electron side, run the following command: 
-```sh
-npx cap sync @capacitor-community/electron 
-```
 <b>Setup file generation</b>
 
-- Navigate to the electron folder, then run the following command:
+Run this command on the root folder to generate the setup file for the windows build: 
 ```sh
-npm run electron:make 
+npm run build:electron
 ```
 - The windows build can be found inside 
 ```sh
