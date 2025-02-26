@@ -1,0 +1,36 @@
+
+export const environment = {
+  production: false,
+  restAPI: 'PROD_API',
+  restAPIDev: 'DEV_API',
+  tokenDev:'DEV_TOKEN',
+  token:'PROD_TOKEN',
+  mode: 'dev', // dev, prod
+  languages: [
+    {
+      name: 'En',
+      label: 'English',
+      code: 'en',
+    },
+    {
+      name: 'Es',
+      label: 'Español',
+      code: 'es',
+    },
+    {
+      name: 'Pt',
+      label: 'Português',
+      code: 'pt',
+    },
+    {
+      name: 'Ru',
+      label: 'Russian',
+      code: 'ru',
+    },
+    {
+      name: 'Fr',
+      label: 'French',
+      code: 'fr',
+    },
+  ],
+};
