@@ -68,8 +68,8 @@ export class AppComponent {
       'history:measurement:change',
       this.refreshHistory.bind(this)
     );
-    // this.refreshHistory();
-    this.cleanHistory();
+    this.historyService.reset();
+    this.refreshHistory();
     setInterval(() => {
       this.scheduleService.initiate();
     }, 60000);
