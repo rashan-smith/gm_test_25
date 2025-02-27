@@ -7,6 +7,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "start:electron":"ng build && npx cap sync @capacitor-community/electron && cd electron && npm run electron:start-live",
     "build:electron": "ng build && npx cap sync @capacitor-community/electron && cd electron && npm run electron:make-not-publish",
     "build:electron-publish": "ng build && npx cap sync @capacitor-community/electron && cd electron && npm run electron:make",
     "test": "ng test",

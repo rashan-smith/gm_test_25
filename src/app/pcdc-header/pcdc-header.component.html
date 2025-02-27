@@ -1,9 +1,11 @@
 <ion-header no-shadow>
   <ion-toolbar class="header-toolbar">
-    <ion-label [routerLink]="['/home']">
-      {{ appName | uppercase }}
-      <span class="daily-chk"> {{ appNameSuffix | uppercase }} </span>
-    </ion-label>
+    <div slot="start">
+      <ion-label [routerLink]="['/home']">
+        {{ appName | uppercase }}
+        {{ appNameSuffix }}
+      </ion-label>
+    </div>
     <ion-buttons slot="end">
       <ion-select [(ngModel)]="selectedLanguage" (ionChange)="onLanguageChange()" class="custom-select">
         <ion-select-option *ngFor="let language of languages" [value]="language.code">
