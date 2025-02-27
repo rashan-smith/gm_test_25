@@ -7,7 +7,7 @@ const config: ElectronCapacitorConfig  = {
   bundledWebRuntime: false,
   electron: {
     trayIconAndMenuEnabled: true,
-    electronIsDev: false
+    electronIsDev: true
   }
 };
 
