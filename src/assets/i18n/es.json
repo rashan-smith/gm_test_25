@@ -4,8 +4,11 @@
         "title2": "Ayuda a que tu escuela mejore su conectividad. Comparte el estado de internet de tu escuela con {{appName}} todos los días.",
         "next": "Siguiente",
         "learn-more": "APRENDE MÁS SOBRE {{appName}}",
-        "checkbox":  "By registering and using GigaMeter, I agree to the collection, processing and publication of my measurement and other supporting data by Giga under the <a href={{privacyUrl1}} target={{targetUrl}}>Open Database License (ODBL)</a> and by M-Lab under the <a href={{privacyUrl2}}   target={{targetUrl}}>Privacy Policy</a>.",
-        "privacy": "<a href='https://www.unicef.org/legal#privacy-policy' target={{targetUrl}}>For further details on how Giga manages your data, please visit UNICEF's Privacy Policy.</a>"
+        "checkboxText": "Al registrarme y utilizar GigaMeter, acepto la recopilación, el procesamiento y la publicación de mi medición y otros datos de apoyo por parte de Giga bajo la",
+        "licenseLink": "Licencia Abierta de Bases de Datos (ODbL)",
+        "andText": "y por M-Lab bajo la",
+        "privacyPolicy": "Política de Privacidad",
+        "privacy": "<a href='https://www.unicef.org/legal#privacy-policy' target={{targetUrl}}>Para más detalles sobre cómo Giga gestiona tus datos, visita la Política de Privacidad de UNICEF.</a>"
     },
     "confirmSchool": {
         "title": "CONFIRMA LA INFORMACIÓN DE TU ESCUELA PARA REGISTRARLA EN {{appName}}",
