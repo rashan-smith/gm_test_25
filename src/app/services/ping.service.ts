@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { IndexedDBService } from './indexed-db.service';
 import { StorageService } from './storage.service';
 import { SettingsService } from './settings.service';
+import SpeedTest from '@cloudflare/speedtest';
 
 export interface PingResult {
   timestamp: Date;
@@ -12,6 +13,7 @@ export interface PingResult {
   errorMessage: string | null;
   deviceId: string;
   app_local_uuid: string;
+  latency?: string;
 }
 
 @Injectable({
@@ -23,7 +25,7 @@ export class PingService {
   private dns: any;
   private net: any;
   private checkInterval: any;
-
+  private latency: any;
   private connectivityChecks = {
     dns: ['8.8.8.8', '1.1.1.1'],
     hosts: ['google.com', 'cloudflare.com', 'microsoft.com'],
@@ -44,9 +46,8 @@ export class PingService {
 
     try {
       isConnected = await this.checkNavigatorOnline();
-      this.getDeviceId().then((b) => {
-        deviceId = b.uuid;
-      });
+      const deviceInfo = await this.getDeviceId();
+      deviceId = deviceInfo.uuid;
 
       if (this.isElectron) {
         const dnsChecks = await Promise.all(
@@ -83,6 +84,7 @@ export class PingService {
       errorMessage,
       deviceId: deviceId,
       app_local_uuid: uniqueId,
+      latency: this.latency
     };
   }
 
@@ -178,18 +180,34 @@ export class PingService {
 
   private async checkFetchAPI(): Promise<boolean> {
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      this.latency = "";
 
-      const response = await fetch('https://1.1.1.1/cdn-cgi/trace', {
-        signal: controller.signal,
+      const configOptions = {
+        measurements: [{ type: 'latency', numPackets: 1 }]
+      };
+      const speedTest = new SpeedTest(configOptions as any);
+
+      return new Promise((resolve) => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => {
+          controller.abort();
+          console.error('SpeedTest timeout');
+          resolve(false); // Ensure the function does not hang indefinitely
+        }, 5000);
+
+        speedTest.onFinish = (results) => {
+          console.log('SpeedTest Summary:', results.getSummary().latency);
+          this.latency = results.getSummary().latency;
+          clearTimeout(timeoutId);
+          resolve(true);
+        };
       });
 
-      console.log(response);
-      clearTimeout(timeoutId);
-      return true;
-    } catch {
+    } catch (error) {
+      console.error('SpeedTest error:', error);
       return false;
     }
   }
+
+
 }
