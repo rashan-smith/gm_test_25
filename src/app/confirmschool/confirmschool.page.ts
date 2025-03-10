@@ -97,7 +97,7 @@ export class ConfirmschoolPage {
               this.storage.set('school_id', this.school.school_id);
               this.storage.set('schoolInfo', JSON.stringify(this.school));
               this.loading.dismiss();
-              this.router.navigate(['/schoolsuccess']);
+              this.router.navigate(['/save-email']);
               this.settings.setSetting('scheduledTesting', true);
             }),
             (err) => {
@@ -152,6 +152,19 @@ export class ConfirmschoolPage {
       });
     });
   }
+
+  backToSaved(schoolObj) {
+    this.router.navigate(
+      [
+        'schooldetails',
+        schoolObj.school_id,
+        this.selectedCountry,
+        this.detectedCountry,
+      ],
+      { state: schoolObj }
+    );
+  }
+
 
   async getDeviceInfo() {
     const info = await Device.getInfo();

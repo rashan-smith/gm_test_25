@@ -11,8 +11,8 @@
         "privacy": "<a href='https://www.unicef.org/legal#privacy-policy' target={{targetUrl}}>Pour plus de détails sur la manière dont Giga gère vos données, veuillez consulter la Politique de confidentialité de l'UNICEF.</a>"
     },
     "confirmSchool": {
-        "title": "CONFIRMER LES INFORMATIONS DE L'ÉCOLE POUR ENREGISTRER VOTRE ÉCOLE AVEC {{appName}}",
-        "confirm1": "* Veuillez vous assurer que le pays correct soit sélectionné.",
+        "title": "Les informations ci-dessous sont-elles correctes ?",
+        "confirm1": "Confirmez les informations de l'école pour inscrire votre école",
         "confirm2": "LES INFORMATIONS CI-DESSUS SONT-ELLES CORRECTES?"
     },
     "invalidLocation": {
@@ -21,12 +21,15 @@
     },
     "schoolDetails": {
         "search": "Recherche de votre école...",
-        "selectAndConfirm": "SÉLECTIONNEZ VOTRE ÉCOLE CI-DESSOUS",
-        "noSchoolList": "MON ÉCOLE NE FIGURE PAS DANS LA LISTE"
+        "selectAndConfirm": "Sélectionnez une école de droit",
+        "noSchoolList": "MON ÉCOLE NE FIGURE PAS DANS LA LISTE",
+        "saveEmail":"Veuillez ajouter l'adresse e-mail de votre école",
+        "enterEmail": "Texte de saisie"
     },
     "schoolNotFound": {
-        "unableToLocate": "IMPOSSIBLE DE TROUVER VOTRE ÉCOLE",
+        "unableToLocate": "Nous n'avons pas pu trouver votre école : {{schoolId}}",
         "notFound": "Malheureusement, nous n'avons pas pu localiser votre école",
+        "tryAgainPlaceholder": "Veuillez vous assurer que vous avez saisi le bon identifiant ou réessayez avec un identifiant différent",
         "notRegister": ""
     },
     "Please contact your school administrator to register your school on": "",
@@ -43,21 +46,21 @@
         "success-txt": "VOTRE VÉRIFICATION INTERNET QUOTIDIENNE <br />EST PARAMÉTRÉE",
         "internet-checks": "Cette application vérifiera votre <br />état de connexion Internet deux fois par jour",
         "app-run": "CETTE APPLICATION FONCTIONNERA <br />EN ARRIÈRE-PLAN",
-        "app-run-desc": "Il est possible de fermer l'application. <br />Les données de votre école seront collectées <br />lorsque l'appareil est allumé."
+        "app-run-desc": "Vos données scolaires seront collectées lorsque l'appareil sera allumé. Vous pouvez fermer l'application."
     },
     "searchCountry": {
         "check": "Vérification du pays...",
         "detected-auto": "Votre pays est détecté automatiquement",
         "country": "Pays",
-        "country-not-accurate": "Il semble que le pays que vous avez sélectionné soit incorrect",
+        "country-not-accurate": "Il semble que le pays que vous avez sélectionné ne corresponde pas à votre emplacement. Êtes-vous sûr de vouloir continuer ?",
         "please-double-check": "Veuillez vérifier votre sélection.",
-        "not-available": "Désolé, l'application {{appName}} {{appNameSuffix}} n'est pas disponible dans {{selectedCountry}}"
+        "not-available": "Désolé, l'application {{appName}} {{appName Suffix}} n'est pas disponible dans ce pays. Veuillez choisir un autre pays."
     },
     "searchSchool": {
         "search": "Recherche de votre école...",
-        "placeholder-school-id": "Entrez votre identifiant d'école",
-        "provide-school-id": "Pour commencer, veuillez entrer et rechercher votre identifiant d'école",
-        "user-has-not-id": "JE NE CONNAIS PAS MON IDENTIFIANT D'ÉCOLE <span class=\"chevron right\"></span>"
+        "placeholder-school-id": "par exemple 00000000",
+        "provide-school-id": "Veuillez saisir votre identifiant d'école",
+        "user-has-not-id": "Une fois que vous avez saisi votre identifiant scolaire, nous rechercherons les identifiants correspondant à votre saisie."
     },
     "faq": {
         "FAQ": "QUESTIONS FRÉQUEMMENT POSÉES",
@@ -97,6 +100,12 @@
         "latency": "Latence : {{latency}}",
         "testFailed": "TEST ÉCHOUÉ",
         "testFailedDesc": "La connexion a été interrompue avant que les tests puissent être terminés."
+    },
+    "registerSchoolPage" : {
+        "title1": "Vous êtes sur le point d’inscrire votre école",
+        "title2": "Pour garantir un bon processus d'inscription, assurez-vous que les directives suivantes sont respectées :",
+        "readMore": "En savoir plus sur la façon de garantir une bonne inscription"
+
     },
     "resultSchool": "RÉSULTATS POUR L'IDENTIFICATION DE L'ÉCOLE",
     "tryAgain": "ESSAYER À NOUVEAU",

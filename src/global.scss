@@ -27,8 +27,8 @@
 @import "./theme/variables.scss";
 
 ion-header {
-  background-color: #2779ff !important;
-  height: 70px;
+  background-color: #ffffff !important;
+  height: 51px;
   display: flex;
   align-items: center;
   ion-label {
@@ -45,14 +45,11 @@ ion-header {
 .dailycheck_btn {
   width: 100%;
   font-size: 13px;
-  --border-radius: 5px !important;
-  height: 40px;
+  --border-radius: 45px !important;
+  height: 58px;
+  box-shadow: none !important;
 }
 .dailycheck_btn:hover {
-  width: 100%;
-  font-size: 13px;
-  border-radius: 5px !important;
-  height: 40px;
   background-color: $btn-hover;
 }
 .h-line {
@@ -96,8 +93,9 @@ ion-header {
   display: flex;
   justify-content: center;
   ion-toolbar {
-    width: auto !important;
-    min-width: 310px;
+    padding: 0 25px;
+    width: 100% !important;
+    min-width: 100%;
     ion-label {
       letter-spacing: 1.15px;
       font-weight: 400;
@@ -107,6 +105,11 @@ ion-header {
       overflow: hidden;
     }
   }
+  .buttons-last-slot {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+}
 }
 ion-radio {
   .radio-icon {
@@ -118,10 +121,10 @@ ion-radio {
   }
 }
 .radio-inner {
-  background: #ffffff !important;
+  background: #222222 !important;
 }
 ion-toolbar {
-  --background: #2779ff !important;
+  --background: #ffffff !important;
 }
 .header-ios ion-toolbar:last-of-type {
   --border-width: 0px !important;
@@ -181,20 +184,23 @@ ion-accordion.accordion-expanded > [slot="header"] .ion-accordion-toggle-icon {
   padding-left: 20px !important;
 }
 ion-content {
-  --ion-background-color: #111c30;
+  --ion-background-color: #ffffff;
   .scrollable-element {
     scrollbar-color: red yellow;
   }
 }
 .ion-page {
   border-radius: 10px !important;
+  max-width: 700px;
+  margin: 0 auto;
   background-color: #fe2762;
   color: $light-text2;
+  max-height: 840px;
 }
 .container {
   margin: 10px 25px 0px 25px;
-  background: url("assets/images/Background-4dots.png") !important;
   min-height: 88%;
+  background-color: #ffffff;
   background-size: 100% 100%;
   border-radius: 0px 0px 10px 10px;
 }

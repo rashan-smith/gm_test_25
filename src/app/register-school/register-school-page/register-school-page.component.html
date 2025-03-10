@@ -1,0 +1,42 @@
+<app-pcdc-header></app-pcdc-header>
+<ion-content>
+  <ion-img src="assets/images/back_button.png" [routerLink]="['/home']" class="back_button"></ion-img>
+
+  <div class="register_title1" [translate]="'registerSchoolPage.title1' | translate"></div>
+
+  <div class="register_title2" [translate]="'registerSchoolPage.title2' | translate"></div>
+  <div class="check_tip_wraper">
+  <div class="check_tip">   <ion-img src="assets/images/Icon.svg" ></ion-img>
+    <span>Tip 1</span></div>
+  <div class="check_tip"><ion-img src="assets/images/Icon.svg"></ion-img><span>Tip 2</span></div>
+  <div class="check_tip"><ion-img src="assets/images/Icon.svg"></ion-img><span>Tip 3</span></div>
+</div>
+  <div class="register_readMore" [translate]="'registerSchoolPage.readMore' | translate"></div>
+
+  <div class="middle-layout">
+    <div class="privacy-container">
+      <div class="input">
+        <input type="checkbox" [(ngModel)]="isPrivacyChecked" class="checkbox" (change)="toggleCheckbox()" />
+      </div>
+      <div class="learnmore">
+        {{ 'home.checkboxText' | translate }}
+        <a (click)="openExternalUrl(privacyUrl1)">
+          {{ 'home.licenseLink' | translate }}
+        </a>
+        {{ 'home.andText' | translate }}
+        <a (click)="openExternalUrl(privacyUrl2)">
+          {{ 'home.privacyPolicy' | translate }}
+        </a>.
+      </div>
+    </div>
+    <div class="further-info" [innerHTML]="'home.privacy' | translate:{  targetUrl }"
+      (click)="openExternalUrl('https://www.unicef.org/legal#privacy-policy')">
+    </div>
+    <div class="bottom-layout">
+      <ion-button [disabled]="!isPrivacyChecked" color="primary" (click)="redirectToCountry()"
+        class="dailycheck_btn"><span class="next-txt" [translate]="'home.next'"></span></ion-button>
+
+    </div>
+  </div>
+
+</ion-content>

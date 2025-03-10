@@ -25,7 +25,7 @@ export class PcdcHeaderComponent implements OnInit {
       translate.defaultLang;
     this.selectedLanguageName = this.languages.find(
       (l) => l.code === this.selectedLanguage
-    ).name;
+    ).label;
     translate.use(this.selectedLanguage);
     this.test = env.mode === 'dev';
   }
@@ -38,7 +38,7 @@ export class PcdcHeaderComponent implements OnInit {
     );
     this.selectedLanguageName = this.languages.find(
       (l) => l.code === this.selectedLanguage
-    ).name;
+    ).label;
     window.location.reload();
   }
   closeApp() {

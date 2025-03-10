@@ -22,10 +22,10 @@
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-$text-color:#FFFFFF;
-$light-text1:#A3ACBB;
-$light-text2:#E2E2E2;
-$background-bg-color:#111C30;
+$text-color:#222222;
+$light-text1:#6F6F6F;
+$light-text2:#9b9b9b;
+$background-bg-color:#ffffff;
 
 
 // Named Color Variables
@@ -316,4 +316,15 @@ ion-img.bigloaderGif{
   width: 120px;
   height:auto;
   margin: 0 auto;
+}
+.hydrated {
+  background-color: white;
+}
+.back_button {
+  height: 32px;
+  margin: 10px 25px;
+  width: fit-content;
+}
+.green_loader {
+  color: $color-green;
 }

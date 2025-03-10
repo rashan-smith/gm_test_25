@@ -1,10 +1,8 @@
 <ion-header no-shadow>
   <ion-toolbar class="header-toolbar">
     <div slot="start">
-      <ion-label [routerLink]="['/home']">
-        {{ appName | uppercase }}
-        {{ appNameSuffix }}
-      </ion-label>
+      <ion-img src="assets/images/gigameter_logo.png" class="giga_meter_logo"></ion-img>
+
     </div>
     <ion-buttons slot="end">
       <ion-select [(ngModel)]="selectedLanguage" (ionChange)="onLanguageChange()" class="custom-select">
@@ -18,12 +16,14 @@
       </ion-label>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-menu-button color="light"></ion-menu-button>
+      <!-- <ion-menu-button color="light"></ion-menu-button> -->
+      <ion-img src="assets/images/Help.png" class="noschool-icon"></ion-img>
+
+      <ion-img src="assets/images/Settings.png" class="noschool-icon"></ion-img>
+
+
     </ion-buttons>
   </ion-toolbar>
-  <div class="closeAppBtn">
-    <ion-icon slot="icon-only" name="close-outline" (click)="closeApp()"></ion-icon>
-  </div>
 </ion-header>
 <div class="testMode">
   {{ test ? "Test Mode" :"" }}

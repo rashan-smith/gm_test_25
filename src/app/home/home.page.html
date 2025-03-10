@@ -2,12 +2,22 @@
 <ion-content no-bounce>
   <div class="container">
     <div class="welcomebg1">
-      <div class="top-layout">
-        <div class="welcometxt1" [innerHTML]="'home.title1' | translate:{ appName, appNameSuffix }"></div>
-        <div class="welcometxt2" [translate]="'home.title2' | translate:{ appName }"></div>
+      <div class="middle_container_home">
+        <div class="middle_container_home_content">
+          <div class="top-layout">
+            <div class="welcometxt1">Welcome to <ion-img src="assets/images/gigameter_logo.png"
+                class="giga_meter_logo"></ion-img>
+            </div>
+            <div class="welcometxt2" [translate]="'home.title2' | translate:{ appName }"></div>
+          </div>
+          <ion-img src="assets/images/welcome_icon.png" class="welcome_icon"></ion-img>
+          <div class="learn_more_text">Learn more about Giga Meter <ion-img src="assets/images/Launch.png"
+              (click)="openExternalUrl('https://meter.giga.global/')" class="welcome_icon"></ion-img>
+          </div>
+        </div>
       </div>
-      <div class="middle-layout">
-        <div class="privacy-container">
+
+      <!-- <div class="privacy-container">
           <div class="input">
             <input type="checkbox" [(ngModel)]="isPrivacyChecked"
               class="checkbox" />
@@ -22,16 +32,15 @@
               {{ 'home.privacyPolicy' | translate }}
             </a>.
           </div>
-        </div>
-        <div class="further-info" [innerHTML]="'home.privacy' | translate:{  targetUrl }"
+        </div> -->
+      <!-- <div class="further-info" [innerHTML]="'home.privacy' | translate:{  targetUrl }"
           (click)="openExternalUrl('https://www.unicef.org/legal#privacy-policy')">
-        </div>
-        <div class="bottom-layout">
-          <ion-button [disabled]="!isPrivacyChecked" color="primary" block [routerLink]="['/searchcountry']"
-            class="dailycheck_btn"><span class="next-txt" [translate]="'home.next'"></span></ion-button>
-          <div class="learnmore" (click)="openExternalUrl('https://projectconnect.unicef.org/daily-check-app')"
-            [translate]="'home.learn-more' | translate:{ appName: (appName | uppercase)}"></div>
-        </div>
+        </div> -->
+      <div class="bottom-layout">
+        <ion-button color="primary" block [routerLink]="['/register-school']" class="dailycheck_btn"><span
+            class="next-txt" [translate]="'home.next'"></span></ion-button>
+        <!-- <div class="learnmore" (click)="openExternalUrl('https://projectconnect.unicef.org/daily-check-app')"
+            [translate]="'home.learn-more' | translate:{ appName: (appName | uppercase)}"></div> -->
       </div>
     </div>
   </div>

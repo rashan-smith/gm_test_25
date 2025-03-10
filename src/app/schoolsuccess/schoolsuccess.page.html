@@ -23,7 +23,7 @@
       <ion-slide>
         <div class="top-layout">
           <div class="successInfo">
-            <ion-img src="assets/images/App_Run Background_Icon.png" class="icon3"></ion-img>
+            <ion-img src="assets/images/app_run.png" class="icon3"></ion-img>
             <div class="success-txt" [innerHtml]="'schoolSuccess.app-run' | translate"></div>
             <div class="success-desc-txt" [innerHtml]="'schoolSuccess.app-run-desc' | translate"></div>
           </div>
@@ -34,7 +34,7 @@
       <ion-button color="primary" (click)="swipeNext()" class="dailycheck_btn" *ngIf="!isLast"
         [translate]="'next'"></ion-button>
       <ion-button color="primary" (click)="moveToStartTest()" class="dailycheck_btn" *ngIf="isLast"
-        [translate]="'next'"></ion-button>
+        [translate]="'Go to your Dashboard'"></ion-button>
     </div>
   </div>
 </ion-content>

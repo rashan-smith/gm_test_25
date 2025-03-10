@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./searchcountry/searchcountry.module').then( m => m.SearchcountryPageModule)
   },
   {
+    path: 'register-school',
+    loadChildren: () => import('./register-school/register-school.module').then( m => m.RegisterSchoolModule)
+  },
+  {
     path: 'schooldetails/:schoolId/:selectedCountry/:detectedCountry',
     loadChildren: () => import('./schooldetails/schooldetails.module').then( m => m.SchooldetailsPageModule)
   },
@@ -23,6 +27,10 @@ const routes: Routes = [
     loadChildren: () => import('./confirmschool/confirmschool.module').then( m => m.ConfirmschoolPageModule)
   }
   ,
+  {
+    path: 'save-email',
+    loadChildren: () => import('./school-email-register/school-email-register.module').then( m => m.SchoolEmailRegisterModule)
+  },
   {
     path: 'schoolnotfound/:schoolId/:selectedCountry/:detectedCountry',
     loadChildren: () => import('./schoolnotfound/schoolnotfound.module').then( m => m.SchoolnotfoundPageModule)

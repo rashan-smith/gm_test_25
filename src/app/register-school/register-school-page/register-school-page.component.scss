@@ -1,0 +1,118 @@
+@import "../../../theme/variables.scss";
+
+.input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.privacy-container {
+    display: flex;
+    border: 0px;
+    gap: 10px;
+}
+.bottom-layout {
+    position: static;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    transform: none;
+  }
+.further-info {
+    cursor: pointer;
+    font-family: Cabin;
+    font-size: 11px;
+    padding-top: 10px;
+    color: $light-text1;
+    width: 100%;
+  }
+  
+.learnmore {
+    cursor: pointer;
+    font-family: Cabin;
+    font-size: 11px;
+    padding: 0px 30px;
+    padding-top: 10px;
+    color: $light-text1;
+
+    span {
+        font-size: 24px;
+        padding-left: 5px;
+    }
+}
+
+.middle-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 0 25px;
+    color: #E2E2E2;
+    flex-flow: wrap;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+}
+
+.dailycheck_btn {
+    width: 100%;
+    margin-bottom: 10px;
+
+    .span {
+        letter-spacing: 1px;
+    }
+}
+
+.middle-layout ion-checkbox {
+    --size: 18px;
+    /* Adjust checkbox size */
+    min-width: 18px;
+    min-height: 18px;
+    margin-top: 3px;
+    /* Align checkbox with text */
+    flex-shrink: 0;
+    /* Prevent checkbox from shrinking */
+    border: solid rgba(255, 255, 255, 0.51) 2px;
+    border-radius: 4px;
+}
+
+.middle-layout .learnmore {
+    flex: 1;
+    /* Allow text to take available space */
+    font-size: 12px;
+    padding: 0;
+    line-height: 1.5;
+    /* Ensure text is aligned properly */
+    color: #222222;
+}
+
+.register_title1 {
+    padding: 5px 25px;
+    font-size:32px;
+}
+.register_title2 {
+    padding: 5px 25px;
+    font-size: 16px;
+
+}
+.check_tip{
+    width: calc(100%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #46C66D;
+    font-size: 14px;
+    border-bottom: solid 1px #ccc;
+    padding: 10px 0;
+}
+.check_tip_wraper{
+    width: 100%;
+    padding: 25px 40px;
+}
+.register_readMore {
+    font-size: 16px;
+    color: #9FC2FF;
+    padding: 10px 25px;
+}
+.green_loader {
+    color: $color-green;
+}

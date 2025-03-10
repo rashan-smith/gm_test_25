@@ -123,6 +123,16 @@ export class SchooldetailsPage {
     );
   }
 
+  backToSearchDetail(schoolObj) {
+    this.selectedSchool = schoolObj;
+    this.router.navigate(
+      [
+        'searchschool',
+        this.selectedCountry,
+        this.detectedCountry,
+      ]    );
+  }
+
   schoolSelection(schoolObj) {
     this.selectedSchool = schoolObj;
   }

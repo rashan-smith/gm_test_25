@@ -1,23 +1,38 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
   <div class="container">
+    <ion-img src="assets/images/back_button.png" (click)="backToSaved(school)" class="back_button"></ion-img>
+
     <div class="top-section">
-      <div class="label-txt" [translate]="'confirmSchool.title' | translate:{ appName: (appName | uppercase) }"></div>
+
+      <div class="label-txt" [translate]="'confirmSchool.title'"></div>
+      <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry" class="confirm-txt"
+      [translate]="'confirmSchool.confirm1'"></div>
       <div class="schoolDetails" *ngIf="school">
-        <div class="schoolname">{{school.name | truncate:[30]}}</div>
-        <div class="schoolAddress">
-          {{school.admin_2_name?school.admin_2_name+',':''}}
-          {{school.admin_1_name?school.admin_1_name+',':''}}
-          {{school.postal_code?school.postal_code+',':''}} {{school.country}}
-        </div>
-        <div class="schoolid">School ID: {{school.school_id | uppercase}}</div>
+        <span class="schoolName">{{school.name}}</span><br />
+        <span class="education_level">{{school.education_level}}</span><br />
+        <span class="admin_name">{{school.admin_1_name}}- {{school.admin_1_name}}</span><br />
+        <span class="school_id">Lat Long</span><br />
+        <span class="school_id">{{school.school_id}}</span><br />
+
+        <span class="school_id">Check on Google maps <ion-img src="assets/images/Launch.png"
+          class="welcome_icon"></ion-img></span><br />
+        <!-- <div class="schoolid">School ID: {{school.school_id | uppercase}}</div> -->
       </div>
     </div>
     <ion-item lines="full"></ion-item>
     <div class="bottom-section">
-      <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry" class="confirm-txt"
-        [translate]="'confirmSchool.confirm1'"></div>
-      <div class="confirm-txt" [translate]="'confirmSchool.confirm2'"></div>
+    
+      <!-- <div class="confirm-txt" [translate]="'confirmSchool.confirm2'"></div> -->
+
+      <div class="notification">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <p>
+          Make sure your school is correctly selected.
+          <strong>Once you click yes</strong> you can only change your school by reinstalling the app.
+        </p>
+        <ion-icon name="close-outline" class="close-icon" (click)="closeNotification()"></ion-icon>
+      </div>
       <div class="btn-holder">
         <ion-button block class="nobtn" [routerLink]="['/searchcountry']" [translate]="'no'"></ion-button>
         <ion-button block class="yesbtn" (click)="confirmSchool()" [translate]="'yes'"></ion-button>

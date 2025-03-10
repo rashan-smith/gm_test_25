@@ -1,9 +1,11 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
   <div class="container">
+    <ion-img src="assets/images/back_button.png" (click)="backToSearchDetail()" class="back_button"></ion-img>
+
     <div class="top-layout">
       <div class="label-txt">
-        <span class="result-txt" [translate]="'resultSchool'"></span><br /><span
+        <br /><span
           class="schoolID-txt"
           >{{schoolId | uppercase}}</span
         >
@@ -23,26 +25,35 @@
           >
             <ion-label>
               <span class="schoolName">{{schoolInfo.name}}</span><br />
-              <span class="streetName" *ngIf="schoolInfo.address"
+              <span class="education_level">{{schoolInfo.education_level}}</span><br />
+              <span class="admin_name">{{schoolInfo.admin_1_name}}- {{schoolInfo.admin_1_name}}</span><br />
+              <span class="school_id">Lat Long</span><br />
+              <span class="school_id">{{schoolInfo.school_id}}</span><br />
+              <span class="school_id">Check on Google maps <ion-img src="assets/images/Launch.png"
+               class="welcome_icon"></ion-img></span><br />
+
+              <!-- <span class="streetName" *ngIf="schoolInfo.address"
                 >{{schoolInfo.address}}</span
-              ><br />
-              <span class="schoolAddress"
+              ><br /> -->
+              <!-- <span class="schoolAddress"
                 >{{schoolInfo.admin_2_name?schoolInfo.admin_2_name+',':''}}
                 {{schoolInfo.admin_1_name?schoolInfo.admin_1_name+',':''}}
                 {{schoolInfo.postal_code?schoolInfo.postal_code+',':''}}
-                {{schoolInfo.country}}</span
-              >
+                {{schoolInfo.country}}</span -->
+              
             </ion-label>
           </div>
         </div>
       </div>
     </div>
     <div class="bottom-layout">
-      <div
+    
+      
+      <!-- <div
         class="noSchoolList-txt"
         (click)="openExternalUrl('https://projectconnect.unicef.org/daily-check-app')"
         [translate]="'schoolDetails.noSchoolList'"
-      ></div>
+      ></div> -->
     </div>
   </div>
 </ion-content>

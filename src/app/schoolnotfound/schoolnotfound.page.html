@@ -1,19 +1,22 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
+  <ion-img src="assets/images/back_button.png"  [routerLink]="['/searchschool']" class="back_button"></ion-img>
+
   <div class="container">
     <div class="top-layout">
-      <div class="label-txt">
+      <!-- <div class="label-txt">
         <span class="result-txt" [translate]="'resultSchool'"></span><br /><span class="schoolID-txt">{{schoolId |
           uppercase}}</span>
-      </div>
+      </div> -->
       <div class="h-line"></div>
       <div class="noschool">
-        <ion-img src="assets/images/Unable_to_Locate School_Icon.png" class="noschool-icon"></ion-img>
-        <div class="unabletolocate-txt" [translate]="'schoolNotFound.unableToLocate'"></div>
-        <div *ngIf="notFound; else notRegister" class="noschool-txt" [translate]="'schoolNotFound.notFound'"></div>
-        <ng-template #notRegister>
+        <ion-img src="assets/images/school_not_found.png" class="noschool-icon"></ion-img>
+        <div class="unabletolocate-txt" [translate]="'schoolNotFound.unableToLocate' | translate:{ schoolId }"></div>
+        <!-- <div *ngIf="notFound" class="noschool-txt" [translate]="'schoolNotFound.notFound'"></div> -->
+        <!-- <ng-template #notRegister>
           <div class="noschool-txt" [translate]="'schoolNotFound.notRegister' | translate:{ appName }"></div>
-        </ng-template>
+        </ng-template> -->
+        <div [translate]="'schoolNotFound.tryAgainPlaceholder'"></div>
       </div>
     </div>
     <div class="bottom-layout">

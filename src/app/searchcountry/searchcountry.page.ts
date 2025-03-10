@@ -1027,6 +1027,9 @@ export class SearchcountryPage {
   ];
   appName = environment.appName;
   appNameSuffix = environment.appNameSuffix;
+  searchTerm: string = '';
+  filteredCountries: Country[] = [];
+
   constructor(
     private storage: StorageService,
     private networkService: NetworkService,
@@ -1042,6 +1045,24 @@ export class SearchcountryPage {
   ngOnInit() {
     this.getCountry();
   }
+
+  filterCountries(event: any) {
+    if(event.target.value === ''){
+      this.filteredCountries = [];
+    } else {
+      const searchTerm = event.target.value.toLowerCase();
+      this.filteredCountries = this.countries.filter(country =>
+        country.name.toLowerCase().includes(searchTerm)
+      );
+    }
+  }
+
+  selectCountry(country: Country) {
+    this.selectedCountry = country.code;
+    this.searchTerm = country.name;
+    this.filteredCountries = [];
+  }
+
   getCountry() {
     /* Store school id and giga id inside storage */
     let countryData = {};
@@ -1054,8 +1075,14 @@ export class SearchcountryPage {
         ip_address: c.ip,
         country_code: c.country,
       };
+      this.searchTerm = this.filterCountryByCode(this.selectedCountry).name;
     });
   }
+
+  filterCountryByCode(countryCode: string): any {
+    return this.countries.find(country => country.code.toLowerCase() === countryCode.toLowerCase());
+  }
+  
   // onCountryChange(event) {
   //   this.selectedCountry = event.target.value;
   //   this.selectedCountryName = event.selectedText;
@@ -1090,7 +1117,7 @@ export class SearchcountryPage {
     }
     const loadingMsg =
       // eslint-disable-next-line max-len
-      '<div class="loadContent"><ion-img src="assets/loader/loader.gif" class="loaderGif"></ion-img><p class="white" [translate]="\'searchCountry.check\'"></p></div>';
+      '<div class="loadContent"><ion-img src="assets/images/loader.png" class="loaderGif"></ion-img><p class="white" [translate]="\'searchCountry.check\'"></p></div>';
     this.loading.present(loadingMsg, 3000, 'pdcaLoaderClass', 'null');
 
     this.countryService.getPcdcCountryByCode(this.selectedCountry).subscribe(
