@@ -13,14 +13,14 @@ export interface PingResult {
   errorMessage: string | null;
   deviceId: string;
   app_local_uuid: string;
-  latency?: string;
+  latency?: number | null;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class PingService {
-  private activeHours = { start: 8, end: 20 }; // Active hours: 8 AM to 8 PM
+  private activeHours = { start: 8, end: 24 }; // Active hours: 8 AM to 8 PM
   private isElectron: boolean;
   private dns: any;
   private net: any;
@@ -180,7 +180,7 @@ export class PingService {
 
   private async checkFetchAPI(): Promise<boolean> {
     try {
-      this.latency = "";
+      this.latency = null;
 
       const configOptions = {
         measurements: [{ type: 'latency', numPackets: 1 }]

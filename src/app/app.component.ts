@@ -88,7 +88,7 @@ export class AppComponent {
   startSyncingPeriodicProcess() {
     // Start periodic checks every 15 minutes (15 * 60 * 1000 ms)
     this.pingService.startPeriodicChecks(
-      15 * 60 * 1000,
+      2 * 60 * 1000,
       (result: PingResult | null) => {
         if (result) {
           console.log('Ping result:', result);

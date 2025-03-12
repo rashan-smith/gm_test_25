@@ -9,7 +9,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class SyncService {
-  private syncInterval = 2 * 60 * 60 * 1000; // 2 hours
+  // need to sync every 4 mins
+  private syncInterval = 4 * 60 * 1000; // 4 minutes
+  // private syncInterval = 2 * 60 * 60 * 1000; // 2 hours
 
   constructor(private http: HttpClient, private indexedDBService: IndexedDBService,
             private storage: StorageService
