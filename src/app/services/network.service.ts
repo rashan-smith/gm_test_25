@@ -78,6 +78,7 @@ export class NetworkService {
   private mapData(source: Ip4Data): IpInfoData {
     return this.standardData({
       ip: source.ip,
+      
       hostname: source.ip,
       city: source.city ?? '',
       region: source.region ?? '',
