@@ -19,6 +19,8 @@ import { SharedService } from '../services/shared-service.service';
 import { HistoryService } from '../services/history.service';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../services/storage.service';
+import SpeedTest from '@cloudflare/speedtest';
+import type { Results } from '@cloudflare/speedtest'; 
 
 @Component({
   selector: 'app-starttest',
@@ -190,6 +192,13 @@ export class StarttestPage implements OnInit {
     }
   }
 
+  getCloudFlareResults(){
+    const speedTest = new SpeedTest();
+    speedTest.onFinish = (results: Results) => {
+      console.log("CloudFlare SpeedTest Summary: ", results.getSummary());
+    };
+  }
+
   tryConnectivity() {
     let loadingMsg =
       '<div class="loadContent"><ion-img src="assets/loader/loader.gif" class="loaderGif"></ion-img><p class="white">Fetching Internet Provider Info...</p></div>';
@@ -200,6 +209,8 @@ export class StarttestPage implements OnInit {
         this.loading.dismiss();
       }
     });
+    console.log("Starting Cloudflare test...")
+    this.getCloudFlareResults()
   }
 
   refreshHistory() {
