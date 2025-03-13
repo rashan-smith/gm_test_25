@@ -196,8 +196,11 @@ export class PingService {
         }, 5000);
 
         speedTest.onFinish = (results) => {
-          console.log('SpeedTest Summary:', results.getSummary().latency);
-          this.latency = results.getSummary().latency;
+          // console.log('SpeedTest Summary:', results.getSummary().latency);
+          const summary = results?.getSummary();
+          this.latency = summary?.latency
+            ? Number(summary.latency.toFixed(2))
+            : null;
           clearTimeout(timeoutId);
           resolve(true);
         };
