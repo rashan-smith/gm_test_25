@@ -25,5 +25,9 @@ module.exports = {
   },
   node: {
     __dirname: true
+  },
+  devtool: 'source-map',
+  output: {
+    devtoolModuleFilenameTemplate: '[resource-path]'
   }
 }; 

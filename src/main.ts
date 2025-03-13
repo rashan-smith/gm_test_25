@@ -1,8 +1,5 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { app, BrowserWindow } from 'electron';
-import * as remoteMain from '@electron/remote/main';
-
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
@@ -10,19 +7,23 @@ if (environment.production) {
   enableProdMode();
 }
 
-remoteMain.initialize();
+// Only include Electron code when running in Electron
+if (window.require) {
+  const { app, BrowserWindow } = window.require('electron');
+  const remoteMain = window.require('@electron/remote/main');
 
-function createWindow() {
-  const win = new BrowserWindow({
-    // ... existing window options ...
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false
-    }
-  });
+  remoteMain.initialize();
 
-  remoteMain.enable(win.webContents);
-  // ... rest of your createWindow code ...
+  function createWindow() {
+    const win = new BrowserWindow({
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false
+      }
+    });
+
+    remoteMain.enable(win.webContents);
+  }
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
