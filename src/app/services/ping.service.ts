@@ -20,7 +20,7 @@ export interface PingResult {
   providedIn: 'root',
 })
 export class PingService {
-  private activeHours = { start: 8, end: 24 }; // Active hours: 8 AM to 8 PM
+  private activeHours = { start: 8, end: 20 }; // Active hours: 8 AM to 8 PM
   private isElectron: boolean;
   private dns: any;
   private net: any;
@@ -84,7 +84,7 @@ export class PingService {
       errorMessage,
       deviceId: deviceId,
       app_local_uuid: uniqueId,
-      latency: this.latency
+      latency: this.latency,
     };
   }
 
@@ -183,7 +183,7 @@ export class PingService {
       this.latency = null;
 
       const configOptions = {
-        measurements: [{ type: 'latency', numPackets: 1 }]
+        measurements: [{ type: 'latency', numPackets: 1 }],
       };
       const speedTest = new SpeedTest(configOptions as any);
 
@@ -202,12 +202,9 @@ export class PingService {
           resolve(true);
         };
       });
-
     } catch (error) {
       console.error('SpeedTest error:', error);
       return false;
     }
   }
-
-
 }

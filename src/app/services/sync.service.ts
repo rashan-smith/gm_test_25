@@ -4,17 +4,16 @@ import { IndexedDBService } from './indexed-db.service';
 import { StorageService } from './storage.service';
 import { environment } from 'src/environments/environment';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class SyncService {
-  // need to sync every 4 mins
-  private syncInterval = 4 * 60 * 1000; // 4 minutes
-  // private syncInterval = 2 * 60 * 60 * 1000; // 2 hours
+  private syncInterval = 2 * 60 * 60 * 1000; // 2 hours
 
-  constructor(private http: HttpClient, private indexedDBService: IndexedDBService,
-            private storage: StorageService
+  constructor(
+    private http: HttpClient,
+    private indexedDBService: IndexedDBService,
+    private storage: StorageService
   ) {}
 
   async syncPingResults(): Promise<void> {
@@ -36,7 +35,10 @@ export class SyncService {
         await this.indexedDBService.markAsSynced(batch);
         console.log(`Successfully synced batch ${index / batchSize + 1}`);
       } catch (error) {
-        console.error(`Failed to sync batch ${index / batchSize + 1} after retry:`, error);
+        console.error(
+          `Failed to sync batch ${index / batchSize + 1} after retry:`,
+          error
+        );
         throw error; // Stop processing further if one batch fails after retry
       }
 
@@ -49,14 +51,24 @@ export class SyncService {
 
   private async postWithRetry(batch: any[]): Promise<void> {
     const updatedUsers = batch.map(({ isSynced, ...rest }) => rest);
-    const payload  = updatedUsers.map(({ createdAt, ...rest }) => rest);
+    const payload = updatedUsers.map(({ createdAt, ...rest }) => rest);
 
     try {
-      await this.http.post(`${environment.restAPI}connectivity/${this.storage.get('gigaId')}`, { records: payload }).toPromise();
+      await this.http
+        .post(
+          `${environment.restAPI}connectivity/${this.storage.get('gigaId')}`,
+          { records: payload }
+        )
+        .toPromise();
     } catch (error) {
       console.warn('Initial sync attempt failed. Retrying...');
       try {
-        await this.http.post(`${environment.restAPI}connectivity/${this.storage.get('gigaId')}`, { records: payload }).toPromise();
+        await this.http
+          .post(
+            `${environment.restAPI}connectivity/${this.storage.get('gigaId')}`,
+            { records: payload }
+          )
+          .toPromise();
       } catch (retryError) {
         console.error('Retry failed:', retryError);
         throw retryError; // Throw error after one retry
