@@ -11,34 +11,28 @@ const fs = require("fs");
 exports.default = async function (options) {
   console.log("Signing file:", options.path);
 
-  // Get DigiCert KeyLocker credentials from environment variables
-  const apiKey = process.env.DIGICERT_API_KEY;
-  const keyLockerUsername = process.env.DIGICERT_KEYLOCKER_USERNAME;
-  const keyLockerPassword = process.env.DIGICERT_KEYLOCKER_PASSWORD;
-  const certificateId = process.env.DIGICERT_CERTIFICATE_ID;
+  // Get DigiCert Signing Manager credentials
+  const certificateId = "key_1096793475";
+  const certificatePath = "C:\\Users\\shrey\\Downloads\\cert_1096793475.crt";
 
-  if (!apiKey || !keyLockerUsername || !keyLockerPassword || !certificateId) {
-    console.error(
-      "DigiCert KeyLocker credentials not found in environment variables"
-    );
-    throw new Error("Missing DigiCert KeyLocker credentials");
+  // Check if certificate path is set
+  if (!certificatePath) {
+    console.error("Certificate path not found in environment variables (SM_CLIENT_CERT_FILE)");
+    throw new Error("Missing certificate path");
+  }
+
+  // Check if certificate file exists
+  if (!fs.existsSync(certificatePath)) {
+    console.error(`Certificate file not found at path: ${certificatePath}`);
+    throw new Error(`Certificate file not found: ${certificatePath}`);
   }
 
   try {
-    // Path to the SignTool.exe - you may need to adjust this path based on your Windows SDK installation
-    const signToolPath =
-      process.env.SIGNTOOL_PATH ||
-      "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.19041.0\\x64\\signtool.exe";
+    // Command to sign the file using DigiCert Signing Manager
+    const command = `signtool.exe sign /csp "Digicert Signing Manager KSP" /kc "${certificateId}" /f "${certificatePath}" /tr http://timestamp.digicert.com /td sha256 /fd sha256 "${options.path}"`;
 
-    // Verify SignTool exists
-    if (!fs.existsSync(signToolPath)) {
-      throw new Error(`SignTool not found at path: ${signToolPath}`);
-    }
-
-    // Command to sign the file using DigiCert KeyLocker
-    // This is a simplified example - you'll need to adjust based on DigiCert's specific API requirements
-    const command = `"${signToolPath}" sign /fd sha256 /tr http://timestamp.digicert.com /td sha256 /n "UNICEF" /kc "${certificateId}" /kl "${keyLockerUsername}:${keyLockerPassword}" "${options.path}"`;
-
+    console.log("Executing command:", command);
+    
     // Execute the signing command
     execSync(command, { stdio: "inherit" });
 
