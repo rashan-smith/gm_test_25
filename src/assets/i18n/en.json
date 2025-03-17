@@ -71,7 +71,8 @@
         "multiple-installs": "Can I install this application <br />on more than one computer?",
         "multiple-installs-desc": "Yes you can. In fact, we encourage it. If multiple machines report data to the platform, the measurement will be more reliable",
         "dissatisfied-speed": "What can I do if I am unhappy<br />with the speed or reliability of <br /> my internet connection?",
-        "dissatisfied-speed-desc": "You can visit our site and fill out the form to file a report. We can then work with our suppliers to ensure they deliver the quality of service they promised."
+        "dissatisfied-speed-desc": "You can visit our site and fill out the form to file a report. We can then work with our suppliers to ensure they deliver the quality of service they promised.",
+        "search-id": "Search ID"
     },
     "app": {
         "faq": "<ion-icon name=\"chatbox-outline\"></ion-icon>Frequently asked questions",

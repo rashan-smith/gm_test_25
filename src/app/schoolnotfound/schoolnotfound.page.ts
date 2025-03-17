@@ -42,4 +42,12 @@ export class SchoolnotfoundPage {
       console.log(this.selectedCountry);
     });
   }
+  backToSearchDetail() {
+    this.router.navigate(
+      [
+        'searchschool',
+        this.selectedCountry,
+        this.detectedCountry,
+      ]);
+  }
 }

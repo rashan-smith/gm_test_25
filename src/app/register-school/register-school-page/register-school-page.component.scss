@@ -11,13 +11,15 @@
     border: 0px;
     gap: 10px;
 }
+
 .bottom-layout {
     position: static;
     padding: 0;
     width: 100%;
     text-align: center;
     transform: none;
-  }
+}
+
 .further-info {
     cursor: pointer;
     font-family: Cabin;
@@ -25,8 +27,8 @@
     padding-top: 10px;
     color: $light-text1;
     width: 100%;
-  }
-  
+}
+
 .learnmore {
     cursor: pointer;
     font-family: Cabin;
@@ -87,14 +89,16 @@
 
 .register_title1 {
     padding: 5px 25px;
-    font-size:32px;
+    font-size: 32px;
 }
+
 .register_title2 {
     padding: 5px 25px;
     font-size: 16px;
 
 }
-.check_tip{
+
+.check_tip {
     width: calc(100%);
     display: flex;
     align-items: center;
@@ -104,15 +108,14 @@
     border-bottom: solid 1px #ccc;
     padding: 10px 0;
 }
-.check_tip_wraper{
+
+.check_tip_wraper {
     width: 100%;
     padding: 25px 40px;
 }
+
 .register_readMore {
     font-size: 16px;
     color: #9FC2FF;
     padding: 10px 25px;
-}
-.green_loader {
-    color: $color-green;
 }

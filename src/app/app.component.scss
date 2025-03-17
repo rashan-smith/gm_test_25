@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1E2B46;
+    background-color: #ffffff;
     padding-top: 15px;  
     padding-bottom: 10px;  
     .closeIcon{
@@ -41,16 +41,16 @@
     color: #2779FF;
     padding: 10px 25px;
     font-size: 13px;
-    background: #1E2B46;
+    background: #ffffff;
 }
 .menuContent{
     #background-content{
-        --ion-background-color: #1E2B46 !important;
+        --ion-background-color: #ffffff !important;
         border-radius: 0px 0px 0px 10px !important;
     }
 }
 ion-content{
-    --ion-background-color: #1E2B46 !important;    
+    --ion-background-color: #ffffff !important;    
     ion-list{
         ion-item{      
             padding-right: 20px;
@@ -86,7 +86,7 @@ ion-content{
         margin-left:25px;
         margin-right:15px;
         ion-accordion{
-            --ion-background-color:#1E2B46;
+            --ion-background-color:#ffffff;
             padding: 0px;
             border-bottom: 1px solid #353E52;
             ion-label{

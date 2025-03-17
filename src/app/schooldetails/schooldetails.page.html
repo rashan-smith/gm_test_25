@@ -5,55 +5,58 @@
 
     <div class="top-layout">
       <div class="label-txt">
-        <br /><span
-          class="schoolID-txt"
-          >{{schoolId | uppercase}}</span
-        >
+        <br /><span class="schoolID-txt">{{ schoolId | uppercase }}</span>
       </div>
       <div class="h-line"></div>
-      <div
-        class="selectandconfirm"
-        [translate]="'schoolDetails.selectAndConfirm'"
-      ></div>
+      <div class="selectandconfirm" [translate]="'schoolDetails.selectAndConfirm'"></div>
 
       <div class="ionListContainer">
         <div class="ionList">
-          <div
-            *ngFor="let schoolInfo of schools"
-            class="schoolList"
-            (click)="confirmSchool(schoolInfo)"
-          >
-            <ion-label>
-              <span class="schoolName">{{schoolInfo.name}}</span><br />
-              <span class="education_level">{{schoolInfo.education_level}}</span><br />
-              <span class="admin_name">{{schoolInfo.admin_1_name}}- {{schoolInfo.admin_1_name}}</span><br />
-              <span class="school_id">Lat Long</span><br />
-              <span class="school_id">{{schoolInfo.school_id}}</span><br />
-              <span class="school_id">Check on Google maps <ion-img src="assets/images/Launch.png"
-               class="welcome_icon"></ion-img></span><br />
+          <!-- Check if there are multiple schools -->
+          <ng-container *ngIf="schools?.length > 1; else singleSchool">
+            <ion-radio-group [(ngModel)]="selectedSchool">
+              <div *ngFor="let schoolInfo of schools" class="schoolList">
+                <ion-item>
+                  <ion-label>
+                    <span class="schoolName">{{ schoolInfo.name }}</span>
+                    <span class="education_level">{{ schoolInfo.education_level }}dffdf</span>
+                    <span class="admin_name">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span><br />
+                    <span class="school_id">Lat Long</span>
+                    <span class="school_id">{{ schoolInfo.school_id }}</span>
+                    <span class="school_id">Check on Google maps
+                      <!-- <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img> -->
+                    </span><br />
+                  </ion-label>
+                  <ion-radio slot="start" [value]="schoolInfo"></ion-radio>
+                </ion-item>
+              </div>
+            </ion-radio-group>
+          </ng-container>
 
-              <!-- <span class="streetName" *ngIf="schoolInfo.address"
-                >{{schoolInfo.address}}</span
-              ><br /> -->
-              <!-- <span class="schoolAddress"
-                >{{schoolInfo.admin_2_name?schoolInfo.admin_2_name+',':''}}
-                {{schoolInfo.admin_1_name?schoolInfo.admin_1_name+',':''}}
-                {{schoolInfo.postal_code?schoolInfo.postal_code+',':''}}
-                {{schoolInfo.country}}</span -->
-              
-            </ion-label>
-          </div>
+          <!-- Template to display when there's only one school -->
+          <ng-template #singleSchool>
+            <div *ngFor="let schoolInfo of schools" class="schoolList" (click)="confirmSchool(schoolInfo)">
+              <ion-label>
+                <span class="schoolName">{{ schoolInfo.name }}</span><br />
+                <span class="education_level">{{ schoolInfo.education_level }}</span><br />
+                <span class="admin_name">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span><br />
+                <span class="school_id">Lat Long</span><br />
+                <span class="school_id">{{ schoolInfo.school_id }}</span><br />
+                <span class="school_id">Check on Google maps
+                  <!-- <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img> -->
+                </span><br />
+              </ion-label>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>
-    <div class="bottom-layout">
-    
-      
-      <!-- <div
-        class="noSchoolList-txt"
-        (click)="openExternalUrl('https://projectconnect.unicef.org/daily-check-app')"
-        [translate]="'schoolDetails.noSchoolList'"
-      ></div> -->
+
+    <!-- Display the "Select" button only if there are multiple schools -->
+    <div class="bottom-layout" *ngIf="schools?.length > 1">
+      <ion-button color="primary" class="searchButton" (click)="confirmSchool(selectedSchool)" [disabled]="!selectedSchool">
+        Select
+      </ion-button>
     </div>
   </div>
 </ion-content>

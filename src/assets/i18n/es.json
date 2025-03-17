@@ -71,7 +71,8 @@
         "multiple-installs": "¿Puedo instalar esta aplicación <br />en más de una computadora?",
         "multiple-installs-desc": "Sí, puedes hacerlo. De hecho, lo alentamos. Si varias máquinas informan datos a la plataforma, la medición será más confiable.",
         "dissatisfied-speed": "¿Qué puedo hacer si no estoy satisfecho<br />con la velocidad o confiabilidad de mi<br />conexión a Internet?",
-        "dissatisfied-speed-desc": "Puedes visitar nuestro sitio y completar el formulario para presentar un informe. Luego podemos trabajar con nuestros proveedores para asegurar que entreguen la calidad de servicio que prometieron."
+        "dissatisfied-speed-desc": "Puedes visitar nuestro sitio y completar el formulario para presentar un informe. Luego podemos trabajar con nuestros proveedores para asegurar que entreguen la calidad de servicio que prometieron.",
+        "search-id": "ID de búsqueda"
     },
     "app": {
         "faq": "<ion-icon name=\"chatbox-outline\"></ion-icon>Preguntas frecuentes",

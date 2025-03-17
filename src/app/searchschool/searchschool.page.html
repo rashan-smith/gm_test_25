@@ -55,7 +55,7 @@
             </ion-list>
           </ion-accordion> -->
         </ion-accordion-group>
-        <ion-button  color="primary" type="submit" class="searchButton" (click)="searchSchoolBySchooIdAndCountryCode()"
+        <ion-button  color="primary" type="submit"  [innerHTML]="'faq.search-id' | translate"  class="searchButton" (click)="searchSchoolBySchooIdAndCountryCode()"
         [disabled]="isDisabled"></ion-button>
 
       </div>
