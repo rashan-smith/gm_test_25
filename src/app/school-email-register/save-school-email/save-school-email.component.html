@@ -1,20 +1,24 @@
-
 <app-pcdc-header></app-pcdc-header>
-<ion-content>
+<ion-content class="ion-padding">
 
-<div class="email-container">
-  <div
-        class="selectandconfirm"
-        [translate]="'schoolDetails.saveEmail'"
-      ></div>
-  
+  <!-- <div class="email-container"> -->
+    <ion-item lines="none">
+      <ion-label class="font_size" [translate]="'schoolDetails.saveEmail'"></ion-label>
+    </ion-item>
+  <!-- <div class="selectandconfirm" [translate]="'schoolDetails.saveEmail'"></div> -->
   <ion-item>
-    <ion-input type="email" block placeholder="{{ 'schoolDetails.enterEmail' | translate }}"   [(ngModel)]="email"></ion-input>
+    <ion-input type="email" block placeholder="e.g. info@school.edu"
+      [(ngModel)]="email"></ion-input>
   </ion-item>
-
-  <div class="button-group">
-    <ion-button fill="outline" (click)="skip()">Skip</ion-button>
-    <ion-button (click)="addEmail()">Add</ion-button>
-  </div>
-</div>
 </ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="ion-padding">
+    <div class="btn-holder">
+      <ion-button block class="nobtn" (click)="skip()">Skip</ion-button>
+      <ion-button block class="yesbtn" (click)="addEmail()">Add</ion-button>
+    </div>
+  </ion-toolbar>
+
+
+</ion-footer>
+<!-- </div> -->

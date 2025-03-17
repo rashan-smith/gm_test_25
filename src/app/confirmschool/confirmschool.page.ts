@@ -157,7 +157,7 @@ export class ConfirmschoolPage {
     this.router.navigate(
       [
         'schooldetails',
-        schoolObj.school_id,
+        schoolObj?.school_id || this.schoolId,
         this.selectedCountry,
         this.detectedCountry,
       ],

@@ -119,3 +119,12 @@
     color: #9FC2FF;
     padding: 10px 25px;
 }
+
+
+::ng-deep {
+    ion-loading {
+        ion-backdrop {
+            background-color: #ffffff;
+        }
+    }
+}

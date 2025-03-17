@@ -7,37 +7,42 @@
 
       <div class="label-txt" [translate]="'confirmSchool.title'"></div>
       <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry" class="confirm-txt"
-      [translate]="'confirmSchool.confirm1'"></div>
-      <div class="schoolDetails" *ngIf="school">
-        <span class="schoolName">{{school.name}}</span><br />
-        <span class="education_level">{{school.education_level}}</span><br />
-        <span class="admin_name">{{school.admin_1_name}}- {{school.admin_1_name}}</span><br />
-        <span class="school_id">Lat Long</span><br />
-        <span class="school_id">{{school.school_id}}</span><br />
+        [translate]="'confirmSchool.confirm1'"></div>
+      <ion-item color="light" *ngIf="school">
+        <ion-label>
+          <span class="schoolName">{{school.name}}</span><br />
+          <span class="education_level">{{school.education_level}}</span><br />
+          <span class="admin_name">{{school.admin_1_name}}- {{school.admin_1_name}}</span><br />
+          <span class="school_id"><span class="linkColor">lat long</span></span><br />
+          <span class="school_id">{{school.school_id}}</span><br />
 
-        <span class="school_id">Check on Google maps <ion-img src="assets/images/Launch.png"
-          class="welcome_icon"></ion-img></span><br />
+          <span class="school_id googleCheck linkColor">Check on Google maps
+            <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img>
+          </span><br />
+        </ion-label>
         <!-- <div class="schoolid">School ID: {{school.school_id | uppercase}}</div> -->
-      </div>
+      </ion-item>
     </div>
     <ion-item lines="full"></ion-item>
-    <div class="bottom-section">
-    
-      <!-- <div class="confirm-txt" [translate]="'confirmSchool.confirm2'"></div> -->
 
-      <div class="notification">
-        <ion-icon name="information-circle-outline"></ion-icon>
-        <p>
-          Make sure your school is correctly selected.
-          <strong>Once you click yes</strong> you can only change your school by reinstalling the app.
-        </p>
-        <ion-icon name="close-outline" class="close-icon" (click)="closeNotification()"></ion-icon>
-      </div>
-      <div class="btn-holder">
-        <ion-button block class="nobtn" [routerLink]="['/searchcountry']" [translate]="'no'"></ion-button>
-        <ion-button block class="yesbtn" (click)="confirmSchool()" [translate]="'yes'"></ion-button>
-      </div>
-      <div class="h-line"></div>
-    </div>
   </div>
 </ion-content>
+<ion-footer class="ion-no-border">
+
+  <!-- <div class="confirm-txt" [translate]="'confirmSchool.confirm2'"></div> -->
+  <ion-toolbar>
+    <div class="notification">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <p class="MakeSureText">
+        Make sure your school is correctly selected.
+        <strong>Once you click yes</strong> you can only change your school by reinstalling the app.
+      </p>
+      <ion-icon name="close-outline" class="close-icon" (click)="closeNotification()"></ion-icon>
+    </div>
+    <div class="btn-holder">
+      <ion-button block class="nobtn" [routerLink]="['/searchcountry']" [translate]="'no'"></ion-button>
+      <ion-button block class="yesbtn" (click)="confirmSchool()" [translate]="'yes'"></ion-button>
+    </div>
+  </ion-toolbar>
+  <!-- <div class="h-line"></div> -->
+</ion-footer>

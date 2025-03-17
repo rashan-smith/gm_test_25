@@ -4,10 +4,11 @@
     <ion-img src="assets/images/back_button.png" (click)="backToSearchDetail()" class="back_button"></ion-img>
 
     <div class="top-layout">
-      <div class="label-txt">
-        <br /><span class="schoolID-txt">{{ schoolId | uppercase }}</span>
+      <div class="label-txt SchoolIDField">
+        <!-- <br /> -->
+        <span class="schoolID-txt">{{ schoolId | uppercase }}</span>
       </div>
-      <div class="h-line"></div>
+      <!-- <div class="h-line"></div> -->
       <div class="selectandconfirm" [translate]="'schoolDetails.selectAndConfirm'"></div>
 
       <div class="ionListContainer">
@@ -15,38 +16,38 @@
           <!-- Check if there are multiple schools -->
           <ng-container *ngIf="schools?.length > 1; else singleSchool">
             <ion-radio-group [(ngModel)]="selectedSchool">
-              <div *ngFor="let schoolInfo of schools" class="schoolList">
-                <ion-item>
+                <ion-item class="school_item" lines="none" color="light"  *ngFor="let schoolInfo of schools">
                   <ion-label>
                     <span class="schoolName">{{ schoolInfo.name }}</span>
-                    <span class="education_level">{{ schoolInfo.education_level }}dffdf</span>
-                    <span class="admin_name">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span><br />
-                    <span class="school_id">Lat Long</span>
+                    <span class="education_level">{{ schoolInfo.education_level }}</span>
+                    <span class="admin_name">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span>
+                    <div class="school_id"><span class="linkColor">lat long</span> {{ schoolInfo.school_id }}</div>
                     <span class="school_id">{{ schoolInfo.school_id }}</span>
-                    <span class="school_id">Check on Google maps
-                      <!-- <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img> -->
-                    </span><br />
+                    <span class="school_id linkColor googleCheck">Check on Google maps
+                      <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img>
+                    </span>
+                    <!-- <br /> -->
                   </ion-label>
-                  <ion-radio slot="start" [value]="schoolInfo"></ion-radio>
+                  <ion-radio slot="end" [value]="schoolInfo"></ion-radio>
                 </ion-item>
-              </div>
             </ion-radio-group>
           </ng-container>
 
           <!-- Template to display when there's only one school -->
           <ng-template #singleSchool>
-            <div *ngFor="let schoolInfo of schools" class="schoolList" (click)="confirmSchool(schoolInfo)">
+            <ion-item class="school_item" lines="none" color="light" *ngFor="let schoolInfo of schools" class="schoolList" (click)="confirmSchool(schoolInfo)">
               <ion-label>
-                <span class="schoolName">{{ schoolInfo.name }}</span><br />
-                <span class="education_level">{{ schoolInfo.education_level }}</span><br />
-                <span class="admin_name">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span><br />
-                <span class="school_id">Lat Long</span><br />
-                <span class="school_id">{{ schoolInfo.school_id }}</span><br />
-                <span class="school_id">Check on Google maps
-                  <!-- <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img> -->
-                </span><br />
+                <span class="schoolName">{{ schoolInfo.name }}</span>
+                <span class="education_level">{{ schoolInfo.education_level }}</span>
+                <span class="admin_name">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span>
+                <div class="school_id"><span class="linkColor">lat long</span> {{ schoolInfo.school_id }}</div>
+                <span class="school_id">{{ schoolInfo.school_id }}</span>
+                <span class="school_id linkColor googleCheck">Check on Google maps
+                  <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img>
+                </span>
+                <!-- <br /> -->
               </ion-label>
-            </div>
+            </ion-item>
           </ng-template>
         </div>
       </div>

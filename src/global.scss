@@ -209,7 +209,6 @@ ion-content {
   height: 12px !important;
 }
 .yesbtn {
-  --background: #51e12b !important;
   width: 50%;
   height: 38px;
   color: $text-color !important;
@@ -222,7 +221,6 @@ ion-content {
   color: $color-black;
 }
 .nobtn {
-  --background: #42516e !important;
   width: 50%;
   height: 38px;
   --border-radius: 5px !important;
@@ -298,4 +296,9 @@ a,
   :hover {
     background-color: #fe2762;
   }
+}
+ion-loading {
+    ion-backdrop {
+        background-color: #ffffff;
+    }
 }

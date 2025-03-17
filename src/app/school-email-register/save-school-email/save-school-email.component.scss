@@ -1,0 +1,32 @@
+@import '../../../theme/variables.scss';
+
+.btn-holder {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.nobtn,
+.yesbtn {
+    height: 46px;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    border-radius: 40px !important;
+    overflow: hidden;
+    color: #fff !important;
+}
+.nobtn {
+    border: 2px solid var(--ion-color-primary);
+    background: #fff;
+    color: var(--ion-color-primary);
+    --ion-toolbar-color: #fff;
+    --ion-toolbar-background: var(--ion-color-primary);
+}
+.font_size {
+    font-size: 16px;
+    font-weight: 500;
+}

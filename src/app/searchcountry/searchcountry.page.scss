@@ -1,30 +1,38 @@
 @import '../../theme/variables.scss';
-.search-label{
-  padding: 20px 5px;  
+
+.search-label {
+  padding: 20px 5px;
   color: $light-text2;
 }
-.search-label-error{
-  padding: 20px 5px;  
+
+.search-label-error {
+  padding: 20px 5px;
   color: #b00f0f;
 }
-.ionList{
+
+.ionList {
   padding: 10px 30px;
 }
-.wrap{
-  margin-top:18px;
+
+.wrap {
+  margin-top: 18px;
   padding: 10px 30px;
 }
+
 .search {
   width: 100%;
   position: relative;
   display: flex;
-  ion-icon{
+
+  ion-icon {
     color: #e2e2e2;
   }
 }
+
 select {
   pointer-events: auto;
 }
+
 .searchTerm {
   width: 100%;
   border: 3px solid $color-blue;
@@ -34,19 +42,22 @@ select {
   outline: none;
   color: #9DBFAF;
 }
-.searchTerm:focus{
+
+.searchTerm:focus {
   color: #00B4CC;
   --offset-top: 0px;
   --offset-bottom: 0px;
   --keyboard-offset: 0px;
-  
+
 }
 
 ion-select:hover {
   color: #fff;
 
 }
-.item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
+
+.item.sc-ion-label-md-h,
+.item .sc-ion-label-md-h {
   color: #fff !important;
 }
 
@@ -54,25 +65,55 @@ ion-select:hover {
 
 
 .searchCountry {
-  -webkit-app-region: no-drag ;
+  -webkit-app-region: no-drag;
   width: 100%;
   border: 3px solid $color-blue;
- 
+
   padding: 5px;
-  border-radius: 5px ;
+  border-radius: 5px;
   outline: none;
   color: #fff;
+
 }
-.searchCountry:hover{
+::ng-deep{
+  .searchbar-input.sc-ion-searchbar-md {
+    box-shadow: none !important;
+  
+  }
+  .searchbar-search-icon.sc-ion-searchbar-md{
+    left: 0;
+  }
+  .searchbar-input.sc-ion-searchbar-md {
+    padding-left:30px;
+    padding-right: 30px;
+  }
+  .list-md{
+    z-index: 9999;
+    position: relative;
+    border: solid 1px #ccc;
+    padding: 10px;
+    margin: 0;
+    border-radius: 5px;
+    padding-left: 0;
+  }
+}
+::ng-deep ion-item {
+  pointer-events: auto !important;
+  user-select: auto !important;
+}
+
+
+
+.searchCountry:hover {
   color: #fff;
   --offset-top: 0px;
   --offset-bottom: 0px;
   --keyboard-offset: 0px;
-  
+
 }
 
-.bottom-layout{
-  position: absolute; 
+.bottom-layout {
+  position: absolute;
   padding: 0px 20px;
   width: 100%;
   text-align: center;
@@ -81,14 +122,20 @@ ion-select:hover {
 
 
 .searchButton {
-width: 40px;
-height: 40px;
-border: 1px solid;
-border-color: $color-blue;
-background: $color-blue;
-text-align: center;
-color: #fff;
-border-radius: 0 5px 5px 0;
-cursor: pointer;
-font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid;
+  border-color: $color-blue;
+  background: $color-blue;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+.dropdown_list {
+  text-transform: none;
+  font-family: Cabin;
+  font-size: 14px;
+  font-weight: 400;
 }
