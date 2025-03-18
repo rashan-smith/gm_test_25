@@ -17,6 +17,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
 import { NgxElectronModule } from 'ngx-electron';
 import { PcdcHeaderComponent } from '../pcdc-header/pcdc-header.component';
+import { CircularProgressBarComponent } from './circular-progress-bar/circular-progress-bar.component';
 
 export const createTranslateLoader = (http: HttpClient) =>
   new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,6 +32,7 @@ export const createTranslateLoader = (http: HttpClient) =>
     FormatProbabilityMeasurementPipe,
     CapitalizePipe,
     TruncatePipe,
+    CircularProgressBarComponent
   ],
   imports: [
     CommonModule,
@@ -56,6 +58,7 @@ export const createTranslateLoader = (http: HttpClient) =>
     CapitalizePipe,
     TruncatePipe,
     NgPipesModule,
+    CircularProgressBarComponent
   ],
   providers: [
     MeasurePipePipe,

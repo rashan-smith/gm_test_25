@@ -4,24 +4,30 @@
     [ngClass]="currentState ==undefined || currentState == 'Starting' || !onlineStatus?'centerPos':''">
     <!---------   Start test Section ------------------>
     <!-- {{currentState}} {{currentRate}} {{onlineStatus}} -->
-    <div *ngIf="currentState == undefined && currentRate != 'error' && onlineStatus">
-      <div class="start-container centerAlign">
+    <!-- <div *ngIf="currentState == undefined && currentRate != 'error' && onlineStatus"> -->
+      <!-- <div class="start-container centerAlign">
         <div class="center-layout text-center">
           <button class="test-btn" (click)="startNDT()" [translate]="'startTest.startTest'"></button>
         </div>
-      </div>
+      </div> -->
+      here{{downloadStarted}}==={{uploadStarted}}
+      <app-circular-progress-bar
+        [progressValue]="progress" [secondLabel]="downloadStarted ? 'DOWNLOAD' : uploadStarted === true ? 'UPLOAD' : null" [icon]="''" [error]="connectionStatus=='error'" (startTest)="startNDT()"
+        [firstLabel]="'startTest.startTest' | translate"></app-circular-progress-bar>
+
+
       <div class="location">{{mlabInformation.label}}</div>
-    </div>
+    <!-- </div> -->
     <!---------   Start test Section END ------------------>
     <!----------   Start test progress Section --------------->
-    <div *ngIf="currentState == 'Starting' && currentState !== undefined && onlineStatus">
+    <!-- <div *ngIf="currentState == 'Starting' && currentState !== undefined && onlineStatus">
       <div class="start-container centerAlign">
         <div class="center-layout text-center">
           <ion-img src="assets/loader/loader.gif" class="bigloaderGif marT12"></ion-img>
         </div>
       </div>
       <div class="location">{{mlabInformation.label}}</div>
-    </div>
+    </div> -->
     <!----------   Start test progress Section END --------------->
     <!---------   Test Result Section ----------------->
     <div *ngIf="currentState !=undefined && currentState != 'Starting' && onlineStatus">
@@ -49,8 +55,8 @@
         <div class="start-container">
           <div class="center-layout text-center">
             <!-- <button class="test-btn" (click)="startNDT()" *ngIf="currentState !== 'Completed' && currentState !== undefined">START TEST</button> -->
-            <ion-img src="assets/loader/loader.gif" class="bigloaderGif marT12"
-              *ngIf="currentState !== 'Completed' && currentState !== undefined"></ion-img>
+            <!-- <ion-img src="assets/loader/loader.gif" class="bigloaderGif marT12"
+              *ngIf="currentState !== 'Completed' && currentState !== undefined"></ion-img> -->
             <button class="test-btn" (click)="startNDT()" *ngIf="currentState == 'Completed'"
               [translate]="'startTest.testAgain'"></button>
             <div *ngIf="connectionStatus=='error'">
@@ -60,18 +66,7 @@
         </div>
         <div class="location">{{mlabInformation.label}}</div>
       </div>
-      <div class="test-results" *ngIf="currentState =='Completed'">
-        <div>
-          <ion-icon name="list-circle-outline"></ion-icon><span>{{accessInformation.org}}</span>
-        </div>
-        <div>
-          <ion-icon name="time-outline"></ion-icon><span>{{currentDate | date:'H:mm, d MMM YYYY'}}</span>
-        </div>
-        <div>
-          <ion-icon name="navigate-circle-outline"></ion-icon><span [translate]="'startTest.latency'"
-            [translateParams]="{latency:latency | formatLatencyMeasurement}"></span>
-        </div>
-      </div>
+
     </div>
     <!-- ------------------------------------------- -->
     <!--   Test Failed Section------------------------->
@@ -107,3 +102,19 @@
     <!-- ------------------------------------------- -->
   </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <div class="test-results" *ngIf="currentState =='Completed'">
+      <div>
+        <ion-icon name="list-circle-outline"></ion-icon><span>{{accessInformation.org}}</span>
+      </div>
+      <div>
+        <ion-icon name="time-outline"></ion-icon><span>{{currentDate | date:'H:mm, d MMM YYYY'}}</span>
+      </div>
+      <div>
+        <ion-icon name="navigate-circle-outline"></ion-icon><span [translate]="'startTest.latency'"
+          [translateParams]="{latency:latency | formatLatencyMeasurement}"></span>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>
