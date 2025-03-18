@@ -138,4 +138,7 @@ ion-select:hover {
   font-family: Cabin;
   font-size: 14px;
   font-weight: 400;
+  &:hover {
+    background: none;
+  }
 }
