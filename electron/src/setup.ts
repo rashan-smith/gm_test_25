@@ -46,7 +46,7 @@ Sentry.init({
   },
   debug: electronIsDev,
   maxBreadcrumbs: 50,
-  release: app.getVersion(),
+  release: `giga-meter-electron@${app.getVersion()}`,
   
 });
 
