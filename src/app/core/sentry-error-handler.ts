@@ -13,8 +13,8 @@ export class SentryErrorHandler implements ErrorHandler {
     this.sentryService.captureException(error, {
       type: 'unhandled_error',
       timestamp: new Date().toISOString(),
-      location: window.location.href,
-      userAgent: navigator.userAgent,
+      location: window?.location?.href,
+      userAgent: navigator?.userAgent,
     });
   }
 }
