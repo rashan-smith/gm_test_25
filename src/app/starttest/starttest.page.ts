@@ -199,6 +199,9 @@ export class StarttestPage implements OnInit {
       if (this.loading.isStillLoading()) {
         this.loading.dismiss();
       }
+      if (res) {
+        this.accessInformation = res;
+      }
     });
   }
 
