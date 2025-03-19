@@ -302,3 +302,12 @@ ion-loading {
         background-color: #ffffff;
     }
 }
+.button_disable_hover{
+  --background: transparent;
+  --background-hover: transparent;
+  --background-activated: transparent;
+  --box-shadow: none;
+  --border-radius: 0;
+  padding: 0;
+  margin: 0;
+}

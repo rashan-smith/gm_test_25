@@ -12,7 +12,10 @@
       </ion-select>
       <ion-label class="selected-label" onclick="document.querySelector('ion-select').open()"
         onmouseover="this.style.cursor='pointer'">
-        {{ selectedLanguageName }}
+        <a (click)="openSelect()" class="selected-label">
+          {{ selectedLanguageName }} 
+          <img src="assets/images/right_arrow.svg" alt="Language Icon" class="language-icon">
+        </a>
       </ion-label>
     </ion-buttons>
     <ion-buttons slot="end">

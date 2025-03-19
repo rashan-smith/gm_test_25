@@ -1,6 +1,9 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
-  <ion-img src="assets/images/back_button.png" [routerLink]="['/register-school']" class="back_button"></ion-img>
+  <ion-button class="button_disable_hover" fill="clear" [routerLink]="['/register-school']">
+
+    <ion-img src="assets/images/back_button.png" class="back_button"></ion-img>
+  </ion-button>
   <div class="container">
     <div class="welcomebg1">
       <div class="top-layout">
@@ -30,9 +33,10 @@
             placeholder="Search country..."></ion-searchbar>
         </ion-item>
 
-        <ion-list *ngIf="filteredCountries.length > 0">
-          <ion-item  *ngFor="let country of filteredCountries" (click)="selectCountry(country)">
-            <ion-button fill="clear" color="dark" class="dropdown_list" (click)="selectCountry(country)"> {{ country.name }}
+        <ion-list *ngIf="filteredCountries.length > 0" >
+          <ion-item *ngFor="let country of filteredCountries" (click)="selectCountry(country)">
+            <ion-button fill="clear" color="dark" class="dropdown_list" (click)="selectCountry(country)"> {{
+              country.name }}
             </ion-button> </ion-item>
         </ion-list>
         <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry"
@@ -46,7 +50,7 @@
       </div>
       <div class="bottom-layout">
         <ion-button color="primary" block class="dailycheck_btn" (click)="confirmCountry()"><span class="next-txt"
-            [translate]="'next'"></span></ion-button>
+            [translate]="'Confirm'"></span></ion-button>
       </div>
     </div>
   </div>

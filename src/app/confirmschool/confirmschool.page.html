@@ -1,8 +1,10 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
   <div class="container">
-    <ion-img src="assets/images/back_button.png" (click)="backToSaved(school)" class="back_button"></ion-img>
+    <ion-button class="button_disable_hover" fill="clear" (click)="backToSaved(school)">
 
+      <ion-img src="assets/images/back_button.png" class="back_button"></ion-img>
+    </ion-button>
     <div class="top-section">
 
       <div class="label-txt" [translate]="'confirmSchool.title'"></div>
