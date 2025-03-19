@@ -405,6 +405,7 @@ export class ElectronCapacitorApp {
       })
       .catch(function (err) {
         // handle error
+        Sentry.captureException(err);
         console.log(err);
       });
     // End of Auto lunching code
