@@ -38,16 +38,15 @@ Sentry.init({
     // Add app version to help with debugging
     event.extra = {
       ...event.extra,
-      appVersion: app.getVersion(),
-      platform: process.platform,
-      electronVersion: process.versions.electron,
+      appVersion: app?.getVersion(),
+      platform: process?.platform,
+      electronVersion: process?.versions?.electron,
     };
     return event;
   },
   debug: electronIsDev,
   maxBreadcrumbs: 50,
-  release: `giga-meter-electron@${app.getVersion()}`,
-  
+  release: `giga-meter-electron@${app?.getVersion()}`,
 });
 
 // Set up global error handlers for Sentry
@@ -179,9 +178,9 @@ export class ElectronCapacitorApp {
   async init(): Promise<void> {
     const icon = nativeImage.createFromPath(
       join(
-        app.getAppPath(),
+        app?.getAppPath(),
         'assets',
-        process.platform === 'win32' ? 'appIcon.ico' : 'appIcon.png'
+        process?.platform === 'win32' ? 'appIcon.ico' : 'appIcon.png'
       )
     );
     this.mainWindowState = windowStateKeeper({
@@ -189,16 +188,15 @@ export class ElectronCapacitorApp {
       defaultHeight: 550,
     });
     // Setup preload script path and construct our main window.
-    const preloadPath = join(app.getAppPath(), 'build', 'src', 'preload.js');
+    const preloadPath = join(app?.getAppPath(), 'build', 'src', 'preload.js');
     this.MainWindow = new BrowserWindow({
       icon,
       show: false,
-      x: this.mainWindowState.x,
-      y: this.mainWindowState.y,
-      width: this.mainWindowState.width,
-      height: this.mainWindowState.height,
+      x: this.mainWindowState?.x,
+      y: this.mainWindowState?.y,
+      width: this.mainWindowState?.width,
+      height: this.mainWindowState?.height,
       titleBarStyle: 'hidden',
-      // titleBarOverlay: true,
       maximizable: false,
       minimizable: false,
       resizable: true,
@@ -213,10 +211,10 @@ export class ElectronCapacitorApp {
     });
 
     // Add error tracking for renderer process
-    this.MainWindow.webContents.on('render-process-gone', (event, details) => {
+    this.MainWindow?.webContents?.on('render-process-gone', (event, details) => {
       const crashData = {
-        reason: details.reason,
-        exitCode: details.exitCode,
+        reason: details?.reason,
+        exitCode: details?.exitCode,
         processType: 'renderer',
       };
       Sentry.captureException(new Error('Renderer Process Gone'), {
@@ -224,16 +222,16 @@ export class ElectronCapacitorApp {
       });
     });
 
-    this.MainWindow.on('unresponsive', () => {
+    this.MainWindow?.on('unresponsive', () => {
       Sentry.captureMessage('Window became unresponsive', {
         level: Severity.Error,
         extra: {
-          windowId: this.MainWindow.id,
+          windowId: this.MainWindow?.id,
         },
       });
     });
 
-    this.MainWindow.webContents.on(
+    this.MainWindow?.webContents?.on(
       'console-message',
       (event, level, message, line, sourceId) => {
         if (level === 2) {
@@ -248,55 +246,55 @@ export class ElectronCapacitorApp {
       }
     );
 
-    this.MainWindow.setSize(376, 550);
-    this.mainWindowState.manage(this.MainWindow);
+    this.MainWindow?.setSize(376, 550);
+    this.mainWindowState?.manage(this.MainWindow);
 
-    if (this.CapacitorFileConfig.backgroundColor) {
-      this.MainWindow.setBackgroundColor(
-        this.CapacitorFileConfig.electron.backgroundColor
+    if (this.CapacitorFileConfig?.backgroundColor) {
+      this.MainWindow?.setBackgroundColor(
+        this.CapacitorFileConfig?.electron?.backgroundColor
       );
     }
 
     // If we close the main window with the splashscreen enabled we need to destory the ref.
-    this.MainWindow.on('closed', () => {
+    this.MainWindow?.on('closed', () => {
       if (
         this.SplashScreen?.getSplashWindow() &&
-        !this.SplashScreen.getSplashWindow().isDestroyed()
+        !this.SplashScreen?.getSplashWindow()?.isDestroyed()
       ) {
-        this.SplashScreen.getSplashWindow().close();
+        this.SplashScreen?.getSplashWindow()?.close();
       }
     });
     // When the tray icon is enabled, setup the options.
-    if (this.CapacitorFileConfig.electron?.trayIconAndMenuEnabled) {
+    if (this.CapacitorFileConfig?.electron?.trayIconAndMenuEnabled) {
       this.TrayIcon = new Tray(icon);
-      this.TrayIcon.on('double-click', () => {
+      this.TrayIcon?.on('double-click', () => {
         if (this.MainWindow) {
-          if (this.MainWindow.isVisible()) {
-            this.MainWindow.hide();
+          if (this.MainWindow?.isVisible()) {
+            this.MainWindow?.hide();
           } else {
-            this.MainWindow.show();
-            this.MainWindow.focus();
+            this.MainWindow?.show();
+            this.MainWindow?.focus();
           }
         }
       });
-      this.TrayIcon.on('click', () => {
+      this.TrayIcon?.on('click', () => {
         if (this.MainWindow) {
-          if (this.MainWindow.isVisible()) {
-            this.MainWindow.hide();
+          if (this.MainWindow?.isVisible()) {
+            this.MainWindow?.hide();
           } else {
-            this.MainWindow.show();
-            this.MainWindow.focus();
+            this.MainWindow?.show();
+            this.MainWindow?.focus();
           }
         }
       });
-      this.TrayIcon.setToolTip(app.getName());
-      this.TrayIcon.setContextMenu(
+      this.TrayIcon?.setToolTip(app?.getName());
+      this.TrayIcon?.setContextMenu(
         Menu.buildFromTemplate(this.TrayMenuTemplate)
       );
     }
 
     // Setup the main manu bar at the top of our window.
-    if (this.CapacitorFileConfig.electron?.appMenuBarMenuTemplateEnabled) {
+    if (this.CapacitorFileConfig?.electron?.appMenuBarMenuTemplateEnabled) {
       Menu.setApplicationMenu(
         Menu.buildFromTemplate(this.AppMenuBarMenuTemplate)
       );
@@ -304,32 +302,32 @@ export class ElectronCapacitorApp {
       Menu.setApplicationMenu(new Menu());
     }
     // If the splashscreen is enabled, show it first while the main window loads then dwitch it out for the main window, or just load the main window from the start.
-    if (this.CapacitorFileConfig.electron?.splashScreenEnabled) {
+    if (this.CapacitorFileConfig?.electron?.splashScreenEnabled) {
       this.SplashScreen = new CapacitorSplashScreen({
         imageFilePath: join(
-          app.getAppPath(),
+          app?.getAppPath(),
           'assets',
-          this.CapacitorFileConfig.electron?.splashScreenImageName ??
+          this.CapacitorFileConfig?.electron?.splashScreenImageName ??
             'splash.png'
         ),
         windowWidth: 400,
         windowHeight: 400,
       });
-      this.SplashScreen.init(this.loadMainWindow, this);
+      this.SplashScreen?.init(this.loadMainWindow, this);
     } else {
       this.loadMainWindow(this);
     }
 
     // Security
-    this.MainWindow.webContents.setWindowOpenHandler((details) => {
-      if (!details.url.includes(this.customScheme)) {
+    this.MainWindow?.webContents?.setWindowOpenHandler((details) => {
+      if (!details?.url?.includes(this.customScheme)) {
         return { action: 'deny' };
       } else {
         return { action: 'allow' };
       }
     });
-    this.MainWindow.webContents.on('will-navigate', (event, _newURL) => {
-      if (!this.MainWindow.webContents.getURL().includes(this.customScheme)) {
+    this.MainWindow?.webContents?.on('will-navigate', (event, _newURL) => {
+      if (!this.MainWindow?.webContents?.getURL()?.includes(this.customScheme)) {
         event.preventDefault();
       }
     });
@@ -346,25 +344,24 @@ export class ElectronCapacitorApp {
     setupCapacitorElectronPlugins();
 
     // When the web app is loaded we hide the splashscreen if needed and show the mainwindow.
-    this.MainWindow.webContents.on('dom-ready', () => {
-      if (this.CapacitorFileConfig.electron?.splashScreenEnabled) {
-        this.SplashScreen.getSplashWindow().hide();
+    this.MainWindow?.webContents?.on('dom-ready', () => {
+      if (this.CapacitorFileConfig?.electron?.splashScreenEnabled) {
+        this.SplashScreen?.getSplashWindow()?.hide();
       }
-      if (!this.CapacitorFileConfig.electron?.hideMainWindowOnLaunch) {
-        this.MainWindow.show();
+      if (!this.CapacitorFileConfig?.electron?.hideMainWindowOnLaunch) {
+        this.MainWindow?.show();
       }
       globalShortcut.register('Super+Shift+N', () => {
-        console.log('Super+Shift+N pressed');
-        if (this.MainWindow.webContents.isDevToolsOpened()) {
-          this.MainWindow.webContents.closeDevTools();
+        if (this.MainWindow?.webContents?.isDevToolsOpened()) {
+          this.MainWindow?.webContents?.closeDevTools();
         } else {
-          this.MainWindow.webContents.openDevTools();
+          this.MainWindow?.webContents?.openDevTools();
         }
       });
       setTimeout(() => {
-        if (this.CapacitorFileConfig.electron?.electronIsDev) {
-          this.MainWindow.webContents.openDevTools();
-          this.MainWindow.setSize(800, 600);
+        if (this.CapacitorFileConfig?.electron?.electronIsDev) {
+          this.MainWindow?.webContents?.openDevTools();
+          this.MainWindow?.setSize(800, 600);
         }
         CapElectronEventEmitter.emit(
           'CAPELECTRON_DeeplinkListenerInitialized',
@@ -379,29 +376,29 @@ export class ElectronCapacitorApp {
       app.on('second-instance', (event, commandLine, workingDirectory) => {
         // Someone tried to run a second instance, we should focus our window.
         if (this.MainWindow) {
-          if (this.MainWindow.isMinimized()) {
-            this.MainWindow.restore();
+          if (this.MainWindow?.isMinimized()) {
+            this.MainWindow?.restore();
           } else {
-            this.MainWindow.show();
+            this.MainWindow?.show();
           }
-          this.MainWindow.focus();
+          this.MainWindow?.focus();
         }
       });
     }
 
     // Auto lunching code added by Kajal
     var measureAppAutoLuncher = new AutoLaunch({
-      name: app.getName(),
+      name: 'Unicef PDCA',
     });
 
-    measureAppAutoLuncher.enable();
+    measureAppAutoLuncher?.enable();
     measureAppAutoLuncher
-      .isEnabled()
+      ?.isEnabled()
       .then(function (isEnabled) {
         if (isEnabled) {
           return;
         }
-        measureAppAutoLuncher.enable();
+        measureAppAutoLuncher?.enable();
       })
       .catch(function (err) {
         // handle error
