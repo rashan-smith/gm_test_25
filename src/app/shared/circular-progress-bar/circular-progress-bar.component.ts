@@ -10,6 +10,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     @Input() secondLabel: string | null = null;
     @Input() icon: string | null = null;
     @Input() progressValue!: number;
+    @Input() currentRateUpload!: number;
+    @Input() currentRateDownload!: number;
     @Input() error: boolean = false;
     // @Input() consentChecked: boolean = false;
     
@@ -37,11 +39,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   
     getFillColor(): string {
       if (
-        this.firstLabel === 'IDLE' ||
-        this.firstLabel === 'COMPLETED' ||
-        this.firstLabel === 'ERROR'
+        this.progressValue === 0 
       ) {
-        return '#0e62fe1a';
+        return 'rgba(70, 198, 109, 0.1)';
       }
       return 'transparent';
     }

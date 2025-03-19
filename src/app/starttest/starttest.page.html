@@ -1,22 +1,32 @@
 <app-pcdc-header></app-pcdc-header>
+
 <ion-content>
-  <div class="container"
-    [ngClass]="currentState ==undefined || currentState == 'Starting' || !onlineStatus?'centerPos':''">
-    <!---------   Start test Section ------------------>
+  <ion-card  color="light">
+    
+  <div class="container centerPos"
+  >
+    <ion-item class="custom-item" lines="none">
+      <ion-label>
+        <p class="subtitle">School id</p>
+        <h2 class="title">Saint Andrews International Primary Public School</h2>
+      </ion-label>
+    </ion-item>
+        <!---------   Start test Section ------------------>
     <!-- {{currentState}} {{currentRate}} {{onlineStatus}} -->
     <!-- <div *ngIf="currentState == undefined && currentRate != 'error' && onlineStatus"> -->
-      <!-- <div class="start-container centerAlign">
+    <!-- <div class="start-container centerAlign">
         <div class="center-layout text-center">
           <button class="test-btn" (click)="startNDT()" [translate]="'startTest.startTest'"></button>
         </div>
       </div> -->
-      here{{downloadStarted}}==={{uploadStarted}}
-      <app-circular-progress-bar
-        [progressValue]="progress" [secondLabel]="downloadStarted ? 'DOWNLOAD' : uploadStarted === true ? 'UPLOAD' : null" [icon]="''" [error]="connectionStatus=='error'" (startTest)="startNDT()"
-        [firstLabel]="'startTest.startTest' | translate"></app-circular-progress-bar>
+    <app-circular-progress-bar [progressValue]="progress"
+      [secondLabel]="downloadStarted ? 'DOWNLOAD' : uploadStarted === true ? 'UPLOAD' : null" [icon]="''"
+      [error]="connectionStatus=='error'" (startTest)="startNDT()"
+      [firstLabel]="'startTest.startTest' | translate" [currentRateDownload]="currentRateDownload" [currentRateUpload]="currentRateUpload"></app-circular-progress-bar>
 
 
-      <div class="location">{{mlabInformation.label}}</div>
+    <div class="location">{{mlabInformation.label}}</div>
+    
     <!-- </div> -->
     <!---------   Start test Section END ------------------>
     <!----------   Start test progress Section --------------->
@@ -31,7 +41,7 @@
     <!----------   Start test progress Section END --------------->
     <!---------   Test Result Section ----------------->
     <div *ngIf="currentState !=undefined && currentState != 'Starting' && onlineStatus">
-      <div class="uploadDownldSec">
+      <!-- <div class="uploadDownldSec">
         <div class="uplanddowld" *ngIf="currentState !=undefined">
           <div class="downloadsec">
             <div>
@@ -50,22 +60,22 @@
           </div>
         </div>
         <div class="h-line" *ngIf="currentState !=undefined"></div>
-      </div>
-      <div class="centerGauge">
-        <div class="start-container">
-          <div class="center-layout text-center">
-            <!-- <button class="test-btn" (click)="startNDT()" *ngIf="currentState !== 'Completed' && currentState !== undefined">START TEST</button> -->
-            <!-- <ion-img src="assets/loader/loader.gif" class="bigloaderGif marT12"
+      </div> -->
+      <!-- <div class="centerGauge"> -->
+      <!-- <div class="start-container">
+          <div class="center-layout text-center"> -->
+      <!-- <button class="test-btn" (click)="startNDT()" *ngIf="currentState !== 'Completed' && currentState !== undefined">START TEST</button> -->
+      <!-- <ion-img src="assets/loader/loader.gif" class="bigloaderGif marT12"
               *ngIf="currentState !== 'Completed' && currentState !== undefined"></ion-img> -->
-            <button class="test-btn" (click)="startNDT()" *ngIf="currentState == 'Completed'"
+      <!-- <button class="test-btn" (click)="startNDT()" *ngIf="currentState == 'Completed'"
               [translate]="'startTest.testAgain'"></button>
             <div *ngIf="connectionStatus=='error'">
               <ion-img src="assets/images/Test_Failed_Icon.png" class="testFailed"></ion-img>
-            </div>
-          </div>
-        </div>
-        <div class="location">{{mlabInformation.label}}</div>
-      </div>
+            </div> -->
+      <!-- </div>
+        </div> -->
+      <!-- <div class="location">{{mlabInformation.label}}</div> -->
+      <!-- </div> -->
 
     </div>
     <!-- ------------------------------------------- -->
@@ -100,9 +110,96 @@
       </div>
     </div>
     <!-- ------------------------------------------- -->
+     <ion-list lines="none" class="horizontal-list">
+    <ion-item lines="none">
+      <ion-label>
+        <h3>Device network</h3>
+        <p>TP-LINK396...750</p>
+      </ion-label>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-label>
+        <h3>ISP</h3>
+        <p>Vodafone</p>
+      </ion-label>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-label >
+        <h3>Nearest server</h3>
+        <p>United Republic of...</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
   </div>
+  
+  
+</ion-card>
+<ion-card color="light">
+  <div class="footer-grid">
+    <div class="footer-row">
+      <ion-card class="footer-card">
+        <ion-card-header>
+          <ion-card-title>
+            <span> <img src="assets/images/Download.svg" />Download
+            </span>
+            <span>1hr Ago</span>
+          </ion-card-title>
+          <ion-card-subtitle>{{currentRateDownload}}
+            <span class="footer_card_font_size">Mbps</span>
+          </ion-card-subtitle>
+
+        </ion-card-header>
+      </ion-card>
+
+      <ion-card class="footer-card" color="light">
+        <ion-card-header>
+
+          <ion-card-title><span>
+              <img src="assets/images/Upload.svg" />
+              Upload </span> <span class="time">1hr Ago</span>
+          </ion-card-title>
+          <ion-card-subtitle>{{currentRateUpload}}
+            <span class="footer_card_font_size">Mbps</span>
+
+          </ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </div>
+
+    <div class="footer-row">
+      <ion-card class="footer-card" color="light">
+        <ion-card-header>
+          <ion-card-title> <span>
+              <img src="assets/images/Arrows--horizontal.svg" />
+              Latency </span> <span>1hr Ago</span>
+
+          </ion-card-title>
+          <ion-card-subtitle>--
+            <span class="footer_card_font_size">Mbps</span>
+
+          </ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+
+      <ion-card class="footer-card" color="light">
+        <ion-card-header>
+          <ion-card-title>
+            <span>
+              <img src="assets/images/Arrows--horizontal.svg" />
+              Ping </span> <span>1hr Ago</span>
+          </ion-card-title>
+          <ion-card-subtitle>--
+            <span class="footer_card_font_size">Mbps</span>
+          </ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </div>
+  </div>
+</ion-card>
 </ion-content>
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar>
     <div class="test-results" *ngIf="currentState =='Completed'">
       <div>
@@ -117,4 +214,10 @@
       </div>
     </div>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->
+<!-- <ion-footer class="ion-no-border">
+  <ion-toolbar> -->
+   
+    
+  <!-- </ion-toolbar>
+</ion-footer> -->

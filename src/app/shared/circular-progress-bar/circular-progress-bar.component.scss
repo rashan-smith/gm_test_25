@@ -11,12 +11,23 @@
   }
   
   .circle-background {
-    stroke: currentColor;
+    // stroke: #46C66D;
     stroke-width: 4;
+    &.error {
+        stroke: red;
+      }
+    
+      &.green {
+        stroke: #46C66D;
+      }
+    
+      &.gray {
+        stroke: #fff;
+      }
   }
   
   .circle-progress {
-    stroke: currentColor;
+    stroke: #46C66D;
     stroke-width: 4;
     transition: stroke-dashoffset 350ms;
     transform: rotate(90deg);
@@ -26,22 +37,13 @@
       stroke: red;
     }
   
-    &.blue {
-      stroke: blue;
+    &.green {
+      stroke: #46C66D;
     }
   
     &.gray {
-      stroke: blue;
+      stroke: #fff;
     }
-  }
-  
-  .error-icon {
-    position: absolute;
-    left: 50%;
-    top: 60%;
-    transform: translate(-50%, -50%);
-    width: 16px;
-    height: 16px;
   }
   
   .second-label {
@@ -60,5 +62,40 @@
     transform: translate(-50%, -50%);
     width: 24px;
     height: 24px;
+  }
+  
+  @keyframes ping {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  .ping-animation {
+    position: absolute;
+    width: 40px;  // Adjust as needed
+    height: 40px;
+    background-color: rgba(70, 198, 109, 0.1);
+    top: 20px;
+    left: 20px;
+    border-radius: 50%;
+    height: 198px;
+    width: 198px;
+  
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #46C66D; // Semi-transparent blue
+      animation: ping 1s infinite;
+    }
   }
   
