@@ -8,7 +8,9 @@
         "licenseLink": "Licence de base de données ouverte (ODBL)",
         "andText": "et par M-Lab sous la",
         "privacyPolicy": "Politique de confidentialité",
-        "privacy": "<a href='https://www.unicef.org/legal#privacy-policy' target={{targetUrl}}>Pour plus de détails sur la manière dont Giga gère vos données, veuillez consulter la Politique de confidentialité de l'UNICEF.</a>"
+        "privacy": "<a href='https://www.unicef.org/legal#privacy-policy' target={{targetUrl}}>Pour plus de détails sur la manière dont Giga gère vos données, veuillez consulter la Politique de confidentialité de l'UNICEF.</a>",
+        "start": "Commencer"
+
     },
     "confirmSchool": {
         "title": "Les informations ci-dessous sont-elles correctes ?",

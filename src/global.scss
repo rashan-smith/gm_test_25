@@ -43,6 +43,7 @@ ion-header {
   padding-right: 5px;
 }
 .dailycheck_btn {
+  text-transform: unset;
   width: 100%;
   font-size: 13px;
   --border-radius: 45px !important;
@@ -207,8 +208,10 @@ ion-content {
 .swiper-pagination-bullet {
   width: 12px !important;
   height: 12px !important;
+  background: lightgreen;
 }
 .yesbtn {
+  text-transform: unset;
   width: 50%;
   height: 38px;
   color: $text-color !important;
@@ -221,6 +224,7 @@ ion-content {
   color: $color-black;
 }
 .nobtn {
+  text-transform: unset;
   width: 50%;
   height: 38px;
   --border-radius: 5px !important;
@@ -302,3 +306,13 @@ ion-loading {
         background-color: #ffffff;
     }
 }
+.button_disable_hover{
+  --background: transparent;
+  --background-hover: transparent;
+  --background-activated: transparent;
+  --box-shadow: none;
+  --border-radius: 0;
+  padding: 0;
+  margin: 0;
+}
+

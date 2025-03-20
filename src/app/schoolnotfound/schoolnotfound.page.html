@@ -1,14 +1,16 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
-  <ion-img src="assets/images/back_button.png" (click)="backToSearchDetail()"  class="back_button"></ion-img>
+  <ion-button class="button_disable_hover" fill="clear" (click)="backToSearchDetail()">
 
+    <ion-img src="assets/images/back_button.png" class="back_button"></ion-img>
+  </ion-button>
   <div class="container">
     <div class="top-layout">
       <!-- <div class="label-txt">
         <span class="result-txt" [translate]="'resultSchool'"></span><br /><span class="schoolID-txt">{{schoolId |
           uppercase}}</span>
       </div> -->
-      <div class="h-line"></div>
+      <!-- <div class="h-line"></div> -->
       <div class="noschool">
         <ion-img src="assets/images/school_not_found.png" class="noschool-icon"></ion-img>
         <div class="unabletolocate-txt" [translate]="'schoolNotFound.unableToLocate' | translate:{ schoolId }"></div>
@@ -16,7 +18,7 @@
         <!-- <ng-template #notRegister>
           <div class="noschool-txt" [translate]="'schoolNotFound.notRegister' | translate:{ appName }"></div>
         </ng-template> -->
-        <div [translate]="'schoolNotFound.tryAgainPlaceholder'"></div>
+        <div class="try_again" [translate]="'schoolNotFound.tryAgainPlaceholder'"></div>
       </div>
     </div>
     <div class="bottom-layout">

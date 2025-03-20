@@ -1,8 +1,10 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
   <div class="container">
-    <ion-img src="assets/images/back_button.png" (click)="backToSaved(school)" class="back_button"></ion-img>
+    <ion-button class="button_disable_hover" fill="clear" (click)="backToSaved(school)">
 
+      <ion-img src="assets/images/back_button.png" class="back_button"></ion-img>
+    </ion-button>
     <div class="top-section">
 
       <div class="label-txt" [translate]="'confirmSchool.title'"></div>
@@ -32,10 +34,10 @@
   <!-- <div class="confirm-txt" [translate]="'confirmSchool.confirm2'"></div> -->
   <ion-toolbar>
     <div class="notification">
-      <ion-icon name="information-circle-outline"></ion-icon>
+      <ion-icon name="information-circle-outline" color="blue"></ion-icon>
       <p class="MakeSureText">
         Make sure your school is correctly selected.
-        <strong>Once you click yes</strong> you can only change your school by reinstalling the app.
+        Once you click yes you can only change your school by reinstalling the app.
       </p>
       <ion-icon name="close-outline" class="close-icon" (click)="closeNotification()"></ion-icon>
     </div>

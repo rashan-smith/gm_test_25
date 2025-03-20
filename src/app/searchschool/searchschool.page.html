@@ -1,15 +1,16 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
-  <ion-img src="assets/images/back_button.png"  [routerLink]="['/searchcountry']" class="back_button"></ion-img>
+  <ion-button class="button_disable_hover" fill="clear" [routerLink]="['/searchcountry']">
 
+    <ion-img src="assets/images/back_button.png"  class="back_button"></ion-img>
+  </ion-button>
   <div class="container">
     <div class="top-layout">
       <div class="provide_id" [translate]="'searchSchool.provide-school-id'"></div>
       <div class="wrap">
         <div class="search">
           <input type="text" class="searchTerm" placeholder="{{ 'searchSchool.placeholder-school-id' | translate }}"
-            [(ngModel)]="schoolId" (ngModelChange)="validateSchoolId($event)" required minlength="2"
-            />
+            [(ngModel)]="schoolId" (ngModelChange)="validateSchoolId($event)" required minlength="2" />
           <!-- <button type="submit" class="searchButton" (click)="searchSchoolBySchooIdAndCountryCode()"
             [disabled]="isDisabled">
             <ion-icon name="search-outline" class="searchIcon"></ion-icon>
@@ -55,8 +56,8 @@
             </ion-list>
           </ion-accordion> -->
         </ion-accordion-group>
-        <ion-button  color="primary" type="submit"  [innerHTML]="'faq.search-id' | translate"  class="searchButton" (click)="searchSchoolBySchooIdAndCountryCode()"
-        [disabled]="isDisabled"></ion-button>
+        <ion-button color="primary" type="submit" [innerHTML]="'faq.search-id' | translate" class="searchButton"
+          (click)="searchSchoolBySchooIdAndCountryCode()" [disabled]="isDisabled"></ion-button>
 
       </div>
     </div>
