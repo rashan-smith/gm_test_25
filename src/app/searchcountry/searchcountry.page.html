@@ -33,7 +33,7 @@
             placeholder="Search country..."></ion-searchbar>
         </ion-item>
 
-        <ion-list *ngIf="filteredCountries.length > 0" >
+        <ion-list *ngIf="filteredCountries.length > 0" class="scrollable">
           <ion-item *ngFor="let country of filteredCountries" (click)="selectCountry(country)">
             <ion-button fill="clear" color="dark" class="dropdown_list" (click)="selectCountry(country)"> {{
               country.name }}

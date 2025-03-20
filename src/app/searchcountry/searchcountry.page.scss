@@ -142,3 +142,7 @@ ion-select:hover {
     background: none;
   }
 }
+.scrollable{
+  max-height: 200px;
+  overflow: auto;
+}

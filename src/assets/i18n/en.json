@@ -34,11 +34,11 @@
         "notRegister": "Unfortunately your school is not registered with {{appName}}\nPlease contact your school administrator to register your school on\nPCDC again."
     },
     "schoolSuccess": {
-        "congratulations": "CONGRATULATIONS!",
+        "congratulations": "Congratulations!",
         "school-registered": "Your School has been registered on <br />{{appName}}",
-        "success-txt": "YOUR DAILY INTERNET <br />CHECK IS SET",
-        "internet-checks": "This App will check your <br />internet status twice daily",
-        "app-run": "THIS APP WILL RUN <br />IN THE BACKGROUND",
+        "success-txt": "Your daily internet <br />check is set!",
+        "internet-checks": "This App will check your <br />internet status twice daily.",
+        "app-run": "The app will run in the <br /> background",
         "app-run-desc": "Your school data will be collected when device is on. You can close the App."
     },
     "searchCountry": {
@@ -57,9 +57,9 @@
     },
     "faq": {
         "FAQ": "FREQUENTLY ASKED QUESTIONS",
-        "what-is-school-id": "What is a school ID?",
+        "what-is-school-id": "What is a School ID?",
         "what-is-school-id-desc": "A school ID is a unique identifier for your school that was provided by the government. There are different formats, but usually looks something like \"BR12345\" or \"12345678\"",
-        "how-find-school-id": "How do I find my school ID?",
+        "how-find-school-id": "How do I find my School ID?",
         "how-find-school-id-desc": "Your school administrator or IT department will know. The school ID will be the number that is used in your national registration system.",
         "school-id-not-found": "My school is not part of {{appName}} yet. What can I do?",
         "school-id-not-found-desc": "You can visit our website and fill out the contact form to indicate to us that you would like to join our initiative.",

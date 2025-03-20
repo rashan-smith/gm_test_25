@@ -10,6 +10,7 @@
       </div>
       <!-- <div class="h-line"></div> -->
       <div class="selectandconfirm" [translate]="'schoolDetails.selectAndConfirm'"></div>
+      <div *ngIf="schools?.length > 1" class="matches">({{schools?.length}}) results matching with {{schoolId | uppercase}}</div>
 
       <div class="ionListContainer">
         <div class="ionList">
