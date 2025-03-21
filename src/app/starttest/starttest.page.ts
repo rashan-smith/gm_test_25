@@ -172,6 +172,7 @@ export class StarttestPage implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
+    this.schoolId = this.storage.get('schoolId');
     this.downloadSub = this.measurementClientService.downloadComplete$.subscribe(data => {
       console.log('Download completed:', data);
       this.downloadStarted = false;

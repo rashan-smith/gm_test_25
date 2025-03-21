@@ -1,6 +1,6 @@
 <!-- <ion-content> -->
 <div class="circular-progress-container" (click)="handleClick()">
-  <div class="ping-animation" *ngIf="progressValue === 0 && !error"></div>
+  <div class="ping-animation" *ngIf="(progressValue === 0 || secondLabel === 'TEST AGAIN') && !error"></div>
   <svg class="circular-progress-svg" viewBox="0 0 100 100">
     <circle class="circle-background" stroke-width="4" cx="50" cy="50" r="40" [attr.fill]="getFillColor()" [ngClass]="{
       'error': error,

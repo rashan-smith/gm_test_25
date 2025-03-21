@@ -93,7 +93,7 @@
         "testAgain": "INICIAR PRUEBA",
         "latency": "Latencia: {{latency}}",
         "testFailed": "PRUEBA FALLIDA",
-        "testFailedDesc": "La conexión se interrumpió antes de que la prueba pudiera completarse."
+        "testFailedDesc": "La conexión se interrumpió antes de completar la prueba. Inténtalo de nuevo."
     },
     "registerSchoolPage" : {
         "title1": "Estás a punto de registrar tu escuela",

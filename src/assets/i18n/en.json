@@ -93,8 +93,8 @@
         "testAgain": "TEST AGAIN",
         "tryAgain": "TEST AGAIN",
         "latency": "Latency: {{latency}}",
-        "testFailed": "TEST FAILED",
-        "testFailedDesc": "The connection was interupted before testing could be completed."
+        "testFailed": "Test Failed",
+        "testFailedDesc": "The connection was interrupted before testing could be completed. Try again."
     },
     "registerSchoolPage" : {
         "title1": "You’re about to register your school",
