@@ -6,9 +6,15 @@ import electronIsDev from 'electron-is-dev';
 import unhandled from 'electron-unhandled';
 import { autoUpdater } from 'electron-updater';
 import fs from 'fs-extra';
+import path from 'path';
 
 import { ElectronCapacitorApp, setupContentSecurityPolicy, setupReloadWatcher } from './setup';
 import { captureException } from '@sentry/node';
+
+// Set userData path to use name instead of productName - must be set before app is ready
+const userDataPath = path.join(app.getPath('appData'), 'unicef-pdca');
+app.setPath('userData', userDataPath);
+
 const gotTheLock = app.requestSingleInstanceLock();
 // Graceful handling of unhandled errors.
 unhandled({
