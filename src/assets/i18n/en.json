@@ -45,9 +45,10 @@
         "check": "Checking country...",
         "detected-auto": "Your country is automatically detected",
         "country": "Country",
-        "country-not-accurate": "It looks like the country you selected may not be accurate to your location. Are you sure you want to continue?",
-        "please-double-check": "Please double-check your selection.",
-        "not-available": "Sorry, {{appName}} {{appNameSuffix}} App is not available in this country. Please choose another country."
+        "country-not-accurate": "It looks like the country you selected may not be accurate to your location.",
+        "please-double-check": "Are you sure you want to continue?",
+        "not-available": "Sorry, {{appName}} {{appNameSuffix}} App is not available in this country. Please choose another country.",
+        "change-country": "If the above selection is not correct, select your country from dropdown box."
     },
     "searchSchool": {
         "search": "Searching for your school...",

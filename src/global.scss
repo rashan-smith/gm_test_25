@@ -169,7 +169,6 @@ ion-accordion-group {
 ion-accordion.accordion-expanding > [slot="header"] .ion-accordion-toggle-icon,
 ion-accordion.accordion-expanded > [slot="header"] .ion-accordion-toggle-icon {
   transform: rotate(180deg);
-  color: white;
 }
 .freq-txt {
   text-align: left;

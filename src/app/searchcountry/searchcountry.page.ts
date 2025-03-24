@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SearchcountryPage {
   @ViewChild(IonAccordionGroup, { static: true })
+  automaticSearched = false;
   accordionGroup: IonAccordionGroup;
   detectedCountry: any;
   selectedCountry: any;
@@ -1061,6 +1062,7 @@ export class SearchcountryPage {
     this.selectedCountry = country.code;
     this.searchTerm = country.name;
     this.filteredCountries = [];
+    this.automaticSearched = false;
   }
 
   getCountry() {
@@ -1075,7 +1077,10 @@ export class SearchcountryPage {
         ip_address: c.ip,
         country_code: c.country,
       };
+      this.automaticSearched = true;
       this.searchTerm = this.filterCountryByCode(this.selectedCountry).name;
+    }, error => {
+      this.automaticSearched = false;
     });
   }
 
