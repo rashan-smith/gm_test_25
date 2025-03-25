@@ -282,7 +282,6 @@ span.currentState {
 .footer-card ion-card-title,
 .footer-card ion-card-subtitle,
 .footer-card ion-card-content {
-  color: black !important;
   text-align: left;
   /* Ensures text stays left-aligned */
 }
@@ -292,11 +291,17 @@ span.currentState {
   font-weight: 400;
   display: flex;
   justify-content: space-between;
+  color: #6F6F6F;
+  &.time{
+    font-size: 14px;
+    font-weight: 500;
+  }
 }
 
 .footer-card ion-card-subtitle {
   font-size: 28px;
   font-weight: 500;
+  color: #222222;
 }
 
 .footer-card ion-card-header {
@@ -304,8 +309,9 @@ span.currentState {
 }
 
 .footer_card_font_size {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
+  color: #6F6F6F;
 }
 
 .time {
@@ -332,11 +338,15 @@ span.currentState {
 
   ion-label h3,
   ion-label p {
-    color: black;
     /* Change as per your theme */
     margin: 0;
-    font-size: 10px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 400;
+    color: #474747;
+  }
+  
+  ion-label h3{
+      color: #9E9E9E;
   }
 }
 
@@ -466,9 +476,10 @@ span.currentState {
 }
 
 .linkColor {
-  color: #3880ff;
+  color: #277AFF;
   display: flex;
   justify-content: center;
   background: #fff;
-
+  font-size: 14px;
+  font-weight: 400;
 }

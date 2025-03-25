@@ -1,0 +1,97 @@
+<app-pcdc-header></app-pcdc-header>
+<ion-content>
+  <ion-card color="light">
+    <div class="centerPos">
+      <ion-item class="custom-item" lines="none" color="light">
+        <ion-label>
+          <p class="subtitle">School id</p>
+          <h2 class="title">{{schoolId}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-list lines="none" class="horizontal-list">
+        <ion-item lines="none">
+          <ion-label>
+            <h3>Device network</h3>
+            <p>TP-LINK396...750</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>
+            <h3>ISP</h3>
+            <p>Vodafone</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>
+            <h3>Nearest server</h3>
+            <p>United Republic of...</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list lines="none" class="horizontal-list">
+        <ion-item lines="none">
+          <ion-label>
+            <h3>Nb of students</h3>
+            <p>230</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>
+            <h3>Nb of teachers</h3>
+            <p>18</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>
+            <h3>Education level</h3>
+            <p>Primary</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-card>
+  <ion-card color="light">
+    
+    <ion-card-header>
+      <ion-card-title class="test_history">
+        Test history (latest 10 measurements)
+      </ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-grid>
+        <!-- Header Row -->
+        <ion-row class="table-header">
+          <ion-col size="3">Date</ion-col>
+          <ion-col size="2">Download</ion-col>
+          <ion-col size="2">Upload</ion-col>
+          <ion-col size="2">Latency</ion-col>
+          <ion-col size="3">Status</ion-col>
+        </ion-row>
+  
+        <!-- Data Rows -->
+        <ion-row>
+          <ion-col size="3">02-02-2024 14:25</ion-col>
+          <ion-col size="2">30.00</ion-col>
+          <ion-col size="2">30.00</ion-col>
+          <ion-col size="2">30.00</ion-col>
+          <ion-col size="3" class="green_color">Success</ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size="3">02-02-2024 14:25</ion-col>
+          <ion-col size="2">Row</ion-col>
+          <ion-col size="2">Row</ion-col>
+          <ion-col size="2">30.00</ion-col>
+          <ion-col size="3" class="green_color">Success</ion-col>
+        </ion-row>
+        <!-- Repeat rows as needed -->
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>

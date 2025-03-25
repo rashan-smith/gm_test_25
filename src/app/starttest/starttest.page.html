@@ -152,7 +152,7 @@
             <ion-card-title>
               <span> <img src="assets/images/Download.svg" />Download
               </span>
-              <span>1hr Ago</span>
+              <span class="time">1hr Ago</span>
             </ion-card-title>
             <ion-card-subtitle>{{currentRateDownload && !((connectionStatus=='error' && currentState == undefined) || (!onlineStatus)) ? currentRateDownload : '--'}}
               <span class="footer_card_font_size">Mbps</span>
@@ -181,11 +181,11 @@
           <ion-card-header  class="footer_card_header">
             <ion-card-title> <span>
                 <img src="assets/images/Arrows--horizontal.svg" />
-                Latency </span> <span>1hr Ago</span>
+                Latency </span> <span class="time">1hr Ago</span>
 
             </ion-card-title>
             <ion-card-subtitle>--
-              <span class="footer_card_font_size">Mbps</span>
+              <span class="footer_card_font_size">ms</span>
 
             </ion-card-subtitle>
           </ion-card-header>
@@ -196,7 +196,7 @@
             <ion-card-title>
               <span>
                 <img src="assets/images/Arrows--horizontal.svg" />
-                Ping </span> <span>1hr Ago</span>
+                Ping </span> <span class="time">1hr Ago</span>
             </ion-card-title>
             <ion-card-subtitle>--
               <span class="footer_card_font_size">Mbps</span>
@@ -208,14 +208,14 @@
   </ion-card>
 </ion-content>
 <ion-footer class="ion-no-border home_about">
-  <span class="school_id googleCheck linkColor">Check on Google maps
+  <span class="school_id googleCheck linkColor">Check on Giga Maps
     <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img>
   </span>  <ion-toolbar>
     <ion-segment value="all">
       <ion-segment-button value="all">
         <ion-label>Home</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="favorites">
+      <ion-segment-button [routerLink]="['detail-page/23']" value="favorites">
         <ion-label>About</ion-label>
       </ion-segment-button>
     </ion-segment>
