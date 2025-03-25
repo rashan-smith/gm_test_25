@@ -10,7 +10,7 @@
       <div class="label-txt" [translate]="'confirmSchool.title'"></div>
       <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry" class="confirm-txt"
         [translate]="'confirmSchool.confirm1'"></div>
-      <ion-item color="light" *ngIf="school">
+      <ion-item color="light" lines="none" *ngIf="school">
         <ion-label>
           <span class="schoolName">{{school.name}}</span><br />
           <span class="education_level">{{school.education_level}}</span><br />
@@ -25,8 +25,6 @@
         <!-- <div class="schoolid">School ID: {{school.school_id | uppercase}}</div> -->
       </ion-item>
     </div>
-    <ion-item lines="full"></ion-item>
-
   </div>
 </ion-content>
 <ion-footer class="ion-no-border">
