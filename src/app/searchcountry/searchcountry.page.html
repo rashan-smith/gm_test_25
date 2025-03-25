@@ -39,6 +39,8 @@
               country.name }}
             </ion-button> </ion-item>
         </ion-list>
+        <div *ngIf="automaticSearched" class="search-label change-country"
+        [translate]="'searchCountry.change-country'"></div>
         <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry"
           class="search-label-error" [translate]="'searchCountry.country-not-accurate'"></div>
         <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry" class="search-label"

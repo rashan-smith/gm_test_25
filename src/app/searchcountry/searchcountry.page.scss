@@ -90,7 +90,6 @@ ion-select:hover {
   .list-md{
     z-index: 9999;
     position: relative;
-    border: solid 1px #ccc;
     padding: 10px;
     margin: 0;
     border-radius: 5px;
@@ -145,4 +144,7 @@ ion-select:hover {
 .scrollable{
   max-height: 200px;
   overflow: auto;
+}
+.change-country {
+  padding-top: 5px;
 }
