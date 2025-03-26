@@ -102,7 +102,6 @@ export class AppComponent {
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
-
   refreshHistory() {
     const data = this.historyService.get();
     const dataConsumed = data.measurements.reduce(

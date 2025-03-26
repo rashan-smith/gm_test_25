@@ -7,10 +7,13 @@
   min-width: 100%;
   min-height: 100%;
   border-radius: 0px 0px 10px 10px;
+  .top-layout{
+    padding-top: 10px;
+  }
 }
 .welcometxt1 {
   font-size: 28px;
-  padding-top: 25px;
+  padding-top: 0;
   color: $light-text2;
   width: 78%;
 }
@@ -52,6 +55,7 @@ div.slide-title {
 }
 .dailycheck_btn {
   width: 100%;
+  margin-bottom: 10px;
   .span {
     letter-spacing: 1px;
   }
@@ -62,8 +66,86 @@ div.slide-title {
   margin: 36px 0;
 }
 .bottom-layout {
-  position: absolute;
-  padding: 0px 20px;
+  position: static;
+  padding: 0;
   width: 100%;
   text-align: center;
+  transform: none;
 }
+.further-info {
+  cursor: pointer;
+  font-family: Cabin;
+  font-size: 11px;
+  padding-top: 10px;
+  color: $light-text1;
+  width: 100%;
+}
+.middle-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 0 40px;
+  color: #E2E2E2;
+  flex-flow: wrap;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  
+}
+
+.middle-layout ion-checkbox {
+  --size: 18px; /* Adjust checkbox size */
+  min-width: 18px;
+  min-height: 18px;
+  margin-top: 3px; /* Align checkbox with text */
+  flex-shrink: 0; /* Prevent checkbox from shrinking */
+  border:solid rgba(255, 255, 255, 0.51) 2px;
+  border-radius: 4px;
+}
+
+.middle-layout .learnmore {
+  flex: 1; /* Allow text to take available space */
+  font-size: 12px;
+  padding: 0;
+  line-height: 1.5; /* Ensure text is aligned properly */
+  color: #E2E2E2;
+}
+
+.privacy-container {
+  display: flex;
+  border: 1px solid #7a7b7c;
+  border-radius: 10px;
+  padding: 10px;
+  gap: 10px;
+  
+}
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--ion-color-primary, #3880ff);
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s, border-color 0.3s;
+  position: relative;
+}
+
+.checkbox.checked:after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

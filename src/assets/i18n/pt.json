@@ -1,9 +1,14 @@
 {
     "home": {
         "title1": "Boas-vindas ao {{appName}} <span class='daily-chk-blue'>{{appNameSuffix}}</span>",
-        "title2": "Ajude sua escola a obter uma melhor conectividade. Compartilhe diariamente o estado da internet de sua escola com o Projeto Conectividade.",
+        "title2": "Ajude sua escola a obter uma melhor conectividade. Compartilhe diariamente o estado da internet de sua escola com o {{appName}}.",
         "next": "Próximo",
-        "learn-more": "SAIBA MAIS SOBRE O {{appName}}"
+        "learn-more": "SAIBA MAIS SOBRE O {{appName}}",
+        "checkboxText": "Ao me registrar e utilizar o GigaMeter, concordo com a coleta, o processamento e a publicação da minha medição e de outros dados de apoio por parte da Giga sob a",
+        "licenseLink": "Licença de Banco de Dados Aberta (ODbL)",
+        "andText": "e pelo M-Lab sob a",
+        "privacyPolicy": "Política de Privacidade",
+        "privacy": "<a href='https://www.unicef.org/legal#privacy-policy' target={{targetUrl}}>Para mais detalhes sobre como a Giga gerencia seus dados, visite a Política de Privacidade da UNICEF.</a>"
     },
     "confirmSchool": {
         "title": "CONFIRME AS INFORMAÇÕES DA ESCOLA PARA REGISTRAR SUA ESCOLA NO {{appName}}",
@@ -72,7 +77,7 @@
         "my-school-id": "<span class=\"hash\">#</span>ID da Minha Escola",
         "version": "VERSÃO {{ app_version }}",
         "about-project-connect": "SOBRE O {{appName}}",
-        "project-connect-desc": "O Projeto Connect está a mapear a conectividade de todas as escolas do mundo. O nosso objetivo é ligar todas as escolas à Internet e todos os jovens e crianças à informação, à oportunidade e à escolha.",
+        "project-connect-desc": "O {{appName}} está a mapear a conectividade de todas as escolas do mundo. O nosso objetivo é ligar todas as escolas à Internet e todos os jovens e crianças à informação, à oportunidade e à escolha.",
         "thank-you": "Obrigado por contribuir para o {{appName}}. Encontre a sua escola e saiba mais no nosso site. Adicionamos novas escolas todos os dias!",
         "view-project-connect": "VER {{appName}}"
     },
