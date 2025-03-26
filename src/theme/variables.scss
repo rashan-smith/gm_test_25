@@ -15,6 +15,13 @@
   src: url('../assets/fonts/Roboto/Roboto-Regular.ttf');
 }
 
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/Open_Sans/static/OpenSans-Regular.ttf');
+}
+
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
@@ -62,7 +69,7 @@ $h2color : #fff;
 
 :root {
   /** primary **/
-  --ion-font-family: 'Cabin';
+  --ion-font-family: 'Open Sans';
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
@@ -142,7 +149,7 @@ $h2color : #fff;
    */
 
   body {
-    --ion-font-family: 'Cabin';
+    --ion-font-family: 'Open Sans';
     --ion-color-primary: #428cff;
     --ion-color-primary-rgb: 66,140,255;
     --ion-color-primary-contrast: #ffffff;
@@ -316,12 +323,6 @@ ion-img.bigloaderGif{
   width: 120px;
   height:auto;
   margin: 0 auto;
-}
-
-.back_button {
-  height: 32px;
-  margin: 10px 25px;
-  width: fit-content;
 }
 .green_loader {
   color: $color-black;

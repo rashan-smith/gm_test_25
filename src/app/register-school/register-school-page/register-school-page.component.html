@@ -1,5 +1,5 @@
 <app-pcdc-header></app-pcdc-header>
-<ion-content>
+<ion-content class="font_open_sans">
   <ion-button class="button_disable_hover" fill="clear" [routerLink]="['/home']">
     <ion-img src="assets/images/back_button.png" class="back_button"></ion-img>
   </ion-button>
@@ -37,7 +37,7 @@
     </div>
     <div class="bottom-layout">
       <ion-button [disabled]="!isPrivacyChecked" color="primary" (click)="redirectToCountry()"
-        class="dailycheck_btn"><span class="next-txt" [translate]="'home.start'"></span></ion-button>
+        class="dailycheck_btn"><span class="submit_button_size" [translate]="'home.start'"></span></ion-button>
 
     </div>
   </div>

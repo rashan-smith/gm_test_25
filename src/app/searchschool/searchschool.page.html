@@ -1,5 +1,5 @@
 <app-pcdc-header></app-pcdc-header>
-<ion-content>
+<ion-content class="font_open_sans">
   <ion-button class="button_disable_hover" fill="clear" [routerLink]="['/searchcountry']">
 
     <ion-img src="assets/images/back_button.png"  class="back_button"></ion-img>
@@ -56,7 +56,7 @@
             </ion-list>
           </ion-accordion> -->
         </ion-accordion-group>
-        <ion-button color="primary" type="submit" [innerHTML]="'faq.search-id' | translate" class="searchButton"
+        <ion-button color="primary" type="submit" [innerHTML]="'faq.search-id' | translate" class="searchButton submit_button_size"
           (click)="searchSchoolBySchooIdAndCountryCode()" [disabled]="isDisabled"></ion-button>
 
       </div>

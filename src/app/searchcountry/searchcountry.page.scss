@@ -3,6 +3,8 @@
 .search-label {
   padding: 20px 5px;
   color: $light-text2;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .search-label-error {
@@ -19,36 +21,8 @@
   padding: 10px 30px;
 }
 
-.search {
-  width: 100%;
-  position: relative;
-  display: flex;
-
-  ion-icon {
-    color: #e2e2e2;
-  }
-}
-
 select {
   pointer-events: auto;
-}
-
-.searchTerm {
-  width: 100%;
-  border: 3px solid $color-blue;
-  border-right: none;
-  padding: 5px;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  color: #9DBFAF;
-}
-
-.searchTerm:focus {
-  color: #00B4CC;
-  --offset-top: 0px;
-  --offset-bottom: 0px;
-  --keyboard-offset: 0px;
-
 }
 
 ion-select:hover {
@@ -61,9 +35,6 @@ ion-select:hover {
   color: #fff !important;
 }
 
-
-
-
 .searchCountry {
   -webkit-app-region: no-drag;
   width: 100%;
@@ -75,19 +46,25 @@ ion-select:hover {
   color: #fff;
 
 }
-::ng-deep{
+
+::ng-deep {
   .searchbar-input.sc-ion-searchbar-md {
     box-shadow: none !important;
-  
+    font-size: 20px;
+    font-weight: 400;
+
   }
-  .searchbar-search-icon.sc-ion-searchbar-md{
+
+  .searchbar-search-icon.sc-ion-searchbar-md {
     left: 0;
   }
+
   .searchbar-input.sc-ion-searchbar-md {
-    padding-left:30px;
+    padding-left: 30px;
     padding-right: 30px;
   }
-  .list-md{
+
+  .list-md {
     z-index: 9999;
     position: relative;
     padding: 10px;
@@ -96,12 +73,14 @@ ion-select:hover {
     padding-left: 0;
   }
 }
+
 ::ng-deep ion-item {
   pointer-events: auto !important;
   user-select: auto !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  font-family: "Open Sans";
 }
-
-
 
 .searchCountry:hover {
   color: #fff;
@@ -118,33 +97,21 @@ ion-select:hover {
   text-align: center;
 }
 
-
-
-.searchButton {
-  width: 40px;
-  height: 40px;
-  border: 1px solid;
-  border-color: $color-blue;
-  background: $color-blue;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 20px;
-}
 .dropdown_list {
   text-transform: none;
-  font-family: Cabin;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 400;
+
   &:hover {
     background: none;
   }
 }
-.scrollable{
+
+.scrollable {
   max-height: 200px;
   overflow: auto;
 }
+
 .change-country {
   padding-top: 5px;
 }
