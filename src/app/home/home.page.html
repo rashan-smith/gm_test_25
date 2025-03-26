@@ -4,13 +4,34 @@
     <div class="welcomebg1">
       <div class="top-layout">
         <div class="welcometxt1" [innerHTML]="'home.title1' | translate:{ appName, appNameSuffix }"></div>
-        <div class="welcometxt2" [translate]="'home.title2'"></div>
+        <div class="welcometxt2" [translate]="'home.title2' | translate:{ appName }"></div>
       </div>
-      <div class="bottom-layout">
-        <ion-button color="primary" block [routerLink]="['/searchcountry']" class="dailycheck_btn"><span
-            class="next-txt" [translate]="'home.next'"></span></ion-button>
-        <div class="learnmore" (click)="openExternalUrl('https://projectconnect.unicef.org/daily-check-app')"
-          [translate]="'home.learn-more' | translate:{ appName: (appName | uppercase)}"></div>
+      <div class="middle-layout">
+        <div class="privacy-container">
+          <div class="input">
+            <input type="checkbox" [(ngModel)]="isPrivacyChecked"
+              class="checkbox" />
+          </div>
+          <div class="learnmore">
+            {{ 'home.checkboxText' | translate }}
+            <a (click)="openExternalUrl(privacyUrl1)">
+              {{ 'home.licenseLink' | translate }}
+            </a>
+            {{ 'home.andText' | translate }}
+            <a (click)="openExternalUrl(privacyUrl2)">
+              {{ 'home.privacyPolicy' | translate }}
+            </a>.
+          </div>
+        </div>
+        <div class="further-info" [innerHTML]="'home.privacy' | translate:{  targetUrl }"
+          (click)="openExternalUrl('https://www.unicef.org/legal#privacy-policy')">
+        </div>
+        <div class="bottom-layout">
+          <ion-button [disabled]="!isPrivacyChecked" color="primary" block [routerLink]="['/searchcountry']"
+            class="dailycheck_btn"><span class="next-txt" [translate]="'home.next'"></span></ion-button>
+          <div class="learnmore" (click)="openExternalUrl('https://projectconnect.unicef.org/daily-check-app')"
+            [translate]="'home.learn-more' | translate:{ appName: (appName | uppercase)}"></div>
+        </div>
       </div>
     </div>
   </div>
