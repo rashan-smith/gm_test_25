@@ -114,7 +114,7 @@ if (!gotTheLock) {
 
   setInterval(() => {
     autoUpdater.checkForUpdates()
-  }, 300000)
+  }, 3600000)
 
 
   autoUpdater.on("update-downloaded", (_event, releaseNotes, releaseName) => {
