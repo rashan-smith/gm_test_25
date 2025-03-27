@@ -47,7 +47,7 @@
         "country": "Country",
         "country-not-accurate": "It looks like the country you selected may not be accurate to your location.",
         "please-double-check": "Are you sure you want to continue?",
-        "not-available": "Sorry, {{appName}} {{appNameSuffix}} App is not available in this country. Please choose another country.",
+        "not-available": "Sorry, {{appName}} {{appNameSuffix}}  is not available in this country. Please choose another country.",
         "change-country": "If the above selection is not correct, select your country from dropdown box."
     },
     "searchSchool": {
@@ -103,7 +103,7 @@
         "readMore": "Read more about how to ensure a good registration"
     },
     "resultSchool": "RESULTS FOR SCHOOL ID",
-    "tryAgain": "TRY AGAIN",
+    "tryAgain": "Try Again",
     "yes": "Yes",
     "no": "No",
     "next": "Next",
