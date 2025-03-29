@@ -3,6 +3,7 @@ import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { StorageService } from './storage.service';
 
 type Ip4Data = {
   organization: string;
@@ -47,7 +48,12 @@ export class NetworkService {
     icon: 'ion-help',
     label: 'Unknown',
   };
-  constructor(private http: HttpClient, private network: Network) {
+  CACHE_TIME = 1000 * 60 * 60 * 24;
+  constructor(
+    private http: HttpClient,
+    private network: Network,
+    private storageService: StorageService
+  ) {
     const headersItem = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -62,16 +68,22 @@ export class NetworkService {
     console.log('getNetInfo');
     const options = { headers: this.headers };
     let response = null;
+    const storedAccessInformation = this.storageService.get('networkInfo') ? JSON.parse(this.storageService.get('networkInfo')) : null;
+    if (storedAccessInformation && storedAccessInformation.data && storedAccessInformation.date > Date.now() - this.CACHE_TIME) {
+      console.log('Using cached network info');
+      return storedAccessInformation.data;
+    }
     try {
-      response = this.standardData(await this.http
-        .get(this.accessServiceUrl, options)
-        .toPromise<any>());
+      response = this.standardData(
+        await this.http.get(this.accessServiceUrl, options).toPromise<any>()
+      );
     } catch (error) {
       console.error('Error:', error);
       const ipGeoResponse = await fetch('https://ipv4.geojs.io/v1/ip/geo.json');
       const ipGeoData = await ipGeoResponse.json();
-      return this.mapData(ipGeoData);
+      response = this.mapData(ipGeoData);
     }
+    this.storageService.set('networkInfo', JSON.stringify({ data: response, date: Date.now() }));
     return response;
   }
 
