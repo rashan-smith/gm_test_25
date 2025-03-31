@@ -93,7 +93,10 @@
         "about-project-connect": "À PROPOS DE PROJET CONNECT",
         "project-connect-desc": "{{appName}} cartographie la connectivité de chaque école du monde. Notre objectif est de connecter toutes les écoles à Internet et tous les jeunes à l'information, aux opportunités et aux choix.",
         "thank-you": "Merci d'avoir contribué à {{appName}}. Trouvez votre école et apprenez-en davantage sur notre site Web. Nous ajoutons de nouvelles écoles chaque jour !",
-        "view-project-connect": "VOIR CONNEXION AU PROJET"
+        "view-project-connect": "VOIR CONNEXION AU PROJET",
+        "test-type-setting": "Paramètres des types de tests",
+        "language-pref": "Préférences linguistiques",
+        "wifi-network": "Paramètres des réseaux Wifi"
     },
     "startTest": {
         "startTest": "COMMENCER L'ESSAI",

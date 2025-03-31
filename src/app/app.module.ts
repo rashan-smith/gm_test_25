@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 /* Import token interceptor */
 import { TokenInterceptor } from './auth/token.interceptor';
 import { environment } from 'src/environments/environment';
+import { FormsModule } from '@angular/forms';
 
 export function tokenGetter() {
   return environment.token;
@@ -20,6 +21,7 @@ export function tokenGetter() {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    FormsModule,
     BrowserModule, 
     IonicModule.forRoot(), 
     SharedModule, 

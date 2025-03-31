@@ -85,7 +85,10 @@
         "about-project-connect": "ABOUT {{appName}}",
         "project-connect-desc": "{{appName}} is mapping the connectivity of every school in the world. We aim to connect all schools to the Internet and all young people to information, opportunity and choice.",
         "thank-you": "Thank you for contributing to {{appName}}. Find your school and learn more at our website. We add new schools every day!",
-        "view-project-connect": "VIEW {{appName}}"
+        "view-project-connect": "VIEW {{appName}}",
+        "test-type-setting": "Test type settings",
+        "language-pref": "Language preferences",
+        "wifi-network": "Wifi networks settings"
     },
     "startTest": {
         "startTest": "START TEST",

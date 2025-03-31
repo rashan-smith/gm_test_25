@@ -1,101 +1,125 @@
 @import '../theme/variables.scss';
-.ionMenubg{
+
+.ionMenubg {
     // background-color: #1E2B46 !important;
     background-color: rgba(30, 43, 70, 0.5) !important;
     border-radius: 10px;
-    height:93%;
+    height: 100%;
+    --width: 90%;
+
 }
-.headerbar{
+
+.headerbar {
     height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
-    padding-top: 15px;  
-    padding-bottom: 10px;  
-    .closeIcon{
-       font-size: 24px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+
+    .closeIcon {
+        font-size: 24px;
         margin-right: 20px;
         color: $light-text1;
     }
-    .closeIcon:hover{
+
+    .closeIcon:hover {
         background-color: #42516E;
         border-radius: 50%;
         width: 29px;
         height: 29px;
     }
-    .backIcon{
+
+    .backIcon {
         font-size: 24px;
         margin-left: 20px;
         color: $light-text1;
     }
-    .backIcon:hover{
-        background-color:#42516E;
+
+    .backIcon:hover {
+        background-color: #42516E;
         border-radius: 50%;
         width: 28px;
         height: 28px;
     }
 }
-.freq-ques-txt{
+
+.freq-ques-txt {
     text-align: left;
     color: #2779FF;
     padding: 10px 25px;
     font-size: 13px;
     background: #ffffff;
 }
-.menuContent{
-    #background-content{
+
+.menuContent {
+    #background-content {
         --ion-background-color: #ffffff !important;
         border-radius: 0px 0px 0px 10px !important;
     }
 }
-ion-content{
-    --ion-background-color: #ffffff !important;    
-    ion-list{
-        ion-item{      
+
+ion-content {
+    --ion-background-color: #ffffff !important;
+
+    ion-list {
+        ion-item {
             padding-right: 20px;
             cursor: pointer;
-            .item-inner{                
+
+            .item-inner {
                 padding-right: 0px !important;
             }
-            ion-label{
-                color: $light-text2;
-                font-size: 13px;
+
+            ion-label {
+                color: #000;
+                font-size: 18px;
                 display: flex;
                 align-items: center;
-                .hash{
+                padding-left: 8px;
+
+
+                .hash {
                     font-size: 18px;
-                    color:#505868;
+                    color: #000;
                     padding-right: 5px;
                 }
             }
-            ion-icon{
-                color:#505868;
+
+            ion-icon {
+                color: #505868;
                 padding-right: 5px;
             }
-            ion-icon[name="chevron-forward-outline"]{
+
+            ion-icon[name="chevron-forward-outline"] {
                 padding-right: 5px;
                 font-size: 15px;
-                color:#505868;
+                color: #505868;
                 position: absolute;
-                right:0;
+                right: 0;
             }
         }
     }
-    ion-accordion-group{
-        margin-left:25px;
-        margin-right:15px;
-        ion-accordion{
-            --ion-background-color:#ffffff;
+
+    ion-accordion-group {
+        margin-left: 25px;
+        margin-right: 15px;
+
+        ion-accordion {
+            --ion-background-color: #ffffff;
             padding: 0px;
             border-bottom: 1px solid #353E52;
-            ion-label{
+
+            ion-label {
                 font-size: 13px;
                 color: $light-text2;
                 font-weight: 400px;
             }
-            ion-list{
-                ion-label{
+
+            ion-list {
+                ion-label {
                     font-size: 11px;
                     color: $light-text2;
                     font-weight: 400px;
@@ -105,56 +129,203 @@ ion-content{
         }
     }
 }
-.aboutprojConn{
-    width:252px;
+
+.aboutprojConn {
+    width: 252px;
 }
-.view-proj-btn{
+
+.view-proj-btn {
     width: 252px;
     margin: 20px 15px;
 }
-.abt-prj-con-txt{
-    padding:10px 15px 0px 15px !important;
+
+.abt-prj-con-txt {
+    padding: 10px 15px 0px 15px !important;
 }
-.about-proj-con-sec{    
-        padding: 0px 10px;
-        div{
-            padding: 10px 15px;
-            line-height: 14px !important;
-        ion-label{           
+
+.about-proj-con-sec {
+    padding: 0px 10px;
+
+    div {
+        padding: 10px 15px;
+        line-height: 14px !important;
+
+        ion-label {
             font-size: 13px;
             color: $light-text2;
-            font-weight: 400px;            
+            font-weight: 400px;
         }
-        .thank-txt{
+
+        .thank-txt {
             font-size: 11px !important;
             color: $light-text2;
             font-weight: 400px;
             line-height: 14px !important;
         }
-    }    
+    }
 }
-.your-school-id-sec{
-    padding: 10px 25px;          
-        .your-school-id{
-            padding: 0px 0px !important;
-        }
-        .schoolid{
-            font-size: 18px;
-            color: $light-text2;
-            font-weight: 400px;
-            padding-top: 20px;
-        }
-        .schoolname-txt{
-            font-size: 18px;
-            color: $light-text2;
-            font-weight: 400px;
-            padding-top: 10px;
-        }
-        .address-txt{
-            font-size: 13px;
-            color: $light-text2;
-            font-weight: 400px;
-            padding-top: 10px;
-        }
-    
+
+.your-school-id-sec {
+    padding: 10px 25px;
+
+    .your-school-id {
+        padding: 0px 0px !important;
+    }
+
+    .schoolid {
+        font-size: 18px;
+        color: $light-text2;
+        font-weight: 400px;
+        padding-top: 20px;
+    }
+
+    .schoolname-txt {
+        padding: 14px;
+        font-size: 18px;
+        color: $light-text2;
+        font-weight: 400;
+        padding-top: 10px;
+    }
+
+    .address-txt {
+        font-size: 13px;
+        color: $light-text2;
+        font-weight: 400px;
+        padding-top: 10px;
+    }
+
 }
+
+
+.select_type_dropdown {
+    // Ensure your item has visible text if the background is white
+    --background: #fff;
+    --color: #000;
+    margin-top: 22px;
+    ion-label {
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: 400;
+    }
+}
+.network-card {
+    --background: #fff;      // White card background
+    --color: #000;           // Black text
+    margin: 0.5rem 0;
+  
+    ion-item {
+      --background: #fff;    // Ensure item matches card
+      --color: #000;
+    }
+  
+    ion-checkbox {
+      --background: #fff;    // Checkbox fill
+      --border-color: #ccc;  // Checkbox outline
+      --checkmark-color: #000; // Checkmark color
+    }
+  }
+  
+
+.dropdown {
+    position: absolute; // So the dropdown floats
+    z-index: 999; // On top of other elements
+    background: #fff; // White background
+    width: 100%; // Match the input width
+    border: 1px solid #ccc; // Outline
+    border-radius: 4px;
+    margin-top: 0.25rem; // Small gap below the input
+
+    ion-item {
+        --background: #fff; // White item background
+        --color: #000; // Black text
+        --border-color: transparent;
+
+        &:hover {
+            background: #f0f0f0; // Hover effect
+        }
+    }
+}
+.font_label {
+    font-size: 20px;
+    font-weight: 400;
+}
+.bread_crumbs {
+    padding-top: 15px;
+}
+
+.dropdown_list {
+    text-transform: none;
+    font-size: 20px;
+    font-weight: 400;
+  
+    &:hover {
+      background: none;
+    }
+  }
+  .searchCountry {
+    -webkit-app-region: no-drag;
+    width: 100%;
+    border: 3px solid $color-blue;
+  
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    color: #fff;
+  
+  }
+  .img_wifi {
+    height: 20px;
+    width: 20px;
+  }
+
+  .network-card {
+    --background: #fff; // White background for light theme
+    --color: #000;      // Black text
+    margin: 0.5rem 0;
+  }
+  
+  .network-item {
+    display: flex;
+    flex-direction: column; // Stack items vertically
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  .wifi-details {
+    display: flex;
+    flex-direction: column; // Stack labels in a column
+    align-items: flex-start;
+    width: 100%; // Take full width
+    margin-bottom: 8px;
+  }
+  
+  .wifi_name {
+    font-size: 20px;
+    font-weight: 400;
+    padding-bottom: 16px;
+
+  }
+  
+  .wifi_ssid {
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 10px;
+
+  }
+  
+  .wifi-extras {
+    display: flex;
+    justify-content: space-between; // Image on left, checkbox on right
+    align-items: center;
+  }
+  
+  .img_wifi {
+    width: 24px;  // Adjust size as needed
+    height: 24px;
+  }
+  
+  .setting_label {
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+  }
