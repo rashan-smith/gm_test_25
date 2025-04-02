@@ -88,7 +88,10 @@
         "view-project-connect": "VIEW {{appName}}",
         "test-type-setting": "Test type settings",
         "language-pref": "Language preferences",
-        "wifi-network": "Wifi networks settings"
+        "wifi-network": "Wifi networks settings",
+        "about-help": "About",
+        "faq-help":"FAQs",
+        "doc": "Documentation"
     },
     "startTest": {
         "startTest": "START TEST",

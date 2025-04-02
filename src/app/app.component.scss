@@ -15,9 +15,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
-    padding-top: 30px;
-    padding-bottom: 10px;
-    padding-left: 16px;
+    padding: 32px 25px 16px 32px;
 
     .closeIcon {
         font-size: 24px;
@@ -54,12 +52,6 @@
     background: #ffffff;
 }
 
-.menuContent {
-    #background-content {
-        --ion-background-color: #ffffff !important;
-        border-radius: 0px 0px 0px 10px !important;
-    }
-}
 
 ion-content {
     --ion-background-color: #ffffff !important;
@@ -67,6 +59,7 @@ ion-content {
     ion-list {
         ion-item {
             padding-right: 20px;
+            color:#000;
             cursor: pointer;
 
             .item-inner {
@@ -254,6 +247,7 @@ ion-content {
 }
 
 .dropdown_list {
+    color: #000000;
     text-transform: none;
     font-size: 20px;
     font-weight: 400;
@@ -328,4 +322,9 @@ ion-content {
     font-size: 20px;
     font-weight: 400;
     color: #000;
+  }
+  .backIcon {
+    margin: 32px 0px 0px 32px;
+    width: 32px;
+    height: 32px;
   }
