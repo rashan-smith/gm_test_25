@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { environment as env } from '../../environments/environment';
 import { SettingsService } from '../services/settings.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pcdc-header',
@@ -17,7 +18,8 @@ export class PcdcHeaderComponent implements OnInit {
   appNameSuffix = env.appNameSuffix;
   constructor(
     private translate: TranslateService,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private menuCtrl: MenuController
   ) {
     // Retrieve the selected language from local storage if it exists
     this.selectedLanguage =
@@ -45,5 +47,11 @@ export class PcdcHeaderComponent implements OnInit {
     this.settingsService
       .getIpcRenderer()
       .ipcRenderer.send('closeFromUi', 'minimize');
+  }
+
+  openMenu(menuId: string) {
+    this.menuCtrl.enable(true, menuId);
+
+    this.menuCtrl.open(menuId);
   }
 }

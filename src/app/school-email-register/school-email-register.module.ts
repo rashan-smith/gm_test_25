@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { IonicModule } from '@ionic/angular';
 import { PcdcHeaderComponent } from '../pcdc-header/pcdc-header.component';
 import { SaveSchoolEmailComponent } from './save-school-email/save-school-email.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,6 +13,7 @@ import { SaveSchoolEmailComponent } from './save-school-email/save-school-email.
   declarations: [PcdcHeaderComponent, SaveSchoolEmailComponent],
   imports: [
     CommonModule,
+    FormsModule,
     SchoolEmailRegisterRoutingModule,
     SharedModule,
     IonicModule,

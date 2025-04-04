@@ -1,7 +1,9 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
   <div class="container">
-    <ion-img src="assets/images/back_button.png" (click)="backToSearchDetail()" class="back_button"></ion-img>
+    <span  (click)="backToSearchDetail()">
+      <ion-icon name="arrow-back-outline" class="backIcon" (click)="backMenu()"></ion-icon>
+    </span>
 
     <div class="top-layout">
       <div class="label-txt SchoolIDField">

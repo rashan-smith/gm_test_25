@@ -109,14 +109,14 @@ export class AppComponent {
   }
 
   closeMenu() {
-    this.menu.enable(true, 'first');
+    this.menu.enable(true, 'setting');
     this.menu.close();
   }
 
   backMenu() {
     this.closeMenu();
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
+    this.menu.enable(true, 'setting');
+    this.menu.open('setting');
   }
   cleanHistory() {
     this.historyService.set({});
@@ -188,5 +188,19 @@ export class AppComponent {
 
   openExternalUrl(href) {
     this.settingsService.getShell().shell.openExternal(href);
+  }
+
+  closeHelpenu() {
+    this.menu.enable(true, 'help');
+    this.menu.close();
+  }
+  backHelpMenu() {
+    this.closeMenu();
+    this.menu.enable(true, 'help');
+    this.menu.open('help');
+  }
+  openHelpMenu(menuid: string) {
+    this.menu.enable(true, menuid);
+    this.menu.open(menuid);
   }
 }

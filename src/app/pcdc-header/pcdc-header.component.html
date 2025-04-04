@@ -19,11 +19,11 @@
       </ion-label>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-menu-button color="light" menu="help">
+      <ion-menu-button color="light" (click)="openMenu('help')">
 
       <ion-img src="assets/images/Help.png" class="noschool-icon"></ion-img>
       </ion-menu-button>
-      <ion-menu-button color="light">
+      <ion-menu-button color="light"  (click)="openMenu('setting')">
 
         <ion-img src="assets/images/Settings.png" class="noschool-icon"></ion-img>
 

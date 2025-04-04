@@ -287,20 +287,25 @@ export class StarttestPage implements OnInit, OnDestroy {
 
   startDownloadProgress() {
     const target = 50;
-    const interval = 200; // update every 50ms
+    const interval = 1500; // Increase interval to slow down updates (1.5 sec per update)
+    const step = 0.5; // Reduce step size for a more gradual increase
+  
     this.downloadTimer = setInterval(() => {
       if (this.progress < target && this.downloadStarted) {
-        this.progress += 1; // increase by 1% per tick (adjust as needed)
+        this.progress += step; // Increase progress very slowly
         if (this.progress >= target) {
           this.progress = target;
           clearInterval(this.downloadTimer);
         }
-        this.ref.markForCheck();
+        this.ref.detectChanges(); // Ensure UI updates smoothly
       } else {
         clearInterval(this.downloadTimer);
       }
     }, interval);
   }
+  
+  
+  
   // Animate progress from 50 to 100
   startUploadProgress() {
     const target = 100;

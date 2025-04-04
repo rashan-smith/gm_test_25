@@ -2,7 +2,7 @@
 <ion-content>
   <ion-button class="button_disable_hover" fill="clear" (click)="backToSearchDetail()">
 
-    <ion-img src="assets/images/back_button.png" class="back_button"></ion-img>
+    <ion-icon name="arrow-back-outline" class="backIcon" (click)="backMenu()"></ion-icon>
   </ion-button>
   <div class="container">
     <div class="top-layout">
@@ -18,11 +18,11 @@
         <!-- <ng-template #notRegister>
           <div class="noschool-txt" [translate]="'schoolNotFound.notRegister' | translate:{ appName }"></div>
         </ng-template> -->
-        <div class="try_again" [translate]="'schoolNotFound.tryAgainPlaceholder'"></div>
+        <div class="try_again"  [translate]="'schoolNotFound.tryAgainPlaceholder'"></div>
       </div>
     </div>
     <div class="bottom-layout">
-      <ion-button color="primary" block [routerLink]="['/']" class="dailycheck_btn submit_button_size"
+      <ion-button color="primary" (click)="backToSearchDetail()" block class="dailycheck_btn submit_button_size"
         [translate]="'tryAgain'"></ion-button>
     </div>
   </div>

@@ -130,7 +130,7 @@ export class ElectronCapacitorApp {
       y: this.mainWindowState.y,
       width: this.mainWindowState.width,
       height: this.mainWindowState.height,
-      // titleBarStyle: 'hidden',
+      titleBarStyle: 'hidden',
       // titleBarOverlay: true,
       maximizable: false,
       minimizable: false,
@@ -250,7 +250,7 @@ export class ElectronCapacitorApp {
       setTimeout(() => {
         if (this.CapacitorFileConfig.electron?.electronIsDev) {
           this.MainWindow.webContents.openDevTools();
-          this.MainWindow.setSize(800, 600);
+          this.MainWindow.setSize(700, 600);
         }
         CapElectronEventEmitter.emit('CAPELECTRON_DeeplinkListenerInitialized', '');
       }, 400);

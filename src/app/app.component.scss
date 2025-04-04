@@ -9,41 +9,6 @@
 
 }
 
-.headerbar {
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    padding: 32px 25px 16px 32px;
-
-    .closeIcon {
-        font-size: 24px;
-        margin-right: 20px;
-        color: $light-text1;
-    }
-
-    .closeIcon:hover {
-        background-color: #42516E;
-        border-radius: 50%;
-        width: 29px;
-        height: 29px;
-    }
-
-    .backIcon {
-        font-size: 24px;
-        margin-left: 20px;
-        color: $light-text1;
-    }
-
-    .backIcon:hover {
-        background-color: #42516E;
-        border-radius: 50%;
-        width: 28px;
-        height: 28px;
-    }
-}
-
 .freq-ques-txt {
     text-align: left;
     color: #2779FF;
@@ -59,7 +24,7 @@ ion-content {
     ion-list {
         ion-item {
             padding-right: 20px;
-            color:#000;
+            color: #000;
             cursor: pointer;
 
             .item-inner {
@@ -195,29 +160,31 @@ ion-content {
     --background: #fff;
     --color: #000;
     margin-top: 22px;
+
     ion-label {
         margin-bottom: 20px;
         font-size: 20px;
         font-weight: 400;
     }
 }
+
 .network-card {
-    --background: #fff;      // White card background
-    --color: #000;           // Black text
+    --background: #fff; // White card background
+    --color: #000; // Black text
     margin: 0.5rem 0;
-  
+
     ion-item {
-      --background: #fff;    // Ensure item matches card
-      --color: #000;
+        --background: #fff; // Ensure item matches card
+        --color: #000;
     }
-  
+
     ion-checkbox {
-      --background: #fff;    // Checkbox fill
-      --border-color: #ccc;  // Checkbox outline
-      --checkmark-color: #000; // Checkmark color
+        --background: #fff; // Checkbox fill
+        --border-color: #ccc; // Checkbox outline
+        --checkmark-color: #000; // Checkmark color
     }
-  }
-  
+}
+
 
 .dropdown {
     position: absolute; // So the dropdown floats
@@ -238,10 +205,12 @@ ion-content {
         }
     }
 }
+
 .font_label {
     font-size: 20px;
     font-weight: 400;
 }
+
 .bread_crumbs {
     padding-top: 15px;
 }
@@ -251,80 +220,112 @@ ion-content {
     text-transform: none;
     font-size: 20px;
     font-weight: 400;
-  
+
     &:hover {
-      background: none;
+        background: none;
     }
-  }
-  .searchCountry {
+}
+
+.searchCountry {
     -webkit-app-region: no-drag;
     width: 100%;
     border: 3px solid $color-blue;
-  
+
     padding: 5px;
     border-radius: 5px;
     outline: none;
     color: #fff;
-  
-  }
-  .img_wifi {
+
+}
+
+.img_wifi {
     height: 20px;
     width: 20px;
-  }
+}
 
-  .network-card {
+.network-card {
     --background: #fff; // White background for light theme
-    --color: #000;      // Black text
+    --color: #000; // Black text
     margin: 0.5rem 0;
-  }
-  
-  .network-item {
+}
+
+.network-item {
     display: flex;
     flex-direction: column; // Stack items vertically
     align-items: flex-start;
     justify-content: center;
-  }
-  
-  .wifi-details {
+}
+
+.wifi-details {
     display: flex;
     flex-direction: column; // Stack labels in a column
     align-items: flex-start;
     width: 100%; // Take full width
     margin-bottom: 8px;
-  }
-  
-  .wifi_name {
+}
+
+.wifi_name {
     font-size: 20px;
     font-weight: 400;
     padding-bottom: 16px;
 
-  }
-  
-  .wifi_ssid {
+}
+
+.wifi_ssid {
     font-size: 14px;
     font-weight: 400;
     padding-bottom: 10px;
 
-  }
-  
-  .wifi-extras {
+}
+
+.wifi-extras {
     display: flex;
     justify-content: space-between; // Image on left, checkbox on right
     align-items: center;
-  }
-  
-  .img_wifi {
-    width: 24px;  // Adjust size as needed
+}
+
+.img_wifi {
+    width: 24px; // Adjust size as needed
     height: 24px;
-  }
-  
-  .setting_label {
+}
+
+.setting_label {
     font-size: 20px;
     font-weight: 400;
     color: #000;
-  }
-  .backIcon {
+}
+
+.backIcon {
     margin: 32px 0px 0px 32px;
     width: 32px;
     height: 32px;
+}
+::ng-deep {
+    .searchbar-input.sc-ion-searchbar-md {
+      box-shadow: none !important;
+      font-size: 20px;
+      font-weight: 400;
+  
+    }
+  
+    .searchbar-search-icon.sc-ion-searchbar-md {
+      left: 0;
+    }
+  
+    .searchbar-input.sc-ion-searchbar-md {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  
+    .list-md {
+      z-index: 9999;
+      position: relative;
+      padding: 10px;
+      margin: 0;
+      border-radius: 5px;
+      padding-left: 0;
+    }
+  }
+  .accordion-sec {
+    margin-top: 22px;
   }

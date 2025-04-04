@@ -184,7 +184,7 @@
                 Latency </span> <span class="time">1hr Ago</span>
 
             </ion-card-title>
-            <ion-card-subtitle>--
+            <ion-card-subtitle>{{currentRateDownload && !((connectionStatus=='error' && currentState == undefined) || (!onlineStatus)) ? latency : '--'}}
               <span class="footer_card_font_size">ms</span>
 
             </ion-card-subtitle>
