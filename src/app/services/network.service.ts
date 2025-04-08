@@ -3,6 +3,7 @@ import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 type Ip4Data = {
   organization: string;
@@ -38,8 +39,7 @@ type IpInfoData = {
   providedIn: 'root',
 })
 export class NetworkService {
-  accessServiceUrl = 'https://ipinfo.io?token=9906baf67eda8b';
-  // accessServiceUrl = 'https://ipinfo.io?token=060bdd9da6a22f'; //ONLY FOR LOCAL DEV TESTING
+  accessServiceUrl = `${environment.restAPI}/api/v1/access-information`; // 
   headers: any;
   options: any;
   currentAccessInformation: any;
