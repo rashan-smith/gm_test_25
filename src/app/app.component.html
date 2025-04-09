@@ -35,8 +35,8 @@
           </ion-card-content>
         </ion-card>
 
-        <div class="freq-ques-txt abt-prj-con-txt"
-          [translate]="'app.about-project-connect' | translate:{ appName: (appName | uppercase) }"></div>
+        <!-- <div class="freq-ques-txt abt-prj-con-txt"
+          [translate]="'app.about-project-connect' | translate:{ appName: (appName | uppercase) }"></div> -->
         <!-- <div>
           <ion-img src="assets/images/project-connect.jpg" class="aboutprojConn"></ion-img>
         </div>
@@ -152,17 +152,17 @@
       <div class="accordion-sec">
         <ion-list>
           <ion-item (click)="openHelpMenu('about')">
-            <ion-img src="assets/images/test-setting.svg"></ion-img>
+            <ion-img src="assets/images/about.svg"></ion-img>
             <ion-label [innerHTML]="'app.about-help' | translate"></ion-label>
             <ion-icon name="chevron-forward-outline"></ion-icon>
           </ion-item>
           <ion-item (click)="openHelpMenu('faq')">
-            <ion-img src="assets/images/language-setting.svg"></ion-img>
+            <ion-img src="assets/images/faq.svg"></ion-img>
             <ion-label [innerHTML]="'app.faq-help' | translate"></ion-label>
             <ion-icon name="chevron-forward-outline"></ion-icon>
           </ion-item>
           <ion-item (click)="openHelpMenu('new')">
-            <ion-img src="assets/images/wifi-setting.svg"></ion-img>
+            <ion-img src="assets/images/new.svg"></ion-img>
             <ion-label [innerHTML]="'app.whats-new' | translate"></ion-label>
             <ion-icon name="chevron-forward-outline"></ion-icon>
           </ion-item>
@@ -323,7 +323,7 @@
   </ion-menu>
   <ion-menu side="end" menuId="setting" contentId="content" class="ionMenubg">
     <div class="headerbar">
-      <ion-label class="setting_label">Help</ion-label>
+      <ion-label class="setting_label">Settings</ion-label>
       <div></div>
       <ion-icon name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-icon>
     </div>
@@ -345,11 +345,11 @@
             <ion-label [innerHTML]="'app.wifi-network' | translate"></ion-label>
             <ion-icon name="chevron-forward-outline"></ion-icon>
           </ion-item>
-          <ion-item>
+          <!-- <ion-item>
             <ion-label class="small-font" slot="end" [translate]="'app.version'"
               [translateParams]="{ app_version: app_version }"></ion-label>
             <ion-icon name="chevron-download"></ion-icon>
-          </ion-item>
+          </ion-item> -->
         </ion-list>
       </div>
     </ion-content>

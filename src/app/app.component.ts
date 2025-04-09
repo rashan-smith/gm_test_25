@@ -113,6 +113,8 @@ export class AppComponent {
     this.menu.close();
   }
 
+  
+
   backMenu() {
     this.closeMenu();
     this.menu.enable(true, 'setting');
@@ -134,6 +136,14 @@ export class AppComponent {
     this.languageSearch = option.label;
     console.log(this.searchTerm)
     this.filteredLanguages = [];
+    this.settingsService.setSetting(
+      'applicationLanguage',
+      this.languages.find((l) => l.code === option.code)
+    );
+    // this.selectedLanguageName = this.languages.find(
+    //   (l) => l.code === option.code
+    // ).label;
+    window.location.reload();
     // Hide the dropdown
   }
   filterOptions(event: any) {

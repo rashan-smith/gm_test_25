@@ -21,14 +21,14 @@
       [ngClass]="getTextClass()">
       {{ error ? 'TRY AGAIN' : secondLabel ? secondLabel : firstLabel }}
     </text>
-    <text *ngIf="secondLabel === 'DOWNLOAD' || secondLabel === 'UPLOAD'  " x="35" y="66" text-anchor="bottom"
+    <text *ngIf="secondLabel === 'DOWNLOAD' || secondLabel === 'UPLOAD'  " x="30" y="66" text-anchor="bottom"
       [attr.font-size]="16" text-anchor="bottom" alignment-baseline="middle">
       {{secondLabel === 'DOWNLOAD' ? currentRateDownload: currentRateUpload}}
     </text>
 
     <!-- Fix: Use img for warning icon -->
     <image *ngIf="error" href="assets/images/Warning.svg" width="16" height="16" x="41" y="55" alt="Error Icon" />
-
+    <!-- <image *ngIf="completed" href="assets/images/done.svg" width="16" height="16" x="41" y="55" alt="Error Icon" /> -->
     <!-- Fix: Replace ion-text with div for second label -->
     <!-- <div *ngIf="secondLabel" class="second-label">
         {{ secondLabel }}

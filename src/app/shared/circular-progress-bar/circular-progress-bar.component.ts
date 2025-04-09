@@ -13,6 +13,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     @Input() currentRateUpload!: number;
     @Input() currentRateDownload!: number;
     @Input() error: boolean = false;
+    // @Input() completed: boolean = false;
     // @Input() consentChecked: boolean = false;
     
     @Output() startTest = new EventEmitter<void>();

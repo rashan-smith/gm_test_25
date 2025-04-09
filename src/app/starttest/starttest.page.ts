@@ -136,6 +136,7 @@ export class StarttestPage implements OnInit, OnDestroy {
         // Re-sync data with server.
         try {
           console.log('Online');
+          this.progress = 0;
           this.onlineStatus = true;
           this.currentState = undefined;
           this.currentRate = undefined;
