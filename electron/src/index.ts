@@ -6,23 +6,31 @@ import electronIsDev from 'electron-is-dev';
 import unhandled from 'electron-unhandled';
 import { autoUpdater } from 'electron-updater';
 import fs from 'fs-extra';
-import * as Sentry from "@sentry/electron";
+import path from 'path';
 
 import { ElectronCapacitorApp, setupContentSecurityPolicy, setupReloadWatcher } from './setup';
+import { captureException } from '@sentry/node';
+
+// Set userData path to use name instead of productName - must be set before app is ready
+const userDataPath = path.join(app.getPath('appData'), 'unicef-pdca');
+app.setPath('userData', userDataPath);
+
 const gotTheLock = app.requestSingleInstanceLock();
 // Graceful handling of unhandled errors.
 unhandled({
-  logger: () => {
-    console.error();
+  logger: (e) => {
+    console.error(e);
+    captureException(e);
     console.log("there is an error occurs")
   },
   showDialog: false,
   reportButton: (error) => {
     console.log('Report Button Initialized');
+    captureException(error);
   }
 });
 
-Sentry.init({ dsn: "https://e52e97fc558344bc80a218fc22a9a6a9@excubo.unicef.io/47" });
+
 
 let isQuiting = false;
 let mainWindow = null;
@@ -148,6 +156,7 @@ if (!gotTheLock) {
         //throw new Error("opps there is unexpected error")
       } catch (error) {
         console.error('Error during update installation:', error);
+        captureException(error);
         const dialogOpts = {
           type: 'info',
           buttons: ['Restart / Reinicie. / Перезапуск', 'Later / Después / Позже'],
@@ -164,6 +173,10 @@ if (!gotTheLock) {
 
 
 
+  });
+autoUpdater.on('error', (error) => {
+  console.error('Update Error:', error);
+  captureException(error);
   });
   /*
     autoUpdater.on('error', (error) => {
@@ -183,7 +196,7 @@ if (!gotTheLock) {
     });
   
   */
-
+    
 
 
   // Security - Set Content-Security-Policy based on whether or not we are in dev mode.

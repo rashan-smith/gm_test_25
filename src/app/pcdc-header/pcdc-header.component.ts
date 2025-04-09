@@ -10,12 +10,12 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./pcdc-header.component.scss'],
 })
 export class PcdcHeaderComponent implements OnInit {
-  languages = env.languages;
+  languages = env?.languages ?? [];
   selectedLanguage: string;
   selectedLanguageName: string;
   test = false;
-  appName = env.appName;
-  appNameSuffix = env.appNameSuffix;
+  appName = env?.appName ?? '';
+  appNameSuffix = env?.appNameSuffix ?? '';
   constructor(
     private translate: TranslateService,
     private settingsService: SettingsService,
@@ -23,30 +23,31 @@ export class PcdcHeaderComponent implements OnInit {
   ) {
     // Retrieve the selected language from local storage if it exists
     this.selectedLanguage =
-      this.settingsService.get('applicationLanguage')?.code ||
+      this.settingsService.get('applicationLanguage')?.code ??
       translate.defaultLang;
     this.selectedLanguageName = this.languages.find(
-      (l) => l.code === this.selectedLanguage
-    ).label;
+      (l) => l?.code === this.selectedLanguage
+    )?.name ?? '';
     translate.use(this.selectedLanguage);
-    this.test = env.mode === 'dev';
+    this.test = env?.mode === 'dev';
   }
   ngOnInit() { }
   onLanguageChange() {
     // Update local storage when the language changes
     this.settingsService.setSetting(
       'applicationLanguage',
-      this.languages.find((l) => l.code === this.selectedLanguage)
+      this.languages.find((l) => l?.code === this.selectedLanguage)
     );
     this.selectedLanguageName = this.languages.find(
-      (l) => l.code === this.selectedLanguage
-    ).label;
+      (l) => l?.code === this.selectedLanguage
+    )?.name ?? '';
     window.location.reload();
   }
   closeApp() {
     this.settingsService
       .getIpcRenderer()
-      .ipcRenderer.send('closeFromUi', 'minimize');
+      ?.ipcRenderer
+      ?.send('closeFromUi', 'minimize');
   }
 
   openMenu(menuId: string) {

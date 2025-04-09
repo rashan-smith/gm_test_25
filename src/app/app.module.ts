@@ -3,10 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { ErrorHandler } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { SentryService } from './services/sentry.service';
+import { SentryErrorHandler } from './core/sentry-error-handler';
 
 /* Import token interceptor */
 import { TokenInterceptor } from './auth/token.interceptor';
@@ -34,7 +37,10 @@ export function tokenGetter() {
       useClass: TokenInterceptor,
       multi: true
     },
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SentryService,
+    { provide: ErrorHandler, useClass: SentryErrorHandler }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

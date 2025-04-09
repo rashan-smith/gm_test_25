@@ -1,13 +1,14 @@
 {
   "name": "unicef-pdca",
-  "version": "1.0.11",
+  "version": "2.0.0",
+  "productName": "Giga Meter",
   "author": "Giga-Unicef",
   "homepage": "https://projectconnect.unicef.org/about",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "start:electron":"ng build && npx cap sync @capacitor-community/electron && cd electron && npm run electron:start-live",
+    "start:electron": "ng build && npx cap sync @capacitor-community/electron && cd electron && npm run electron:start-live",
     "build:electron": "ng build && npx cap sync @capacitor-community/electron && cd electron && npm run electron:make-not-publish",
     "build:electron-publish": "ng build && npx cap sync @capacitor-community/electron && cd electron && npm run electron:make",
     "test": "ng test",
@@ -37,6 +38,7 @@
     "@m-lab/ndt7": "^0.0.6",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "@sentry/browser": "^5.5.0",
     "cordova-plugin-network-information": "^3.0.0",
     "electron-builder": "^23.5.0",
     "electron-squirrel-startup": "^1.0.0",
@@ -49,6 +51,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^13.1.0",
     "@angular-devkit/build-angular": "^13.3.9",
     "@angular-eslint/builder": "~13.0.1",
     "@angular-eslint/eslint-plugin": "~13.0.1",

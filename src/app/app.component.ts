@@ -83,7 +83,6 @@ export class AppComponent {
       'history:measurement:change',
       this.refreshHistory.bind(this)
     );
-    this.historyService.reset();
     this.refreshHistory();
     setInterval(() => {
       this.scheduleService.initiate();

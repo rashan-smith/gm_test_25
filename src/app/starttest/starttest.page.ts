@@ -248,6 +248,9 @@ export class StarttestPage implements OnInit, OnDestroy {
       if (this.loading.isStillLoading()) {
         this.loading.dismiss();
       }
+      if (res) {
+        this.accessInformation = res;
+      }
     });
   }
 
