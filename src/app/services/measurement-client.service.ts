@@ -216,6 +216,8 @@ export class MeasurementClientService {
 
     if (this.settingsService.get('uploadEnabled')) {
       try {
+        this.historyService.add(measurementRecord);
+        this.sharedService.broadcast('history:measurement:change', 'history:measurement:change');
         await this.uploadService
           .uploadMeasurement(measurementRecord)
           .toPromise();
