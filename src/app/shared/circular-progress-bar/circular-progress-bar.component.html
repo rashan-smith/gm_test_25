@@ -22,7 +22,7 @@
       {{ error ? 'TRY AGAIN' : secondLabel ? secondLabel : firstLabel }}
     </text>
     <text *ngIf="secondLabel === 'DOWNLOAD' || secondLabel === 'UPLOAD'  " x="30" y="66" text-anchor="bottom"
-      [attr.font-size]="16" text-anchor="bottom" alignment-baseline="middle">
+      [attr.font-size]="14" text-anchor="bottom" alignment-baseline="middle">
       {{secondLabel === 'DOWNLOAD' ? currentRateDownload: currentRateUpload}}
     </text>
 

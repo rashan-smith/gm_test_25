@@ -1,7 +1,7 @@
 .circular-progress-container {
     position: relative;
-    width: 248px;
-    height: 248px;
+    width: 200px;
+    height: 200px;
     cursor: pointer;
   }
   
@@ -80,8 +80,6 @@
     width: 40px;  // Adjust as needed
     height: 40px;
     background-color: rgba(70, 198, 109, 0.1);
-    top: 20px;
-    left: 20px;
     border-radius: 50%;
     height: 198px;
     width: 198px;
