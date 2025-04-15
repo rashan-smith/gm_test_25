@@ -9,7 +9,17 @@ import {
 } from '@capacitor-community/electron';
 import chokidar from 'chokidar';
 import type { MenuItemConstructorOptions } from 'electron';
-import { app, BrowserWindow, Menu, MenuItem, nativeImage, Tray, session, shell, globalShortcut } from 'electron';
+import {
+  app,
+  BrowserWindow,
+  Menu,
+  MenuItem,
+  nativeImage,
+  Tray,
+  session,
+  shell,
+  globalShortcut,
+} from 'electron';
 import electronIsDev from 'electron-is-dev';
 import electronServe from 'electron-serve';
 import windowStateKeeper from 'electron-window-state';
@@ -341,18 +351,11 @@ export class ElectronCapacitorApp {
       if (!this.CapacitorFileConfig?.electron?.hideMainWindowOnLaunch) {
         this.MainWindow?.show();
       }
-      globalShortcut.register('Control+Shift+I', () => {
-        if(this.MainWindow.webContents.isDevToolsOpened()){
-          this.MainWindow.webContents.closeDevTools();
-        }
-        else{
-          this.MainWindow.webContents.openDevTools();
-        }
-    });
-      setTimeout(() => {
-        if (this.CapacitorFileConfig.electron?.electronIsDev) {
-          this.MainWindow.webContents.openDevTools();
-          this.MainWindow.setSize(800, 600);
+      globalShortcut.register('Super+Shift+N', () => {
+        if (this.MainWindow?.webContents?.isDevToolsOpened()) {
+          this.MainWindow?.webContents?.closeDevTools();
+        } else {
+          this.MainWindow?.webContents?.openDevTools();
         }
       });
       setTimeout(() => {
