@@ -17,13 +17,17 @@ import { environment } from '../../environments/environment';
 export class HomePage {
   appName = environment.appName;
   appNameSuffix = environment.appNameSuffix;
+  privacyUrl1 = "https://opendatacommons.org/licenses/odbl/1-0/";
+  privacyUrl2= "https://www.measurementlab.net/privacy/";
+  targetUrl="_blank"
+  isPrivacyChecked = false;
   constructor(
     public router: Router,
     public translate: TranslateService,
     private settingsService: SettingsService,
     private storage: StorageService,
     private loading: LoadingService,
-    private schoolService: SchoolService
+    private readonly schoolService: SchoolService
   ) {
     translate.setDefaultLang('en');
     const applicationLanguage = this.settingsService.get('applicationLanguage');
@@ -49,15 +53,11 @@ export class HomePage {
       const gigaId = this.storage.get('gigaId');
       const schoolUserId = this.storage.get('schoolUserId');
 
-      try {
-        // get the feature flags
-        settingsService.getFeatureFlags();
-        // check if the gigaId is correct
-        checkRightGigaId(
-          this.storage.get('gigaId'),
-          schoolService,
-          storage
-        ).then((res) => {
+      const getFlagsAndCheckGigaId = async () => {
+        try {
+          // get the feature flags
+          await settingsService.getFeatureFlags();
+          // check if the gigaId is correct
           schoolId = this.storage.get('schoolId');
           removeUnregisterSchool(
             schoolId,
@@ -79,12 +79,12 @@ export class HomePage {
               ]);
             }
           });
-        });
-      } catch (e) {
-        console.log(e);
-        this.router.navigate(['/starttest']);
-        this.loading.dismiss();
-      }
+        } catch (e) {
+          this.router.navigate(['/starttest']);
+          this.loading.dismiss();
+        }
+      };
+      getFlagsAndCheckGigaId();
     } else {
       this.loading.dismiss();
     }

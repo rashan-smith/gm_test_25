@@ -62,7 +62,7 @@ export class HistoryService {
     this.sharedService.broadcast('history:measurement:change','history:measurement:change');
     this.set(historicalData);    
     allHistoricalData.measurements.push(measurementRecord);
-    this.setAll(allHistoricalData);
+    this.setAll(historicalData);
      /* Remove last history items if the total count is greater than 7 */
     if(historicalData.measurements.length > 7){
       setTimeout(()=>{

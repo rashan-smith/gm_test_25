@@ -2,7 +2,7 @@
     <img src="https://s41713.pcdn.co/wp-content/uploads/2018/11/2020.05_GIGA-visual-identity-guidelines_v1-25.png" alt="Giga logo" title="Giga" align="right" height="60"/>
 </a>
 
-# Project Connect Daily Check App (PCDCA)
+# Giga Meter
 <br>
 
 <div align="center">
@@ -114,7 +114,7 @@ The windows build can be found inside `/electron/dist/folder`
 #### Network Diagnostic Tool 
 The application implements M-Lab's Network Diagnostic Tool (NDT) using M-Lab's Javascript client library (for more information see [M-Lab developer resources](https://www.measurementlab.net/develop/)). The result of the test is sent as a JSON object to the application, which is then passed on to a database via an API. 
 
-The PCDC App uses the following NDT (Network Diagnostic Tool) library for JavaScript, downloaded from mLab
+The Giga Meter App uses the following NDT (Network Diagnostic Tool) library for JavaScript, downloaded from mLab
 * NDT Client
     * Resides inside Ionic/Angular application `/src/assets/js/ndt/ndt-browser-client.js`
 * NDT worker

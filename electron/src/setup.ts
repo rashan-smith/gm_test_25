@@ -1,3 +1,6 @@
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
+/* eslint-disable object-shorthand */
+/* eslint-disable @typescript-eslint/member-ordering */
 import type { CapacitorElectronConfig } from '@capacitor-community/electron';
 import {
   CapElectronEventEmitter,
@@ -11,8 +14,54 @@ import electronIsDev from 'electron-is-dev';
 import electronServe from 'electron-serve';
 import windowStateKeeper from 'electron-window-state';
 import { join } from 'path';
+import * as Sentry from '@sentry/node';
+import { Console } from 'console';
+import { Severity } from '@sentry/node';
 var AutoLaunch = require('auto-launch');
 var isQuiting = false;
+
+// Enhanced Sentry configuration
+Sentry.init({
+  dsn: 'https://e52e97fc558344bc80a218fc22a9a6a9@excubo.unicef.io/47',
+  environment: 'production',
+  beforeSend: (event)=> {
+    // Add app version to help with debugging
+    event.extra = {
+      ...event.extra,
+      appVersion: app?.getVersion(),
+      platform: process?.platform,
+      electronVersion: process?.versions?.electron,
+    };
+    return event;
+  },
+  debug: electronIsDev,
+  maxBreadcrumbs: 50,
+  release: `giga-meter-electron@${app?.getVersion()}`,
+});
+
+// Set up global error handlers for Sentry
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+  Sentry.captureException(error);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  Sentry.captureException(reason);
+});
+
+app.on('render-process-gone', (event, webContents, details) => {
+  console.error('Renderer process crashed:', details);
+  Sentry.captureMessage(`Renderer process crashed: ${details.reason}`);
+});
+
+app.on('child-process-gone', (event, details) => {
+  console.error('Child process crashed:', details);
+  Sentry.captureMessage(
+    `Child process crashed: ${details.type} - ${details.reason}`
+  );
+});
+
 const gotTheLock = app.requestSingleInstanceLock();
 // Define components for a watcher to detect when the webapp is changed so we can reload in Dev mode.
 const reloadWatcher = {
@@ -20,7 +69,9 @@ const reloadWatcher = {
   ready: false,
   watcher: null,
 };
-export function setupReloadWatcher(electronCapacitorApp: ElectronCapacitorApp): void {
+export function setupReloadWatcher(
+  electronCapacitorApp: ElectronCapacitorApp
+): void {
   reloadWatcher.watcher = chokidar
     .watch(join(app.getAppPath(), 'app'), {
       ignored: /[/\\]\./,
@@ -52,16 +103,18 @@ export class ElectronCapacitorApp {
   private CapacitorFileConfig: CapacitorElectronConfig;
   private TrayMenuTemplate: (MenuItem | MenuItemConstructorOptions)[] = [
     new MenuItem({
-      label: 'Open', click: function () {
+      label: 'Open',
+      click: function () {
         this.MainWindow.show();
-      }
+      },
     }),
     new MenuItem({
-      label: 'Quit App', click: function () {
+      label: 'Quit App',
+      click: function () {
         isQuiting = true;
         app.quit();
         this.MainWindow.close();
-      }
+      },
     }),
   ];
   private AppMenuBarMenuTemplate: (MenuItem | MenuItemConstructorOptions)[] = [
@@ -79,7 +132,9 @@ export class ElectronCapacitorApp {
   ) {
     this.CapacitorFileConfig = capacitorFileConfig;
 
-    this.customScheme = this.CapacitorFileConfig.electron?.customUrlScheme ?? 'capacitor-electron';
+    this.customScheme =
+      this.CapacitorFileConfig.electron?.customUrlScheme ??
+      'capacitor-electron';
 
     if (trayMenuTemplate) {
       this.TrayMenuTemplate = trayMenuTemplate;
@@ -95,7 +150,6 @@ export class ElectronCapacitorApp {
       scheme: this.customScheme,
     });
   }
-
 
   // Helper function to load in the app.
   private async loadMainWindow(thisRef: any) {
@@ -113,23 +167,26 @@ export class ElectronCapacitorApp {
 
   async init(): Promise<void> {
     const icon = nativeImage.createFromPath(
-      join(app.getAppPath(), 'assets', process.platform === 'win32' ? 'appIcon.ico' : 'appIcon.png')
+      join(
+        app?.getAppPath(),
+        'assets',
+        process?.platform === 'win32' ? 'appIcon.ico' : 'appIcon.png'
+      )
     );
     this.mainWindowState = windowStateKeeper({
       defaultWidth: 376,
       defaultHeight: 550,
     });
     // Setup preload script path and construct our main window.
-    const preloadPath = join(app.getAppPath(), 'build', 'src', 'preload.js');
+    const preloadPath = join(app?.getAppPath(), 'build', 'src', 'preload.js');
     this.MainWindow = new BrowserWindow({
       icon,
       show: false,
-      x: this.mainWindowState.x,
-      y: this.mainWindowState.y,
-      width: this.mainWindowState.width,
-      height: this.mainWindowState.height,
+      x: this.mainWindowState?.x,
+      y: this.mainWindowState?.y,
+      width: this.mainWindowState?.width,
+      height: this.mainWindowState?.height,
       titleBarStyle: 'hidden',
-      // titleBarOverlay: true,
       maximizable: false,
       minimizable: false,
       resizable: true,
@@ -142,100 +199,147 @@ export class ElectronCapacitorApp {
         preload: preloadPath,
       },
     });
-    this.MainWindow.setSize(376, 550);
-    this.mainWindowState.manage(this.MainWindow);
 
-    if (this.CapacitorFileConfig.backgroundColor) {
-      this.MainWindow.setBackgroundColor(this.CapacitorFileConfig.electron.backgroundColor);
+    // Add error tracking for renderer process
+    this.MainWindow?.webContents?.on('render-process-gone', (event, details) => {
+      const crashData = {
+        reason: details?.reason,
+        exitCode: details?.exitCode,
+        processType: 'renderer',
+      };
+      Sentry.captureException(new Error('Renderer Process Gone'), {
+        extra: crashData,
+      });
+    });
+
+    this.MainWindow?.on('unresponsive', () => {
+      Sentry.captureMessage('Window became unresponsive', {
+        level: Severity.Error,
+        extra: {
+          windowId: this.MainWindow?.id,
+        },
+      });
+    });
+
+    this.MainWindow?.webContents?.on(
+      'console-message',
+      (event, level, message, line, sourceId) => {
+        if (level === 2) {
+          // error level
+          Sentry.captureMessage(`Console Error: ${message}`, {
+            extra: {
+              line,
+              sourceId,
+            },
+          });
+        }
+      }
+    );
+
+    this.MainWindow?.setSize(376, 550);
+    this.mainWindowState?.manage(this.MainWindow);
+
+    if (this.CapacitorFileConfig?.backgroundColor) {
+      this.MainWindow?.setBackgroundColor(
+        this.CapacitorFileConfig?.electron?.backgroundColor
+      );
     }
 
     // If we close the main window with the splashscreen enabled we need to destory the ref.
-    this.MainWindow.on('closed', () => {
-      if (this.SplashScreen?.getSplashWindow() && !this.SplashScreen.getSplashWindow().isDestroyed()) {
-        this.SplashScreen.getSplashWindow().close();
+    this.MainWindow?.on('closed', () => {
+      if (
+        this.SplashScreen?.getSplashWindow() &&
+        !this.SplashScreen?.getSplashWindow()?.isDestroyed()
+      ) {
+        this.SplashScreen?.getSplashWindow()?.close();
       }
     });
     // When the tray icon is enabled, setup the options.
-    if (this.CapacitorFileConfig.electron?.trayIconAndMenuEnabled) {
+    if (this.CapacitorFileConfig?.electron?.trayIconAndMenuEnabled) {
       this.TrayIcon = new Tray(icon);
-      this.TrayIcon.on('double-click', () => {
+      this.TrayIcon?.on('double-click', () => {
         if (this.MainWindow) {
-          if (this.MainWindow.isVisible()) {
-            this.MainWindow.hide();
+          if (this.MainWindow?.isVisible()) {
+            this.MainWindow?.hide();
           } else {
-            this.MainWindow.show();
-            this.MainWindow.focus();
+            this.MainWindow?.show();
+            this.MainWindow?.focus();
           }
         }
       });
-      this.TrayIcon.on('click', () => {
+      this.TrayIcon?.on('click', () => {
         if (this.MainWindow) {
-          if (this.MainWindow.isVisible()) {
-            this.MainWindow.hide();
+          if (this.MainWindow?.isVisible()) {
+            this.MainWindow?.hide();
           } else {
-            this.MainWindow.show();
-            this.MainWindow.focus();
+            this.MainWindow?.show();
+            this.MainWindow?.focus();
           }
         }
       });
-      this.TrayIcon.setToolTip(app.getName());
-      this.TrayIcon.setContextMenu(Menu.buildFromTemplate(this.TrayMenuTemplate));
+      this.TrayIcon?.setToolTip(app?.getName());
+      this.TrayIcon?.setContextMenu(
+        Menu.buildFromTemplate(this.TrayMenuTemplate)
+      );
     }
 
     // Setup the main manu bar at the top of our window.
-    if (this.CapacitorFileConfig.electron?.appMenuBarMenuTemplateEnabled) {
-      Menu.setApplicationMenu(Menu.buildFromTemplate(this.AppMenuBarMenuTemplate));
+    if (this.CapacitorFileConfig?.electron?.appMenuBarMenuTemplateEnabled) {
+      Menu.setApplicationMenu(
+        Menu.buildFromTemplate(this.AppMenuBarMenuTemplate)
+      );
     } else {
       Menu.setApplicationMenu(new Menu());
     }
     // If the splashscreen is enabled, show it first while the main window loads then dwitch it out for the main window, or just load the main window from the start.
-    if (this.CapacitorFileConfig.electron?.splashScreenEnabled) {
+    if (this.CapacitorFileConfig?.electron?.splashScreenEnabled) {
       this.SplashScreen = new CapacitorSplashScreen({
         imageFilePath: join(
-          app.getAppPath(),
+          app?.getAppPath(),
           'assets',
-          this.CapacitorFileConfig.electron?.splashScreenImageName ?? 'splash.png'
+          this.CapacitorFileConfig?.electron?.splashScreenImageName ??
+            'splash.png'
         ),
         windowWidth: 400,
         windowHeight: 400,
       });
-      this.SplashScreen.init(this.loadMainWindow, this);
+      this.SplashScreen?.init(this.loadMainWindow, this);
     } else {
       this.loadMainWindow(this);
     }
 
     // Security
-    this.MainWindow.webContents.setWindowOpenHandler((details) => {
-      if (!details.url.includes(this.customScheme)) {
+    this.MainWindow?.webContents?.setWindowOpenHandler((details) => {
+      if (!details?.url?.includes(this.customScheme)) {
         return { action: 'deny' };
       } else {
         return { action: 'allow' };
       }
     });
-    this.MainWindow.webContents.on('will-navigate', (event, _newURL) => {
-      if (!this.MainWindow.webContents.getURL().includes(this.customScheme)) {
+    this.MainWindow?.webContents?.on('will-navigate', (event, _newURL) => {
+      if (!this.MainWindow?.webContents?.getURL()?.includes(this.customScheme)) {
         event.preventDefault();
       }
     });
     // this.MainWindow.on('close',(event)=>{
     //   if(!isQuiting){
     //     event.preventDefault();
-    //     this.MainWindow.hide(); 
-    //     return false;       
+    //     this.MainWindow.hide();
+    //     return false;
     //   } else {
     //     app.quit();
-    //   }            
+    //   }
     // });
     // Link electron plugins into the system.
     setupCapacitorElectronPlugins();
 
     // When the web app is loaded we hide the splashscreen if needed and show the mainwindow.
-    this.MainWindow.webContents.on('dom-ready', () => {
-      if (this.CapacitorFileConfig.electron?.splashScreenEnabled) {
-        this.SplashScreen.getSplashWindow().hide();
+    this.MainWindow?.webContents?.on('dom-ready', () => {
+      if (this.CapacitorFileConfig?.electron?.splashScreenEnabled) {
+        this.SplashScreen?.getSplashWindow()?.hide();
       }
-      if (!this.CapacitorFileConfig.electron?.hideMainWindowOnLaunch) {
-        this.MainWindow.show();
+      if (!this.CapacitorFileConfig?.electron?.hideMainWindowOnLaunch) {
+        this.MainWindow?.show();
       }
       globalShortcut.register('Control+Shift+I', () => {
         if(this.MainWindow.webContents.isDevToolsOpened()){
@@ -250,7 +354,16 @@ export class ElectronCapacitorApp {
           this.MainWindow.webContents.openDevTools();
           this.MainWindow.setSize(800, 600);
         }
-        CapElectronEventEmitter.emit('CAPELECTRON_DeeplinkListenerInitialized', '');
+      });
+      setTimeout(() => {
+        if (this.CapacitorFileConfig?.electron?.electronIsDev) {
+          this.MainWindow?.webContents?.openDevTools();
+          this.MainWindow?.setSize(800, 600);
+        }
+        CapElectronEventEmitter.emit(
+          'CAPELECTRON_DeeplinkListenerInitialized',
+          ''
+        );
       }, 400);
     });
 
@@ -260,36 +373,37 @@ export class ElectronCapacitorApp {
       app.on('second-instance', (event, commandLine, workingDirectory) => {
         // Someone tried to run a second instance, we should focus our window.
         if (this.MainWindow) {
-          if (this.MainWindow.isMinimized()) {
-            this.MainWindow.restore();
+          if (this.MainWindow?.isMinimized()) {
+            this.MainWindow?.restore();
           } else {
-            this.MainWindow.show();
+            this.MainWindow?.show();
           }
-          this.MainWindow.focus();
+          this.MainWindow?.focus();
         }
       });
     }
 
     // Auto lunching code added by Kajal
     var measureAppAutoLuncher = new AutoLaunch({
-      name: 'Unicef PDCA'
+      name: 'Unicef PDCA',
     });
 
-    measureAppAutoLuncher.enable();
-    measureAppAutoLuncher.isEnabled().then(function (isEnabled) {
-      if (isEnabled) {
-        return;
-      }
-      measureAppAutoLuncher.enable();
-    })
+    measureAppAutoLuncher?.enable();
+    measureAppAutoLuncher
+      ?.isEnabled()
+      .then(function (isEnabled) {
+        if (isEnabled) {
+          return;
+        }
+        measureAppAutoLuncher?.enable();
+      })
       .catch(function (err) {
         // handle error
-        console.log(err)
+        Sentry.captureException(err);
+        console.log(err);
       });
     // End of Auto lunching code
-
   }
-
 }
 
 // Set a CSP up for our application based on the custom scheme

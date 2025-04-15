@@ -1,3 +1,4 @@
+import { captureMessage } from '@sentry/browser';
 import { School } from '../models/models';
 import { SchoolService } from '../services/school.service';
 import { SettingsService } from '../services/settings.service';
@@ -11,18 +12,26 @@ export const removeUnregisterSchool = async (
 ) => {
   const gigaId = storage.get('gigaId');
   const countryCode = storage.get('country_code');
-  const response = await schoolService
-    .getRegisteredSchoolByGigaId(gigaId)
-    .toPromise();
+  let response;
+
+  try {
+    response = await schoolService
+      .getRegisteredSchoolByGigaId(gigaId)
+      .toPromise();
+  } catch (e) {
+    captureMessage('Error getting registered school by gigaId, ' + e);
+    console.log('Error getting registered school by gigaId', e);
+  }
 
   console.log({ response });
 
-  if (response.length > 0) {
-    return true;
-  } else {
+  if (response && Array.isArray(response) && response.length === 0) {
     storage.clear();
-    console.log('School not found');
+    console.log('Existing school on the device not found on backend');
+    captureMessage('Existing school on the device not found on backend');
     return false;
+  } else {
+    return true;
   }
 };
 
