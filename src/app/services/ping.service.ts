@@ -89,8 +89,8 @@ export class PingService {
   }
 
   async getDeviceId() {
-    const deviceId = await Device.getId();
-    return deviceId;
+    const deviceId = this.storage.get('schoolUserId'); 
+    return { uuid: deviceId };
   }
 
   async performCheck(): Promise<PingResult | null> {
