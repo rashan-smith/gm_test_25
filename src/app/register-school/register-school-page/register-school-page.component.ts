@@ -27,7 +27,7 @@ export class RegisterSchoolPageComponent implements OnInit {
   redirectToCountry() {
     const loadingMsg =
       // eslint-disable-next-line max-len
-      `<div class="loadContent"><ion-img src="assets/images/country_loader.png" class="loaderGif"></ion-img><p class="green_loader" [translate]="'searchCountry.check'">Detecting your country</p></div>`;
+      `<div class="loadContent"><ion-img src="assets/loader/country_loader.gif" class="loaderGif"></ion-img><p class="green_loader" [translate]="'searchCountry.check'">Detecting your country</p></div>`;
     this.loading.present(loadingMsg, 3000, 'pdcaLoaderClass', 'null');
     this.router.navigate(['/searchcountry']);
 

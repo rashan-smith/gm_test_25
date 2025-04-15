@@ -1,9 +1,9 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
   <div class="container">
-    <span  (click)="backToSearchDetail()">
-      <ion-icon name="arrow-back-outline" class="backIcon" (click)="backMenu()"></ion-icon>
-    </span>
+    <ion-button class="button_disable_hover" fill="clear"  (click)="backToSearchDetail()">
+      <ion-icon name="arrow-back-outline"  class="backIcon"></ion-icon>
+    </ion-button>
 
     <div class="top-layout">
       <div class="label-txt SchoolIDField">
@@ -19,14 +19,14 @@
           <!-- Check if there are multiple schools -->
           <ng-container *ngIf="schools?.length > 1; else singleSchool">
             <ion-radio-group [(ngModel)]="selectedSchool">
-                <ion-item class="school_item" lines="none" color="light"  *ngFor="let schoolInfo of schools">
+                <ion-item class="school_item" lines="none" *ngFor="let schoolInfo of schools">
                   <ion-label>
                     <span class="schoolName">{{ schoolInfo.name }}</span>
                     <span class="education_level">{{ schoolInfo.education_level }}</span>
-                    <span class="admin_name">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span>
-                    <div class="school_id"><span class="linkColor">lat long</span> {{ schoolInfo.school_id }}</div>
-                    <span class="school_id">{{ schoolInfo.school_id }}</span>
-                    <span class="school_id linkColor googleCheck">Check on Giga maps
+                    <span class="school_detail">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span>
+                    <div class="school_detail"><span class="linkColor">lat long</span> {{ schoolInfo.school_id }}</div>
+                    <span class="school_detail">{{ schoolInfo.school_id }}</span>
+                    <span class="school_detail linkColor googleCheck">Check on Giga maps
                       <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img>
                     </span>
                     <!-- <br /> -->
@@ -38,14 +38,14 @@
 
           <!-- Template to display when there's only one school -->
           <ng-template #singleSchool>
-            <ion-item class="school_item" lines="none" color="light" *ngFor="let schoolInfo of schools" class="schoolList" (click)="confirmSchool(schoolInfo)">
+            <ion-item class="school_item" lines="none" *ngFor="let schoolInfo of schools" class="schoolList" (click)="confirmSchool(schoolInfo)">
               <ion-label>
                 <span class="schoolName">{{ schoolInfo.name }}</span>
-                <span class="education_level">{{ schoolInfo.education_level }}</span>
-                <span class="admin_name">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span>
-                <div class="school_id"><span class="linkColor">lat long</span> {{ schoolInfo.school_id }}</div>
-                <span class="school_id">{{ schoolInfo.school_id }}</span>
-                <span class="school_id linkColor googleCheck">Check on Giga maps
+                <span class="school_detail">{{ schoolInfo.education_level }}</span>
+                <span class="school_detail">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span>
+                <div class="school_detail"><span class="linkColor">lat long</span> {{ schoolInfo.school_id }}</div>
+                <span class="school_detail">{{ schoolInfo.school_id }}</span>
+                <span class="school_detail linkColor googleCheck">Check on Giga maps
                   <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img>
                 </span>
                 <!-- <br /> -->

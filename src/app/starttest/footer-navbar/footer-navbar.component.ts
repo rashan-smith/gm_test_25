@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-footer-navbar',
@@ -11,7 +12,7 @@ export class FooterNavbarComponent implements OnInit, OnDestroy{
   activeSegment: string = 'home';
   private routerSubscription!: Subscription;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
      // Subscribe to router events
@@ -21,9 +22,17 @@ export class FooterNavbarComponent implements OnInit, OnDestroy{
         // Check the current URL and set the segment accordingly
         if (this.router.url.startsWith('/starttest')) {
           if(this.router.url.includes('/detail-page/')) {
-            this.activeSegment = "about"
+            this.activeSegment = "about";
+            this.cdr.detectChanges();
+
+          console.log('about')
+
           } else {
           this.activeSegment = 'home';
+          this.cdr.detectChanges();
+
+          console.log('home')
+
           }
         } else {
           // Default fallback if needed
@@ -38,10 +47,8 @@ export class FooterNavbarComponent implements OnInit, OnDestroy{
     // If user taps segment, navigate accordingly
     if (event.detail.value === 'home') {
       this.router.navigate(['/starttest']);
-      this.activeSegment = "home"
     } else if (event.detail.value === 'about') {
       this.router.navigate(['/starttest/detail-page/23']);
-      this.activeSegment = "about"
     }
   }
   ngOnDestroy() {

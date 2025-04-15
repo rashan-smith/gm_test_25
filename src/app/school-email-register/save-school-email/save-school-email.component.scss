@@ -30,3 +30,13 @@
     font-size: 16px;
     font-weight: 500;
 }
+.error-msg {
+    color: red;
+    font-size: 13px;
+    margin: 4px 16px;
+  }
+  
+  ion-item.ion-invalid {
+    --highlight-color-invalid: red;
+  }
+  

@@ -33,10 +33,11 @@ ion-content {
 
             ion-label {
                 color: #000;
-                font-size: 18px;
+                font-size: 14px !important;
                 display: flex;
                 align-items: center;
                 padding-left: 8px;
+                font-weight: 400;
 
 
                 .hash {
@@ -53,7 +54,7 @@ ion-content {
 
             ion-icon[name="chevron-forward-outline"] {
                 padding-right: 5px;
-                font-size: 15px;
+                font-size: 14px;
                 color: #505868;
                 position: absolute;
                 right: 0;
@@ -62,8 +63,6 @@ ion-content {
     }
 
     ion-accordion-group {
-        margin-left: 25px;
-        margin-right: 15px;
 
         ion-accordion {
             --ion-background-color: #ffffff;
@@ -158,12 +157,12 @@ ion-content {
 .select_type_dropdown {
     // Ensure your item has visible text if the background is white
     --background: #fff;
-    --color: #000;
-    margin-top: 22px;
+    --color: #6F6F6F;
+    margin-top: 10px;
 
     ion-label {
-        margin-bottom: 20px;
-        font-size: 20px;
+        margin-bottom: 12px;
+        font-size: 14px;
         font-weight: 400;
     }
 }
@@ -207,18 +206,14 @@ ion-content {
 }
 
 .font_label {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 400;
-}
-
-.bread_crumbs {
-    padding-top: 15px;
 }
 
 .dropdown_list {
     color: #000000;
     text-transform: none;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 400;
 
     &:hover {
@@ -231,7 +226,6 @@ ion-content {
     width: 100%;
     border: 3px solid $color-blue;
 
-    padding: 5px;
     border-radius: 5px;
     outline: none;
     color: #fff;
@@ -291,7 +285,7 @@ ion-content {
 
 .setting_label {
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 600;
     color: #000;
 }
 
@@ -303,7 +297,7 @@ ion-content {
 ::ng-deep {
     .searchbar-input.sc-ion-searchbar-md {
       box-shadow: none !important;
-      font-size: 20px;
+      font-size: 14px;
       font-weight: 400;
   
     }
@@ -328,4 +322,7 @@ ion-content {
   }
   .accordion-sec {
     margin-top: 22px;
+    margin-left: 16px;
+    font-size: 14px;
+    font-weight: 400;
   }

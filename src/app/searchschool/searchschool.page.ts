@@ -90,8 +90,8 @@ export class SearchschoolPage {
     if (this.schoolId && this.selectedCountry) {
       const loadingMsg =
       // eslint-disable-next-line max-len
-      '<div class="loadContent"><ion-img src="assets/images/loader.png" class="loaderGif"></ion-img><p class="green_loader" [translate]="\'searchCountry.check\'">Searching school IDs</p></div>';
-    this.loading.present(loadingMsg, 3000, 'pdcaLoaderClass', 'null'); 
+      '<div class="loadContent"><ion-img src="assets/images/school_loader.svg" class="loaderGif"></ion-img><p class="green_loader">Searching school IDs</p></div>';
+    this.loading.present(loadingMsg, 30000000, 'pdcaLoaderClass', 'null'); 
          this.schoolService
         .getBySchoolIdAndCountryCode(this.schoolId, this.selectedCountry)
         .subscribe(

@@ -8,10 +8,14 @@
     <div class="welcomebg1">
       <div class="top-layout">
         <div class="search-label" [translate]="'searchCountry.detected-auto'"></div>
-        <ion-item lines="none" class="searchCountry">
+        <ion-item lines="none" class="searchCountry"[ngClass]="(selectedCountry !== '' && selectedCountry !== detectedCountry && isPcdcCountry !== false) ? 'warning_color' : this.isPcdcCountry === false ? 'error_color' : ''"
+        >
           <ion-label class="label" [translate]="'searchCountry.country'"></ion-label>
           <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterCountries($event)" debounce="300"
             placeholder="Search country..."></ion-searchbar>
+            <ion-img *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry !== false" class="img_wifi" src="assets/images/Warning.svg"></ion-img>
+            <ion-img *ngIf="this.isPcdcCountry === false" class="img_wifi" src="assets/images/error_country.svg"></ion-img>
+
         </ion-item>
 
         <ion-list *ngIf="filteredCountries.length > 0" class="scrollable">
@@ -20,11 +24,11 @@
               country.name }}
             </ion-button> </ion-item>
         </ion-list>
-        <div *ngIf="automaticSearched" class="search-label change-country"
+        <div *ngIf="automaticSearched && !(this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry !== false)" class="automatic_label change-country"
         [translate]="'searchCountry.change-country'"></div>
-        <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry"
+        <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry !== false"
           class="search-label-error" [translate]="'searchCountry.country-not-accurate'"></div>
-        <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry" class="search-label"
+        <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry !== false" class="search-label"
           [translate]="'searchCountry.please-double-check'"></div>
 
         <div *ngIf="this.isPcdcCountry === false " class="search-label-error"
@@ -32,7 +36,7 @@
         </div>
       </div>
       <div class="bottom-layout">
-        <ion-button color="primary" block class="dailycheck_btn" (click)="confirmCountry()"><span class="submit_button_size"
+        <ion-button color="primary" block class="dailycheck_btn"   [disabled]="!selectedFromList" (click)="confirmCountry()"><span class="submit_button_size"
             [translate]="'Confirm'"></span></ion-button>
       </div>
     </div>

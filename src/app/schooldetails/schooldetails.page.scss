@@ -18,15 +18,16 @@ ion-label {
 
 .label-txt {
   color: $text-color;
-  font-size: 20px;
+  font-size: 16px;
   padding-left: 10px;
+  font-weight: 400;
 }
 
 .selectandconfirm {
-  color: $color-black;
-  font-size: 18px;
+  color: $text-color;
+  font-size: 16px;
   margin-top: 15px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .result-txt {
@@ -36,8 +37,8 @@ ion-label {
 
 .schoolID-txt {
   color: $color-black;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .school_item {
@@ -45,9 +46,9 @@ ion-label {
 }
 
 .schoolName {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 30px;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 10px;
 }
 
@@ -130,7 +131,7 @@ ion-radio {
   height: 46px;
   display: flex;
   align-items: center;
-  background: #f3f3f3;
+  // background: #f3f3f3;
   border-bottom: 1px solid #919090;
   border-radius: 4px;
   padding: 0 15px;
@@ -157,7 +158,7 @@ ion-radio {
 }
 
 .googleCheck {
-  margin-top: 10px;
+  margin-top: 25px;
   display: flex;
 }
 
@@ -167,5 +168,10 @@ ion-radio {
 }
 .matches {
   font-size: 12px;
+  font-weight: 400;
+  margin-top: 12px;
+}
+.school_detail {
+  font-size: 14px;
   font-weight: 400;
 }

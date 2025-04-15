@@ -25,24 +25,21 @@
   font-size: 32px;
   padding-top: 0;
   color: $text-color;
-  font-weight: 500;
+  font-weight: 400;
   width: 78%;
-  display: flex;
-  align-items: center;
   .giga_meter_logo{
     margin-top: 10px;
     max-width: 130px;
-    margin-left: 7px;
   }
 }
 
 .welcometxt2 {
-  font-size: 20px;
+  font-size: 16px;
   padding-top: 12px;
   color: $light-text2;
   width: 100%;
   padding-bottom: 15px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .learn_more_text {

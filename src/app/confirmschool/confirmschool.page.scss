@@ -21,9 +21,8 @@ ion-label {
   font-size: 16px;
   line-height: 20px;
   padding-top: 20px;
-  padding-left: 15px;
   width: 76%;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 10px;
 }
 
@@ -79,9 +78,8 @@ ion-item {
 }
 
 .confirm-txt {
-  padding-left: 15px;
-  color: $light-text2;
-  font-size: 13px;
+  color: $text-color;
+  font-size: 12px;
   margin-bottom: 8px;
 }
 
@@ -89,6 +87,7 @@ ion-item {
   padding: 0 10px;
   margin: 0;
   font-size: 12px;
+  font-weight: 400;
 }
 
 .nobtn,
@@ -107,13 +106,14 @@ ion-item {
 }
 
 .notification {
+  gap: 16px;
   display: flex;
-  width: 100%;
   align-items: flex-start;
   justify-content: space-around;
+  margin: 0 15px;
+  border-left: 2px solid blue;
   background: #f2f2f2;
-  padding: 10px;
-  border-radius: 4px;
+  padding: 15px;
   margin-top: 20px;
 
   .hydrated {
@@ -125,4 +125,12 @@ ion-item {
 .welcome_icon {
   width: 20px;
   height: 20px;
+}
+.school_detail {
+  font-size: 14px;
+  font-weight: 400;
+}
+.detail_box {
+  border-radius: 3px;
+  border: 1px solid #6F6F6F;
 }

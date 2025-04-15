@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-save-school-email',
@@ -8,40 +8,24 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./save-school-email.component.scss'],
 })
 export class SaveSchoolEmailComponent implements OnInit {
+  emailControl = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private toastController: ToastController, private readonly router: Router) {}
+  constructor(private readonly router: Router) {}
 
   ngOnInit() {}
 
-  email: string = '';
-
-
-  async addEmail() {
-    if (!this.email || !this.email.includes('@')) {
-      this.showToast('Please enter a valid email');
+  addEmail() {
+    if (this.emailControl.invalid) {
+      this.emailControl.markAsTouched(); // Show error if untouched
       return;
     }
 
-    // Simulate saving email
-    console.log('Email saved:', this.email);
-    this.showToast('Email added successfully');
+    console.log('Email saved:', this.emailControl.value);
     this.router.navigate(['/schoolsuccess']);
-
   }
 
   skip() {
     console.log('User skipped adding email');
-    this.showToast('Skipped adding email');
     this.router.navigate(['/schoolsuccess']);
-
-  }
-
-  async showToast(message: string) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 2000,
-      position: 'bottom'
-    });
-    await toast.present();
   }
 }

@@ -15,7 +15,9 @@ ion-content {
 }
 
 ion-label {
-  font-size: 12px;
+  font-size: 14px !important;
+  font-weight: 400;
+  color: #222222 !important;
 }
 
 .school-label {
@@ -49,10 +51,11 @@ ion-label {
 }
 
 .noschoolid-link {
-  color: #A3ACBB;
+  color: #161616;
   padding-top: 10px;
   text-align: left;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .search-btn {
@@ -82,12 +85,13 @@ ion-label {
   width: 100%;
   border: 1px solid #2779FF;
   /* border-right: none; */
-  padding: 5px;
+  padding: 25px;
   border-radius: 5px;
   outline: none;
-  color: #222222;
+  color: #9E9E9E;
   height: 40px;
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .searchTerm:focus {
@@ -116,9 +120,9 @@ ion-label {
 }
 
 .provide_id {
-  color: #222222;
+  color: #222222 !important;
   margin: 5px 0;
-  font-size: 20px;
+  font-size: 16px;
   text-align: left;
   font-weight: 400;
   opacity: 0.8;

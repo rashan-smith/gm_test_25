@@ -2,9 +2,16 @@
 
 .search-label {
   padding: 20px 5px;
-  color: $light-text2;
-  font-size: 18px;
-  font-weight: 500;
+  color: $text-color;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.automatic_label {
+  padding: 20px 5px;
+  color: $text-color;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .search-label-error {
@@ -39,8 +46,6 @@ ion-select:hover {
   -webkit-app-region: no-drag;
   width: 100%;
   border: 3px solid $color-blue;
-
-  padding: 5px;
   border-radius: 5px;
   outline: none;
   color: #fff;
@@ -50,7 +55,7 @@ ion-select:hover {
 ::ng-deep {
   .searchbar-input.sc-ion-searchbar-md {
     box-shadow: none !important;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 400;
 
   }
@@ -99,7 +104,7 @@ ion-select:hover {
 
 .dropdown_list {
   text-transform: none;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 400;
 
   &:hover {
@@ -114,4 +119,10 @@ ion-select:hover {
 
 .change-country {
   padding-top: 5px;
+}
+.warning_color {
+  border-color: #F1C21B;
+}
+.error_color {
+  border-color: #b00f0f;;
 }

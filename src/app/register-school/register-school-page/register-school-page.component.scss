@@ -80,21 +80,24 @@
 .middle-layout .learnmore {
     flex: 1;
     /* Allow text to take available space */
-    font-size: 18px;
+    font-size: 10px;
     padding: 0;
     line-height: 1.5;
     /* Ensure text is aligned properly */
     color: #222222;
+    font-weight: 400;
 }
 
 .register_title1 {
     padding: 5px 25px;
     font-size: 32px;
+    font-weight: 400;
 }
 
 .register_title2 {
     padding: 5px 25px;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .check_tip {
@@ -102,10 +105,10 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #46C66D;
     font-size: 14px;
     border-bottom: solid 1px #ccc;
     padding: 10px 0;
+    font-weight: 400;
 }
 
 .check_tip_wraper {
@@ -114,10 +117,10 @@
 }
 
 .register_readMore {
-    font-size: 18px;
-    color: #9FC2FF;
-    padding: 10px 25px;
-    text-decoration: underline;
+    font-size: 12px;
+    padding: 10px 0 10px 25px;
+    font-weight: 400;
+    display: flex;
 
 }
 
@@ -128,4 +131,12 @@
             background-color: #ffffff;
         }
     }
+}
+
+.read_content {
+    display: flex;
+    text-decoration: underline;
+    color: #9FC2FF;
+
+
 }

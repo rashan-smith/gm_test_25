@@ -9,16 +9,16 @@
 }
 
 .subtitle {
-    font-size: 16px;
+    font-size: 10px;
     color: #a0a0a0;
     /* Lighter gray color */
     margin-bottom: 4px;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .title {
-    font-size: 28px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 400;
     color: black;
     /* Ensure the main text is white */
 }
@@ -26,7 +26,6 @@
 .custom-item {
     --color: black;
     /* Set text color */
-    padding: 8px;
     border-radius: 8px;
     width: 100%;
 
@@ -52,7 +51,7 @@
     ion-label p {
       /* Change as per your theme */
       margin: 0;
-      font-size: 16px;
+      font-size: 12px;
       font-weight: 400;
       color: #474747;
     }
@@ -69,13 +68,13 @@
   .table-header {
     ion-col {
       font-weight: 400;
-      font-size: 16px;
+      font-size: 10px;
     }
   }
   
   ion-row {
     padding: 0.5rem 0;
-    font-size: 16px;
+    font-size: 10px;
     font-weight: 400;
     color: #474747;
     

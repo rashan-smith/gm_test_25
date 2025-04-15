@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
 export class SearchcountryPage {
   @ViewChild(IonAccordionGroup, { static: true })
   automaticSearched = false;
+  selectedFromList: boolean = false;
   accordionGroup: IonAccordionGroup;
   detectedCountry: any;
   selectedCountry: any;
@@ -1055,11 +1056,13 @@ export class SearchcountryPage {
       this.filteredCountries = this.countries.filter(country =>
         country.name.toLowerCase().includes(searchTerm)
       );
+      this.selectedFromList = false;
     }
   }
 
   selectCountry(country: Country) {
     this.selectedCountry = country.code;
+    this.selectedFromList = true;
     this.searchTerm = country.name;
     this.filteredCountries = [];
     this.automaticSearched = false;
@@ -1122,7 +1125,7 @@ export class SearchcountryPage {
     }
     const loadingMsg =
       // eslint-disable-next-line max-len
-      '<div class="loadContent"><ion-img src="assets/images/loader.png" class="loaderGif"></ion-img><p class="white" [translate]="\'searchCountry.check\'"></p></div>';
+      '<div class="loadContent"><ion-img src="assets/images/school_loader.svg" class="loaderGif"></ion-img><p class="white" [translate]="\'searchCountry.check\'"></p></div>';
     this.loading.present(loadingMsg, 3000, 'pdcaLoaderClass', 'null');
 
     this.countryService.getPcdcCountryByCode(this.selectedCountry).subscribe(

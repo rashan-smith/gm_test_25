@@ -1,24 +1,23 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
   <div class="container">
-    <ion-button class="button_disable_hover" fill="clear" (click)="backToSaved(school)">
-
-      <ion-icon name="arrow-back-outline" class="backIcon" (click)="backMenu()"></ion-icon>
+    <ion-button class="button_disable_hover" fill="clear"  (click)="backToSaved(school)">
+      <ion-icon name="arrow-back-outline" class="backIcon" ></ion-icon>
     </ion-button>
     <div class="top-section">
 
       <div class="label-txt" [translate]="'confirmSchool.title'"></div>
       <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry" class="confirm-txt"
         [translate]="'confirmSchool.confirm1'"></div>
-      <ion-item color="light" lines="none" *ngIf="school">
+      <ion-item lines="none" *ngIf="school" class="detail_box">
         <ion-label>
           <span class="schoolName">{{school.name}}</span><br />
-          <span class="education_level">{{school.education_level}}</span><br />
-          <span class="admin_name">{{school.admin_1_name}}- {{school.admin_1_name}}</span><br />
-          <span class="school_id"><span class="linkColor">lat long</span></span><br />
-          <span class="school_id">{{school.school_id}}</span><br />
+          <span class=" school_detail">{{school.education_level}}</span><br />
+          <span class=" school_detail">{{school.admin_1_name}}- {{school.admin_1_name}}</span><br />
+          <span class="school_detail"><span class="linkColor">lat long</span></span><br />
+          <span class="school_detail">{{school.school_id}}</span><br />
 
-          <span class="school_id googleCheck linkColor">Check on Giga maps
+          <span class="school_detail googleCheck linkColor">Check on Giga maps
             <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img>
           </span><br />
         </ion-label>
@@ -32,7 +31,8 @@
   <!-- <div class="confirm-txt" [translate]="'confirmSchool.confirm2'"></div> -->
   <ion-toolbar>
     <div class="notification">
-      <ion-icon name="information-circle-outline" color="blue"></ion-icon>
+      <ion-img name="information-circle-outline"  src="assets/images/info_icon.svg"></ion-img>
+
       <p class="MakeSureText">
         Make sure your school is correctly selected.
         Once you click yes you can only change your school by reinstalling the app.
