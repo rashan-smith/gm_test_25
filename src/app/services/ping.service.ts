@@ -11,7 +11,7 @@ export interface PingResult {
   timestamp: Date;
   isConnected: boolean;
   errorMessage: string | null;
-  deviceId: string;
+  browserId: string;
   app_local_uuid: string;
   latency?: number | null;
 }
@@ -41,13 +41,13 @@ export class PingService {
   async checkConnectivity(): Promise<PingResult> {
     let isConnected = false;
     let errorMessage = null;
-    let deviceId;
+    let browserId;
     let uniqueId = uuidv4();
 
     try {
       isConnected = await this.checkNavigatorOnline();
-      const deviceInfo = await this.getDeviceId();
-      deviceId = deviceInfo.uuid;
+      const deviceInfo = await this.getBrowserId();
+      browserId = deviceInfo.uuid;
 
       if (this.isElectron) {
         const dnsChecks = await Promise.all(
@@ -82,15 +82,15 @@ export class PingService {
       timestamp: new Date(),
       isConnected,
       errorMessage,
-      deviceId: deviceId,
+      browserId,
       app_local_uuid: uniqueId,
       latency: this.latency,
     };
   }
 
-  async getDeviceId() {
-    const deviceId = this.storage.get('schoolUserId'); 
-    return { uuid: deviceId };
+  async getBrowserId() {
+    const browserId = this.storage.get('schoolUserId'); 
+    return { uuid: browserId };
   }
 
   async performCheck(): Promise<PingResult | null> {
