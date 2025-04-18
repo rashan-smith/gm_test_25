@@ -13,6 +13,15 @@
   width: 20px;
   height: 20px;
 }
+ion-segment,
+ion-button,
+ion-footer,
+input,
+.selectable,
+.clickable {
+  -webkit-app-region: no-drag;
+}
+
 
 .home_about {
   ion-toolbar {

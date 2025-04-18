@@ -90,7 +90,7 @@ export class SearchschoolPage {
     if (this.schoolId && this.selectedCountry) {
       const loadingMsg =
       // eslint-disable-next-line max-len
-      '<div class="loadContent"><ion-img src="assets/loader/school_loader.gif" class="loaderGif"></ion-img><p class="green_loader">Searching school IDs</p></div>';
+      '<div class="loadContent"><ion-img src="assets/loader/country_loader.gif" class="loaderGif"></ion-img><p class="green_loader">Searching school IDs</p></div>';
     this.loading.present(loadingMsg, 30000000, 'pdcaLoaderClass', 'null'); 
          this.schoolService
         .getBySchoolIdAndCountryCode(this.schoolId, this.selectedCountry)
@@ -145,9 +145,5 @@ export class SearchschoolPage {
     } else {
       this.isDisabled = true;
     }
-  }
-
-  openExternalUrl(href) {
-    this.settingsService.getShell().shell.openExternal(href);
   }
 }

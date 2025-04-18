@@ -1,22 +1,24 @@
 @import '../../theme/variables.scss';
 
 .search-label {
-  padding: 20px 5px;
+  padding: 0 5px 12px;
   color: $text-color;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
 }
 
 .automatic_label {
-  padding: 20px 5px;
+  padding: 6px 5px;
   color: $text-color;
   font-size: 12px;
   font-weight: 400;
 }
 
 .search-label-error {
-  padding: 20px 5px;
+  padding: 4px 5px 16px;
   color: #b00f0f;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .ionList {
@@ -113,7 +115,7 @@ ion-select:hover {
 }
 
 .scrollable {
-  max-height: 200px;
+  max-height: 145px;
   overflow: auto;
 }
 

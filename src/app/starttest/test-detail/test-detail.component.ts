@@ -8,10 +8,16 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class TestDetailComponent implements OnInit {
   schoolId: string;
+  historicalData: any;
+  measurementsData: []
   constructor(    private storage: StorageService) { }
 
   ngOnInit() {    
     this.schoolId = this.storage.get('schoolId');
+    this.historicalData =  JSON.parse(this.storage.get('historicalDataAll'))
+    this.measurementsData = this.historicalData.measurements
+    console.log(this.measurementsData)
+
   }
 
 }

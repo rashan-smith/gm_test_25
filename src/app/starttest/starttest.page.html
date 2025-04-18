@@ -1,6 +1,6 @@
 <app-pcdc-header></app-pcdc-header>
 
-<ion-content>
+<ion-content class="scrollable_content">
   <ion-card color="light">
 
     <div class="container centerPos">
@@ -92,7 +92,9 @@
         </div>
       </div> -->
       <div class="custom-toast" *ngIf="((connectionStatus=='error' && currentState == undefined) || (!onlineStatus)) && !isErrorClosed">
-        <span class="icon">⚠️</span>
+        <!-- <span class="icon">⚠️</span> -->
+        <ion-img src="../../assets/images/test_failed_Icon.svg" class="testFailed"></ion-img>
+
         <div class="message">
           <ion-label class="failed_test" [translate]="'startTest.testFailed'"></ion-label>
           <div class="msg" [translate]="'startTest.testFailedDesc'"></div>

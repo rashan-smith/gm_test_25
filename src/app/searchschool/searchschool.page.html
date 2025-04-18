@@ -2,10 +2,10 @@
 <ion-content class="font_open_sans">
   <ion-button class="button_disable_hover" fill="clear" [routerLink]="['/searchcountry']">
 
-    <ion-icon name="arrow-back-outline" class="backIcon"></ion-icon>
+    <ion-img src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
   </ion-button>
   <div class="container">
-    <div class="top-layout">
+    <div>
       <div class="provide_id" [translate]="'searchSchool.provide-school-id'"></div>
       <div class="wrap">
         <div class="search">
@@ -18,7 +18,6 @@
         </div>
       </div>
       <div class="learn-more noschoolid-link"
-        (click)="openExternalUrl('https://projectconnect.unicef.org/daily-check-app')"
         [innerHTML]="'searchSchool.user-has-not-id' | translate"></div>
     </div>
     <div class="bottom-layout">

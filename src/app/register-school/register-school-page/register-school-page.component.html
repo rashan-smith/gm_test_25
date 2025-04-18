@@ -1,7 +1,7 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content class="font_open_sans">
   <ion-button class="button_disable_hover" fill="clear" [routerLink]="['/home']">
-    <ion-icon name="arrow-back-outline" class="backIcon" (click)="backMenu()"></ion-icon>
+    <ion-img src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
 
   </ion-button>
 
@@ -30,14 +30,7 @@
         <input type="checkbox" [(ngModel)]="isPrivacyChecked" class="checkbox" (change)="toggleCheckbox()" />
       </div>
       <div class="learnmore">
-        {{ 'home.checkboxText' | translate }}
-        <a (click)="openExternalUrl(privacyUrl1)">
-          {{ 'home.licenseLink' | translate }}
-        </a>
-        {{ 'home.andText' | translate }}
-        <a (click)="openExternalUrl(privacyUrl2)">
-          {{ 'home.privacyPolicy' | translate }}
-        </a>.
+        I agree to the data policy which includes retention and publication of IP addresses.
       </div>
     </div>
     <div class="further-info" [innerHTML]="'home.privacy' | translate:{  targetUrl }"

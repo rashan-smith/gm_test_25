@@ -52,6 +52,7 @@ ion-header {
 }
 .dailycheck_btn:hover {
   background-color: $btn-hover;
+  border-radius: 45px;
 }
 .h-line {
   margin-top: 22px;
@@ -198,7 +199,7 @@ ion-content {
   max-height: 840px;
 }
 .container {
-  margin: 10px 25px 0px 25px;
+  margin: 32px 25px 0px 25px;
   min-height: 88%;
   background-color: #ffffff;
   background-size: 100% 100%;
@@ -313,7 +314,7 @@ ion-loading {
   --padding-start:0;
   --box-shadow: none;
   --border-radius: 0;
-  padding: 5px 25px;
+  padding: 0 25px 0 25px;
   margin: 0;
 }
 .font_open_sans{
@@ -364,4 +365,24 @@ ion-loading {
   background-color: #42516E;
   border-radius: 50%;
   
+}
+
+ion-breadcrumbs {
+  --separator-margin: 0px !important;
+  --padding-start: 0px !important;
+  --padding-end: 0px !important;
+  display: flex !important;
+  gap: 0px !important;
+}
+
+ion-breadcrumb::part(native) {
+  padding: 0px !important;
+}
+
+.scrollable_content {
+  -webkit-app-region: no-drag;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch; /* Enables momentum scroll on macOS/iOS */
+  touch-action: auto; 
 }
