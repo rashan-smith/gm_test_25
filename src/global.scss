@@ -28,7 +28,7 @@
 
 ion-header {
   background-color: #ffffff !important;
-  height: 51px;
+  height: 48px;
   display: flex;
   align-items: center;
   ion-label {
@@ -320,6 +320,9 @@ ion-loading {
 .font_open_sans{
   font-family: 'Open Sans';
 }
+.app_margin {
+  margin: 16px;
+}
 .submit_button_size {
   font-size: 14px;
   font-weight: 400;
@@ -341,7 +344,6 @@ ion-loading {
 
   .closeIcon {
       font-size: 24px;
-      margin-right: 20px;
       color: $light-text1;
   }
 
@@ -371,6 +373,7 @@ ion-breadcrumbs {
   --separator-margin: 0px !important;
   --padding-start: 0px !important;
   --padding-end: 0px !important;
+  margin: 0 0 0 15px  ;
   display: flex !important;
   gap: 0px !important;
 }

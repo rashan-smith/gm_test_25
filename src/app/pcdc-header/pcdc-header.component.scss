@@ -4,6 +4,16 @@
 
 .header-toolbar {
     text-align: end;
+    padding: 0;
+}
+.margin_icon {
+    margin: 10px;
+}
+.size {
+    --padding-start: 0px;
+    --padding-end: 0px;
+    height: 16px;
+    width: 16px;
 }
 
 .custom-select {

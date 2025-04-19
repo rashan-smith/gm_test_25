@@ -1,7 +1,7 @@
 <app-pcdc-header></app-pcdc-header>
 
 <ion-content class="scrollable_content">
-  <ion-card color="light">
+  <ion-card color="light card_margin">
 
     <div class="container centerPos">
       <ion-item class="custom-item" lines="none" color="light">
@@ -19,8 +19,10 @@
         </div>
       </div> -->
       <app-circular-progress-bar [progressValue]="progress"
-        [secondLabel]="(currentState !=undefined && currentState != 'Starting' && onlineStatus) && downloadStarted ? 'DOWNLOAD' : (currentState !=undefined && currentState != 'Starting' && onlineStatus && uploadStarted === true) ? 'UPLOAD' : currentState == 'Completed' ? 'TEST AGAIN': ''" [icon]="''"
-        [error]="(connectionStatus=='error' && currentState == undefined) || (!onlineStatus)" (startTest)="startNDT()" [firstLabel]="(currentState == undefined && currentRate != 'error' && onlineStatus) ? ('startTest.startTest' | translate) : ''"
+        [secondLabel]="(currentState !=undefined && currentState != 'Starting' && onlineStatus) && downloadStarted ? 'DOWNLOAD' : (currentState !=undefined && currentState != 'Starting' && onlineStatus && uploadStarted === true) ? 'UPLOAD' : currentState == 'Completed' ? 'TEST AGAIN': ''"
+        [icon]="''" [error]="(connectionStatus=='error' && currentState == undefined) || (!onlineStatus)"
+        (startTest)="startNDT()"
+        [firstLabel]="(currentState == undefined && currentRate != 'error' && onlineStatus) ? ('startTest.startTest' | translate) : ''"
         [currentRateDownload]="currentRateDownload" [currentRateUpload]="currentRateUpload"></app-circular-progress-bar>
 
 
@@ -91,7 +93,8 @@
           </div>
         </div>
       </div> -->
-      <div class="custom-toast" *ngIf="((connectionStatus=='error' && currentState == undefined) || (!onlineStatus)) && !isErrorClosed">
+      <div class="custom-toast"
+        *ngIf="((connectionStatus=='error' && currentState == undefined) || (!onlineStatus)) && !isErrorClosed">
         <!-- <span class="icon">⚠️</span> -->
         <ion-img src="../../assets/images/test_failed_Icon.svg" class="testFailed"></ion-img>
 
@@ -101,7 +104,7 @@
         </div>
         <button class="close-btn" (click)="closeError()">&times;</button>
       </div>
-      
+
       <!-- <div class="testFailed-container"
         *ngIf="(connectionStatus=='error' && currentState == undefined) || (!onlineStatus)">
         <div class="start-container">
@@ -146,18 +149,20 @@
 
 
   </ion-card>
-  <ion-card color="light">
+  <ion-card color="light footer_card_margin">
     <ion-label class="latest_measurement">Latest measurements</ion-label>
     <div class="footer-grid">
       <div class="footer-row">
         <ion-card class="footer-card" color="medium">
           <ion-card-header class="footer_card_header">
             <ion-card-title>
-              <span> <img src="assets/images/Download.svg" />Download
+              <span class="footer_text"> <img src="assets/images/Download.svg" />
+                <span>Download</span>
               </span>
               <span class="time">1hr Ago</span>
             </ion-card-title>
-            <ion-card-subtitle>{{currentRateDownload && !((connectionStatus=='error' && currentState == undefined) || (!onlineStatus)) ? currentRateDownload : '--'}}
+            <ion-card-subtitle>{{currentRateDownload && !((connectionStatus=='error' && currentState == undefined) ||
+              (!onlineStatus)) ? currentRateDownload : '--'}}
               <span class="footer_card_font_size">Mbps</span>
             </ion-card-subtitle>
 
@@ -165,13 +170,15 @@
         </ion-card>
 
         <ion-card class="footer-card" color="medium">
-          <ion-card-header  class="footer_card_header">
+          <ion-card-header class="footer_card_header">
 
-            <ion-card-title><span>
+            <ion-card-title><span class="footer_text">
                 <img src="assets/images/Upload.svg" />
-                Upload </span> <span class="time">1hr Ago</span>
+                <span>
+                  Upload </span> </span> <span class="time">1hr Ago</span>
             </ion-card-title>
-            <ion-card-subtitle>{{currentRateUpload && !((connectionStatus=='error' && currentState == undefined) || (!onlineStatus)) ? currentRateUpload : '--'}}
+            <ion-card-subtitle>{{currentRateUpload && !((connectionStatus=='error' && currentState == undefined) ||
+              (!onlineStatus)) ? currentRateUpload : '--'}}
               <span class="footer_card_font_size">Mbps</span>
 
             </ion-card-subtitle>
@@ -181,13 +188,15 @@
 
       <div class="footer-row">
         <ion-card class="footer-card" color="medium">
-          <ion-card-header  class="footer_card_header">
-            <ion-card-title> <span>
+          <ion-card-header class="footer_card_header">
+            <ion-card-title> <span class="footer_text">
                 <img src="assets/images/Arrows--horizontal.svg" />
-                Latency </span> <span class="time">1hr Ago</span>
+                <span>Latency</span>
+              </span> <span class="time">1hr Ago</span>
 
             </ion-card-title>
-            <ion-card-subtitle>{{currentRateDownload && !((connectionStatus=='error' && currentState == undefined) || (!onlineStatus)) ? latency : '--'}}
+            <ion-card-subtitle>{{currentRateDownload && !((connectionStatus=='error' && currentState == undefined) ||
+              (!onlineStatus)) ? latency : '--'}}
               <span class="footer_card_font_size">ms</span>
 
             </ion-card-subtitle>
@@ -195,11 +204,11 @@
         </ion-card>
 
         <ion-card class="footer-card" color="medium">
-          <ion-card-header  class="footer_card_header">
+          <ion-card-header class="footer_card_header">
             <ion-card-title>
-              <span>
+              <span class="footer_text">
                 <img src="assets/images/Arrows--horizontal.svg" />
-                Ping </span> <span class="time">1hr Ago</span>
+                <span>Ping</span> </span> <span class="time">1hr Ago</span>
             </ion-card-title>
             <ion-card-subtitle>--
               <span class="footer_card_font_size">Mbps</span>

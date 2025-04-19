@@ -7,6 +7,8 @@
   background: #fff;
   font-size: 14px;
   font-weight: 400;
+  padding-top: 8px;
+
 }
 
 .welcome_icon {
@@ -25,6 +27,7 @@ input,
 
 .home_about {
   ion-toolbar {
+    height: 30px;
     display: flex;
     justify-content: center; // Centers the content horizontally
     align-items: center; // Centers the content vertically
@@ -40,14 +43,18 @@ input,
   }
 
   ion-segment-button {
+    
     flex: 1;
     text-align: center;
-    max-width: 120px; // Adjust width if needed
+    max-width: 80px; // Adjust width if needed
     text-transform: unset;
 
-    &.ion-label {
+    ion-label {
       font-size: 14px;
       font-weight: 400;
+      margin-bottom: 0 !important;
+      margin-top:0 !important;
+
     }
 
     &.segment-button-checked,

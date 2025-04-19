@@ -194,6 +194,12 @@ span.currentState {
   justify-content: center;
   flex-direction: column;
   background: #f4f5f8;
+  margin: 0;
+}
+
+.footer_card_margin {
+  margin: 8px 0;
+  padding-top: 5px;
 }
 
 .centerAlign {
@@ -263,7 +269,6 @@ span.currentState {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
 }
 
 .footer-row {
@@ -439,7 +444,9 @@ span.currentState {
   font-weight: 600;
   color: #000;
 }
-
+.card_margin {
+  margin: 0;
+}
 
 
 .linkColor {
@@ -449,7 +456,14 @@ span.currentState {
   background: #fff;
   font-size: 14px;
   font-weight: 400;
+  padding: 3px 0;
 }
 .latest_measurement {
-  margin: 20px;
+  margin: 10px;
+  font-size: 14px;
+  color: #000;
+}
+.footer_text {
+  display: flex;
+  gap: 2px;
 }
