@@ -12,11 +12,11 @@
         [translate]="'confirmSchool.confirm1'"></div>
       <ion-item lines="none" *ngIf="school" class="detail_box">
         <ion-label>
-          <span class="schoolName">{{school.name}}</span><br />
-          <span class=" school_detail">{{school.education_level}}</span><br />
-          <span class=" school_detail">{{school.admin_1_name}}- {{school.admin_1_name}}</span><br />
-          <span class="school_detail"><span class="linkColor">lat long</span></span><br />
-          <span class="school_detail">{{school.school_id}}</span><br />
+          <span *ngIf="school?.name" class="schoolName">{{school.name}}</span><br  *ngIf="school?.name" />
+          <span *ngIf="school?.education_level" class=" school_detail">{{school.education_level}}</span><br  *ngIf="school?.education_level" />
+          <span *ngIf="school?.admin_1_name" class=" school_detail">{{school.admin_1_name}}- {{school.admin_1_name}}</span><br *ngIf="school?.admin_1_name" />
+          <span *ngIf="school?.lat" class="school_detail"><span class="linkColor">admin_1_name long</span></span><br *ngIf="school?.lat" />
+          <span *ngIf="school?.school_id" class="school_detail">{{school.school_id}}</span><br  *ngIf="school?.school_id"/>
 
           <span class="school_detail googleCheck linkColor">Check on Giga maps
             <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img>

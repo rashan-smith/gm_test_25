@@ -68,10 +68,14 @@
 }
 .try_again{
   display: flex;
+  text-align: center;
   justify-content: center;
   font-size: 14px;
   font-weight: 400;
   padding: 10px;
 
+}
+.wrap_content {
+  margin: 0 50px;
 }
 

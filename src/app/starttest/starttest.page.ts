@@ -241,7 +241,7 @@ export class StarttestPage implements OnInit, OnDestroy {
 
   tryConnectivity() {
     let loadingMsg =
-      '<div class="loadContent"><ion-img src="assets/loader/loader.gif" class="loaderGif"></ion-img><p class="white">Fetching Internet Provider Info...</p></div>';
+      '<div class="loadContent"><ion-img src="assets/loader/country_loader.gif" class="loaderGif"></ion-img><p class="white">Fetching Internet Provider Info...</p></div>';
     this.loading.present(loadingMsg, 15000, 'pdcaLoaderClass', 'null');
     this.networkService.getNetInfo().then((res) => {
       this.connectionStatus = 'success';

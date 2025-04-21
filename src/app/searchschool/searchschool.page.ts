@@ -24,7 +24,7 @@ export class SearchschoolPage {
   appName = environment.appName;
   private loadingMsg =
     // eslint-disable-next-line max-len
-    '<div class="loadContent"><ion-img src="assets/loader/loader.gif" class="loaderGif"></ion-img><p class="white" [translate]="\'searchSchool.search\'"></p></div>';
+    '<div class="loadContent"><ion-img src="assets/loader/country_loader.gif" class="loaderGif"></ion-img><p class="white" [translate]="\'searchSchool.search\'"></p></div>';
 
   constructor(
     private router: Router,

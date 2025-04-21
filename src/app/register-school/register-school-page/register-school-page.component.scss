@@ -47,7 +47,7 @@
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    padding: 0 25px;
+    padding: 0 0;
     color: #E2E2E2;
     flex-flow: wrap;
     position: absolute;
@@ -57,7 +57,7 @@
 
 .dailycheck_btn {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
 
     .span {
         letter-spacing: 1px;
@@ -89,13 +89,13 @@
 }
 
 .register_title1 {
-    padding: 5px 25px;
+    padding: 5px 0;
     font-size: 32px;
     font-weight: 400;
 }
 
 .register_title2 {
-    padding: 5px 25px;
+    padding: 5px 0;
     font-size: 16px;
     font-weight: 400;
 }
@@ -113,7 +113,7 @@
 
 .check_tip_wraper {
     width: 100%;
-    padding: 25px 40px 15px;
+    padding: 25px 20px 15px;
 }
 
 .register_readMore {
@@ -136,5 +136,5 @@
     display: flex;
     text-decoration: underline;
     color: #9FC2FF;
-    padding: 25px 0 10px 25px;
+    padding: 25px 0 0 0;
 }

@@ -61,7 +61,7 @@ export class ConfirmschoolPage {
     );
 
     const loadingMsg =
-      '<div class="loadContent"><ion-img src="assets/loader/loader.gif" class="loaderGif"></ion-img><p class="white">Loading...</p></div>';
+      '<div class="loadContent"><ion-img src="assets/loader/country_loader.gif" class="loaderGif"></ion-img><p class="white">Loading...</p></div>';
     this.loading.present(loadingMsg, 4000, 'pdcaLoaderClass', 'null');
 
     // this.networkService.getAccessInformation().subscribe(c => {

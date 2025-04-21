@@ -1,6 +1,5 @@
 @import "../../theme/variables.scss";
 .welcomebg1 {
-  padding: 0px 25px !important;
   position: absolute;
   left: 0;
   top: 0;
@@ -15,7 +14,7 @@
   width: 112px;
 }
 .middle_container_home {
-  height: calc(100vh - 150px);
+  height: calc(100vh - 190px);
   display: flex;
   flex-flow: wrap;
   align-items: center;

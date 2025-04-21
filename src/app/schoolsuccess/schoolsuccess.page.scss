@@ -56,7 +56,13 @@
     }
   }  
   .bottom-layout{
-    padding: 0px 30px;
-    bottom: 50px !important;
+    padding: 0px 0px;
+    bottom: 24px !important;
   }
  
+
+  .btn_margin {
+    margin-inline-end: 0;
+    margin-inline-start:0;
+    font-weight: 400;
+  }

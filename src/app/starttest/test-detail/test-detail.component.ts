@@ -14,9 +14,11 @@ export class TestDetailComponent implements OnInit {
 
   ngOnInit() {    
     this.schoolId = this.storage.get('schoolId');
-    this.historicalData =  JSON.parse(this.storage.get('historicalDataAll'))
-    this.measurementsData = this.historicalData.measurements
-    console.log(this.measurementsData)
+    if(this.storage.get('historicalDataAll')) {
+      this.historicalData =  JSON.parse(this.storage.get('historicalDataAll'))
+      this.measurementsData = this.historicalData.measurements
+    }
+    
 
   }
 
