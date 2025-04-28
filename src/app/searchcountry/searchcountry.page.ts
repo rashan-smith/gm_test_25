@@ -11,6 +11,7 @@ import { Country } from '../shared/country.model';
 import { CountryService } from '../services/country.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
+import { LocationService } from '../services/location.service';
 @Component({
   selector: 'app-searchcountry',
   templateUrl: 'searchcountry.page.html',
@@ -1036,6 +1037,7 @@ export class SearchcountryPage {
     private storage: StorageService,
     private networkService: NetworkService,
     public router: Router,
+    public locationService: LocationService,
     private settingsService: SettingsService,
     private countryService: CountryService,
     public loading: LoadingService,
@@ -1046,6 +1048,25 @@ export class SearchcountryPage {
   }
   ngOnInit() {
     this.getCountry();
+      this.locationService.getCurrentLocation()
+        .then(pos => {
+          console.log(pos)
+        })
+        .catch(err => {
+          console.error(err);
+        });
+
+        this.locationService.getLocation().subscribe({
+          next: (data: any) => {
+            console.log('Lat:', data.location.lat);
+            console.log('Lng:', data.location.lng);
+          },
+          error: err => {
+            console.error('Failed to fetch location', err);
+          }
+        });
+        
+    
   }
 
   filterCountries(event: any) {
