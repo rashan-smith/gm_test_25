@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class LocationService {
   constructor(private http: HttpClient) {}
 
   getLocation() {
-    const url = `https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyACHVvWbKBkZ1He6kXYXwm4ZCaKi7TTO54`;
+    const url = `https://www.googleapis.com/geolocation/v1/geolocate?key=${environment.googleAPI}`;
     return this.http.post(url, {}); // Payload is empty
   }
   getCurrentLocation(): Promise<GeolocationPosition> {
