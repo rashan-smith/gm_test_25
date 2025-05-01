@@ -13,6 +13,7 @@ import {
   app,
   BrowserWindow,
   Menu,
+  ipcMain,
   MenuItem,
   nativeImage,
   Tray,
@@ -26,9 +27,22 @@ import windowStateKeeper from 'electron-window-state';
 import { join } from 'path';
 import * as Sentry from '@sentry/node';
 import { Console } from 'console';
-import { Severity } from '@sentry/node';
+// import { Severity } from '@sentry/node';
+// import type { SeverityLevel } from '@sentry/types';
+const wifi = require('node-wifi');
+
 var AutoLaunch = require('auto-launch');
 var isQuiting = false;
+// const level: SeverityLevel = 'error';
+
+wifi.init({ iface: 'Wi-Fi' });
+
+// Wi-Fi Scan handler
+ipcMain.handle('scan-wifi', async () => {
+  const networks = await wifi.scan();
+  console.log(networks)
+  return networks;
+});
 
 // Enhanced Sentry configuration
 Sentry.init({
@@ -200,9 +214,11 @@ export class ElectronCapacitorApp {
       maximizable: false,
       minimizable: false,
       resizable: true,
-      transparent: true,
+      transparent: false,
+      frame: false,
       webPreferences: {
-        nodeIntegration: true,
+        
+        nodeIntegration: false,
         contextIsolation: true,
         // Use preload to inject the electron varriant overrides for capacitor plugins.
         // preload: join(app.getAppPath(), "node_modules", "@capacitor-community", "electron", "dist", "runtime", "electron-rt.js"),
@@ -224,7 +240,7 @@ export class ElectronCapacitorApp {
 
     this.MainWindow?.on('unresponsive', () => {
       Sentry.captureMessage('Window became unresponsive', {
-        level: Severity.Error,
+        // level: 'error',
         extra: {
           windowId: this.MainWindow?.id,
         },
@@ -361,7 +377,7 @@ export class ElectronCapacitorApp {
       setTimeout(() => {
         if (this.CapacitorFileConfig?.electron?.electronIsDev) {
           this.MainWindow?.webContents?.openDevTools();
-          this.MainWindow.setSize(700, 600);
+          this.MainWindow.setSize(390, 700);
         }
         CapElectronEventEmitter.emit(
           'CAPELECTRON_DeeplinkListenerInitialized',

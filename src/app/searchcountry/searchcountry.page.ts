@@ -12,6 +12,12 @@ import { CountryService } from '../services/country.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 import { LocationService } from '../services/location.service';
+declare global {
+  interface Window {
+    electron: any;
+  }
+}
+
 @Component({
   selector: 'app-searchcountry',
   templateUrl: 'searchcountry.page.html',
@@ -22,6 +28,7 @@ export class SearchcountryPage {
   automaticSearched = false;
   selectedFromList: boolean = false;
   accordionGroup: IonAccordionGroup;
+  wifiList: any;
   detectedCountry: any;
   selectedCountry: any;
   isPcdcCountry: any;
@@ -1046,7 +1053,10 @@ export class SearchcountryPage {
     const appLang = this.settingsService.get('applicationLanguage');
     this.translate.use(appLang.code);
   }
-  ngOnInit() {
+  async ngOnInit() {
+    this.wifiList = await window.electron.invoke('scan-wifi');
+
+    // console.log(await window.electron.invoke('scan-wifi'))
     this.getCountry();
       this.locationService.getCurrentLocation()
         .then(pos => {
