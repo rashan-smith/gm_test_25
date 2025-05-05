@@ -1,11 +1,11 @@
 {
     "home": {
         "title1": "Bienvenue sur {{appName}} <span class='daily-chk-blue'>{{appNameSuffix}}</span>",
-        "title2": "Aidez votre école à obtenir une meilleure connectivité. Partagez l'état de votre connexion Internet de l'école avec {{appName}} chaque jour.",
+        "title2": "Aidez votre école à obtenir une meilleure connectivité. Partagez chaque jour l'état de connexion de votre école avec {{appName}}.",
         "next": "Suivant",
         "learn-more": "EN SAVOIR PLUS SUR {{appName}}",
-        "checkboxText": "En m'inscrivant et en utilisant GigaMeter, j'accepte la collecte, le traitement et la publication de mes mesures et autres données de support par Giga sous la",
-        "licenseLink": "Licence de base de données ouverte (ODBL)",
+        "checkboxText": "En m'inscrivant et en utilisant Giga Meter, j'accepte la collecte, le traitement et la publication de mes mesures et autres données de support par Giga sous la",
+        "licenseLink": "Licence de base de données ouverte (ODbL)",
         "andText": "et par M-Lab sous la",
         "privacyPolicy": "Politique de confidentialité",
         "privacy": "<a href='https://www.unicef.org/legal#privacy-policy' target={{targetUrl}}>Pour plus de détails sur la manière dont Giga gère vos données, veuillez consulter la Politique de confidentialité de l'UNICEF.</a>"
