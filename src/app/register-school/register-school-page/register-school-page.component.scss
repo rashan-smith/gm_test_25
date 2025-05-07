@@ -80,7 +80,7 @@
 .middle-layout .learnmore {
     flex: 1;
     /* Allow text to take available space */
-    font-size: 10px;
+    font-size: 12px;
     padding: 0;
     line-height: 1.5;
     /* Ensure text is aligned properly */
@@ -92,6 +92,8 @@
     padding: 5px 0;
     font-size: 32px;
     font-weight: 400;
+    line-height: 40px;
+    letter-spacing: -0.2px;
 }
 
 .register_title2 {
@@ -105,7 +107,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 14px;
+    font-size: 12px;
     border-bottom: solid 1px #ccc;
     padding: 10px 0;
     font-weight: 400;
@@ -136,5 +138,5 @@
     display: flex;
     text-decoration: underline;
     color: #9FC2FF;
-    padding: 25px 0 0 0;
+    padding: 45px 0 0 0;
 }

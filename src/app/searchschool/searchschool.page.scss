@@ -83,7 +83,10 @@ ion-label {
 
 .searchTerm {
   width: 100%;
-  border: 1px solid #2779FF;
+  border-bottom: 1px solid #222; // change color and size as needed
+  border-top: none;
+  border-left: none;
+  border-right: none;
   /* border-right: none; */
   padding: 25px;
   border-radius: 5px;
@@ -110,7 +113,7 @@ ion-label {
   width: 100%;
   overflow: hidden;
   position: absolute;
-  left: -2px;
+  left: 0;
   bottom: 24px;
 
 }

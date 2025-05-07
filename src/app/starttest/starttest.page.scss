@@ -330,7 +330,7 @@ span.currentState {
   justify-content: space-between;
   gap: 10px;
   width: 100%;
-  padding: 16px;
+  padding: 8px 16px 8px 16px;
   background: #f4f5f8;
 
   ion-item {
@@ -372,8 +372,8 @@ span.currentState {
 }
 
 .title {
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 700;
   color: black;
   /* Ensure the main text is white */
 }
@@ -461,9 +461,13 @@ span.currentState {
 .latest_measurement {
   margin: 10px;
   font-size: 14px;
-  color: #000;
+  color: #474747;
 }
 .footer_text {
   display: flex;
   gap: 2px;
+}
+.success_icon{
+  --color: #0E6027;
+  --background: #42BE65;
 }

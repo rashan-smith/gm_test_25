@@ -3,22 +3,29 @@
   <ion-button class="button_disable_hover" fill="clear"  (click)="backToSearchDetail()">
     <ion-img src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
   </ion-button>
+
   <div class="container">
+    <app-selected-detail></app-selected-detail>
+
     <div>
-      <div class="label-txt SchoolIDField">
+
+      <!-- <div class="label-txt SchoolIDField"> -->
+
         <!-- <br /> -->
-        <span class="schoolID-txt">{{ schoolId | uppercase }}</span>
-      </div>
+        <!-- <span class="schoolID-txt">{{ schoolId | uppercase }}</span> -->
+      <!-- </div> -->
       <!-- <div class="h-line"></div> -->
       <div class="selectandconfirm" [translate]="'schoolDetails.selectAndConfirm'"></div>
-      <div *ngIf="schools?.length > 1" class="matches">({{schools?.length}}) results matching with {{schoolId | uppercase}}</div>
+      <div  class="matches">({{schools?.length}}) results matching with {{schoolId | uppercase}}</div>
 
-      <div class="ionListContainer">
+      <div class="ionListContainer" >
         <div class="ionList">
           <!-- Check if there are multiple schools -->
           <ng-container *ngIf="schools?.length > 1; else singleSchool">
             <ion-radio-group [(ngModel)]="selectedSchool">
-                <ion-item class="school_item" lines="none" *ngFor="let schoolInfo of schools">
+                <ion-item class="school_item" lines="none" *ngFor="let schoolInfo of schools" 
+                [ngClass]="{ 'selected-border': selectedSchool === schoolInfo }"
+                >
                   <ion-label>
                     <span *ngIf="schoolInfo?.name" class="schoolName">{{ schoolInfo.name }}</span>
                     <span *ngIf="schoolInfo?.education_level" class="education_level">{{ schoolInfo.education_level }}</span>
@@ -37,7 +44,8 @@
 
           <!-- Template to display when there's only one school -->
           <ng-template #singleSchool>
-            <ion-item class="school_item" lines="none" *ngFor="let schoolInfo of schools" class="schoolList" (click)="confirmSchool(schoolInfo)">
+            <ion-item  lines="none"  [ngClass]="{ 'selected-border': selectedSchool === schoolInfo }"
+            *ngFor="let schoolInfo of schools" class="school_item" (click)="confirmSchool(schoolInfo)">
               <ion-label>
                 <span *ngIf="schoolInfo?.name" class="schoolName">{{ schoolInfo.name }}</span>
                 <span *ngIf="schoolInfo?.education_level" class="school_detail">{{ schoolInfo.education_level }}</span>

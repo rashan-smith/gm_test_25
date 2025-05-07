@@ -47,7 +47,7 @@ ion-header {
   width: 100%;
   font-size: 20px;
   --border-radius: 45px !important;
-  height: 58px;
+  height: 40px;
   box-shadow: none !important;
 }
 .dailycheck_btn:hover {
@@ -325,6 +325,8 @@ ion-loading {
 .submit_button_size {
   font-size: 14px;
   font-weight: 400;
+  margin-inline-end: 0;
+  margin-inline-start: 0;
 }
 .back_button {
   height: 32px;

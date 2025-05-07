@@ -28,7 +28,7 @@ const routes: Routes = [
   }
   ,
   {
-    path: 'save-email',
+    path: 'save-email/:schoolId/:selectedCountry/:detectedCountry',
     loadChildren: () => import('./school-email-register/school-email-register.module').then( m => m.SchoolEmailRegisterModule)
   },
   {

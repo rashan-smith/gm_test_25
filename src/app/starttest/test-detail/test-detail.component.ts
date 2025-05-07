@@ -14,9 +14,19 @@ export class TestDetailComponent implements OnInit {
 
   ngOnInit() {    
     this.schoolId = this.storage.get('schoolId');
-    if(this.storage.get('historicalDataAll')) {
-      this.historicalData =  JSON.parse(this.storage.get('historicalDataAll'))
-      this.measurementsData = this.historicalData.measurements
+    // if(this.storage.get('historicalDataAll')) {
+    //   this.historicalData =  JSON.parse(this.storage.get('historicalDataAll'))
+    //   this.measurementsData = this.historicalData.measurements
+    // }
+
+    if (this.storage.get('historicalDataAll')) {
+      this.historicalData = JSON.parse(this.storage.get('historicalDataAll'));
+      const allMeasurements = this.historicalData.measurements;
+  
+      // Get the last 10 measurements (sorted by timestamp descending)
+      this.measurementsData = allMeasurements
+        .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()) // descending order
+        .slice(0, 10); // take last 10
     }
     
 

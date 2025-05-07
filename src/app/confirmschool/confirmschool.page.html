@@ -8,10 +8,12 @@
     <div class="top-section">
 
       <div class="label-txt" [translate]="'confirmSchool.title'"></div>
+      <app-selected-detail></app-selected-detail>
+
       <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry" class="confirm-txt"
         [translate]="'confirmSchool.confirm1'"></div>
       <ion-item lines="none" *ngIf="school" class="detail_box">
-        <ion-label>
+        <ion-label class="box_margin">
           <span *ngIf="school?.name" class="schoolName">{{school.name}}</span><br  *ngIf="school?.name" />
           <span *ngIf="school?.education_level" class=" school_detail">{{school.education_level}}</span><br  *ngIf="school?.education_level" />
           <span *ngIf="school?.admin_1_name" class=" school_detail">{{school.admin_1_name}}- {{school.admin_1_name}}</span><br *ngIf="school?.admin_1_name" />
@@ -35,14 +37,13 @@
       <ion-img name="information-circle-outline"  src="assets/images/info_icon.svg"></ion-img>
 
       <p class="MakeSureText">
-        Make sure your school is correctly selected.
-        Once you click yes you can only change your school by reinstalling the app.
+        Double-check your school selection. Once you tap <b>Yes</b> changing your school will require reinstalling the app.
       </p>
       <ion-icon name="close-outline" class="close-icon" (click)="closeNotification()"></ion-icon>
     </div>
-    <div class="btn-holder">
+    <div class="btn-holder" >
       <ion-button block class="nobtn" [routerLink]="['/searchcountry']" [translate]="'no'"></ion-button>
-      <ion-button block class="yesbtn" (click)="confirmSchool()" [translate]="'yes'"></ion-button>
+      <ion-button block class="yesbtn" fill="outline" (click)="confirmSchool()" [translate]="'yes'"></ion-button>
     </div>
   </ion-toolbar>
   <!-- <div class="h-line"></div> -->

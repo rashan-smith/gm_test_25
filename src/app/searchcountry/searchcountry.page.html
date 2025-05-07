@@ -13,10 +13,14 @@
           <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterCountries($event)" debounce="300"
             placeholder="Search country..."></ion-searchbar>
           <ion-img
-            *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry !== false"
-            class="img_wifi" src="assets/images/warning.svg"></ion-img>
-          <ion-img *ngIf="this.isPcdcCountry === false" class="img_wifi"
-            src="assets/images/error_country.svg"></ion-img>
+            *ngIf="this.isPcdcCountry === false  ||( this.isPcdcCountry === false && this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry)"
+            class="img_wifi" src="assets/images/error_country.svg"></ion-img>
+
+          <ion-img
+            *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry || (this.isPcdcCountry === false && this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry)"
+            class="img_wifi"
+            [ngClass]="{'margin_on_condition': this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry === false}"
+            src="assets/images/warning.svg"></ion-img>
 
         </ion-item>
 
@@ -28,12 +32,25 @@
         </ion-list>
         <div *ngIf="automaticSearched && !(this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry)"
           class="automatic_label change-country" [translate]="'searchCountry.change-country'"></div>
-        <div *ngIf="this.isPcdcCountry === false " class="search-label-error"
-          [translate]="'searchCountry.not-available'" [translateParams]="{ appName, appNameSuffix }">
-        </div>
-        <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry"
-          class="search-label-error" [translate]="'searchCountry.country-not-accurate'"></div>
+        <div class="error"
+          *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry !== false">
+          1 error(s)</div>
+        <div class="error"
+          *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry === false">
+          2 error(s)</div>
+        <span class="error_message" *ngIf="this.isPcdcCountry === false">
+          <ion-img
+            *ngIf="this.isPcdcCountry === false  ||( this.isPcdcCountry === false && this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry)"
+            class="error_icon" src="assets/images/error_country.svg"></ion-img>
+          <div class="search-label-error" [translate]="'searchCountry.not-available'"
+            [translateParams]="{ appName, appNameSuffix }">
+          </div>
+        </span>
+        <span class="error_message" *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry">
+          <ion-img  class="error_icon"   src="assets/images/warning.svg"></ion-img>
 
+          <div class="search-label-error" [translate]="'searchCountry.country-not-accurate'"></div>
+        </span>
         <div *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry" class="search-label"
           [translate]="'searchCountry.please-double-check'"></div>
 
