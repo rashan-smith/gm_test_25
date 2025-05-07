@@ -1054,7 +1054,18 @@ export class SearchcountryPage {
     this.translate.use(appLang.code);
   }
   async ngOnInit() {
-    this.wifiList = await window.electron.invoke('scan-wifi');
+    try {
+      const wifiList = await window.electron.invoke('scan-wifi');
+      this.locationService.getAccurateLocation(wifiList).subscribe({
+        next: result => {
+          console.log('Accurate Location:', result.location);
+          console.log('Accuracy (meters):', result.accuracy);
+        },
+        error: err => console.error('Location fetch error:', err)
+      });
+    } catch (e) {
+      console.error('WiFi scan failed:', e);
+    }
 
     // console.log(await window.electron.invoke('scan-wifi'))
     this.getCountry();
