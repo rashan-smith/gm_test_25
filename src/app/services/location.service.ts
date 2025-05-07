@@ -32,14 +32,6 @@ export class LocationService {
     });
   }
 
-  private formatWifiList(wifiList: any[]): any[] {
-    return wifiList.map(ap => ({
-      macAddress: ap.mac || ap.bssid, // depends on what your scan returns
-      signalStrength: ap.signal_level || ap.signalStrength || -65,
-      signalToNoiseRatio: ap.signalToNoiseRatio || 40 // optional, placeholder
-    }));
-  }
-
   getAccurateLocation(wifiList: any[]) {
     const wifiAccessPoints = wifiList.map(ap => ({
       macAddress: ap.mac || ap.bssid,
