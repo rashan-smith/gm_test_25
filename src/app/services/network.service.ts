@@ -3,6 +3,7 @@ import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 type Ip4Data = {
   organization: string;
@@ -38,7 +39,7 @@ type IpInfoData = {
   providedIn: 'root',
 })
 export class NetworkService {
-  accessServiceUrl = 'https://ipinfo.io?token=9906baf67eda8b';
+  accessServiceUrl = environment.restAPI + 'ip-metadata';
   // accessServiceUrl = 'https://ipinfo.io?token=060bdd9da6a22f'; //ONLY FOR LOCAL DEV TESTING
   headers: any;
   options: any;
@@ -63,9 +64,10 @@ export class NetworkService {
     const options = { headers: this.headers };
     let response = null;
     try {
-      response = this.standardData(await this.http
-        .get(this.accessServiceUrl, options)
-        .toPromise<any>());
+      console.log('accessServiceUrl', this.accessServiceUrl);
+      response = this.standardData(
+        await this.http.get(this.accessServiceUrl, options).toPromise<any>()
+      );
     } catch (error) {
       console.error('Error:', error);
       const ipGeoResponse = await fetch('https://ipv4.geojs.io/v1/ip/geo.json');
@@ -78,7 +80,7 @@ export class NetworkService {
   private mapData(source: Ip4Data): IpInfoData {
     return this.standardData({
       ip: source.ip,
-      
+
       hostname: source.ip,
       city: source.city ?? '',
       region: source.region ?? '',
