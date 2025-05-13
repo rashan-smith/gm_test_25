@@ -36,10 +36,11 @@ ion-item {
   border-radius: 10px;
   margin-top: 20px;
   padding: 25px;
+  color: #161616;
 }
 
 .schoolName {
-  color: $text-color;
+  color: #161616;
   font-size: 20px;
   width: 80%;
   height: 50px;
@@ -98,7 +99,6 @@ ion-item {
   height: 40px;
   border: 0;
   display: flex;
-  border: 1px solid #3880ff !important;
   border-radius: 6px; // or 40px if you want a pill shape
   align-items: center;
   justify-content: center;
@@ -108,6 +108,10 @@ ion-item {
   overflow: hidden;
   color: #fff !important;
   --border-width: 0px;
+
+}
+.yesbtn {
+  border: 2px solid #277AFF !important;
 
 }
 
@@ -137,7 +141,8 @@ ion-item {
   font-weight: 400;
 }
 .detail_box {
-  background: #A6C8FF;
+  background: #D6E4FD
+  ;
 }
 
 .box_margin{

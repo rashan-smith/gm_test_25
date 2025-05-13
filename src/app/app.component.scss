@@ -5,7 +5,7 @@
     background-color: rgba(30, 43, 70, 0.5) !important;
     border-radius: 10px;
     height: 100%;
-    --width: 90%;
+    --width: 95%;
 
 }
 
@@ -87,9 +87,6 @@ ion-content {
     }
 }
 
-.aboutprojConn {
-    width: 252px;
-}
 
 .view-proj-btn {
     width: 252px;
@@ -224,11 +221,13 @@ ion-content {
 .searchCountry {
     -webkit-app-region: no-drag;
     width: 100%;
-    border: 3px solid $color-blue;
-
-    border-radius: 5px;
+    border-bottom: 1px solid #6F6F6F; // change color and size as needed
+    border-top: none;
+    border-left: none;
+    border-right: none;
     outline: none;
     color: #fff;
+    --ion-background-color: #F4F4F4;
 
 }
 
@@ -290,10 +289,15 @@ ion-content {
 }
 
 .backIcon {
-    margin: 32px 0px 0px 32px;
+    margin: 12px;
     width: 32px;
     height: 32px;
 }
+.button_width {
+    margin: 12px 0 0 24px;
+    width: 50px;
+}
+    
 ::ng-deep {
     .searchbar-input.sc-ion-searchbar-md {
       box-shadow: none !important;
@@ -326,5 +330,62 @@ ion-content {
     font-size: 14px;
     font-weight: 400;
   }
+
+  ::ng-deep {
+    .searchbar-input.sc-ion-searchbar-md {
+      box-shadow: none !important;
+      font-size: 14px;
+      font-weight: 400;
   
+    }
+  
+    .sc-ion-searchbar-md-h {
+      padding: 0;
+    }
+  
+    .searchbar-search-icon.sc-ion-searchbar-md {
+      left: 0;
+      display: none;
+    }
+    .searchbar-search-icon.sc-ion-searchbar-md.md.hydrated {
+      display: none;
+    }
+  
+    .searchbar-clear-icon.sc-ion-searchbar-md {
+      width: 16px;
+      height: 16px;
+    }
+  
+    .searchbar-input.sc-ion-searchbar-md {
+      padding-left: 0px;
+      padding-right: 30px;
+    }
+  
+    .list-md {
+      z-index: 9999;
+      position: relative;
+      padding: 10px;
+      margin: 0;
+      border-radius: 5px;
+      padding-left: 0;
+    }
+  }
+  ::ng-deep {
+    .searchbar-search-icon.sc-ion-searchbar-md {
+        left: 0;
+        display: none;
+      }
+      .searchbar-search-icon.sc-ion-searchbar-md.md.hydrated {
+        display: none;
+      }
+  }
+  
+  
+  ion-breadcrumb::part(separator) {
+    color: #3880ff; // light gray or any desired color
+  }
+
+  .sc-ion-label-md-h {
+    color: #474747;
+  }
   

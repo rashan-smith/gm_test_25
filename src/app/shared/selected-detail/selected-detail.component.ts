@@ -20,8 +20,9 @@ export class SelectedDetailComponent implements OnInit {
       this.showSchoolId = false;
     }
     this.sub = this.activatedroute.params.subscribe((params) => {
+      console.log(params)
       this.schoolId = params.schoolId;
-      this.selectedCountry = params.selectedCountry;
+      this.selectedCountry = params.selectedCountryName;
       this.detectedCountry = params.detectedCountry;
       this.selectedSchool = {};
     });

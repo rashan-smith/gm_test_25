@@ -19,6 +19,7 @@ export class SearchschoolPage {
   schoolData: any;
   isLoading = false;
   selectedCountry: any;
+  selectedCountryName: any;
   detectedCountry: any;
   sub: any;
   appName = environment.appName;
@@ -40,6 +41,7 @@ export class SearchschoolPage {
     this.sub = this.activatedroute.params.subscribe((params) => {
       this.selectedCountry = params.selectedCountry;
       this.detectedCountry = params.detectedCountry;
+      this.selectedCountryName = params.selectedCountryName;
     });
   }
 
@@ -107,6 +109,7 @@ export class SearchschoolPage {
               this.schoolId,
               this.selectedCountry,
               this.detectedCountry,
+              this.selectedCountryName
             ]);
             /* Redirect to no result found page */
           },
@@ -118,6 +121,7 @@ export class SearchschoolPage {
                 this.schoolId,
                 this.selectedCountry,
                 this.detectedCountry,
+                this.selectedCountryName
               ]);
             } else {
               /* Redirect to no result found page */
@@ -126,6 +130,7 @@ export class SearchschoolPage {
                 this.schoolId,
                 this.selectedCountry,
                 this.detectedCountry,
+                this.selectedCountryName
               ]);
             }
           }

@@ -21,7 +21,7 @@
 }
 
 .nobtn {
-    border: 2px solid var(--ion-color-primary);
+    border: 2px solid #277AFF;
     background: #fff;
     color: var(--ion-color-primary);
     --ion-toolbar-color: #fff;
@@ -59,6 +59,7 @@ ion-item.ion-invalid {
     font-size: 12px;
     font-weight: 400;
     margin-top: 6px;
+    color: #474747;
 }
 
 .custom-gray-item {

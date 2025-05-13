@@ -18,6 +18,8 @@ export class AppComponent {
   languages = environment.languages;
   filteredLanguages = [];
   languageSearch = '';
+  selectedLanguage: string;
+  selectedLanguageName: string;
   school: any;
   historyState: any;
   availableSettings: any;
@@ -27,7 +29,7 @@ export class AppComponent {
   appName = environment.appName;
   showAboutMenu = environment.showAboutMenu;
   testOptions: string[] = ['Ping', 'Download', 'Upload', 'Latency'];
-  searchTerm: string = '';
+  searchTerm = 'Ping';
   filteredOptions: string[] = [];
   showDropdown: boolean = false;
   networks = [
@@ -46,7 +48,12 @@ export class AppComponent {
     private scheduleService: ScheduleService
   ) {
     this.filteredOptions = [];
-
+    this.selectedLanguage =
+      this.settingsService.get('applicationLanguage')?.code ??
+      translate.defaultLang;
+    this.languageSearch = this.languages.find(
+      (l) => l?.code === this.selectedLanguage
+    )?.label ?? '';
     translate.setDefaultLang('en');
     const appLang = this.settingsService.get('applicationLanguage') ?? {
       code: 'en',
@@ -112,7 +119,7 @@ export class AppComponent {
     this.menu.close();
   }
 
-  
+
 
   backMenu() {
     this.closeMenu();

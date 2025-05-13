@@ -6,15 +6,18 @@
     </div> -->
     <div class="headerbar">
       <ion-label class="setting_label">Settings</ion-label>
-      <ion-icon name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-icon>
+      <!-- <ion-icon name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-icon> -->
+      <ion-img src="assets/images/Close.svg" name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-img>
     </div>
     <ion-content class="menuContent">
-      <ion-icon name="arrow-back-outline" class="backIcon" (click)="backMenu()"></ion-icon>
+      <ion-button class="button_disable_hover button_width" fill="clear"  (click)="backMenu()">
+        <ion-img src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
+      </ion-button>
 
       <div class="your-school-id-sec">
         <ion-breadcrumbs>
           <ion-breadcrumb class="font_label" color="primary">Settings</ion-breadcrumb>
-          <ion-breadcrumb class="font_label">Wifi networks settings</ion-breadcrumb>
+          <ion-breadcrumb class="font_label">WiFi networks settings</ion-breadcrumb>
         </ion-breadcrumbs>
         <ion-card *ngFor="let network of networks" class="network-card">
           <ion-card-content>
@@ -59,10 +62,14 @@
   <ion-menu side="end" menuId="third" contentId="content" class="ionMenubg">
     <div class="headerbar">
       <ion-label class="setting_label">Settings</ion-label>
-      <ion-icon name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-icon>
+      <!-- <ion-icon name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-icon> -->
+      <ion-img src="assets/images/Close.svg" name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-img>
+
 
     </div>
-    <ion-icon name="arrow-back-outline" class="backIcon" (click)="backMenu()"></ion-icon>
+    <ion-button class="button_disable_hover button_width" fill="clear" (click)="backMenu()">
+      <ion-img src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
+    </ion-button>
 
 
     <ion-content class="menuContent">
@@ -91,11 +98,14 @@
   <ion-menu side="end" menuId="second" contentId="content" class="ionMenubg">
     <div class="headerbar">
       <ion-label class="setting_label">Settings</ion-label>
-      <ion-icon name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-icon>
+      <!-- <ion-icon name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-icon> -->
+      <ion-img src="assets/images/Close.svg" name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-img>
+
 
     </div>
-    <ion-icon name="arrow-back-outline" class="backIcon" (click)="backMenu()"></ion-icon>
-
+    <ion-button  class="button_disable_hover button_width" fill="clear" (click)="backMenu()">
+      <ion-img slot="start" src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
+    </ion-button>
     <ion-content class="menuContent">
       <div class="your-school-id-sec">
 
@@ -146,7 +156,9 @@
   <ion-menu side="end" menuId="help" contentId="content" class="ionMenubg">
     <div class="headerbar">
       <ion-label class="setting_label">Help</ion-label>
-      <ion-icon name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-icon>
+      <!-- <ion-icon name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-icon> -->
+      <ion-img src="assets/images/Close.svg" name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-img>
+
     </div>
     <ion-content class="menuContent">
       <div class="accordion-sec">
@@ -154,17 +166,23 @@
           <ion-item (click)="openHelpMenu('about')">
             <ion-img src="assets/images/about.svg"></ion-img>
             <ion-label [innerHTML]="'app.about-help' | translate"></ion-label>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <!-- <ion-icon name="chevron-forward-outline"></ion-icon> -->
+            <ion-img src="assets/images/setting_arrow.svg"></ion-img>
+
           </ion-item>
-          <ion-item (click)="openHelpMenu('faq')">
+          <ion-item  (click)="openHelpMenu('faq')">
             <ion-img src="assets/images/faq.svg"></ion-img>
             <ion-label [innerHTML]="'app.faq-help' | translate"></ion-label>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <!-- <ion-icon name="chevron-forward-outline"></ion-icon> -->
+            <ion-img src="assets/images/setting_arrow.svg"></ion-img>
+
           </ion-item>
           <ion-item (click)="openHelpMenu('new')">
             <ion-img src="assets/images/new.svg"></ion-img>
             <ion-label [innerHTML]="'app.whats-new' | translate"></ion-label>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <!-- <ion-icon name="chevron-forward-outline"></ion-icon> -->
+            <ion-img src="assets/images/setting_arrow.svg"></ion-img>
+
           </ion-item>
 
         </ion-list>
@@ -174,9 +192,13 @@
   <ion-menu side="end" menuId="faq" contentId="content" class="ionMenubg">
     <div class="headerbar">
       <ion-label class="setting_label">Help</ion-label>
-      <ion-icon name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-icon>
+      <!-- <ion-icon name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-icon> -->
+      <ion-img src="assets/images/Close.svg" name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-img>
+
     </div>
-    <ion-icon name="arrow-back-outline" class="backIcon" (click)="backHelpMenu()"></ion-icon>
+    <ion-button class="button_disable_hover button_width" fill="clear" (click)="backHelpMenu()">
+      <ion-img src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
+    </ion-button>
 
     <ion-content class="menuContent">
       <div class="your-school-id-sec">
@@ -193,7 +215,7 @@
                 <ion-label [translate]="'faq.what-is-school-id'"></ion-label>
               </ion-item>
               <ion-list slot="content">
-                <ion-item>
+                <ion-item lines="none">
                   <ion-label [translate]="'faq.what-is-school-id-desc'"></ion-label>
                 </ion-item>
               </ion-list>
@@ -203,7 +225,7 @@
                 <ion-label [translate]="'faq.how-find-school-id'"></ion-label>
               </ion-item>
               <ion-list slot="content">
-                <ion-item>
+                <ion-item lines="none">
                   <ion-label [translate]="'faq.how-find-school-id-desc'"></ion-label>
                 </ion-item>
               </ion-list>
@@ -213,7 +235,7 @@
                 <ion-label [translate]="'faq.can-close-app'"></ion-label>
               </ion-item>
               <ion-list slot="content">
-                <ion-item>
+                <ion-item lines="none">
                   <ion-label text-wrap [translate]="'faq.can-close-app-desc'"></ion-label>
                 </ion-item>
               </ion-list>
@@ -223,7 +245,7 @@
                 <ion-label [innerHTML]="'faq.connectivity-checks-occur' | translate"></ion-label>
               </ion-item>
               <ion-list slot="content">
-                <ion-item>
+                <ion-item lines="none">
                   <ion-label text-wrap [translate]="'faq.connectivity-checks-occur-desc'"></ion-label>
                 </ion-item>
               </ion-list>
@@ -233,7 +255,7 @@
                 <ion-label [translate]="'faq.can-change-id'"></ion-label>
               </ion-item>
               <ion-list slot="content">
-                <ion-item>
+                <ion-item lines="none">
                   <ion-label [translate]="'faq.can-change-id-desc'"></ion-label>
                 </ion-item>
               </ion-list>
@@ -243,7 +265,7 @@
                 <ion-label [innerHTML]="'faq.multiple-installs' | translate"></ion-label>
               </ion-item>
               <ion-list slot="content">
-                <ion-item>
+                <ion-item lines="none">
                   <ion-label [translate]="'faq.multiple-installs-desc'"></ion-label>
                 </ion-item>
               </ion-list>
@@ -253,7 +275,7 @@
                 <ion-label [innerHTML]="'faq.dissatisfied-speed' | translate"></ion-label>
               </ion-item>
               <ion-list slot="content">
-                <ion-item>
+                <ion-item lines="none">
                   <ion-label [translate]="'faq.dissatisfied-speed-desc'"></ion-label>
                 </ion-item>
               </ion-list>
@@ -266,9 +288,14 @@
   <ion-menu side="end" menuId="about" contentId="content" class="ionMenubg">
     <div class="headerbar">
       <ion-label class="setting_label">Help</ion-label>
-      <ion-icon name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-icon>
+      <!-- <ion-icon name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-icon> -->
+      <ion-img src="assets/images/Close.svg" name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-img>
+
     </div>
-    <ion-icon name="arrow-back-outline" class="backIcon" (click)="backHelpMenu()"></ion-icon>
+
+    <ion-button class="button_disable_hover button_width" fill="clear" (click)="backHelpMenu()">
+      <ion-img src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
+    </ion-button>
 
     <ion-content class="menuContent">
       <div class="your-school-id-sec">
@@ -280,21 +307,29 @@
         <div class="accordion-sec">
           <ion-label text-wrap [translate]="'app.project-connect-desc' | translate:{ appName }"></ion-label>
         </div>
-        <div class="accordion-sec">
+        <!-- <div class="accordion-sec">
           <ion-label text-wrap class="thank-txt" [translate]="'app.thank-you' | translate:{ appName }"></ion-label>
-        </div>
+        </div> -->
+        
         <div class="accordion-sec">
           <ion-img src="assets/images/project-connect.jpg" class="aboutprojConn"></ion-img>
         </div>
+
+        <!-- <div class="view-proj-btn" 
+      >Giga.global</div>  -->
       </div>
     </ion-content>
   </ion-menu>
   <ion-menu side="end" menuId="new" contentId="content" class="ionMenubg">
     <div class="headerbar">
       <ion-label class="setting_label">Help</ion-label>
-      <ion-icon name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-icon>
+      <!-- <ion-icon name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-icon> -->
+      <ion-img src="assets/images/Close.svg" name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-img>
+
     </div>
-    <ion-icon name="arrow-back-outline" class="backIcon" (click)="backHelpMenu()"></ion-icon>
+    <ion-button class="button_disable_hover button_width" fill="clear" (click)="backHelpMenu()">
+      <ion-img src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
+    </ion-button>
 
     <ion-content class="menuContent">
       <div class="your-school-id-sec">
@@ -306,9 +341,9 @@
         <div class="accordion-sec">
           <ion-label text-wrap [translate]="'app.project-connect-desc' | translate:{ appName }"></ion-label>
         </div>
-        <div class="accordion-sec">
+        <!-- <div class="accordion-sec">
           <ion-label text-wrap class="thank-txt" [translate]="'app.thank-you' | translate:{ appName }"></ion-label>
-        </div>
+        </div> -->
         <div class="accordion-sec"> 
           <ion-img src="assets/images/project-connect.jpg" class="aboutprojConn"></ion-img>
         </div>
@@ -325,7 +360,9 @@
     <div class="headerbar">
       <ion-label class="setting_label">Settings</ion-label>
       <div></div>
-      <ion-icon name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-icon>
+      <!-- <ion-icon name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-icon> -->
+      <ion-img src="assets/images/Close.svg" name="close-outline" class="closeIcon" (click)="closeMenu()"></ion-img>
+
     </div>
     <ion-content class="menuContent">
       <div class="accordion-sec">
@@ -333,18 +370,24 @@
           <ion-item (click)="openSecond()">
             <ion-img src="assets/images/test-setting.svg"></ion-img>
             <ion-label [innerHTML]="'app.test-type-setting' | translate"></ion-label>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <!-- <ion-icon name="chevron-forward-outline"></ion-icon> -->
+            <ion-img src="assets/images/setting_arrow.svg"></ion-img>
+
           </ion-item>
           <ion-item (click)="openThird()">
             <ion-img src="assets/images/language-setting.svg"></ion-img>
             <ion-label [innerHTML]="'app.language-pref' | translate"></ion-label>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
+            <!-- <ion-icon name="chevron-forward-outline"></ion-icon> -->
+            <ion-img src="assets/images/setting_arrow.svg"></ion-img>
+
           </ion-item>
-          <ion-item *ngIf="showAboutMenu" (click)="openFourth()">
+          <!-- <ion-item *ngIf="showAboutMenu" (click)="openFourth()">
             <ion-img src="assets/images/wifi-setting.svg"></ion-img>
-            <ion-label [innerHTML]="'app.wifi-network' | translate"></ion-label>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-          </ion-item>
+            <ion-label [innerHTML]="'app.wifi-network' | translate"></ion-label> -->
+            <!-- <ion-icon name="chevron-forward-outline"></ion-icon> -->
+            <!-- <ion-img src="assets/images/setting_arrow.svg"></ion-img>
+
+          </ion-item> -->
           <!-- <ion-item>
             <ion-label class="small-font" slot="end" [translate]="'app.version'"
               [translateParams]="{ app_version: app_version }"></ion-label>

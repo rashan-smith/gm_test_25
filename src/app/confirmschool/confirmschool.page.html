@@ -33,16 +33,18 @@
 
   <!-- <div class="confirm-txt" [translate]="'confirmSchool.confirm2'"></div> -->
   <ion-toolbar>
-    <div class="notification">
+    <div class="notification" *ngIf="showNotification">
       <ion-img name="information-circle-outline"  src="assets/images/info_icon.svg"></ion-img>
 
       <p class="MakeSureText">
-        Double-check your school selection. Once you tap <b>Yes</b> changing your school will require reinstalling the app.
+        Double-check your school selection. Once you tap <b>"Yes"</b> changing your school will require reinstalling the app.
       </p>
-      <ion-icon name="close-outline" class="close-icon" (click)="closeNotification()"></ion-icon>
+      <ion-img src="assets/images/close_notication.svg" name="close-outline" class="close-icon" (click)="closeNotification()"></ion-img>
+
+      <!-- <ion-icon name="close-outline" class="close-icon" (click)="closeNotification()"></ion-icon> -->
     </div>
     <div class="btn-holder" >
-      <ion-button block class="nobtn" [routerLink]="['/searchcountry']" [translate]="'no'"></ion-button>
+      <ion-button block class="nobtn" (click)="backToSearchDetail()" [translate]="'no'"></ion-button>
       <ion-button block class="yesbtn" fill="outline" (click)="confirmSchool()" [translate]="'yes'"></ion-button>
     </div>
   </ion-toolbar>

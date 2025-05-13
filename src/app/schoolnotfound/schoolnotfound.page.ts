@@ -20,6 +20,7 @@ export class SchoolnotfoundPage {
   sub: any;
   selectedCountry: any;
   detectedCountry: any;
+  selectedCountryName: any
   notFound = true;
   appName = environment.appName;
   constructor(
@@ -39,6 +40,7 @@ export class SchoolnotfoundPage {
       this.schoolId = params.schoolId;
       this.selectedCountry = params.selectedCountry;
       this.detectedCountry = params.detectedCountry;
+      this.selectedCountryName = params.selectedCountryName
       console.log(this.selectedCountry);
     });
   }
@@ -48,6 +50,7 @@ export class SchoolnotfoundPage {
         'searchschool',
         this.selectedCountry,
         this.detectedCountry,
+        this.selectedCountryName
       ]);
   }
 }

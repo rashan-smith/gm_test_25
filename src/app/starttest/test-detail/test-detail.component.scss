@@ -17,8 +17,8 @@
 }
 
 .title {
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 18px;
+    font-weight: 700;
     color: black;
     /* Ensure the main text is white */
 }
@@ -93,8 +93,14 @@
   
   .card_margin {
     margin: 0;
+    box-shadow: none !important;
+    border: 4px;
+    background: #F5F5F5;
   }
 
   .footer_card_margin {
     margin: 10px 0;
+    border-radius: 4px;
+    box-shadow: none !important;
+    background: #F5F5F5;
   }

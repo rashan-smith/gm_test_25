@@ -200,6 +200,7 @@ span.currentState {
 .footer_card_margin {
   margin: 8px 0;
   padding-top: 5px;
+  background: #F5F5F5;
 }
 
 .centerAlign {
@@ -269,6 +270,7 @@ span.currentState {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 8px 16px 16px;;
 }
 
 .footer-row {
@@ -280,8 +282,12 @@ span.currentState {
 
 .footer-card {
   flex: 1;
-  color: white;
+  background: #ECECEC;
   text-align: center;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  margin-top: 5px;
+  margin-bottom: 0;
 }
 
 .footer-card ion-card-title,
@@ -378,11 +384,6 @@ span.currentState {
   /* Ensure the main text is white */
 }
 
-.footer_card_header {
-  background: #f4f5f8;
-
-}
-
 
 .custom-toast {
   gap: 16px;
@@ -446,6 +447,7 @@ span.currentState {
 }
 .card_margin {
   margin: 0;
+  background: #F5F5F5;
 }
 
 
@@ -470,4 +472,10 @@ span.currentState {
 .success_icon{
   --color: #0E6027;
   --background: #42BE65;
+}
+
+ion-card {
+  box-shadow: none !important;
+  border-radius: 8px;
+
 }

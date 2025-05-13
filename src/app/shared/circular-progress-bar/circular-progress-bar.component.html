@@ -13,11 +13,11 @@
         'error': error,
         'green': !error
       }"></circle>
-    <image *ngIf="secondLabel === 'DOWNLOAD'" href="assets/images/Download.svg" width="8" height="8" x="18" y="45"
+    <image *ngIf="secondLabel === 'DOWNLOAD'" href="assets/images/download_meter.svg" width="8" height="8" x="18" y="45"
       alt="Error Icon" />
-    <image *ngIf="secondLabel === 'UPLOAD'" href="assets/images/Upload.svg" width="8" height="8" x="24" y="45"
+    <image *ngIf="secondLabel === 'UPLOAD'" href="assets/images/upload_meter.svg" width="8" height="8" x="24" y="45"
       alt="Error Icon" />
-    <text x="50" y="50" [attr.font-size]="8" text-anchor="middle" alignment-baseline="middle"
+    <text x="50" y="50" [attr.font-size]="8" text-anchor="middle" alignment-baseline="top"
       [ngClass]="getTextClass()">
       {{ error ? 'TRY AGAIN' : secondLabel ? secondLabel : firstLabel }}
     </text>

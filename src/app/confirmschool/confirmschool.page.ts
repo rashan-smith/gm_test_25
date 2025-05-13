@@ -25,6 +25,8 @@ export class ConfirmschoolPage {
   school: any;
   schoolId: any;
   selectedCountry: any;
+  selectedCountryName: any;
+  showNotification =  true;
   detectedCountry: any;
   sub: any;
   appName = environment.appName;
@@ -45,6 +47,8 @@ export class ConfirmschoolPage {
       this.schoolId = params.schoolId;
       this.selectedCountry = params.selectedCountry;
       this.detectedCountry = params.detectedCountry;
+      this.selectedCountryName = params.selectedCountryName
+
       if (this.router.getCurrentNavigation()) {
         this.school = this.router.getCurrentNavigation().extras.state as School;
       }
@@ -117,6 +121,7 @@ export class ConfirmschoolPage {
                 this.schoolId,
                 this.selectedCountry,
                 this.detectedCountry,
+                this.selectedCountryName
               ]);
               /* Redirect to no result found page */
             };
@@ -170,6 +175,7 @@ export class ConfirmschoolPage {
         schoolObj?.school_id || this.schoolId,
         this.selectedCountry,
         this.detectedCountry,
+        this.selectedCountryName
       ],
       { state: schoolObj }
     );
@@ -196,5 +202,20 @@ export class ConfirmschoolPage {
   async getDeviceId() {
     const deviceId = await Device.getId();
     return deviceId;
+  }
+
+  closeNotification() {
+    this.showNotification = false;
+
+  }
+
+  backToSearchDetail() {
+    this.router.navigate(
+      [
+        'searchschool',
+        this.selectedCountry,
+        this.detectedCountry,
+        this.selectedCountryName
+      ]    );
   }
 }

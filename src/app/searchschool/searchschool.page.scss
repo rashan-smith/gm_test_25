@@ -83,13 +83,12 @@ ion-label {
 
 .searchTerm {
   width: 100%;
-  border-bottom: 1px solid #222; // change color and size as needed
+  border-bottom: 1px solid #6F6F6F; // change color and size as needed
   border-top: none;
   border-left: none;
   border-right: none;
   /* border-right: none; */
   padding: 25px;
-  border-radius: 5px;
   outline: none;
   color: #9E9E9E;
   height: 40px;
@@ -123,7 +122,6 @@ ion-label {
 }
 
 .provide_id {
-  color: #222222 !important;
   margin: 5px 0;
   font-size: 16px;
   text-align: left;

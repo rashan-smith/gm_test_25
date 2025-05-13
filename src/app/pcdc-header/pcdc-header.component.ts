@@ -27,21 +27,23 @@ export class PcdcHeaderComponent implements OnInit {
       translate.defaultLang;
     this.selectedLanguageName = this.languages.find(
       (l) => l?.code === this.selectedLanguage
-    )?.name ?? '';
+    )?.label ?? '';
     translate.use(this.selectedLanguage);
     this.test = env?.mode === 'dev';
   }
   ngOnInit() { }
   onLanguageChange() {
+    this.menuCtrl.enable(true, 'third'); // Ensure the menu is enabled
+    this.menuCtrl.open('third');     
     // Update local storage when the language changes
-    this.settingsService.setSetting(
-      'applicationLanguage',
-      this.languages.find((l) => l?.code === this.selectedLanguage)
-    );
-    this.selectedLanguageName = this.languages.find(
-      (l) => l?.code === this.selectedLanguage
-    )?.name ?? '';
-    window.location.reload();
+    // this.settingsService.setSetting(
+    //   'applicationLanguage',
+    //   this.languages.find((l) => l?.code === this.selectedLanguage)
+    // );
+    // this.selectedLanguageName = this.languages.find(
+    //   (l) => l?.code === this.selectedLanguage
+    // )?.name ?? '';
+    // window.location.reload();
   }
   closeApp() {
     this.settingsService

@@ -30,24 +30,27 @@
               country.name }}
             </ion-button> </ion-item>
         </ion-list>
-        <div *ngIf="automaticSearched && !(this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry)"
+        <div *ngIf="automaticSearched && !(this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry) && !filteredCountries.length"
           class="automatic_label change-country" [translate]="'searchCountry.change-country'"></div>
         <div class="error"
           *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry !== false">
-          1 error(s)</div>
+          1 error</div>
         <div class="error"
           *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry === false">
           2 error(s)</div>
         <span class="error_message" *ngIf="this.isPcdcCountry === false">
           <ion-img
-            *ngIf="this.isPcdcCountry === false  ||( this.isPcdcCountry === false && this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry)"
+            *ngIf="this.isPcdcCountry === false  ||( this.isPcdcCountry === false && this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry) || (this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry === false)"
             class="error_icon" src="assets/images/error_country.svg"></ion-img>
+          <span *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry !== false" class="red-dot"></span>
+
           <div class="search-label-error" [translate]="'searchCountry.not-available'"
             [translateParams]="{ appName, appNameSuffix }">
           </div>
         </span>
         <span class="error_message" *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry">
-          <ion-img  class="error_icon"   src="assets/images/warning.svg"></ion-img>
+          <ion-img  class="error_icon"  *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry === false"  src="assets/images/warning.svg"></ion-img>
+          <span *ngIf="this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry && this.isPcdcCountry !== false" class="red-dot"></span>
 
           <div class="search-label-error" [translate]="'searchCountry.country-not-accurate'"></div>
         </span>
@@ -57,7 +60,7 @@
 
       </div>
       <div class="bottom-layout">
-        <ion-button color="primary" block class="dailycheck_btn btn_margin" [disabled]="!selectedFromList"
+        <ion-button color="primary" block class="dailycheck_btn btn_margin" [disabled]="!selectedFromList && !automaticSearched"
           (click)="confirmCountry()"><span class="submit_button_size" [translate]="'Confirm'"></span></ion-button>
       </div>
     </div>

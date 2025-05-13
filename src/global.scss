@@ -85,7 +85,7 @@ ion-header {
   color: #3e434e !important;
 }
 ion-icon {
-  color: #42516e;
+  color: #161616;
 }
 ion-label {
   color: $light-text2;
@@ -131,9 +131,7 @@ ion-toolbar {
 .header-ios ion-toolbar:last-of-type {
   --border-width: 0px !important;
 }
-ion-icon {
-  color: $light-text2;
-}
+
 ion-accordion-group {
   --ion-background-color: transparent !important;
   ion-accordion {
@@ -205,10 +203,17 @@ ion-content {
   background-size: 100% 100%;
   border-radius: 0px 0px 10px 10px;
 }
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  width: 12px !important;
+  height: 12px !important;
+  background: #74E792;
+}
+
 .swiper-pagination-bullet {
   width: 12px !important;
   height: 12px !important;
-  background: lightgreen;
+  background: #00A044;
+  opacity: unset;
 }
 .yesbtn {
   text-transform: unset;
@@ -237,7 +242,6 @@ ion-content {
   display: none;
 }
 ::-webkit-scrollbar-track-piece {
-  background: #0b0c1a;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb {

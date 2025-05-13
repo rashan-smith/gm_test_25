@@ -37,5 +37,13 @@ export class RegisterSchoolPageComponent implements OnInit {
     this.settingsService.getShell().shell.openExternal(href);
   }
 
+  onContainerClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    // Do not toggle if clicking directly on the input
+    if (target.tagName.toLowerCase() !== 'input') {
+      this.isPrivacyChecked = !this.isPrivacyChecked;
+    }
+  }
+
 
 }

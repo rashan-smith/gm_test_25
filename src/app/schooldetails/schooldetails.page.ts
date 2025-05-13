@@ -18,6 +18,7 @@ export class SchooldetailsPage {
   selectedSchool: any;
   isDisabled = true;
   selectedCountry: any;
+  selectedCountryName: any;
   detectedCountry: any;
   private sub: any;
   private loadingMsg =
@@ -37,6 +38,7 @@ export class SchooldetailsPage {
       this.schoolId = params.schoolId;
       this.selectedCountry = params.selectedCountry;
       this.detectedCountry = params.detectedCountry;
+      this.selectedCountryName = params.selectedCountryName
       this.selectedSchool = {};
       this.searchSchoolBySchooIdAndCountryCode();
       //this.searchSchoolById(this.schoolId);
@@ -84,6 +86,8 @@ export class SchooldetailsPage {
               this.schoolId,
               this.selectedCountry,
               this.detectedCountry,
+              this.selectedCountryName
+
             ]);
             /* Redirect to no result found page */
           },
@@ -95,6 +99,7 @@ export class SchooldetailsPage {
                 this.schoolId,
                 this.selectedCountry,
                 this.detectedCountry,
+                this.selectedCountryName
               ]);
             } else {
               /* Redirect to no result found page */
@@ -103,6 +108,8 @@ export class SchooldetailsPage {
                 this.schoolId,
                 this.selectedCountry,
                 this.detectedCountry,
+                this.selectedCountryName
+
               ]);
             }
           }
@@ -118,6 +125,7 @@ export class SchooldetailsPage {
         this.selectedSchool.school_id,
         this.selectedCountry,
         this.detectedCountry,
+        this.selectedCountryName
       ],
       { state: this.selectedSchool }
     );
@@ -130,6 +138,7 @@ export class SchooldetailsPage {
         'searchschool',
         this.selectedCountry,
         this.detectedCountry,
+        this.selectedCountryName
       ]    );
   }
 

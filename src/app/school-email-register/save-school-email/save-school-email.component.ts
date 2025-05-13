@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-save-school-email',
@@ -8,7 +8,7 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./save-school-email.component.scss'],
 })
 export class SaveSchoolEmailComponent implements OnInit {
-  emailControl = new FormControl('', [Validators.required, Validators.email]);
+  emailControl = new FormControl('', [Validators.required, Validators.email, this.emailDomainValidator]);
 
   constructor(private readonly router: Router) {}
 
@@ -28,4 +28,12 @@ export class SaveSchoolEmailComponent implements OnInit {
     console.log('User skipped adding email');
     this.router.navigate(['/schoolsuccess']);
   }
+  emailDomainValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+    // Check if the value matches the pattern
+    return emailPattern.test(value) ? null : { invalidEmail: true };
+  }
+  
 }

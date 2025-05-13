@@ -45,7 +45,7 @@
           <!-- Template to display when there's only one school -->
           <ng-template #singleSchool>
             <ion-item  lines="none"  [ngClass]="{ 'selected-border': selectedSchool === schoolInfo }"
-            *ngFor="let schoolInfo of schools" class="school_item" (click)="confirmSchool(schoolInfo)">
+            *ngFor="let schoolInfo of schools" class="school_item single_school" (click)="selectedSchool = schoolInfo">
               <ion-label>
                 <span *ngIf="schoolInfo?.name" class="schoolName">{{ schoolInfo.name }}</span>
                 <span *ngIf="schoolInfo?.education_level" class="school_detail">{{ schoolInfo.education_level }}</span>
@@ -64,8 +64,8 @@
     </div>
 
     <!-- Display the "Select" button only if there are multiple schools -->
-    <div class="bottom-layout" *ngIf="schools?.length > 1">
-      <ion-button color="primary" class="searchButton btn_margin" (click)="confirmSchool(selectedSchool)" [disabled]="!selectedSchool">
+    <div class="bottom-layout">
+      <ion-button color="primary" class="searchButton btn_margin" (click)="confirmSchool(selectedSchool)" [disabled]="!selectedSchool.school_id">
         Select
       </ion-button>
     </div>

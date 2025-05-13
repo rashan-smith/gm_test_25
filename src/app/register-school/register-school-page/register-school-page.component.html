@@ -26,14 +26,14 @@
 
 
   <div class="middle-layout">
-    <div class="privacy-container">
+    <label class="privacy-container">
       <div class="input">
         <input type="checkbox" [(ngModel)]="isPrivacyChecked" class="checkbox" (change)="toggleCheckbox()" />
       </div>
       <div class="learnmore">
         I agree to the data policy which includes retention and publication of IP addresses.
       </div>
-    </div>
+    </label>
     <div class="further-info" [innerHTML]="'home.privacy' | translate:{  targetUrl }"
       (click)="openExternalUrl('https://www.unicef.org/legal#privacy-policy')">
     </div>

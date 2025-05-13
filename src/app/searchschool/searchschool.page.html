@@ -5,6 +5,8 @@
     <ion-img src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
   </ion-button>
   <div class="container">
+    <app-selected-detail></app-selected-detail>
+
     <div>
       <div class="provide_id" [translate]="'searchSchool.provide-school-id'"></div>
       <div class="wrap">
@@ -24,11 +26,11 @@
       <div class="accordion-sec">
         <ion-accordion-group value="numbers">
           <ion-accordion value="faq1">
-            <ion-item slot="header">
+            <ion-item lines="none" slot="header">
               <ion-label [translate]="'faq.what-is-school-id'"></ion-label>
             </ion-item>
             <ion-list slot="content">
-              <ion-item>
+              <ion-item lines="none" >
                 <ion-label [translate]="'faq.what-is-school-id-desc'">
                 </ion-label>
               </ion-item>
@@ -39,7 +41,7 @@
               <ion-label [translate]="'faq.how-find-school-id'"></ion-label>
             </ion-item>
             <ion-list slot="content">
-              <ion-item>
+              <ion-item lines="none" >
                 <ion-label [translate]="'faq.how-find-school-id-desc'"></ion-label>
               </ion-item>
             </ion-list>

@@ -1,7 +1,7 @@
 <app-pcdc-header></app-pcdc-header>
 
 <ion-content class="scrollable_content">
-  <ion-card color="light card_margin">
+  <ion-card class="card_margin">
 
     <div class="container centerPos">
       <ion-item class="custom-item" lines="none" color="light">
@@ -149,17 +149,17 @@
 
 
   </ion-card>
-  <ion-card color="light footer_card_margin">
+  <ion-card class="footer_card_margin">
     <ion-label class="latest_measurement">Latest measurements</ion-label>
     <div class="footer-grid">
       <div class="footer-row">
-        <ion-card class="footer-card" color="medium">
+        <ion-card class="footer-card" >
           <ion-card-header class="footer_card_header">
             <ion-card-title>
               <span class="footer_text"> <img src="assets/images/Download.svg" />
                 <span>Download</span>
               </span>
-              <span class="time">1hr Ago</span>
+              <span class="time">{{ currentDate | date:'shortTime' }}</span>
             </ion-card-title>
             <ion-card-subtitle>{{currentRateDownload && !((connectionStatus=='error' && currentState == undefined) ||
               (!onlineStatus)) ? currentRateDownload : '--'}}
@@ -175,7 +175,7 @@
             <ion-card-title><span class="footer_text">
                 <img src="assets/images/Upload.svg" />
                 <span>
-                  Upload </span> </span> <span class="time">1hr Ago</span>
+                  Upload </span> </span> <span class="time">{{ currentDate | date:'shortTime' }}</span>
             </ion-card-title>
             <ion-card-subtitle>{{currentRateUpload && !((connectionStatus=='error' && currentState == undefined) ||
               (!onlineStatus)) ? currentRateUpload : '--'}}
@@ -192,7 +192,7 @@
             <ion-card-title> <span class="footer_text">
                 <img src="assets/images/Arrows--horizontal.svg" />
                 <span>Latency</span>
-              </span> <span class="time">1hr Ago</span>
+              </span> <span class="time">{{ currentDate | date:'shortTime' }}</span>
 
             </ion-card-title>
             <ion-card-subtitle>{{currentRateDownload && !((connectionStatus=='error' && currentState == undefined) ||
@@ -208,7 +208,7 @@
             <ion-card-title>
               <span class="footer_text">
                 <img src="assets/images/Arrows--horizontal.svg" />
-                <span>Ping</span> </span> <span class="time">1hr Ago</span>
+                <span>Ping</span> </span> <span class="time">{{ currentDate | date:'shortTime' }}</span>
             </ion-card-title>
             <ion-card-subtitle>--
               <span class="footer_card_font_size">Mbps</span>

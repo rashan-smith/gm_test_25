@@ -18,6 +18,7 @@
     <div class="error-msg" *ngIf="emailControl.invalid && emailControl.touched">
       <span *ngIf="emailControl.errors?.['required']">Email is required.</span>
       <span *ngIf="emailControl.errors?.['email']">Please enter a valid email address.</span>
+      <span *ngIf="emailControl.errors?.['invalidEmail']">Please enter a valid email with a domain and dot (e.g., info@school.com).</span>
     </div>
   </div>
 </ion-content>

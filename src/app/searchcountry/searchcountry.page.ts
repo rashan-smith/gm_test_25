@@ -1141,10 +1141,13 @@ export class SearchcountryPage {
         this.loading.dismiss();
         if (this.pcdcCountry.length > 0) {
           this.isPcdcCountry = true;
+          console.log(this.pcdcCountry)
+          const selectedCountryName = this.pcdcCountry[0].name
           this.router.navigate([
             'searchschool',
             this.selectedCountry,
             this.detectedCountry,
+            selectedCountryName
           ]);
         } else {
           this.isPcdcCountry = false;

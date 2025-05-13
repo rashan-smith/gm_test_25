@@ -47,12 +47,10 @@ ion-select:hover {
 .searchCountry {
   -webkit-app-region: no-drag;
   width: 100%;
-  border-bottom: 1px solid #222; // change color and size as needed
+  border-bottom: 1px solid #6F6F6F; // change color and size as needed
   border-top: none;
   border-left: none;
   border-right: none;
-
-  border-radius: 5px;
   outline: none;
   color: #fff;
 
@@ -153,10 +151,13 @@ ion-select:hover {
   padding-top: 5px;
 }
 .warning_color {
-  border-color: #F1C21B;
+  // border-color: #F1C21B;
+  border: 2px solid #F1C21B; // change color and size as needed
+
 }
 .error_color {
-  border-color: #b00f0f;;
+  // border-color: #b00f0f;;
+  border: 2px solid #b00f0f;
 }
 
 .error_icon {
@@ -169,3 +170,13 @@ ion-select:hover {
   display: flex;
 }
 
+.red-dot {
+  background-color: #F94B4B;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 4px;
+  margin-top: 9px;
+  height: 4px;
+  width: 5px;
+
+}
