@@ -175,7 +175,6 @@ export class StarttestPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.schoolId = this.storage.get('schoolId');
     this.downloadSub = this.measurementClientService.downloadComplete$.subscribe(data => {
-      console.log('Download completed:', data);
       this.downloadStarted = false;
       if (this.downloadTimer) {
         clearInterval(this.downloadTimer);
@@ -186,18 +185,15 @@ export class StarttestPage implements OnInit, OnDestroy {
     });
 
     this.downloadStartedSub = this.measurementClientService.downloadStarted$.subscribe(data => {
-      console.log('Download started:', data);
       this.downloadStarted = true;
       this.uploadStarted = false;
     });
      this.uploadStartedSub = this.measurementClientService.uploadStarted$.subscribe(data => {
-      console.log('Upload Started:', data);
       this.uploadStarted = true;
       this.downloadStarted = false
     });
 
     this.uploadSub = this.measurementClientService.uploadComplete$.subscribe(data => {
-      console.log('Upload completed:', data);
       this.uploadStarted = false;
       if (this.uploadTimer) {
         clearInterval(this.uploadTimer);
@@ -364,7 +360,6 @@ export class StarttestPage implements OnInit, OnDestroy {
 
         }
       } else if (data.testStatus === 'complete') {
-        console.log('hereeeeee1234', data)
         this.currentState = 'Completed';
         this.currentDate = new Date();
         this.currentRate = data.passedResults['NDTResult.S2C'].LastClientMeasurement.MeanClientMbps?.toFixed(2);

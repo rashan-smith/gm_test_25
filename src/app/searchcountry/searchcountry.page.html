@@ -25,10 +25,11 @@
         </ion-item>
 
         <ion-list *ngIf="filteredCountries.length > 0" class="scrollable scrollable_content">
-          <ion-item *ngFor="let country of filteredCountries" (click)="selectCountry(country)">
-            <ion-button fill="clear" color="dark" class="dropdown_list" (click)="selectCountry(country)"> {{
-              country.name }}
-            </ion-button> </ion-item>
+          <ion-item button="true" class="dropdown_list" *ngFor="let country of filteredCountries" (click)="selectCountry(country)"> {{
+            country.name }}
+            <!-- <ion-button fill="clear" color="dark" class="dropdown_list button_disable_hover" (click)="selectCountry(country)"> -->
+            <!-- </ion-button> -->
+           </ion-item>
         </ion-list>
         <div *ngIf="automaticSearched && !(this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry) && !filteredCountries.length"
           class="automatic_label change-country" [translate]="'searchCountry.change-country'"></div>
@@ -60,7 +61,7 @@
 
       </div>
       <div class="bottom-layout">
-        <ion-button color="primary" block class="dailycheck_btn btn_margin" [disabled]="!selectedFromList && !automaticSearched"
+        <ion-button color="primary" appEnterKeyClick block class="dailycheck_btn btn_margin" [disabled]="!selectedFromList && !automaticSearched"
           (click)="confirmCountry()"><span class="submit_button_size" [translate]="'Confirm'"></span></ion-button>
       </div>
     </div>

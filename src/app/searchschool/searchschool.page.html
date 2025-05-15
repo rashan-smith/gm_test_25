@@ -24,25 +24,25 @@
     </div>
     <div class="bottom-layout">
       <div class="accordion-sec">
-        <ion-accordion-group value="numbers">
+        <ion-accordion-group value="numbers" class="acc_border">
           <ion-accordion value="faq1">
             <ion-item lines="none" slot="header">
-              <ion-label [translate]="'faq.what-is-school-id'"></ion-label>
+              <ion-label class="label_padding" [translate]="'faq.what-is-school-id'"></ion-label>
             </ion-item>
             <ion-list slot="content">
               <ion-item lines="none" >
-                <ion-label [translate]="'faq.what-is-school-id-desc'">
+                <ion-label class="label_padding" [translate]="'faq.what-is-school-id-desc'">
                 </ion-label>
               </ion-item>
             </ion-list>
           </ion-accordion>
           <ion-accordion value="faq2">
             <ion-item slot="header">
-              <ion-label [translate]="'faq.how-find-school-id'"></ion-label>
+              <ion-label class="label_padding" [translate]="'faq.how-find-school-id'"></ion-label>
             </ion-item>
             <ion-list slot="content">
               <ion-item lines="none" >
-                <ion-label [translate]="'faq.how-find-school-id-desc'"></ion-label>
+                <ion-label class="label_padding" [translate]="'faq.how-find-school-id-desc'"></ion-label>
               </ion-item>
             </ion-list>
           </ion-accordion>
@@ -57,7 +57,7 @@
             </ion-list>
           </ion-accordion> -->
         </ion-accordion-group>
-        <ion-button color="primary" type="submit" [innerHTML]="'faq.search-id' | translate" class="searchButton submit_button_size dailycheck_btn"
+        <ion-button color="primary" appEnterKeyClick type="submit" [innerHTML]="'faq.search-id' | translate" class="searchButton submit_button_size dailycheck_btn"
           (click)="searchSchoolBySchooIdAndCountryCode()" [disabled]="isDisabled"></ion-button>
 
       </div>

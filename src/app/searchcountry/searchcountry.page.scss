@@ -121,8 +121,8 @@ ion-select:hover {
 
 .dropdown_list {
   text-transform: none;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 14px !important;
+  font-weight: 400 !important;
 
   &:hover {
     background: none;
@@ -180,3 +180,4 @@ ion-select:hover {
   width: 5px;
 
 }
+

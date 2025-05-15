@@ -405,3 +405,7 @@ ion-breadcrumb::part(native) {
     --padding-top: 0 !important;
     --padding-bottom: 0 !important;  
 }
+
+.accordion-sec ion-accordion-group ion-accordion ion-icon {
+  margin-inline: 15px !important;
+}

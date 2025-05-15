@@ -16,7 +16,9 @@
     // stroke: #46C66D;
     stroke-width: 4;
     &.error {
-        stroke: red;
+        stroke: #F94B4B;
+        --color: #F94B4B !important;
+        color: #F94B4B !important;
       }
     
       &.green {
@@ -99,3 +101,20 @@
     }
   }
   
+  .error_text {
+    --color: #F94B4B !important;
+  }
+  .fill-color-text-error {
+    fill: #F94B4B;
+  }
+
+  .fill-white {
+    fill: #222222;
+  }
+
+  .fill-color-tertiary {
+    fill: #222222
+  }
+  .fill-green {
+    fill: #46C66D;
+  }

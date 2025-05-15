@@ -1,6 +1,6 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content no-bounce>
-  <div class="container font_open_sans">
+  <div class="container font_open_sans" (keydown.enter)="openExternalUrl('hjh')">
     <div class="welcomebg1">
       <div class="middle_container_home">
         <div class="middle_container_home_content">
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="bottom-layout">
-        <ion-button color="primary" block [routerLink]="['/register-school']" class="dailycheck_btn"><span
+        <ion-button color="primary" appEnterKeyClick  block [routerLink]="['/register-school']" class="dailycheck_btn"><span
             class="submit_button_size" [translate]="'home.next'"></span></ion-button>
       </div>
     </div>

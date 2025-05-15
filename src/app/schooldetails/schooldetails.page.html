@@ -65,7 +65,7 @@
 
     <!-- Display the "Select" button only if there are multiple schools -->
     <div class="bottom-layout">
-      <ion-button color="primary" class="searchButton btn_margin" (click)="confirmSchool(selectedSchool)" [disabled]="!selectedSchool.school_id">
+      <ion-button color="primary" appEnterKeyClick class="searchButton btn_margin" (click)="confirmSchool(selectedSchool)" [disabled]="!selectedSchool.school_id">
         Select
       </ion-button>
     </div>

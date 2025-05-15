@@ -26,14 +26,16 @@
             <ion-img src="assets/images/app_run.svg" class="icon3"></ion-img>
             <div class="success-txt" [innerHtml]="'schoolSuccess.app-run' | translate"></div>
             <div class="success-desc-txt" [innerHtml]="'schoolSuccess.app-run-desc' | translate"></div>
+            <div class="success-desc-txt" [innerHtml]="'schoolSuccess.you-can-close' | translate"></div>
+
           </div>
         </div>
       </ion-slide>
     </ion-slides>
     <div class="bottom-layout">
-      <ion-button color="primary" (click)="swipeNext()" class="dailycheck_btn btn_margin" *ngIf="!isLast"
+      <ion-button color="primary" appEnterKeyClick (click)="swipeNext()" class="dailycheck_btn btn_margin" *ngIf="!isLast"
         [translate]="'Get started'"></ion-button>
-      <ion-button color="primary" (click)="moveToStartTest()" class="dailycheck_btn btn_margin" *ngIf="isLast"
+      <ion-button color="primary" appEnterKeyClick (click)="moveToStartTest()" class="dailycheck_btn btn_margin" *ngIf="isLast"
         [translate]="'Go to your dashboard'"></ion-button>
     </div>
   </div>

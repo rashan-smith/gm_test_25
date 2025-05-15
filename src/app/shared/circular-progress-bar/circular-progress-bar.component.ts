@@ -13,18 +13,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     @Input() currentRateUpload!: number;
     @Input() currentRateDownload!: number;
     @Input() error: boolean = false;
-    // @Input() completed: boolean = false;
-    // @Input() consentChecked: boolean = false;
+    @Input() completed: boolean = false;
     
     @Output() startTest = new EventEmitter<void>();
     @Output() showError = new EventEmitter<boolean>();
   
-    handleClick() {
-      console.log('ehandleClick')
-      // if (!this.consentChecked) {
-      //   this.showError.emit(true);
-      //   return;
-      // }
+    handleClick() {  
       if (this.progressValue === 0 || this.progressValue === 100) {
         this.startTest.emit();
       }
@@ -50,8 +44,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     getTextClass(): string {
       if (this.secondLabel) return 'fill-color-tertiary';
       if (this.error) return 'fill-color-text-error';
-      // if (!this.consentChecked) return 'fill-gray';
       return 'fill-white';
+    }
+
+    getGreenColorClass(): string {
+      return 'fill-green';
     }
   }
   

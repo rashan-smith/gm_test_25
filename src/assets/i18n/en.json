@@ -28,7 +28,7 @@
         "enterEmail": "Input Text"
     },
     "schoolNotFound": {
-        "unableToLocate": "We couldn’t find your school: {{schoolId}}",
+        "unableToLocate": "We couldn’t find your school:<br /> {{schoolId}}",
         "notFound": "Unfortunately we were unable to locate your school",
         "tryAgainPlaceholder": "Please make sure you typed the correct ID or try again with a different ID",
         "notRegister": "Unfortunately your school is not registered with {{appName}}\nPlease contact your school administrator to register your school on\nPCDC again."
@@ -39,7 +39,8 @@
         "success-txt": "Your daily internet <br />check is set!",
         "internet-checks": "This App will check your <br />internet status twice daily.",
         "app-run": "The app will run in the <br /> background",
-        "app-run-desc": "Your school data will be collected when device is on. You can close the App."
+        "app-run-desc": "Your school data will be collected when device is on.",
+        "you-can-close": "You can close the App."
     },
     "searchCountry": {
         "check": "Checking country...",
@@ -100,7 +101,7 @@
         "testAgain": "TEST AGAIN",
         "tryAgain": "TEST AGAIN",
         "latency": "Latency: {{latency}}",
-        "testFailed": "Test Failed",
+        "testFailed": "Test failed",
         "testFailedDesc": "The connection was interrupted before testing could be completed. Try again."
     },
     "registerSchoolPage" : {
