@@ -7,6 +7,9 @@ import { SharedService } from './services/shared-service.service';
 import { HistoryService } from './services/history.service';
 import { ScheduleService } from './services/schedule.service';
 import { environment } from '../environments/environment'; // './esrc/environments/environment';
+import { PingResult, PingService } from './services/ping.service';
+import { IndexedDBService } from './services/indexed-db.service';
+import { SyncService } from './services/sync.service';
 
 // const shell = require('electron').shell;
 @Component({
@@ -45,7 +48,10 @@ export class AppComponent {
     private sharedService: SharedService,
     private historyService: HistoryService,
     private settingsService: SettingsService,
-    private scheduleService: ScheduleService
+    private scheduleService: ScheduleService,
+    private pingService: PingService,
+    private localStorageService: IndexedDBService,
+    private syncService: SyncService
   ) {
     this.filteredOptions = [];
     this.selectedLanguage =
@@ -72,6 +78,10 @@ export class AppComponent {
       }
     );
 
+    //15 min call to 3 diff hosts
+    // 2hours save the data from localstorage
+    //if it fails thn delete from local storage
+
     this.settingsService.setSetting(
       'scheduledTesting',
       this.settingsService.currentSettings.scheduledTesting
@@ -91,9 +101,39 @@ export class AppComponent {
       this.refreshHistory.bind(this)
     );
     this.refreshHistory();
+    this.initiatePingService();
     setInterval(() => {
       this.scheduleService.initiate();
     }, 60000);
+  }
+
+  startSyncingPeriodicProcess() {
+    // Start periodic checks every 15 minutes (15 * 60 * 1000 ms)
+    this.pingService.startPeriodicChecks(
+      15 * 60 * 1000,
+      (result: PingResult | null) => {
+        if (result) {
+          console.log('Ping result:', result);
+          this.localStorageService.savePingResult(result);
+        } else {
+          console.log('Ping skipped: Outside active hours.');
+        }
+      }
+    );
+    this.syncService.startPeriodicSync();
+  }
+
+  async initiatePingService() {
+    try {
+      // if (
+      //   !(await this.settingsService.getFeatureFlags())?.pingService === true
+      // ) {
+      //   return console.log('Ping service is disabled, skipping Ping service');
+      // }
+      this.startSyncingPeriodicProcess();
+    } catch (error) {
+      console.error('Error during Ping initiation:', error);
+    }
   }
 
   openSecond() {
