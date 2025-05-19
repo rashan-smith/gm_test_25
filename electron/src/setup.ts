@@ -196,12 +196,11 @@ export class ElectronCapacitorApp {
       y: this.mainWindowState?.y,
       width: this.mainWindowState?.width,
       height: this.mainWindowState?.height,
-      titleBarStyle: 'hidden',
+      // titleBarStyle: 'hidden',
       maximizable: false,
       minimizable: false,
       resizable: true,
-      frame: false,
-      
+      frame: true,
       transparent: false,
       webPreferences: {
         nodeIntegration: true,

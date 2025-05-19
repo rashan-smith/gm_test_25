@@ -16,7 +16,7 @@
       <!-- </div> -->
       <!-- <div class="h-line"></div> -->
       <div class="selectandconfirm" [translate]="'schoolDetails.selectAndConfirm'"></div>
-      <div  class="matches">({{schools?.length}}) results matching with {{schoolId | uppercase}}</div>
+      <div  class="matches" [translate]="'schoolDetails.totalSchools' | translate:{ schoolCount: schools?.length, schoolId: (schoolId | uppercase) }"></div>
 
       <div class="ionListContainer" >
         <div class="ionList">
@@ -32,7 +32,7 @@
                     <span *ngIf="schoolInfo?.admin_1_name" class="school_detail">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span>
                     <div *ngIf="schoolInfo?.lat" class="school_detail"><span class="linkColor">lat long</span> {{ schoolInfo.school_id }}</div>
                     <span *ngIf="schoolInfo?.school_id" class="school_detail">{{ schoolInfo.school_id }}</span>
-                    <span class="school_detail linkColor googleCheck">Check on Giga maps
+                    <span class="school_detail linkColor googleCheck"><span [translate]="'schoolDetails.checkGiga' | translate"></span>
                       <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img>
                     </span>
                     <!-- <br /> -->
@@ -52,7 +52,7 @@
                 <span *ngIf="schoolInfo?.admin_1_name" class="school_detail">{{ schoolInfo.admin_1_name }} - {{ schoolInfo.admin_1_name }}</span>
                 <div *ngIf="schoolInfo?.lat" class="school_detail"><span class="linkColor">lat long</span> {{ schoolInfo.school_id }}</div>
                 <span *ngIf="schoolInfo?.school_id" class="school_detail">{{ schoolInfo.school_id }}</span>
-                <span class="school_detail linkColor googleCheck">Check on Giga maps
+                <span class="school_detail linkColor googleCheck"><span [translate]="'schoolDetails.checkGiga' | translate"></span>
                   <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img>
                 </span>
                 <!-- <br /> -->

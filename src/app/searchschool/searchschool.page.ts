@@ -25,7 +25,7 @@ export class SearchschoolPage {
   appName = environment.appName;
   private loadingMsg =
     // eslint-disable-next-line max-len
-    '<div class="loadContent"><ion-img src="assets/loader/country_loader.gif" class="loaderGif"></ion-img><p class="white" [translate]="\'searchSchool.search\'"></p></div>';
+    '<div class="loadContent"><ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img><p class="white" [translate]="\'searchSchool.search\'"></p></div>';
 
   constructor(
     private router: Router,
@@ -92,7 +92,7 @@ export class SearchschoolPage {
     if (this.schoolId && this.selectedCountry) {
       const loadingMsg =
       // eslint-disable-next-line max-len
-      '<div class="loadContent"><ion-img src="assets/loader/country_loader.gif" class="loaderGif"></ion-img><p class="green_loader">Searching school IDs</p></div>';
+      '<div class="loadContent"><ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img><p class="green_loader">Searching school IDs</p></div>';
     this.loading.present(loadingMsg, 30000000, 'pdcaLoaderClass', 'null'); 
          this.schoolService
         .getBySchoolIdAndCountryCode(this.schoolId, this.selectedCountry)

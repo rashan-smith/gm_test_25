@@ -113,7 +113,7 @@
           <ion-breadcrumb class="font_label" color="primary">Settings</ion-breadcrumb>
           <ion-breadcrumb class="font_label">Test type settings</ion-breadcrumb>
         </ion-breadcrumbs>
-        <ion-item class="select_type_dropdown">
+        <ion-item class="select_type_dropdown" lines="none">
           <ion-label position="stacked">Select Test Type</ion-label>
           <ion-item lines="none" class="searchCountry">
             <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterOptions($event)" debounce="300"
@@ -208,10 +208,10 @@
           <ion-breadcrumb class="font_label">FAQs</ion-breadcrumb>
         </ion-breadcrumbs>
 
-        <div class="accordion-sec">
+        <div class="accordion-sec border_top">
           <ion-accordion-group value="numbers">
             <ion-accordion>
-              <ion-item slot="header">
+              <ion-item slot="header" lines="none">
                 <ion-label [translate]="'faq.what-is-school-id'"></ion-label>
               </ion-item>
               <ion-list slot="content">
@@ -221,7 +221,7 @@
               </ion-list>
             </ion-accordion>
             <ion-accordion>
-              <ion-item slot="header">
+              <ion-item slot="header" lines="none">
                 <ion-label [translate]="'faq.how-find-school-id'"></ion-label>
               </ion-item>
               <ion-list slot="content">
@@ -231,7 +231,7 @@
               </ion-list>
             </ion-accordion>
             <ion-accordion>
-              <ion-item slot="header">
+              <ion-item slot="header" lines="none">
                 <ion-label [translate]="'faq.can-close-app'"></ion-label>
               </ion-item>
               <ion-list slot="content">
@@ -241,7 +241,7 @@
               </ion-list>
             </ion-accordion>
             <ion-accordion>
-              <ion-item slot="header">
+              <ion-item slot="header" lines="none">
                 <ion-label [innerHTML]="'faq.connectivity-checks-occur' | translate"></ion-label>
               </ion-item>
               <ion-list slot="content">
@@ -251,7 +251,7 @@
               </ion-list>
             </ion-accordion>
             <ion-accordion>
-              <ion-item slot="header">
+              <ion-item slot="header" lines="none">
                 <ion-label [translate]="'faq.can-change-id'"></ion-label>
               </ion-item>
               <ion-list slot="content">
@@ -261,7 +261,7 @@
               </ion-list>
             </ion-accordion>
             <ion-accordion>
-              <ion-item slot="header">
+              <ion-item slot="header" lines="none"> 
                 <ion-label [innerHTML]="'faq.multiple-installs' | translate"></ion-label>
               </ion-item>
               <ion-list slot="content">
@@ -271,7 +271,7 @@
               </ion-list>
             </ion-accordion>
             <ion-accordion>
-              <ion-item slot="header">
+              <ion-item slot="header" lines="none">
                 <ion-label [innerHTML]="'faq.dissatisfied-speed' | translate"></ion-label>
               </ion-item>
               <ion-list slot="content">
@@ -322,7 +322,7 @@
   </ion-menu>
   <ion-menu side="end" menuId="new" contentId="content" class="ionMenubg">
     <div class="headerbar">
-      <ion-label class="setting_label">Help</ion-label>
+      <ion-label class="setting_label">What’s new!</ion-label>
       <!-- <ion-icon name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-icon> -->
       <ion-img src="assets/images/Close.svg" name="close-outline" class="closeIcon" (click)="closeHelpenu()"></ion-img>
 

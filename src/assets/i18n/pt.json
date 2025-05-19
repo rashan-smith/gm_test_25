@@ -1,5 +1,6 @@
 {
     "home": {
+        "welcome": "Bem-vindo ao",
         "title1": "Boas-vindas ao {{appName}} <span class='daily-chk-blue'>{{appNameSuffix}}</span>",
         "title2": "Ajude sua escola a obter uma melhor conectividade. Compartilhe diariamente o estado da internet de sua escola com o {{appName}}.",
         "next": "Próximo",
@@ -9,7 +10,8 @@
         "andText": "e pelo M-Lab sob a",
         "privacyPolicy": "Política de Privacidade",
         "privacy": "<a href='https://www.unicef.org/legal#privacy-policy' target={{targetUrl}}>Para mais detalhes sobre como a Giga gerencia seus dados, visite a Política de Privacidade da UNICEF.</a>",
-        "start": "Começar"
+        "start": "Começar",
+        "learnMore": "Saiba mais sobre o Giga Meter"
     },
     "confirmSchool": {
         "title": "As informações abaixo estão corretas?",
@@ -25,7 +27,10 @@
         "selectAndConfirm": "Selecione a escola jurídica",
         "noSchoolList": "A MINHA ESCOLA NÃO ESTÁ NA LISTA",
         "saveEmail":"Por favor, adicione o endereço de e-mail da sua escola",
-        "enterEmail": "Texto de entrada"
+        "enterEmail": "Texto de entrada",
+        "totalSchools": "{{schoolCount}} resultados correspondentes a {{schoolId}}",
+        "checkGiga": "Verifique os mapas Giga"
+
     },
     "schoolNotFound": {
         "unableToLocate": "Não conseguimos encontrar sua escola: {{schoolId}}",
@@ -39,7 +44,8 @@
         "success-txt": "O SEU CONTROLO DIÁRIO DE INTERNET <br />ESTÁ CONFIGURADO",
         "internet-checks": "Este aplicativo verificará a sua <br />situação de internet duas vezes ao dia",
         "app-run": "ESTE APLICATIVO FUNCIONARÁ <br />EM SEGUNDO PLANO",
-        "app-run-desc": "Seus dados escolares serão coletados quando o dispositivo estiver ligado. Você pode fechar o App."
+        "app-run-desc": "Seus dados escolares serão coletados quando o dispositivo estiver ligado.",
+        "you-can-close": "Você pode fechar o App."
     },
     "searchCountry": {
         "check": "Verificando país...",
@@ -47,7 +53,7 @@
         "country": "País",
         "country-not-accurate": "Parece que o país que você selecionou pode não corresponder à sua localização. Tem certeza de que deseja continuar?",
         "please-double-check": "Verifique novamente a sua seleção.",
-        "not-available": "Desculpe, o aplicativo {{appName}} {{appName Suffix}} não está disponível neste país. Por favor escolha outro país."
+        "not-available": "o aplicativo {{appName}} {{appName Suffix}} não está disponível neste país. Por favor escolha outro país."
     },
     "searchSchool": {
         "search": "Procurando por sua escola...",
@@ -96,13 +102,28 @@
         "testAgain": "INICIAR TESTE",
         "latency": "Latência: {{latency}}",
         "testFailed": "TESTE FALHOU",
-        "testFailedDesc": "A conexão foi interrompida antes que o teste pudesse ser concluído. Tente novamente."
+        "testFailedDesc": "A conexão foi interrompida antes que o teste pudesse ser concluído. Tente novamente.",
+        "start": "INICIAR",
+        "test": "TESTE",
+        "network": "Rede do dispositivo",
+        "isp": "Provedor de Internet",
+        "server": "Servidor mais próximo",
+        "measurement": "Medições recentes",
+        "latencyDetail": "Latência",
+        "ping": "Ping",
+        "uploadLowerCase": "Envio",
+        "downloadLowerCase": "Download",
+        "home": "Início",
+        "about": "Sobre"
     },
     "registerSchoolPage" : {
         "title1": "Você está prestes a registrar sua escola",
-        "title2": "Para garantir um bom processo de registro, certifique-se de que as seguintes diretrizes sejam seguidas:",
-        "readMore": "Saiba mais sobre como garantir um bom registro"
-
+        "title2": "Para garantir um bom processo de registro, certifique-se de que os computadores estejam:",
+        "readMore": "Saiba mais sobre como garantir um bom registro",
+        "tip1": "De preferência, em uma conexão com fio",
+        "tip2": "Instalado em 2 dispositivos que são mais usados",
+        "tip3": "Conectado apenas à internet da escola",
+        "privacy":"Concordo com a política de dados que inclui retenção e publicação de endereços IP."
     },
     "resultSchool": "RESULTADOS PARA O ID DA ESCOLA",
     "tryAgain": "TENTAR NOVAMENTE",

@@ -18,22 +18,22 @@
       alt="Error Icon" />
     <text *ngIf="secondLabel === 'DOWNLOAD' || secondLabel === 'UPLOAD'" x="54" y="50" [attr.font-size]="10"
       text-anchor="middle" alignment-baseline="top" [attr.font-weight]="400" [ngClass]="getTextClass()">
-      {{ secondLabel === 'DOWNLOAD' ? 'DOWNLOAD' : 'UPLOAD' }}
+      {{ secondLabel === 'DOWNLOAD' ? ('startTest.download' | translate) : ('startTest.upload' | translate) }}
     </text>
     <text *ngIf="!error && !secondLabel" x="50" y="50" [attr.font-size]="16" text-anchor="middle"
       alignment-baseline="top" [ngClass]="getTextClass()" [attr.font-weight]="400">
-      {{ firstLabel ? 'START' : '' }}
+      {{ firstLabel ? ('startTest.start' | translate) : '' }}
     </text>
     <text *ngIf="!error && !secondLabel" x="50" y="62" [attr.font-size]="16" text-anchor="middle"
       alignment-baseline="central" [ngClass]="getTextClass()" [attr.font-weight]="400">
-      {{ firstLabel ? 'TEST': ''}}
+      {{ firstLabel ? ('startTest.test' | translate): ''}}
     </text>
     <text *ngIf="error" x="50" y="50" [attr.font-size]="12" text-anchor="middle" alignment-baseline="middle" [attr.font-weight]="400"
-      [ngClass]="getTextClass()">
-      TRY AGAIN</text>
+      [ngClass]="getTextClass()" [translate]="'startTest.tryAgain'">
+      </text>
     <text *ngIf="completed" x="50" y="50" [attr.font-size]="12" text-anchor="middle" alignment-baseline="middle" [attr.font-weight]="400"
-      [ngClass]="getTextClass()">
-      TRY AGAIN</text>
+      [ngClass]="getTextClass()" [translate]="'startTest.tryAgain'">
+      </text>
 
     <!-- <text x="57" y="50" [attr.font-size]="10" text-anchor="middle" alignment-baseline="top"
       [ngClass]="getTextClass()">

@@ -67,7 +67,7 @@ ion-content {
         ion-accordion {
             --ion-background-color: #ffffff;
             padding: 0px;
-            border-bottom: 1px solid #353E52;
+            border-bottom: 1px solid #6F6F6F;
 
             ion-label {
                 font-size: 13px;
@@ -159,7 +159,7 @@ ion-content {
 
     ion-label {
         margin-bottom: 12px;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 400;
     }
 }
@@ -187,7 +187,7 @@ ion-content {
     z-index: 999; // On top of other elements
     background: #fff; // White background
     width: 100%; // Match the input width
-    border: 1px solid #ccc; // Outline
+    border: 1px solid #6F6F6F; // Outline
     border-radius: 4px;
     margin-top: 0.25rem; // Small gap below the input
 
@@ -284,8 +284,8 @@ ion-content {
 
 .setting_label {
     font-size: 20px;
-    font-weight: 600;
-    color: #000;
+    font-weight: 700;
+    color: #222 !important;
 }
 
 .backIcon {
@@ -329,6 +329,9 @@ ion-content {
     margin-left: 16px;
     font-size: 14px;
     font-weight: 400;
+  }
+  .border_top {
+    border-top: 1px solid #6F6F6F;
   }
 
   ::ng-deep {

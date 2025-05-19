@@ -6,20 +6,22 @@
       <ion-label class="font_size" [translate]="'schoolDetails.saveEmail'"></ion-label>
     </ion-item>
 
-    <div class="optional">(Optional)</div>
+    <div class="optional" [translate]="'saveEmail.optional'">(Optional)</div>
 
     <ion-item class="custom-gray-item" [class.ion-invalid]="emailControl.invalid && emailControl.touched">
       <ion-input type="email" [formControl]="emailControl" placeholder="e.g. info@school.edu">
       </ion-input>
     </ion-item>
 
-    <div class="text_under_input">Please use an email account linked to your educational institution</div>
+    <!-- <div class="text_under_input" [translate]="'saveEmail.instruction'"></div> -->
 
     <div class="error-msg" *ngIf="emailControl.invalid && emailControl.touched">
-      <span *ngIf="emailControl.errors?.['required']">Email is required.</span>
-      <span *ngIf="emailControl.errors?.['email']">Please enter a valid email address.</span>
-      <span *ngIf="emailControl.errors?.['invalidEmail']">Please enter a valid email with a domain and dot (e.g., info@school.com).</span>
+      <span *ngIf="emailControl.errors?.['required']" [translate]="'saveEmail.emailRequired'"></span>
+      <span *ngIf="emailControl.errors?.['email']" [translate]="'saveEmail.validEmail'"></span><br/>
+      <!-- <span *ngIf="emailControl.errors?.['invalidEmail']" [translate]="'saveEmail.emailFormat'"></span> -->
     </div>
+    <div class="text_under_input" [translate]="'saveEmail.instruction'"></div>
+
   </div>
 </ion-content>
 

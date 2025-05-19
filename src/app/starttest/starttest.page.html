@@ -7,7 +7,7 @@
       <ion-item class="custom-item" lines="none" color="light">
         <ion-label>
           <p class="subtitle">School id</p>
-          <h2 class="title">{{schoolId}}</h2>
+          <h2 class="title" title="schoolId">{{schoolId}}</h2>
         </ion-label>
       </ion-item>
       <!---------   Start test Section ------------------>
@@ -126,22 +126,22 @@
       <ion-list lines="none" class="horizontal-list">
         <ion-item lines="none" class="left-item">
           <ion-label>
-            <h3>Device network</h3>
-            <p>TPLINK396...750</p>
+            <h3  [translate]="'startTest.network'"></h3>
+            <p title="TPLINK396...750">TPLINK396...750</p>
           </ion-label>
         </ion-item>
       
         <ion-item lines="none" class="center-item">
           <ion-label>
-            <h3>ISP</h3>
-            <p>Vodafone</p>
+            <h3  [translate]="'startTest.isp'"></h3>
+            <p title="Vodafone">Vodafone</p>
           </ion-label>
         </ion-item>
       
         <ion-item lines="none" class="right-item">
           <ion-label>
-            <h3>Nearest server</h3>
-            <p>Republic of Tan...</p>
+            <h3  [translate]="'startTest.server'"></h3>
+            <p title="Republic of Tan...">Republic of Tan...</p>
           </ion-label>
         </ion-item>
       </ion-list>
@@ -151,14 +151,14 @@
 
   </ion-card>
   <ion-card class="footer_card_margin">
-    <ion-label class="latest_measurement">Latest measurements</ion-label>
+    <ion-label class="latest_measurement" [translate]="'startTest.measurement'"></ion-label>
     <div class="footer-grid">
       <div class="footer-row">
         <ion-card class="footer-card" >
           <ion-card-header class="footer_card_header">
             <ion-card-title>
               <span class="footer_text"> <img src="assets/images/Download.svg" />
-                <span>Download</span>
+                <span [translate]="'startTest.downloadLowerCase'"></span>
               </span>
               <span class="time">{{ currentDate | date:'shortTime' }}</span>
             </ion-card-title>
@@ -177,8 +177,8 @@
 
             <ion-card-title><span class="footer_text">
                 <img src="assets/images/Upload.svg" />
-                <span>
-                  Upload </span> </span> <span class="time">{{ currentDate | date:'shortTime' }}</span>
+                <span [translate]="'startTest.uploadLowerCase'">
+                    </span> </span> <span class="time">{{ currentDate | date:'shortTime' }}</span>
             </ion-card-title>
             <ion-card-subtitle [ngClass]="{'error_status': (connectionStatus=='error' && currentState == undefined) ||
             (!onlineStatus)}">{{currentRateUpload && !((connectionStatus=='error' && currentState == undefined) ||
@@ -196,7 +196,7 @@
           <ion-card-header class="footer_card_header">
             <ion-card-title> <span class="footer_text">
                 <img src="assets/images/Arrows--horizontal.svg" />
-                <span>Latency</span>
+                <span [translate]="'startTest.latencyDetail'"></span>
               </span> <span class="time">{{ currentDate | date:'shortTime' }}</span>
 
             </ion-card-title>
@@ -215,7 +215,7 @@
             <ion-card-title>
               <span class="footer_text">
                 <img src="assets/images/Arrows--horizontal.svg" />
-                <span>Ping</span> </span> <span class="time">{{ currentDate | date:'shortTime' }}</span>
+                <span [translate]="'startTest.ping'"></span> </span> <span class="time">{{ currentDate | date:'shortTime' }}</span>
             </ion-card-title>
             <ion-card-subtitle [ngClass]="{'error_status': (connectionStatus=='error' && currentState == undefined) ||
             (!onlineStatus)}">---

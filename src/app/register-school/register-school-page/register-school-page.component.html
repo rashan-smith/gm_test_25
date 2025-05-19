@@ -11,10 +11,10 @@
   <div class="register_title2" [translate]="'registerSchoolPage.title2' | translate"></div>
   <div class="check_tip_wraper">
     <div class="check_tip"> <ion-img src="assets/images/Icon.svg"></ion-img>
-      <span>Preferably, on a wired connection</span>
+      <span [translate]="'registerSchoolPage.tip1'| translate"></span>
     </div>
-    <div class="check_tip"><ion-img src="assets/images/Icon.svg"></ion-img><span>Installed on 2 devices that are mostly used</span></div>
-    <div class="check_tip"><ion-img src="assets/images/Icon.svg"></ion-img><span>Connected only to the school internet</span></div>
+    <div class="check_tip"><ion-img src="assets/images/Icon.svg"></ion-img><span [translate]="'registerSchoolPage.tip2'| translate"></span></div>
+    <div class="check_tip"><ion-img src="assets/images/Icon.svg" ></ion-img><span [translate]="'registerSchoolPage.tip3'| translate"></span></div>
   </div>
   <div class="read_content">
 
@@ -30,8 +30,7 @@
       <div class="input">
         <input type="checkbox" [(ngModel)]="isPrivacyChecked" class="checkbox" (change)="toggleCheckbox()" />
       </div>
-      <div class="learnmore">
-        I agree to the data policy which includes retention and publication of IP addresses.
+      <div class="learnmore" [translate]="'registerSchoolPage.privacy' | translate">
       </div>
     </label>
     <div class="further-info" [innerHTML]="'home.privacy' | translate:{  targetUrl }"

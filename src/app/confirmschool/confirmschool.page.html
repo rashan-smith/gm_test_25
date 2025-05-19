@@ -20,7 +20,7 @@
           <span *ngIf="school?.lat" class="school_detail"><span class="linkColor">admin_1_name long</span></span><br *ngIf="school?.lat" />
           <span *ngIf="school?.school_id" class="school_detail">{{school.school_id}}</span><br  *ngIf="school?.school_id"/>
 
-          <span class="school_detail googleCheck linkColor">Check on Giga maps
+          <span class="school_detail googleCheck linkColor"><span [translate]="'schoolDetails.checkGiga' | translate"></span>
             <ion-img src="assets/images/Launch.png" class="welcome_icon"></ion-img>
           </span><br />
         </ion-label>

@@ -132,6 +132,8 @@ ion-select:hover {
 .scrollable {
   max-height: 255px;
   overflow: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* nice soft shadow */
+  border: 1px solid #ccc;
 }
 
 .error {
@@ -157,7 +159,7 @@ ion-select:hover {
 }
 .error_color {
   // border-color: #b00f0f;;
-  border: 2px solid #b00f0f;
+  border: 2px solid #F94B4B;
 }
 
 .error_icon {
@@ -181,3 +183,10 @@ ion-select:hover {
 
 }
 
+.half-border-bottom::after {
+  content: "";
+  display: block;
+  width: 50%;
+  border-bottom: 1px solid #ccc;
+  margin-top: 10px; /* space between content and border */
+}

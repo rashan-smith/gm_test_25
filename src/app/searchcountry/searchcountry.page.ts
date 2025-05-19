@@ -1125,8 +1125,8 @@ export class SearchcountryPage {
     }
     const loadingMsg =
       // eslint-disable-next-line max-len
-      '<div class="loadContent"><ion-img src="assets/loader/country_loader.gif" class="loaderGif"></ion-img><p class="white" [translate]="\'searchCountry.check\'"></p></div>';
-    this.loading.present(loadingMsg, 3000, 'pdcaLoaderClass', 'null');
+      '<div class="loadContent"><ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img><p class="white" [translate]="\'searchCountry.check\'"></p></div>';
+    this.loading.present(loadingMsg, 9000, 'pdcaLoaderClass', 'null');
 
     this.countryService.getPcdcCountryByCode(this.selectedCountry).subscribe(
       (response) => {

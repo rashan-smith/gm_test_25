@@ -24,11 +24,9 @@
 
         </ion-item>
 
-        <ion-list *ngIf="filteredCountries.length > 0" class="scrollable scrollable_content">
-          <ion-item button="true" class="dropdown_list" *ngFor="let country of filteredCountries" (click)="selectCountry(country)"> {{
+        <ion-list *ngIf="filteredCountries.length > 0" class="scrollable scrollable_content ">
+          <ion-item button="true" class="dropdown_list half-border-bottom" lines="none" *ngFor="let country of filteredCountries" (click)="selectCountry(country)"> {{
             country.name }}
-            <!-- <ion-button fill="clear" color="dark" class="dropdown_list button_disable_hover" (click)="selectCountry(country)"> -->
-            <!-- </ion-button> -->
            </ion-item>
         </ion-list>
         <div *ngIf="automaticSearched && !(this.selectedCountry !=='' && this.selectedCountry !== this.detectedCountry) && !filteredCountries.length"
