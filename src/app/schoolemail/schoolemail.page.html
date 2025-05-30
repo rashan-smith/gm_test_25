@@ -1,0 +1,48 @@
+     <app-pcdc-header></app-pcdc-header>
+    <ion-content>
+    <div class="container">
+        <div class="top-layout">
+            <h2>{{ 'schoolEmail.header' | translate }}</h2>
+            <p>{{ 'schoolEmail.description' | translate }}</p>
+            <p>({{ 'schoolEmail.optional' | translate }})</p>  
+        </div>
+        <div class="">
+            <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+                <div class="email-container">
+                    <ion-item>
+                        <ion-input 
+                        #emailInput
+                        type="email" 
+                        name="email"
+                        formControlName="email" 
+                        [placeholder]="'schoolEmail.placeholder' | translate"
+                        autofocus="true">
+                        </ion-input>
+                    </ion-item>
+                
+                    <div class="validation-errors" *ngIf="emailForm.get('email').touched && emailForm.get('email').errors?.email">
+                        <span>{{ 'schoolEmail.emailInvalid' | translate }}</span>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <ion-button fill="outline" class="skip-button" (click)="skipEmail()">
+                        {{ 'schoolEmail.skip' | translate }}
+                    </ion-button>
+                
+                    <ion-button 
+                        type="submit"
+                        [disabled]="emailForm.get('email').errors?.email"
+                        class="add-button">
+                        {{ 'schoolEmail.add' | translate }}
+                    </ion-button>
+                </div>
+
+                <div class="search-label-error" *ngIf="submissionError">
+                    {{ submissionError | translate }}
+                </div>
+            </form>
+        </div>
+    </div>
+    </ion-content>
+

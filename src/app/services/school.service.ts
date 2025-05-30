@@ -72,12 +72,62 @@ export class SchoolService {
     }
    * @returns 
    */
-  registerSchoolDevice(data): Observable<{}>{
-    return this.http.post(environment.restAPI + 'dailycheckapp_schools', data ,this.options).pipe(
-      map((response:any) => response.data.user_id),
-      tap(data => console.log(JSON.stringify(data))),
-      catchError(this.handleError)
-    );
+  registerSchoolDevice(data): Observable<{}> {
+    return this.http
+      .post(environment.restAPI + 'dailycheckapp_schools', data, this.options)
+      .pipe(
+        map((response: any) => response.data.user_id),
+        tap((data) => console.log(JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
+  /**
+   * Update the school device info
+   *
+   * @param data Object with these parameters {
+      "mac_address": "",
+      "email": ""
+  **/
+  updateSchoolDeviceWithEmail(data): Observable<{}> {
+    return this.http
+      .put(environment.restAPI + 'dailycheckapp_schools', data, this.options)
+      .pipe(
+        map((response: any) => response.data.user_id),
+        tap((data) => console.log(JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
+  /**
+   * Return all wrong giga id school and the right giga id school
+   *
+   * @returns
+   */
+  getAllWrongGigaId(): Observable<ResponseDto<WrongGigaIdSchool>> {
+    return this.http
+      .get(environment.restAPI + `dailycheckapp_data_fix`, this.options)
+      .pipe(
+        map((response: any) => response),
+        tap((data) => console.log(JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
+  /**
+   * Return the wrong giga id school and the right giga id school
+   *
+   * @param id Wrong giga id school id
+   * @returns
+   */
+  checkRightGigaId(id): Observable<ResponseDto<WrongGigaIdSchool>> {
+    return this.http
+      .get(environment.restAPI + `dailycheckapp_data_fix/${id}`, this.options)
+      .pipe(
+        map((response: any) => response),
+        tap((data) => console.log(JSON.stringify(data))),
+        catchError(this.handleError)
+      );
   }
   
   /**
@@ -86,7 +136,7 @@ export class SchoolService {
       "detected_country": "",
       "selected_country": "",
       "school_id": "",
-      
+      "email": "",
       "created": ""
     }
    * @returns 

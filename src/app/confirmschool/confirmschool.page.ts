@@ -93,8 +93,14 @@ export class ConfirmschoolPage {
               this.storage.set('school_id', this.school.school_id);
               this.storage.set('schoolInfo', JSON.stringify(this.school));
               this.loading.dismiss();
-              this.router.navigate(['/schoolsuccess']);
-            }), (err) => {
+              // this.router.navigate(['/schoolsuccess']);
+              this.router.navigate([
+                'schoolemail',
+                this.schoolId,
+                this.selectedCountry,
+                this.detectedCountry])
+            }),
+            (err) => {
               this.loading.dismiss();
               this.router.navigate(['schoolnotfound', this.schoolId, this.selectedCountry, this.detectedCountry]);
               /* Redirect to no result found page */

@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./schooldetails/schooldetails.module').then( m => m.SchooldetailsPageModule)
   },
   {
+    path: 'schoolemail/:schoolId/:selectedCountry/:detectedCountry',
+    loadChildren: () => import('./schoolemail/schoolemail.module').then(m => m.SchoolemailPageModule)
+  },
+  {
     path: 'confirmschool/:schoolId/:selectedCountry/:detectedCountry',
     loadChildren: () => import('./confirmschool/confirmschool.module').then( m => m.ConfirmschoolPageModule)
   }

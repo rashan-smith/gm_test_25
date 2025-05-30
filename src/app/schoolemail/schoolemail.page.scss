@@ -1,0 +1,122 @@
+// @import '../../theme/variables.scss'; 
+
+.container {
+  height: 100%;
+  
+  .top-layout {
+    padding: 20px;
+    
+    h2 {
+      color: white;
+      margin-bottom: 16px;
+    }
+    
+    p {
+      color: #E2E2E2;
+      margin-bottom: 24px;
+    }
+  }
+
+  .email-container {
+    padding: 0 20px;
+    margin-bottom: 20px;
+
+    ion-item {
+      --background: transparent;
+      --border-color: transparent;
+      --padding-start: 0;
+      --padding-end: 0;
+      --inner-padding-end: 0;
+      --inner-padding-start: 0;
+      --highlight-height: 1px;
+      
+      ion-label {
+        color: #E2E2E2;
+      }
+
+      ion-input {
+        --background: #454545;
+        --color: #ffffff;
+        --padding-start: 16px;
+        --padding-end: 16px;
+        --padding-top: 16px;
+        --padding-bottom: 16px;
+        --placeholder-color: #999;
+        margin-top: 20px;
+        background: #454545;
+        border-radius: 4px;
+
+        &::part(native) {
+          background: #454545;
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      }
+    }
+  }
+
+  .email-input-group {
+    margin-bottom: 10px;
+    
+    ion-item {
+      --padding-start: 0;
+      --inner-padding-end: 0;
+    }
+  }
+
+  .add-email-button {
+    margin-top: 10px;
+    --color: var(--ion-color-primary);
+    
+    ion-icon {
+      margin-right: 8px;
+    }
+  }
+
+  .validation-errors {
+    color: var(--ion-color-danger);
+    font-size: 12px;
+    margin-top: 4px;
+    padding-left: 16px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 20px;
+    
+    .skip-button {
+      --color: var(--ion-color-medium);
+    }
+    
+    .add-button {
+      --background: var(--ion-color-primary);
+    }
+  }
+
+  .error-message {
+    margin-top: 16px;
+    text-align: center;
+    padding: 0 20px;
+
+    .error-text {
+      color: var(--ion-color-danger);
+      font-size: 14px;
+      margin: 0;
+      font-weight: 500;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+  }
+
+  .search-label-error {
+    color: var(--ion-color-danger);
+    font-size: 14px;
+    margin: 8px 0;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.4;
+    opacity: 0.9;
+  }
+}
