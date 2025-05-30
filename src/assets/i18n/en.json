@@ -1,7 +1,4 @@
 {
-    "SET UP DAILY CHECK":"SET UP DAILY CHECK",
-    "LEARN MORE ABOUT PROJECT CONNECT":"LEARN MORE ABOUT PROJECT CONNECT",
-    "Help your school get better connectivity. Share your school internet status with Project Connectivity everyday.":"Help your school get better connectivity. Share your school's internet status with Project Connectivity everyday.",
     "home": {
         "title1": "Welcome to {{appName}} <span class='daily-chk-blue'>{{appNameSuffix}}</span>",
         "title2": "Help your school get better connectivity. Share your school internet status with {{appName}} everyday.",

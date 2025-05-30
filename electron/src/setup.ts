@@ -1,3 +1,5 @@
+/* eslint-disable object-shorthand */
+/* eslint-disable @typescript-eslint/member-ordering */
 import type { CapacitorElectronConfig } from '@capacitor-community/electron';
 import {
   CapElectronEventEmitter,
@@ -6,7 +8,7 @@ import {
 } from '@capacitor-community/electron';
 import chokidar from 'chokidar';
 import type { MenuItemConstructorOptions } from 'electron';
-import { app, BrowserWindow, Menu, MenuItem, nativeImage, Tray, session, shell } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem, nativeImage, Tray, session, shell, globalShortcut } from 'electron';
 import electronIsDev from 'electron-is-dev';
 import electronServe from 'electron-serve';
 import windowStateKeeper from 'electron-window-state';
@@ -51,15 +53,17 @@ export class ElectronCapacitorApp {
   private TrayIcon: Tray | null = null;
   private CapacitorFileConfig: CapacitorElectronConfig;
   private TrayMenuTemplate: (MenuItem | MenuItemConstructorOptions)[] = [
-    new MenuItem({ label: 'Open', click:  function(){
-          this.MainWindow.show();
-        } 
+    new MenuItem({
+      label: 'Open', click: function () {
+        this.MainWindow.show();
+      }
     }),
-    new MenuItem({ label: 'Quit App', click: function(){
+    new MenuItem({
+      label: 'Quit App', click: function () {
         isQuiting = true;
         app.quit();
         this.MainWindow.close();
-      }  
+      }
     }),
   ];
   private AppMenuBarMenuTemplate: (MenuItem | MenuItemConstructorOptions)[] = [
@@ -93,7 +97,7 @@ export class ElectronCapacitorApp {
       scheme: this.customScheme,
     });
   }
-  
+
 
   // Helper function to load in the app.
   private async loadMainWindow(thisRef: any) {
@@ -130,8 +134,8 @@ export class ElectronCapacitorApp {
       // titleBarOverlay: true,
       maximizable: false,
       minimizable: false,
-      resizable: false,
-      transparent: true, 
+      resizable: true,
+      transparent: true,
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: true,
@@ -140,6 +144,7 @@ export class ElectronCapacitorApp {
         preload: preloadPath,
       },
     });
+    this.MainWindow.setSize(376, 550);
     this.mainWindowState.manage(this.MainWindow);
 
     if (this.CapacitorFileConfig.backgroundColor) {
@@ -152,8 +157,6 @@ export class ElectronCapacitorApp {
         this.SplashScreen.getSplashWindow().close();
       }
     });
-    
-
     // When the tray icon is enabled, setup the options.
     if (this.CapacitorFileConfig.electron?.trayIconAndMenuEnabled) {
       this.TrayIcon = new Tray(icon);
@@ -236,9 +239,18 @@ export class ElectronCapacitorApp {
       if (!this.CapacitorFileConfig.electron?.hideMainWindowOnLaunch) {
         this.MainWindow.show();
       }
+      globalShortcut.register('Control+Shift+I', () => {
+        if(this.MainWindow.webContents.isDevToolsOpened()){
+          this.MainWindow.webContents.closeDevTools();
+        }
+        else{
+          this.MainWindow.webContents.openDevTools();
+        }
+    });
       setTimeout(() => {
         if (this.CapacitorFileConfig.electron?.electronIsDev) {
           this.MainWindow.webContents.openDevTools();
+          this.MainWindow.setSize(800, 600);
         }
         CapElectronEventEmitter.emit('CAPELECTRON_DeeplinkListenerInitialized', '');
       }, 400);
@@ -254,7 +266,7 @@ export class ElectronCapacitorApp {
             this.MainWindow.restore();
           } else {
             this.MainWindow.show();
-          }        
+          }
           this.MainWindow.focus();
         }
       });
@@ -266,16 +278,16 @@ export class ElectronCapacitorApp {
     });
 
     measureAppAutoLuncher.enable();
-    measureAppAutoLuncher.isEnabled().then(function(isEnabled){
-      if(isEnabled){
-          return;
+    measureAppAutoLuncher.isEnabled().then(function (isEnabled) {
+      if (isEnabled) {
+        return;
       }
       measureAppAutoLuncher.enable();
     })
-    .catch(function(err){
+      .catch(function (err) {
         // handle error
         console.log(err)
-    });
+      });
     // End of Auto lunching code
 
   }

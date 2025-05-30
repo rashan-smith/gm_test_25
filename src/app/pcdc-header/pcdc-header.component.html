@@ -1,0 +1,30 @@
+<ion-header no-shadow>
+  <ion-toolbar class="header-toolbar">
+    <div slot="start">
+      <ion-label [routerLink]="['/home']">
+        {{ appName | uppercase }}
+        {{ appNameSuffix }}
+      </ion-label>
+    </div>
+    <ion-buttons slot="end">
+      <ion-select [(ngModel)]="selectedLanguage" (ionChange)="onLanguageChange()" class="custom-select">
+        <ion-select-option *ngFor="let language of languages" [value]="language.code">
+          {{ language.label }}
+        </ion-select-option>
+      </ion-select>
+      <ion-label class="selected-label" onclick="document.querySelector('ion-select').open()"
+        onmouseover="this.style.cursor='pointer'">
+        {{ selectedLanguageName }}
+      </ion-label>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="closeAppBtn">
+    <ion-icon slot="icon-only" name="close-outline" (click)="closeApp()"></ion-icon>
+  </div>
+</ion-header>
+<div class="testMode">
+  {{ test ? "Test Mode" :"" }}
+</div>
