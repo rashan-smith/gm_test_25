@@ -1,6 +1,7 @@
 @file:JvmName("Downloader")
 package net.measurementlab.ndt7.android
 
+import android.util.Log
 import com.google.gson.Gson
 import net.measurementlab.ndt7.android.models.CallbackRegistry
 import net.measurementlab.ndt7.android.models.Measurement
@@ -73,7 +74,8 @@ class Downloader(
     }
 
     fun beginDownload(url: String, httpClient: OkHttpClient?) {
-        webSocket = SocketFactory.establishSocketConnection(url, httpClient, this)
+      Log.d("GIGA","beginDownload")
+      webSocket = SocketFactory.establishSocketConnection(url, httpClient, this)
     }
 
     fun cancel() {
