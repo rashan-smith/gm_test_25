@@ -19,7 +19,7 @@
 
   .email-container {
     padding: 0 20px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 
     ion-item {
       --background: transparent;
@@ -56,34 +56,43 @@
   }
 
   .email-input-group {
-    margin-bottom: 10px;
-    
-    ion-item {
-      --padding-start: 0;
-      --inner-padding-end: 0;
-    }
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .remove-email {
+    --padding-start: 4px;
+    --padding-end: 4px;
+    margin: 0;
+    height: 24px;
+    width: 24px;
+  }
+
+  .add-email-container {
+    margin: 8px 0 16px;
+    text-align: left;
   }
 
   .add-email-button {
-    margin-top: 10px;
     --color: var(--ion-color-primary);
+    margin: 0;
+    height: 32px;
     
     ion-icon {
-      margin-right: 8px;
+      margin-right: 4px;
     }
   }
 
   .validation-errors {
     color: var(--ion-color-danger);
     font-size: 12px;
-    margin-top: 4px;
-    padding-left: 16px;
+    margin: 4px 0 0 16px;
   }
 
   .button-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 24px;
     padding: 0 20px;
     
     .skip-button {
@@ -112,11 +121,7 @@
 
   .search-label-error {
     color: var(--ion-color-danger);
-    font-size: 14px;
-    margin: 8px 0;
     text-align: center;
-    font-weight: 500;
-    line-height: 1.4;
-    opacity: 0.9;
+    margin-top: 16px;
   }
 }

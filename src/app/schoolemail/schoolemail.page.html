@@ -8,21 +8,30 @@
         </div>
         <div class="">
             <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
-                <div class="email-container">
-                    <ion-item>
-                        <ion-input 
-                        #emailInput
-                        type="email" 
-                        name="email"
-                        formControlName="email" 
-                        [placeholder]="'schoolEmail.placeholder' | translate"
-                        autofocus="true">
-                        </ion-input>
-                    </ion-item>
-                
-                    <div class="validation-errors" *ngIf="emailForm.get('email').touched && emailForm.get('email').errors?.email">
-                        <span>{{ 'schoolEmail.emailInvalid' | translate }}</span>
+                <div class="email-container" formArrayName="emails">
+                    <div *ngFor="let email of emailFormArray.controls; let i = index" [formGroupName]="i" class="email-input-group">
+                        <ion-item>
+                            <ion-input 
+                                type="email" 
+                                formControlName="email" 
+                                [placeholder]="i === 0 ? ('schoolEmail.placeholder' | translate) : ('schoolEmail.additionalPlaceholder' | translate)"
+                                [autofocus]="i === 0">
+                            </ion-input>
+                            <ion-button *ngIf="i > 0" fill="clear" (click)="removeEmail(i)" class="remove-email">
+                                <ion-icon name="close-circle"></ion-icon>
+                            </ion-button>
+                        </ion-item>
+                        <div class="validation-errors" *ngIf="email.get('email').touched && email.get('email').errors?.email">
+                            <span>{{ 'schoolEmail.emailInvalid' | translate }}</span>
+                        </div>
                     </div>
+                </div>
+
+                <div class="add-email-container" *ngIf="emailFormArray.length < 3">
+                    <ion-button fill="clear" (click)="addEmail()" class="add-email-button">
+                        <ion-icon name="add-circle-outline"></ion-icon>
+                        {{ 'schoolEmail.addAnother' | translate }}
+                    </ion-button>
                 </div>
 
                 <div class="button-container">
@@ -32,7 +41,7 @@
                 
                     <ion-button 
                         type="submit"
-                        [disabled]="emailForm.get('email').errors?.email"
+                        [disabled]="!emailForm.valid"
                         class="add-button">
                         {{ 'schoolEmail.add' | translate }}
                     </ion-button>

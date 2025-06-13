@@ -117,7 +117,7 @@ export class SchoolService {
       );
   }
 
-   * Update the school device info
+  /** Update the school device info
    *
    * @param data Object with these parameters {
       "mac_address": "",
@@ -125,7 +125,7 @@ export class SchoolService {
   **/
   updateSchoolDeviceWithEmail(data): Observable<{}> {
     return this.http
-      .put(environment.restAPI + 'dailycheckapp_schools', data, this.options)
+      .put(environment.restAPI + 'dailycheckapp_schools/email', data, this.options)
       .pipe(
         map((response: any) => response.data.user_id),
         tap((data) => console.log(JSON.stringify(data))),
@@ -133,7 +133,7 @@ export class SchoolService {
       );
   }
 
-   * Return all wrong giga id school and the right giga id school
+   /** Return all wrong giga id school and the right giga id school
    *
    * @returns
    */
