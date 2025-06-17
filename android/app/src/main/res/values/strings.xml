@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">Unicef-Giga</string>
   <string name="title_activity_main">Unicef-Giga</string>
-  <string name="package_name">io.ionic.starter</string>
-  <string name="custom_url_scheme">io.ionic.starter</string>
+  <string name="package_name">com.meter.giga</string>
+  <string name="custom_url_scheme">com.meter.giga</string>
   <string name="notification_header">GIGA Speed Test</string>
 </resources>

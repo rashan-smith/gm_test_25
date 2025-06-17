@@ -1,0 +1,60 @@
+package com.meter.giga.prefrences
+
+
+import android.content.Context
+import androidx.core.content.edit
+import com.meter.giga.utils.Constants.GIGA_APP_PREFERENCES
+import com.meter.giga.utils.Constants.KEY_COUNTRY_CODE
+import com.meter.giga.utils.Constants.KEY_FIRST_15_EXECUTED_TIME
+import com.meter.giga.utils.Constants.KEY_FIRST_15_SCHEDULED_TIME
+import com.meter.giga.utils.Constants.KEY_GIGA_SCHOOL_ID
+import com.meter.giga.utils.Constants.KEY_LAST_EXECUTION_DAY
+import com.meter.giga.utils.Constants.KEY_LAST_SLOT_EXECUTION_HOUR
+import com.meter.giga.utils.Constants.KEY_SCHOOL_ID
+import java.util.Calendar
+
+class AlarmSharedPref(context: Context) {
+
+  private val prefs = context.getSharedPreferences(GIGA_APP_PREFERENCES, Context.MODE_PRIVATE)
+
+  var first15ExecutedTime: Long
+    get() = prefs.getLong(KEY_FIRST_15_EXECUTED_TIME, -1L)
+    set(value) = prefs.edit() { putLong(KEY_FIRST_15_EXECUTED_TIME, value) }
+
+  var first15ScheduledTime: Long
+    get() = prefs.getLong(KEY_FIRST_15_SCHEDULED_TIME, -1L)
+    set(value) = prefs.edit() { putLong(KEY_FIRST_15_SCHEDULED_TIME, value) }
+
+  var lastExecutionDay: Int
+    get() = prefs.getInt(KEY_LAST_EXECUTION_DAY, -1)
+    set(value) = prefs.edit() { putInt(KEY_LAST_EXECUTION_DAY, value) }
+
+  var lastSlotHour: Int
+    get() = prefs.getInt(KEY_LAST_SLOT_EXECUTION_HOUR, -1)
+    set(value) = prefs.edit() { putInt(KEY_LAST_SLOT_EXECUTION_HOUR, value) }
+
+  var countryCode: Int
+    get() = prefs.getInt(KEY_COUNTRY_CODE, -1)
+    set(value) = prefs.edit() { putInt(KEY_COUNTRY_CODE, value) }
+
+  var schoolId: String
+    get() = prefs.getString(KEY_SCHOOL_ID, "").toString()
+    set(value) = prefs.edit() { putString(KEY_SCHOOL_ID, value) }
+
+  var gigaSchoolId: String
+    get() = prefs.getString(KEY_GIGA_SCHOOL_ID, "").toString()
+    set(value) = prefs.edit() { putString(KEY_GIGA_SCHOOL_ID, value) }
+
+  fun isNewDay(): Boolean {
+    val today = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
+    return today != lastExecutionDay
+  }
+
+  fun resetForNewDay() {
+    first15ScheduledTime = -1
+    first15ExecutedTime = -1
+    lastSlotHour = -1
+    lastExecutionDay = -1
+  }
+}
+

@@ -1,7 +1,7 @@
 import { ElectronCapacitorConfig } from '@capacitor-community/electron';
 
 const config: ElectronCapacitorConfig  = {
-  appId: 'io.ionic.starter',
+  appId: 'com.meter.giga',
   appName: 'unicef-pdca',
   webDir: 'www',
   bundledWebRuntime: false,
