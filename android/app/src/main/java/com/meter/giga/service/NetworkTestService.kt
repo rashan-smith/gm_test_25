@@ -162,7 +162,6 @@ class NetworkTestService : LifecycleService() {
       Log.d("GIGA NetworkTestService", "download speed: $speed")
       val msg = "DL: %.2f Mbps | UL: %.2f Mbps".format(downloadSpeed, uploadSpeed)
       updateNotification(msg)
-      GigaAppPlugin.sendSpeedUpdate(downloadSpeed, uploadSpeed)
     }
 
     override fun onUploadProgress(clientResponse: ClientResponse) {
@@ -174,8 +173,6 @@ class NetworkTestService : LifecycleService() {
       Log.d("GIGA NetworkTestService", "upload speed: $speed")
       val msg = "DL: %.2f Mbps | UL: %.2f Mbps".format(downloadSpeed, uploadSpeed)
       updateNotification(msg)
-      GigaAppPlugin.sendSpeedUpdate(downloadSpeed, uploadSpeed)
-
     }
 
     override fun onFinished(

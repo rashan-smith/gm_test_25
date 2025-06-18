@@ -3,11 +3,18 @@ package com.meter.giga.utils
 object Constants {
 
   //String Constants
+  const val REGISTRATION_COUNTRY_CODE = "country_code"
+  const val REGISTRATION_SCHOOL_ID = "school_id"
+  const val REGISTRATION_GIGA_SCHOOL_ID = "giga_school_id"
+  const val REGISTRATION_BROWSER_ID = "browser_id"
+  const val REGISTRATION_IP_ADDRESS = "ip_address"
   const val CHANNEL_ID = "GIGA_SPEED_TEST"
   const val FOREGROUND_SERVICE_TAG = "GIGA_SPEED_TEST_SERVICE"
   const val FIRST_15_MIN = "FIRST_15_MIN"
   const val NEXT_SLOT = "NEXT_SLOT"
   const val SCHEDULE_TYPE = "SCHEDULE_TYPE"
+  const val KEY_BROWSER_ID = "BROWSER_ID"
+  const val KEY_IP_ADDRESS = "IP_ADDRESS"
   const val KEY_COUNTRY_CODE = "COUNTRY_CODE"
   const val KEY_SCHOOL_ID = "SCHOOL_ID"
   const val KEY_GIGA_SCHOOL_ID = "GIGA_SCHOOL_ID"

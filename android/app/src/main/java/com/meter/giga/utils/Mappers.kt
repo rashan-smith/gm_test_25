@@ -84,9 +84,9 @@ fun SpeedTestResultRequestEntity.toModel(): SpeedTestResultRequestModel {
     createdAt = createdAt,
     dataDownloaded = dataDownloaded,
     dataUploaded = dataUploaded,
-    dataUsage = dataUsage,
+    dataUsage = null,
     deviceType = deviceType,
-    download = download,
+    download = 0,
     gigaIdSchool = gigaIdSchool,
     id = id,
     ipAddress = ipAddress,
@@ -98,7 +98,7 @@ fun SpeedTestResultRequestEntity.toModel(): SpeedTestResultRequestModel {
     source = source,
     timestamp = timestamp,
     uUID = uUID,
-    upload = upload
+    upload = 0
   )
 }
 

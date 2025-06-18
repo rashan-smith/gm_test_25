@@ -32,8 +32,8 @@ public class MainActivity extends BridgeActivity {
 
   private final ActivityResultLauncher<Intent> alarmPermissionLauncher =
     registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-      r -> scheduleAlarm());
-
+      r -> {
+      });
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -77,38 +77,7 @@ public class MainActivity extends BridgeActivity {
         alarmPermissionLauncher.launch(intent);    // modern API
         return;
       }
-    }
-    scheduleAlarm();                     // ✅ all done
-  }
-
-  @SuppressLint("ScheduleExactAlarm")
-  private void scheduleAlarm() {
-    AlarmSharedPref alarmPrefs = new AlarmSharedPref(this);
-    long now = System.currentTimeMillis();
-    int lastExecutionDate = alarmPrefs.getLastExecutionDay();
-
-    if (alarmPrefs.isNewDay()) {
-      alarmPrefs.resetForNewDay();
-      long randomIn15Min = now + (long) (Math.random() * (15 * 60 * 1000L));
-      alarmPrefs.setFirst15ScheduledTime(randomIn15Min);
-      Log.d("GIGA MainActivity", "On Main Activity New Day 15 Min " + randomIn15Min);
-
-      AlarmHelper.scheduleExactAlarm(this, randomIn15Min, "FIRST_15_MIN");
-    } else if (alarmPrefs.getFirst15ExecutedTime() == -1L) {
-      long randomIn15Min = now + (long) (Math.random() * (15 * 60 * 1000L));
-      alarmPrefs.setFirst15ScheduledTime(randomIn15Min);
-      Log.d("GIGA MainActivity", "Not Executed 15 Min" + randomIn15Min);
-      AlarmHelper.scheduleExactAlarm(this, randomIn15Min, "FIRST_15_MIN");
-    } else {
-      long executedTime = alarmPrefs.getFirst15ExecutedTime();
-      int currentSlotStartHour = AlarmHelper.getSlotStartHour(executedTime);
-      Pair<Long, Long> range = AlarmHelper.getNextSlotRange(executedTime, currentSlotStartHour, lastExecutionDate);
-      long start = range.getFirst();
-      long end = range.getSecond();
-      long nextAlarmTime = start + (long) (Math.random() * (end - start));
-      Log.d("GIGA MainActivity", "For New Slot" + nextAlarmTime);
-      AlarmHelper.scheduleExactAlarm(this, nextAlarmTime, "NEXT_SLOT");
-    }
+    }     // ✅ all done
   }
 
   /* ------------------- CALLBACKS ------------------- */

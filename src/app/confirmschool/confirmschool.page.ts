@@ -14,6 +14,8 @@ import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { SettingsService } from '../services/settings.service';
 import { TranslateService } from '@ngx-translate/core';
+import { registerPlugin } from '@capacitor/core';
+const GigaAppPlugin = registerPlugin<any>('GigaAppPlugin');
 @Component({
   selector: 'app-confirmschool',
   templateUrl: 'confirmschool.page.html',
@@ -96,6 +98,7 @@ export class ConfirmschoolPage {
               this.storage.set('country_code', this.selectedCountry);
               this.storage.set('school_id', this.school.school_id);
               this.storage.set('schoolInfo', JSON.stringify(this.school));
+              this.storeRegistrationDataAndScheduleSpeedTest(response, this.school.school_id, this.school.giga_id_school, this.selectedCountry, c?.ip )
               this.loading.dismiss();
               this.router.navigate(['/schoolsuccess']);
               this.settings.setSetting('scheduledTesting', true);
@@ -152,6 +155,23 @@ export class ConfirmschoolPage {
       });
     });
   }
+
+ async storeRegistrationDataAndScheduleSpeedTest(browserId: any, schoolId: String, gigaSchoolId: String, countryCode: String, ipAddress: String){
+    console.log("GIGA GigaAppPlugin : Schedule Speed Test ");
+    console.log("GIGA Params : browserId : ", browserId);
+    console.log("GIGA Params : schoolId : ", schoolId);
+    console.log("GIGA Params : gigaSchoolId : ", gigaSchoolId);
+    console.log("GIGA Params : countryCode : ", countryCode);
+    console.log("GIGA Params : ipAddress : ", ipAddress);
+    const result = await GigaAppPlugin.scheduleSpeedTestWorker({
+      "browser_id": browserId,
+      "school_id": schoolId,
+      "giga_school_id": gigaSchoolId,
+      "country_code": countryCode,
+      "ip_address": ipAddress
+    });
+    console.log("GIGA Plugin Call Result : ", result);
+  };
 
   async getDeviceInfo() {
     const info = await Device.getInfo();

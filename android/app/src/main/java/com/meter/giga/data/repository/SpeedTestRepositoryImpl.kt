@@ -43,7 +43,7 @@ class SpeedTestRepositoryImpl : SpeedTestRepository {
   override suspend fun getServerInfoData(metro: String?): ResultState<ServerInfoResponseEntity?> {
     Log.d("GIGA SpeedTestRepositoryImpl", "getClientInfoData Invoked")
     val response = if (metro != null && metro != "automatic") {
-      RetrofitInstanceBuilder.serverInfoApi.getServerMetroInfo(metro)
+      RetrofitInstanceBuilder.serverInfoApi.getServerMetroInfo(metro = metro)
     } else {
       RetrofitInstanceBuilder.serverInfoApi.getServerInfoNoPolicy()
     }
