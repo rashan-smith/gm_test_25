@@ -7,7 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 
-import com.meter.giga.reciever.ScheduleBroadcastReceiver
+import com.meter.giga.receiver.ScheduleBroadcastReceiver
 import com.meter.giga.utils.Constants.SCHEDULE_TYPE
 import java.util.Calendar
 import kotlin.jvm.java

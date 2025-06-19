@@ -16,7 +16,7 @@ import com.meter.giga.domain.entity.response.ClientInfoResponseEntity
 import com.meter.giga.domain.entity.response.ServerInfoResponseEntity
 import com.meter.giga.domain.usecases.GetClientInfoUseCase
 import com.meter.giga.domain.usecases.GetServerInfoUseCase
-import com.meter.giga.ionic_plugin.GigaAppPlugin
+import com.meter.giga.domain.usecases.PostSpeedTestUseCase
 import com.meter.giga.prefrences.AlarmSharedPref
 import com.meter.giga.utils.Constants.CHANNEL_ID
 import com.meter.giga.utils.Constants.DEVICE_TYPE_ANDROID
@@ -62,6 +62,9 @@ class NetworkTestService : LifecycleService() {
     val scheduleType = intent?.getStringExtra(SCHEDULE_TYPE) ?: SCHEDULE_TYPE_DAILY
     val schoolId = prefs.schoolId
     val gigaSchoolId = prefs.gigaSchoolId
+    val browserId = prefs.browserId
+    val ipAddress = prefs.ipAddress
+    val countryCode = prefs.countryCode
     val appVersion = GigaUtil.getAppVersionName(this)
     val isRunningOnChromebook = GigaUtil.isRunningOnChromebook(this)
     val client = NDTTestImpl(
@@ -70,7 +73,10 @@ class NetworkTestService : LifecycleService() {
       schoolId,
       gigaSchoolId,
       appVersion,
-      isRunningOnChromebook
+      isRunningOnChromebook,
+      browserId,
+      ipAddress,
+      countryCode
     )
     client.startTest(NDTTest.TestType.DOWNLOAD_AND_UPLOAD)
     return START_STICKY
@@ -130,7 +136,10 @@ class NetworkTestService : LifecycleService() {
     private val schoolId: String,
     private val gigaSchoolId: String,
     private val appVersion: String,
-    private val isRunningOnChromebook: Boolean
+    private val isRunningOnChromebook: Boolean,
+    private val browserId: String,
+    private val ipAddress: String,
+    private val countryCode: String
   ) :
     NDTTest(okHttpClient) {
     var downloadSpeed = 0.0;
@@ -191,7 +200,10 @@ class NetworkTestService : LifecycleService() {
           schoolId,
           gigaSchoolId,
           appVersion,
-          isRunningOnChromebook
+          isRunningOnChromebook,
+          browserId,
+          countryCode,
+          ipAddress
         )
       }
     }
@@ -201,7 +213,10 @@ class NetworkTestService : LifecycleService() {
       schoolId: String,
       gigaSchoolId: String,
       appVersion: String,
-      isRunningOnChromebook: Boolean
+      isRunningOnChromebook: Boolean,
+      browserId: String,
+      countryCode: String,
+      ipAddress: String
     ) {
       Log.d("GIGA NetworkTestService", "publishSpeedTestData Invoked")
       lifecycleScope.launch(Dispatchers.IO) {
@@ -308,9 +323,37 @@ class NetworkTestService : LifecycleService() {
                   DEVICE_TYPE_CHROMEBOOK
                 } else {
                   DEVICE_TYPE_ANDROID
-                }
+                },
+                browserId,
+                countryCode,
+                ipAddress
 
               )
+              val postSpeedTestUseCase = PostSpeedTestUseCase()
+              val postSpeedTestResultState =
+                postSpeedTestUseCase.invoke(speedTestResultRequestEntity)
+              when (postSpeedTestResultState) {
+                is ResultState.Failure -> {
+                  Log.d(
+                    "GIGA NetworkTestService",
+                    "Speed Test Not Published Successfully Due to ${postSpeedTestResultState.error}"
+                  )
+                }
+
+                ResultState.Loading -> {
+                  Log.d(
+                    "GIGA NetworkTestService",
+                    "Uploading Speed Test Data"
+                  )
+                }
+
+                is ResultState.Success<*> -> {
+                  Log.d(
+                    "GIGA NetworkTestService",
+                    "Speed Test Data Published Successfully"
+                  )
+                }
+              }
             }
           } else {
             Log.e("NetworkTestService", "Failed to fetch one or both APIs")

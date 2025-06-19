@@ -25,6 +25,10 @@ import com.meter.giga.domain.entity.request.SpeedTestResultRequestEntity
 import com.meter.giga.domain.entity.request.TCPInfoRequestEntity
 import com.meter.giga.domain.entity.response.ClientInfoResponseEntity
 import com.meter.giga.domain.entity.response.ServerInfoResponseEntity
+import net.measurementlab.ndt7.android.models.BBRInfo
+import net.measurementlab.ndt7.android.models.ConnectionInfo
+import net.measurementlab.ndt7.android.models.Measurement
+import net.measurementlab.ndt7.android.models.TCPInfo
 
 fun ClientInfoResponseModel.toEntity(): ClientInfoResponseEntity? {
   return ClientInfoResponseEntity(
@@ -139,6 +143,93 @@ fun LastClientMeasurementRequestEntity.toModel(): LastClientMeasurementRequestMo
     numBytes = numBytes
   )
 }
+
+fun Measurement.toEntity(): LastServerMeasurementRequestEntity {
+  return LastServerMeasurementRequestEntity(
+    bbrInfo = bbrInfo?.toEntity(),
+    connectionInfo = connectionInfo.toEntity(),
+    tcpInfo = tcpInfo?.toEntity()
+  )
+}
+
+fun BBRInfo.toEntity(): BBRInfoRequestEntity {
+  return BBRInfoRequestEntity(
+    bw = bw,
+    cwndGain = cwndGain,
+    elapsedTime = elapsedTime,
+    minRTT = minRtt,
+    pacingGain = pacingGain
+  )
+}
+
+fun ConnectionInfo.toEntity(): ConnectionInfoRequestEntity {
+  return ConnectionInfoRequestEntity(
+    client = client,
+    server = server,
+    uuid = uuid
+  )
+}
+
+fun TCPInfo.toEntity(): TCPInfoRequestEntity {
+  return TCPInfoRequestEntity(
+    ato = ato,
+    advMSS = advMss,
+    appLimited = appLimited,
+    backoff = backoff,
+    busyTime = busyTime,
+    bytesAcked = bytesAcked,
+    bytesReceived = bytesReceived,
+    bytesRetrans = bytesRetrans,
+    bytesSent = bytesSent,
+    caState = caState,
+    dSackDups = dSackDups,
+    dataSegsIn = dataSegsIn,
+    dataSegsOut = dataSegsOut,
+    delivered = delivered,
+    deliveredCE = deliveredCE,
+    deliveryRate = deliveryRate,
+    elapsedTime = elapsedTime,
+    fackets = fackets,
+    lastAckRecv = lastAckRecv,
+    lastAckSent = lastAckSent,
+    lastDataRecv = lastDataRecv,
+    lastDataSent = lastDataSent,
+    lost = lost,
+    maxPacingRate = maxPacingRate,
+    minRTT = minRtt,
+    notsentBytes = notSentBytes,
+    options = options,
+    pmtu = pmtu,
+    pacingRate = pacingRate,
+    probes = probes,
+    rto = rto,
+    rtt = rtt,
+    rttVar = rttVar,
+    rWndLimited = rWndLimited,
+    rcvMSS = rcvMss,
+    rcvOooPack = 0,
+    rcvRTT = rcvRtt,
+    rcvSpace = rcvSpace,
+    rcvSsThresh = rcvSsThresh,
+    reordSeen = reordSeen,
+    reordering = reordering,
+    retrans = retrans,
+    retransmits = retransmits,
+    sacked = sacked,
+    segsIn = segsIn,
+    segsOut = segsOut,
+    sndBufLimited = sndBufLimited,
+    sndCwnd = sndCwnd,
+    sndMSS = sndMss,
+    sndSsThresh = sndSsThresh,
+    sndWnd = sndCwnd,
+    state = state,
+    totalRetrans = totalRetrans,
+    unacked = unacked,
+    wScale = wScale
+  )
+}
+
 
 fun LastServerMeasurementRequestEntity.toModel(): LastServerMeasurementRequestModel {
   return LastServerMeasurementRequestModel(

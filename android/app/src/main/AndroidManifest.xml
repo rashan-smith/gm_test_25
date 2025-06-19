@@ -48,17 +48,13 @@
       android:exported="false"
       android:foregroundServiceType="dataSync" />
     <!-- Register receiver -->
-    <receiver android:name=".reciever.ScheduleBroadcastReceiver" />
+    <receiver android:name=".receiver.ScheduleBroadcastReceiver" />
     <receiver
-      android:name=".reciever.BootBroadCastReceiver"
+      android:name=".receiver.BootBroadCastReceiver"
       android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.BOOT_COMPLETED" />
       </intent-filter>
     </receiver>
   </application>
-
-  <!-- Permissions -->
-
-  <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

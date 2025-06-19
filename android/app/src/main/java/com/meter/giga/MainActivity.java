@@ -3,7 +3,6 @@ package com.meter.giga;
 import static com.meter.giga.utils.Constants.REQ_NOTIF_PERMISSION;
 import static com.meter.giga.utils.Constants.REQ_STORAGE_PERMISSION;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.content.Context;
 import android.content.Intent;
@@ -12,21 +11,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.getcapacitor.BridgeActivity;
-
-import com.meter.giga.ararm_scheduler.AlarmHelper;
-import com.meter.giga.prefrences.AlarmSharedPref;
-
-import kotlin.Pair;
 
 public class MainActivity extends BridgeActivity {
 
@@ -75,7 +67,6 @@ public class MainActivity extends BridgeActivity {
         intent.setData(Uri.parse("package:" + this.getPackageName()));
 
         alarmPermissionLauncher.launch(intent);    // modern API
-        return;
       }
     }     // ✅ all done
   }

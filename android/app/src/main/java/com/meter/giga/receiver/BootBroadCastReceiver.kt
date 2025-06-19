@@ -1,4 +1,4 @@
-package com.meter.giga.reciever
+package com.meter.giga.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -30,13 +30,13 @@ class BootBroadCastReceiver : BroadcastReceiver() {
     if (alarmPrefs.isNewDay()) {
       alarmPrefs.resetForNewDay()
       val now = System.currentTimeMillis()
-      val randomIn15Min = now + 60 * 1000 + Random.nextLong(0, 14 * 60 * 1000L)
+      val randomIn15Min = now + Random.nextLong(0, 15 * 60 * 1000L)
       alarmPrefs.first15ScheduledTime = randomIn15Min
       Log.d("GIGA BootBroadCastReceiver", "On Boot New Day 15 Min $randomIn15Min")
       AlarmHelper.scheduleExactAlarm(context, randomIn15Min, FIRST_15_MIN)
     } else if (alarmPrefs.first15ExecutedTime == -1L) {
       val now = System.currentTimeMillis()
-      val randomIn15Min = now + 60 * 1000 + Random.nextLong(0, 14 * 60 * 1000L)
+      val randomIn15Min = now + Random.nextLong(0, 15 * 60 * 1000L)
       alarmPrefs.first15ScheduledTime = randomIn15Min
       Log.d("GIGA BootBroadCastReceiver", "On Boot Not Executed 15 Min $randomIn15Min")
       AlarmHelper.scheduleExactAlarm(context, randomIn15Min, FIRST_15_MIN)

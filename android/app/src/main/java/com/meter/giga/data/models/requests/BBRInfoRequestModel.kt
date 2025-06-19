@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName
 
 data class BBRInfoRequestModel(
   @SerializedName("BW")
-  val bW: Int?,
+  val bW: Long?,
   @SerializedName("CwndGain")
-  val cwndGain: Int?,
+  val cwndGain: Long?,
   @SerializedName("ElapsedTime")
-  val elapsedTime: Int?,
+  val elapsedTime: Long?,
   @SerializedName("MinRTT")
-  val minRTT: Int?,
+  val minRTT: Long?,
   @SerializedName("PacingGain")
-  val pacingGain: Int?
+  val pacingGain: Long?
 )

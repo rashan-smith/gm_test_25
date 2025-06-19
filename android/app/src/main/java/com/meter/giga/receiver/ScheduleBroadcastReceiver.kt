@@ -1,4 +1,4 @@
-package com.meter.giga.reciever
+package com.meter.giga.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
