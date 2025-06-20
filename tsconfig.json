@@ -16,10 +16,6 @@
       "es2018",
       "dom"
     ],
-    "types": [
-      "node",
-      "electron"
-    ],
     "typeRoots": [
       "./src/types",
       "./node_modules/@types"

@@ -2,19 +2,9 @@ import type { BrowserWindow, webContents } from '@electron/remote';
 
 declare global {
   interface Window {
-    require: NodeJS.Require;
-    process: NodeJS.Process;
+    require: any;
+    process: any;
     __dirname: string;
-  }
-
-  namespace NodeJS {
-    interface Require {
-      (id: string): any;
-      resolve: (id: string) => string;
-      cache: { [path: string]: any };
-      extensions: { [extension: string]: (module: any, filename: string) => any };
-      main: { filename: string };
-    }
   }
 }
 

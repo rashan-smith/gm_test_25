@@ -46,7 +46,7 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "update-electron-app": "^2.0.1",
-    "zone.js": "~0.13.3"
+    "zone.js": "~0.14.10"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^16.0.1",
@@ -66,11 +66,10 @@
     "@ionic/angular-toolkit": "^5.0.0",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "12.12.21",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
     "babel-loader": "^10.0.0",
-    "electron": "^17.0.1",
+    "electron": "^25.9.8",
     "electron-packager": "^16.0.0",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
@@ -87,7 +86,7 @@
     "path-browserify": "^1.0.1",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
-    "typescript": "~4.9.3"
+    "typescript": "~5.2.2"
   },
   "description": "A network speed measure application by Ericsson for Unicef"
 }
