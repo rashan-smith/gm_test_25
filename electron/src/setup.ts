@@ -185,7 +185,7 @@ export class ElectronCapacitorApp {
     }
 
     // Setup the main manu bar at the top of our window.
-    if (this.CapacitorFileConfig.electron?.appMenuBarMenuTemplateEnabled) {
+    if ((this.CapacitorFileConfig.electron as any)?.appMenuBarMenuTemplateEnabled) {
       Menu.setApplicationMenu(Menu.buildFromTemplate(this.AppMenuBarMenuTemplate));
     } else {
       Menu.setApplicationMenu(new Menu());
@@ -248,7 +248,7 @@ export class ElectronCapacitorApp {
         }
     });
       setTimeout(() => {
-        if (this.CapacitorFileConfig.electron?.electronIsDev) {
+        if ((this.CapacitorFileConfig.electron as any)?.electronIsDev) {
           this.MainWindow.webContents.openDevTools();
           this.MainWindow.setSize(800, 600);
         }

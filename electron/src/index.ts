@@ -111,7 +111,7 @@ if (!gotTheLock) {
 
   autoUpdater.on("update-downloaded", (_event, releaseNotes, releaseName) => {
     const dialogOpts = {
-      type: 'info',
+      type: 'info' as const,
       buttons: ['Restart / Reinicie. / Перезапуск', 'Later / Después / Позже'],
       title: 'Giga Meter Update',
       message: process.platform === 'win32' ? releaseNotes : releaseName,
@@ -134,7 +134,7 @@ if (!gotTheLock) {
 
 
         const dialogOpts = {
-          type: 'info',
+          type: 'info' as const,
           buttons: ['Restart / Reinicie. / Перезапуск', 'Later / Después / Позже'],
           title: 'Giga Meter Update',
           message: process.platform === 'win32' ? releaseNotes : releaseName,
@@ -149,7 +149,7 @@ if (!gotTheLock) {
       } catch (error) {
         console.error('Error during update installation:', error);
         const dialogOpts = {
-          type: 'info',
+          type: 'info' as const,
           buttons: ['Restart / Reinicie. / Перезапуск', 'Later / Después / Позже'],
           title: 'Giga Meter Update',
           message: process.platform === 'win32' ? releaseNotes : releaseName,
