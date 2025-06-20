@@ -12,8 +12,7 @@
     "build:electron-publish": "ng build && npx cap sync @capacitor-community/electron && cd electron && npm run electron:make",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "npx patch-package"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
