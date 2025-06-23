@@ -117,8 +117,23 @@ export class SchoolService {
       );
   }
 
-  /**
-   * Return all wrong giga id school and the right giga id school
+  /** Update the school device info
+   *
+   * @param data Object with these parameters {
+      "mac_address": "",
+      "email": ""
+  **/
+  updateSchoolDeviceWithEmail(data): Observable<{}> {
+    return this.http
+      .put(environment.restAPI + 'dailycheckapp_schools/email', data, this.options)
+      .pipe(
+        map((response: any) => response.data.user_id),
+        tap((data) => console.log(JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
+   /** Return all wrong giga id school and the right giga id school
    *
    * @returns
    */
@@ -178,6 +193,7 @@ export class SchoolService {
       "detected_country": "",
       "selected_country": "",
       "school_id": "",
+      "email": "",
       "created": ""
     }
    * @returns

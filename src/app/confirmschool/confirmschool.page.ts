@@ -97,8 +97,12 @@ export class ConfirmschoolPage {
               this.storage.set('school_id', this.school.school_id);
               this.storage.set('schoolInfo', JSON.stringify(this.school));
               this.loading.dismiss();
-              this.router.navigate(['/schoolsuccess']);
-              this.settings.setSetting('scheduledTesting', true);
+              // this.router.navigate(['/schoolsuccess']);
+              this.router.navigate([
+                'schoolemail',
+                this.schoolId,
+                this.selectedCountry,
+                this.detectedCountry])
             }),
             (err) => {
               this.loading.dismiss();
