@@ -86,7 +86,7 @@
     "path-browserify": "^1.0.1",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
-    "typescript": "~5.2.2"
+    "typescript": "^5.4.5"
   },
   "description": "A network speed measure application by Ericsson for Unicef"
 }
