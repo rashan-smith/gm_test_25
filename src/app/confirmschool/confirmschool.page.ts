@@ -15,9 +15,10 @@ import { environment } from 'src/environments/environment';
 import { SettingsService } from '../services/settings.service';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-confirmschool',
-  templateUrl: 'confirmschool.page.html',
-  styleUrls: ['confirmschool.page.scss'],
+    selector: 'app-confirmschool',
+    templateUrl: 'confirmschool.page.html',
+    styleUrls: ['confirmschool.page.scss'],
+    standalone: false
 })
 export class ConfirmschoolPage {
   @ViewChild(IonAccordionGroup, { static: true })

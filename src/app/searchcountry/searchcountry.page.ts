@@ -12,9 +12,10 @@ import { CountryService } from '../services/country.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 @Component({
-  selector: 'app-searchcountry',
-  templateUrl: 'searchcountry.page.html',
-  styleUrls: ['searchcountry.page.scss'],
+    selector: 'app-searchcountry',
+    templateUrl: 'searchcountry.page.html',
+    styleUrls: ['searchcountry.page.scss'],
+    standalone: false
 })
 export class SearchcountryPage {
   @ViewChild(IonAccordionGroup, { static: true })

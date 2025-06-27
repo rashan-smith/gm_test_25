@@ -21,9 +21,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../services/storage.service';
 
 @Component({
-  selector: 'app-starttest',
-  templateUrl: 'starttest.page.html',
-  styleUrls: ['starttest.page.scss'],
+    selector: 'app-starttest',
+    templateUrl: 'starttest.page.html',
+    styleUrls: ['starttest.page.scss'],
+    standalone: false
 })
 export class StarttestPage implements OnInit {
   @ViewChild(IonAccordionGroup, { static: true })
