@@ -44,6 +44,6 @@ export class PcdcHeaderComponent implements OnInit {
   closeApp() {
     this.settingsService
       .getIpcRenderer()
-      .ipcRenderer.send('closeFromUi', 'minimize');
+      .send('closeFromUi', 'minimize');
   }
 }
