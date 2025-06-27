@@ -37,7 +37,7 @@
     "electron": "^29.4.6",
     "electron-builder": "~20.44.4",
     "electron-rebuild": "^3.2.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   },
   "keywords": [
     "capacitor",
