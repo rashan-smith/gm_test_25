@@ -76,8 +76,9 @@ object GigaUtil {
       countryCode = countryCode,
       deviceType = deviceType,
       download = 0.0,//TODO(),
+      upload = 0.0,//TODO(),
       gigaIdSchool = gigaSchoolId,
-      ipAddress = ipAddress,
+      ipAddress = if (ipAddress == "") clientInfoRequestEntity.ip else ipAddress,
       latency = "0",//TODO(),
       notes = scheduleType,
       results = ResultsRequestEntity(
@@ -100,7 +101,6 @@ object GigaUtil {
       ),
       schoolId = schoolId,
       serverInfo = serverInfoRequestEntity,
-      upload = TODO(),
       timestampLocal = currentTime,
       timestamp = convertToIso(currentTime),
       uUID = uploadMeasurement?.connectionInfo?.uuid,

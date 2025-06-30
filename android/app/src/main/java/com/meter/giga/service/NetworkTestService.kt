@@ -286,7 +286,7 @@ class NetworkTestService : LifecycleService() {
               is ResultState.Success<*> -> {
                 val serverInfoResponse = serverInfo.data as ServerInfoResponseEntity
                 serverInfoRequest = ServerInfoRequestEntity(
-                  city = serverInfoResponse.city,
+                  city = serverInfoResponse.city?.replace('_', ' ') ?: "",
                   country = serverInfoResponse.country,
                   fQDN = serverInfoResponse.fqdn,
                   iPv4 = serverInfoResponse.ipv4,
