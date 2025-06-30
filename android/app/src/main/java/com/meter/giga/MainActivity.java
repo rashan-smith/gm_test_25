@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.getcapacitor.BridgeActivity;
+import com.meter.giga.ionic_plugin.GigaAppPlugin;
 
 public class MainActivity extends BridgeActivity {
 
@@ -29,6 +30,7 @@ public class MainActivity extends BridgeActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    registerPlugin(GigaAppPlugin.class);
     super.onCreate(savedInstanceState);
     checkStoragePermission(this);
   }

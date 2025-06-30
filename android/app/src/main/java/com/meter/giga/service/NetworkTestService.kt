@@ -146,6 +146,8 @@ class NetworkTestService : LifecycleService() {
     var uploadSpeed = 0.0;
     var lastDownloadMeasurement: Measurement? = null
     var lastUploadMeasurement: Measurement? = null
+    var lastDownloadResponse: ClientResponse? = null
+    var lastUploadResponse: ClientResponse? = null
 
     override fun onMeasurementDownloadProgress(measurement: Measurement) {
       super.onMeasurementDownloadProgress(measurement)
@@ -170,6 +172,7 @@ class NetworkTestService : LifecycleService() {
       downloadSpeed = speed.toDouble()
       Log.d("GIGA NetworkTestService", "download speed: $speed")
       val msg = "DL: %.2f Mbps | UL: %.2f Mbps".format(downloadSpeed, uploadSpeed)
+      lastDownloadResponse = clientResponse
       updateNotification(msg)
     }
 
@@ -181,6 +184,7 @@ class NetworkTestService : LifecycleService() {
       uploadSpeed = speed.toDouble();
       Log.d("GIGA NetworkTestService", "upload speed: $speed")
       val msg = "DL: %.2f Mbps | UL: %.2f Mbps".format(downloadSpeed, uploadSpeed)
+      lastUploadResponse = clientResponse
       updateNotification(msg)
     }
 
@@ -326,7 +330,9 @@ class NetworkTestService : LifecycleService() {
                 },
                 browserId,
                 countryCode,
-                ipAddress
+                ipAddress,
+                lastDownloadResponse,
+                lastUploadResponse
 
               )
               val postSpeedTestUseCase = PostSpeedTestUseCase()

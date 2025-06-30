@@ -163,12 +163,12 @@ export class ConfirmschoolPage {
     console.log("GIGA Params : gigaSchoolId : ", gigaSchoolId);
     console.log("GIGA Params : countryCode : ", countryCode);
     console.log("GIGA Params : ipAddress : ", ipAddress);
-    const result = await GigaAppPlugin.scheduleSpeedTestWorker({
-      "browser_id": browserId,
-      "school_id": schoolId,
-      "giga_school_id": gigaSchoolId,
-      "country_code": countryCode,
-      "ip_address": ipAddress
+    const result = await GigaAppPlugin.storeAndScheduleSpeedTest({
+      "browser_id": browserId || "",
+      "school_id": schoolId || "",
+      "giga_school_id": gigaSchoolId || "",
+      "country_code": countryCode || "",
+      "ip_address": ipAddress || ""
     });
     console.log("GIGA Plugin Call Result : ", result);
   };

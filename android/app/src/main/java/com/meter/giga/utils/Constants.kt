@@ -39,4 +39,7 @@ object Constants {
   const val NOTIFICATION_ID = 101
   const val REQ_NOTIF_PERMISSION: Int = 102
   const val REQ_STORAGE_PERMISSION: Int = 103
+
+  // Date Format
+  const val M_D_YYYY_H_MM_SS_A = "M/d/yyyy, h:mm:ss a"
 }
