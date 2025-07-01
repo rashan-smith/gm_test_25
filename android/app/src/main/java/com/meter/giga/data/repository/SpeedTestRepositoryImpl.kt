@@ -12,7 +12,18 @@ import com.meter.giga.utils.ResultState
 import com.meter.giga.utils.toEntity
 import com.meter.giga.utils.toModel
 
+/**
+ * SpeedTestRepositoryImpl provides abstract implementation of
+ * SpeedTestRepository interface
+ */
 class SpeedTestRepositoryImpl : SpeedTestRepository {
+  /**
+   * This function provides getClientInfoData function
+   * implementation
+   * @return ResultState<ClientInfoResponseEntity?> : Result State
+   * as Success as ClientInfoResponseEntity instance
+   * as Failure as String Message with failure message
+   */
   override suspend fun getClientInfoData(): ResultState<ClientInfoResponseEntity?> {
     Log.d("GIGA SpeedTestRepositoryImpl", "getClientInfoData Invoked")
     val response = RetrofitInstanceBuilder.clintInfoApi.getClientInfo()
@@ -40,6 +51,14 @@ class SpeedTestRepositoryImpl : SpeedTestRepository {
     )
   }
 
+  /**
+   * This function provides getServerInfoData function
+   * implementation
+   * @param metro : Null or value if user has selected any metro
+   * @return ResultState<ServerInfoResponseEntity?> : Result State
+   * as Success as ServerInfoResponseEntity instance
+   * as Failure as String Message with failure message
+   */
   override suspend fun getServerInfoData(metro: String?): ResultState<ServerInfoResponseEntity?> {
     Log.d("GIGA SpeedTestRepositoryImpl", "getClientInfoData Invoked")
     val response = if (metro != null && metro != "automatic") {
@@ -62,6 +81,15 @@ class SpeedTestRepositoryImpl : SpeedTestRepository {
     )
   }
 
+  /**
+   * This function provides publishSpeedTestData function
+   * implementation to post the speed test data
+   * @param speedTestData : instance of SpeedTestResultRequestEntity,
+   * contains details of speed test
+   * @return ResultState<Any?>
+   *   as Success if posted the data successfully
+   *   as Failure if post request failed with message
+   */
   override suspend fun publishSpeedTestData(speedTestData: SpeedTestResultRequestEntity): ResultState<Any?> {
     val response =
       RetrofitInstanceBuilder.speedTestApi.postSpeedTestData(body = speedTestData.toModel())

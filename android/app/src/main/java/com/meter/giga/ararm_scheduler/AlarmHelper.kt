@@ -12,8 +12,20 @@ import com.meter.giga.utils.Constants.SCHEDULE_TYPE
 import java.util.Calendar
 import kotlin.jvm.java
 
+/**
+ * This provides Singleton instance of AlarmHelper
+ * This class is used to schedule the next Speed Test
+ * Also getting used to calculate the next speed test slot
+ */
 object AlarmHelper {
 
+  /**
+   * This function is getting used to schedule the speed test
+   * at exact time
+   * @param context: App context to schedule the alarm
+   * @param triggerAtMillis: Time at which need to schedule the speed test
+   * @param tag: Defines if scheduled test is of start or daily one
+   */
   @JvmStatic
   @SuppressLint("ScheduleExactAlarm")
   fun scheduleExactAlarm(context: Context, triggerAtMillis: Long, tag: String) {
@@ -37,6 +49,13 @@ object AlarmHelper {
     )
   }
 
+  /**
+   * This function is getting used to get the next slot range
+   * @param afterMillis : time instance in milliseconds
+   * @param lastSlotHour : Previous speed test slot
+   * @param lastExecutionDay : When the last scheduled speed test performed
+   * @return Pair of start and end of slot time
+   */
   @JvmStatic
   fun getNextSlotRange(
     afterMillis: Long,
@@ -107,6 +126,11 @@ object AlarmHelper {
     return tomorrowStart to tomorrowEnd
   }
 
+  /**
+   * returns slot time start time
+   * @param millis : time instance in milliseconds
+   * @return Slot start time
+   */
   @JvmStatic
   fun getSlotStartHour(millis: Long): Int {
     val hour = Calendar.getInstance().apply {
