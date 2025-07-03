@@ -11,9 +11,9 @@ data class Measurement(
 )
 
 data class ConnectionInfo(
-  @SerializedName("Client") val client: String,
-  @SerializedName("Server") val server: String,
-  @SerializedName("UUID") val uuid: String
+  @SerializedName("Client") val client: String?,
+  @SerializedName("Server") val server: String?,
+  @SerializedName("UUID") val uuid: String?
 )
 
 data class BBRInfo(

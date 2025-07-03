@@ -35,6 +35,11 @@ public class MainActivity extends BridgeActivity {
     checkStoragePermission(this);
   }
 
+  /**
+   * This function is used to check the storage permission
+   *
+   * @param context
+   */
   private void checkStoragePermission(Context context) {
     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q &&
       ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -48,6 +53,13 @@ public class MainActivity extends BridgeActivity {
     checkNotificationPermission(context);       // 2️⃣
   }
 
+  /**
+   * This function is getting used to check the Notification Permission
+   * This is mandatory to grant to execute the scheduled background
+   * speed test in background
+   *
+   * @param context
+   */
   private void checkNotificationPermission(Context context) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
       ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
@@ -61,6 +73,11 @@ public class MainActivity extends BridgeActivity {
     checkAlarmPermission();              // 3️⃣
   }
 
+  /**
+   * This function is getting used to check the Schedule Alarm Permission
+   * This is mandatory to grant to schedule the speed test in background
+   * when system in idle or sleep state
+   */
   private void checkAlarmPermission() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
       AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -73,8 +90,13 @@ public class MainActivity extends BridgeActivity {
     }     // ✅ all done
   }
 
-  /* ------------------- CALLBACKS ------------------- */
-
+  /**
+   * This function provides callback on Permission Granted ot Rejected
+   *
+   * @param code  the request code associated with the permission request
+   * @param perms the Android permission strings requested
+   * @param res   the status result of the permission request
+   */
   @Override
   public void onRequestPermissionsResult(int code, @NonNull String[] perms,
                                          @NonNull int[] res) {

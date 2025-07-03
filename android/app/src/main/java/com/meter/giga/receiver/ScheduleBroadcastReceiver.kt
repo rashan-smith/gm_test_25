@@ -17,7 +17,18 @@ import java.util.Calendar
 import kotlin.jvm.java
 import kotlin.random.Random
 
+/**
+ * ScheduleBroadcastReceiver is used to receive the broadcast when system is on and
+ * scheduled alarm time is current time
+ * This is native Broadcast Receiver component and registered in Manifest files
+ * as well as Normal Broadcast Receiver
+ */
 class ScheduleBroadcastReceiver : BroadcastReceiver() {
+  /**
+   * BroadcastReceiver overridden method onReceive method implementation
+   * @param context: Context of the app
+   * @param intent: instance of Intent, contains the data
+   */
   override fun onReceive(context: Context, intent: Intent?) {
     val prefs = AlarmSharedPref(context)
     val lastExecutionDate = prefs.lastExecutionDay

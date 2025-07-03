@@ -30,6 +30,9 @@ import net.measurementlab.ndt7.android.models.ConnectionInfo
 import net.measurementlab.ndt7.android.models.Measurement
 import net.measurementlab.ndt7.android.models.TCPInfo
 
+/**
+ * Util class to Map the entity classes to model classes or vice versa
+ */
 fun ClientInfoResponseModel.toEntity(): ClientInfoResponseEntity? {
   return ClientInfoResponseEntity(
     asn = asn?.asn ?: "",
@@ -86,7 +89,7 @@ fun SpeedTestResultRequestEntity.toModel(): SpeedTestResultRequestModel {
     clientInfo = clientInfo?.toModel(),
     countryCode = countryCode,
     deviceType = deviceType,
-    download = 0,
+    download = download,
     gigaIdSchool = gigaIdSchool,
     ipAddress = ipAddress,
     latency = latency,
@@ -96,9 +99,9 @@ fun SpeedTestResultRequestEntity.toModel(): SpeedTestResultRequestModel {
     serverInfo = serverInfo?.toModel(),
     timestamp = timestamp,
     uUID = uUID,
-    upload = 0,
-    timestampLocal = timestampLocal
-//    source = source,
+    upload = upload,
+    timestampLocal = timestampLocal,
+    source = source,
 //    id = id,
 //    createdAt = createdAt,
 //    dataDownloaded = dataDownloaded,

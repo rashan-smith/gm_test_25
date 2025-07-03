@@ -16,7 +16,7 @@ data class SpeedTestResultRequestModel(
   @SerializedName("DeviceType")
   val deviceType: String?,
   @SerializedName("Download")
-  val download: Int?,
+  val download: Double?,
   @SerializedName("giga_id_school")
   val gigaIdSchool: String?,
   @SerializedName("ip_address")
@@ -38,7 +38,9 @@ data class SpeedTestResultRequestModel(
   @SerializedName("UUID")
   val uUID: String?,
   @SerializedName("Upload")
-  val upload: Int?
+  val upload: Double?,
+  @SerializedName("source")
+  val source: String?,
 
 //  @SerializedName("created_at")
 //  val createdAt: String?,
@@ -48,8 +50,6 @@ data class SpeedTestResultRequestModel(
 //  val dataUploaded: Int?,
 //  @SerializedName("DataUsage")
 //  val dataUsage: Int?,
-//  @SerializedName("source")
-//  val source: String?,
 //  @SerializedName("id")
 //  val id: String?,
 )

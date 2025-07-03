@@ -19,8 +19,7 @@ data class SpeedTestResultRequestEntity(
   val timestampLocal: String?,
   val uUID: String?,
   val upload: Double?,
-
-//  val source: String?,
+  val source: String?,
 //  val id: String?,
 //  val createdAt: String?,
 //  val dataDownloaded: Int?,

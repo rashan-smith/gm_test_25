@@ -10,7 +10,18 @@ import com.meter.giga.utils.Constants.FIRST_15_MIN
 import com.meter.giga.utils.Constants.NEXT_SLOT
 import kotlin.random.Random
 
+/**
+ * BootBroadCastReceiver is used to receive the broadcast when system is restarted
+ * This is native Broadcast Receiver component and registered in Manifest files
+ * as well as Boot Broadcast Receiver
+ */
 class BootBroadCastReceiver : BroadcastReceiver() {
+
+  /**
+   * BroadcastReceiver overridden method onReceive method implementation
+   * @param context: Context of the app
+   * @param intent: instance of Intent, contains the data
+   */
   override fun onReceive(context: Context, intent: Intent?) {
     Log.d("GIGA BootBroadCastReceiver", "On Boot")
 
@@ -24,9 +35,20 @@ class BootBroadCastReceiver : BroadcastReceiver() {
     }
   }
 
+  /**
+   * This function is used to schedule the speed test when device (Android/Chromebook)
+   * gets restart any time in the day
+   * It take cares of speed test type for the day, like initial 15 min speed test or slot based
+   * speed test
+   * @param context : Context of app, used to access the Shared Preferences
+   */
   private fun scheduleAlarmOnRestart(context: Context) {
     val alarmPrefs = AlarmSharedPref(context)
 
+    /**
+     * This check used to check if speed test need to schedule for the
+     * new day
+     */
     if (alarmPrefs.isNewDay()) {
       alarmPrefs.resetForNewDay()
       val now = System.currentTimeMillis()
@@ -34,13 +56,24 @@ class BootBroadCastReceiver : BroadcastReceiver() {
       alarmPrefs.first15ScheduledTime = randomIn15Min
       Log.d("GIGA BootBroadCastReceiver", "On Boot New Day 15 Min $randomIn15Min")
       AlarmHelper.scheduleExactAlarm(context, randomIn15Min, FIRST_15_MIN)
-    } else if (alarmPrefs.first15ExecutedTime == -1L) {
+    }
+    /**
+     * This check used to check if first 15 min speed test was scheduled
+     * but not executed for the day
+     */
+    else if (alarmPrefs.first15ExecutedTime == -1L) {
       val now = System.currentTimeMillis()
       val randomIn15Min = now + Random.nextLong(0, 15 * 60 * 1000L)
       alarmPrefs.first15ScheduledTime = randomIn15Min
       Log.d("GIGA BootBroadCastReceiver", "On Boot Not Executed 15 Min $randomIn15Min")
       AlarmHelper.scheduleExactAlarm(context, randomIn15Min, FIRST_15_MIN)
-    } else {
+    }
+    /**
+     * This schedules slot speed test based on current time
+     * if speed test for current slot already executed ,
+     * it schedules for next slot else for current slot
+     */
+    else {
       val executedTime = alarmPrefs.first15ExecutedTime
       val lastExecutionDate = alarmPrefs.lastExecutionDay
       val currentSlotStartHour = AlarmHelper.getSlotStartHour(executedTime)

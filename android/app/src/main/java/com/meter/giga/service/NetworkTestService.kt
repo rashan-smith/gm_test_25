@@ -45,11 +45,30 @@ import kotlin.let
 import kotlin.text.format
 import kotlin.text.toDouble
 
+/**
+ * NetworkTestService is Foreground service used to execute in background
+ * when scheduled speed test gets execute.
+ * This service shows notification and performs the speed test
+ * and publish the speed test result on backend
+ */
 class NetworkTestService : LifecycleService() {
-
+  /**
+   * Class level boolean variable, keeps state as Foreground service is running
+   */
   private var isRunning = true
+
+  /**
+   * SupervisorJob instance used to execute multiple api calls in parallel without
+   * terminating any api call if any other api call fails
+   */
   private val serviceJob = SupervisorJob()
+
+  /**
+   * CoroutineScope instance used to define the thread on which the api calls
+   * should execute, standard is perform api calls on IO thread, avoid Main thread
+   */
   private val serviceScope = CoroutineScope(Dispatchers.IO + serviceJob)
+
   override fun onCreate() {
     super.onCreate()
     createNotificationChannel()
@@ -82,6 +101,11 @@ class NetworkTestService : LifecycleService() {
     return START_STICKY
   }
 
+  /**
+   * This function creates the notification which user can see
+   * while performing the speed test in background, this is mandatory to
+   * show if any task is getting executing in background
+   */
   private fun createNotification(content: String): Notification {
     return NotificationCompat.Builder(this, CHANNEL_ID)
       .setContentTitle(this.applicationContext.getString(R.string.notification_header))
@@ -93,11 +117,20 @@ class NetworkTestService : LifecycleService() {
       .build()
   }
 
+  /**
+   * This function update the notification content
+   * during the speed test in background
+   */
   private fun updateNotification(content: String) {
     val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
     manager.notify(NOTIFICATION_ID, createNotification(content))
   }
 
+  /**
+   * This function creates the notification channel
+   * defines the unique id and used to update the content
+   * in existing notification
+   */
   private fun createNotificationChannel() {
     val channel = NotificationChannel(
       CHANNEL_ID, FOREGROUND_SERVICE_TAG,
@@ -115,10 +148,14 @@ class NetworkTestService : LifecycleService() {
   }
 
 
+  /**
+   * This create the http client used for ndt7 library to perform the
+   * speed test
+   */
   private fun createHttpClient(
-    connectTimeout: Long = 10,
-    readTimeout: Long = 10,
-    writeTimeout: Long = 10
+    connectTimeout: Long = 12,
+    readTimeout: Long = 12,
+    writeTimeout: Long = 12
   ): OkHttpClient {
     val interceptor = HttpLoggingInterceptor()
     interceptor.level = HttpLoggingInterceptor.Level.NONE
@@ -130,6 +167,10 @@ class NetworkTestService : LifecycleService() {
       .build()
   }
 
+  /**
+   * Inner class implementation of NDTTest class this provides
+   * the callback implementation for the download, upload progress
+   */
   private inner class NDTTestImpl(
     okHttpClient: OkHttpClient,
     private val scheduleType: String,
@@ -148,7 +189,12 @@ class NetworkTestService : LifecycleService() {
     var lastUploadMeasurement: Measurement? = null
     var lastDownloadResponse: ClientResponse? = null
     var lastUploadResponse: ClientResponse? = null
+    var allDoneInvoked: Int = 0
 
+    /**
+     * Callback function implementation when download measurement are available
+     * @param measurement : Measurement instance contains data related to DOWNLOAD measurement
+     */
     override fun onMeasurementDownloadProgress(measurement: Measurement) {
       super.onMeasurementDownloadProgress(measurement)
       Log.d(
@@ -158,12 +204,20 @@ class NetworkTestService : LifecycleService() {
       lastDownloadMeasurement = measurement
     }
 
+    /**
+     * Callback function implementation for upload measurement are available
+     * @param measurement : Measurement instance contains data related to UPLOAD measurement
+     */
     override fun onMeasurementUploadProgress(measurement: Measurement) {
       super.onMeasurementUploadProgress(measurement)
       Log.d("GIGA NetworkTestService", "Upload progress onMeasurementUploadProgress: $measurement")
       lastUploadMeasurement = measurement
     }
 
+    /**
+     * Callback function implementation for download progress
+     * @param clientResponse : ClientResponse instance contains data related to download progress
+     */
     override fun onDownloadProgress(clientResponse: ClientResponse) {
       super.onDownloadProgress(clientResponse)
       Log.d("GIGA NetworkTestService", "download progress: $clientResponse")
@@ -176,6 +230,10 @@ class NetworkTestService : LifecycleService() {
       updateNotification(msg)
     }
 
+    /**
+     * Callback function implementation for upload progress
+     * @param clientResponse : ClientResponse instance contains data related to upload progress
+     */
     override fun onUploadProgress(clientResponse: ClientResponse) {
       super.onUploadProgress(clientResponse)
       Log.d("GIGA NetworkTestService", "upload stuff: $clientResponse")
@@ -188,6 +246,12 @@ class NetworkTestService : LifecycleService() {
       updateNotification(msg)
     }
 
+    /**
+     * Callback function implementation when speed test completed
+     * @param clientResponse : ClientResponse instance
+     * @param error : Throwable instance
+     * @param testType : Upload/Download type
+     */
     override fun onFinished(
       clientResponse: ClientResponse?,
       error: Throwable?,
@@ -197,8 +261,10 @@ class NetworkTestService : LifecycleService() {
       val speed = clientResponse?.let { DataConverter.convertToMbps(it) }
       println(error)
       error?.printStackTrace()
-      Log.d("GIGA NetworkTestService", "ALL DONE: $speed")
-      if (lastUploadMeasurement != null && lastDownloadMeasurement != null) {
+      Log.d("GIGA NetworkTestService", "ALL DONE: $speed ")
+      allDoneInvoked = allDoneInvoked + 1
+      Log.d("GIGA NetworkTestService", "ALL DONE: $allDoneInvoked ")
+      if (allDoneInvoked == 2) {
         publishSpeedTestData(
           scheduleType,
           schoolId,
@@ -209,9 +275,22 @@ class NetworkTestService : LifecycleService() {
           countryCode,
           ipAddress
         )
+        allDoneInvoked = 0
       }
     }
 
+    /**
+     * This function is used to create the speed test result payload and
+     * fetch the required data to create the post payload
+     * @param scheduleType
+     * @param schoolId
+     * @param gigaSchoolId
+     * @param appVersion
+     * @param browserId
+     * @param isRunningOnChromebook
+     * @param countryCode
+     * @param ipAddress
+     */
     private fun publishSpeedTestData(
       scheduleType: String,
       schoolId: String,
@@ -315,8 +394,8 @@ class NetworkTestService : LifecycleService() {
 
             if (clientInfoRequest != null && serverInfoRequest != null) {
               speedTestResultRequestEntity = GigaUtil.createSpeedTestPayload(
-                lastUploadMeasurement,
-                lastDownloadMeasurement,
+                lastUploadMeasurement ?: GigaUtil.getDefaultMeasurements(),
+                lastDownloadMeasurement ?: GigaUtil.getDefaultMeasurements(),
                 clientInfoRequest,
                 serverInfoRequest,
                 schoolId,
@@ -331,10 +410,10 @@ class NetworkTestService : LifecycleService() {
                 browserId,
                 countryCode,
                 ipAddress,
-                lastDownloadResponse,
-                lastUploadResponse
+                lastDownloadResponse ?: GigaUtil.getDefaultClientInfo("download"),
+                lastUploadResponse ?: GigaUtil.getDefaultClientInfo("upload"),
 
-              )
+                )
               val postSpeedTestUseCase = PostSpeedTestUseCase()
               val postSpeedTestResultState =
                 postSpeedTestUseCase.invoke(speedTestResultRequestEntity)
