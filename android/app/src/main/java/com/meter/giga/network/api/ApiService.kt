@@ -9,6 +9,8 @@ import com.meter.giga.utils.Constants.SPEED_TEST_TOKEN
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -42,11 +44,12 @@ interface ApiService {
    * @param body : SPeed Test Result data
    * @return : Instance of Response as Success or error
    */
+
   @POST("measurements")
   suspend fun postSpeedTestData(
-    @Query("key") token: String = SPEED_TEST_TOKEN,
+    @Header("Authorization") authorization: String = "Bearer $SPEED_TEST_TOKEN",
     @Body body: SpeedTestResultRequestModel
-  ): Response<Any>
+  ): Response<Unit>
 
   /**
    * getServerInfoNoPolicy to fetch the server details

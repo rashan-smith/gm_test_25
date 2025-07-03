@@ -90,7 +90,7 @@ class SpeedTestRepositoryImpl : SpeedTestRepository {
    *   as Success if posted the data successfully
    *   as Failure if post request failed with message
    */
-  override suspend fun publishSpeedTestData(speedTestData: SpeedTestResultRequestEntity): ResultState<Any?> {
+  override suspend fun publishSpeedTestData(speedTestData: SpeedTestResultRequestEntity): ResultState<Unit?> {
     val response =
       RetrofitInstanceBuilder.speedTestApi.postSpeedTestData(body = speedTestData.toModel())
     if (response.isSuccessful) {
