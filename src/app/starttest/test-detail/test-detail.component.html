@@ -11,22 +11,22 @@
       <ion-list lines="none" class="horizontal-list">
         <ion-item lines="none">
           <ion-label>
-            <h3>Device network</h3>
-            <p>TP-LINK396...750</p>
+            <h3 [translate]="'startTest.network'"></h3>
+            <p title="--">--</p>
           </ion-label>
         </ion-item>
 
         <ion-item lines="none">
           <ion-label>
-            <h3>ISP</h3>
-            <p>Vodafone</p>
+            <h3 [translate]="'startTest.isp'"></h3>
+            <p title={{accessInformation.org}}>{{accessInformation.org}}</p>
           </ion-label>
         </ion-item>
 
         <ion-item lines="none">
           <ion-label>
-            <h3>Nearest server</h3>
-            <p>United Republic of...</p>
+            <h3  [translate]="'startTest.server'"></h3>
+            <p title={{accessInformation.city}}>{{accessInformation.city}}</p>
           </ion-label>
         </ion-item>
       </ion-list>
@@ -57,8 +57,7 @@
   <ion-card  class="footer_card_margin">
     
     <ion-card-header>
-      <ion-card-title class="test_history">
-        Test history (latest 10 measurements)
+      <ion-card-title class="test_history"  [translate]="'startTest.total'">
       </ion-card-title>
     </ion-card-header>
   
@@ -66,11 +65,11 @@
       <ion-grid>
         <!-- Header Row -->
         <ion-row class="table-header">
-          <ion-col size="3">Date</ion-col>
-          <ion-col size="3">Download</ion-col>
-          <ion-col size="2">Upload</ion-col>
-          <ion-col size="2">Latency</ion-col>
-          <ion-col size="2">Status</ion-col>
+          <ion-col size="3" [translate]="'startTest.date'">Date</ion-col>
+          <ion-col size="3" [translate]="'startTest.downloadLowerCase'"></ion-col>
+          <ion-col size="2" [translate]="'startTest.uploadLowerCase'"></ion-col>
+          <ion-col size="2"  [translate]="'startTest.latencyDetail'"></ion-col>
+          <ion-col size="2" [translate]="'startTest.status'">Status</ion-col>
 
         </ion-row>
   

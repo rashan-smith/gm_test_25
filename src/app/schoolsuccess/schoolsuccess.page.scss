@@ -10,7 +10,7 @@
  .schoolsuccess{  
     --bullet-background: #eee;
     --bullet-background-active: #51E12B;
-    height: 82%;
+    height: 90%;
   }
  .swiper-slide {
    height: 70% !important;
@@ -66,4 +66,11 @@
     margin-inline-start:0;
     font-weight: 400;
     font-size: 14px;
+  }
+  ::ng-deep .swiper-pagination-bullet {
+    margin: 0 4px;
+  }
+  .swiper-pagination {
+    left: 0;
+    width: 100%;
   }

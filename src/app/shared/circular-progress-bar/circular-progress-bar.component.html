@@ -29,24 +29,25 @@
       {{ firstLabel ? ('startTest.test' | translate): ''}}
     </text>
     <text *ngIf="error" x="50" y="50" [attr.font-size]="12" text-anchor="middle" alignment-baseline="middle" [attr.font-weight]="400"
-      [ngClass]="getTextClass()" [translate]="'startTest.tryAgain'">
+      [ngClass]="getTextClass()" >Try again
       </text>
     <text *ngIf="completed" x="50" y="50" [attr.font-size]="12" text-anchor="middle" alignment-baseline="middle" [attr.font-weight]="400"
-      [ngClass]="getTextClass()" [translate]="'startTest.tryAgain'">
+      [ngClass]="getTextClass()" >Try again
       </text>
 
     <!-- <text x="57" y="50" [attr.font-size]="10" text-anchor="middle" alignment-baseline="top"
       [ngClass]="getTextClass()">
       {{ error ? 'TRY AGAIN' : secondLabel ? secondLabel : firstLabel }}
     </text> -->
-    <text *ngIf="secondLabel === 'UPLOAD'" x="25" y="66" text-anchor="bottom" [attr.font-size]="18" text-anchor="bottom"  [attr.font-weight]="700"
+    <text *ngIf="secondLabel === 'UPLOAD'" [attr.x]="currentRateUpload < 10 ? 32 : currentRateUpload > 99 ? 22 : 25" y="66" text-anchor="bottom" [attr.font-size]="18" text-anchor="bottom"  [attr.font-weight]="700" 
       [ngClass]="getGreenColorClass()" alignment-baseline="middle">
       {{currentRateUpload && currentRateUpload | number: '1.2-2'}}
     </text>
-    <text *ngIf="secondLabel === 'DOWNLOAD'" x="25" y="66" text-anchor="bottom" [attr.font-size]="18"
+    <text *ngIf="secondLabel === 'DOWNLOAD'"  [attr.x]="currentRateDownload < 10 ? 32 : currentRateDownload > 99 ? 22 : 25" y="66" text-anchor="bottom" [attr.font-size]="18"
       text-anchor="bottom" [attr.font-weight]="700" alignment-baseline="middle" [ngClass]="getGreenColorClass()">
       {{ currentRateDownload && currentRateDownload | number: '1.2-2'}}
     </text>
+    
 
     <!-- Fix: Use img for warning icon -->
     <image *ngIf="error" href="assets/images/test_error.svg" width="16" height="16" x="41" y="55" alt="Error Icon" />

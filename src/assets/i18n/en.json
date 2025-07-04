@@ -38,7 +38,13 @@
         "saveEmail":"Please add your school’s email address",
         "enterEmail": "Input Text",
         "totalSchools": "{{schoolCount}} results matching with {{schoolId}}",
-        "checkGiga": "Check on Giga maps"
+        "checkGiga": "Check on Giga Maps",
+        "searchSchool": "Searching School IDs",
+        "select": "Select",
+        "confirmText": "Double-check your school selection. Once you tap <b>&quot;Yes&quot;</b> changing your school will require reinstalling the app.",
+        "skip": "Skip",
+        "add": "Add"
+
     },
     "schoolNotFound": {
         "unableToLocate": "We couldn’t find your school: <br /><b>{{schoolId}}</b>",
@@ -50,13 +56,23 @@
         "congratulations": "Congratulations!",
         "school-registered": "Your School has been registered on <br />{{appName}}",
         "success-txt": "Your daily internet <br />check is set!",
-        "internet-checks": "This App will check your <br />internet status twice daily.",
+        "internet-checks": "This App will check your <br />internet status 4 times a day.",
         "app-run": "The app will run in the <br /> background",
         "app-run-desc": "Your school data will be collected when device is on.",
-        "you-can-close": "You can close the App."
+        "you-can-close": "You can close the App.",
+        "get-started": "Get started",
+        "go-dashboard": "Go to your dashboard"
     },
+    "registerSchool": {
+        "register-step-1": "You’re about to register your school Make sure the computers are connected on a wired connection",
+        "register-step-2": "Make sure that the application is Installed on 2 devices that are regularly used",
+        "register-step-3": "Make sure you are connected only to the school internet",
+        "start-registeration" : "Start Registration"
+    }, 
     "searchCountry": {
-        "check": "Checking country...",
+        "loading": "Loading",
+        "confirm": "Confirm",
+        "check": "Detecting your country",
         "detected-auto": "Your country is automatically detected",
         "country": "Country",
         "country-not-accurate": "It looks like the country you selected may not be accurate to your location.",
@@ -108,6 +124,8 @@
         "whats-new": "What’s new!"
     },
     "startTest": {
+        "status": "Status",
+        "date": "Date",
         "startTest": "START TEST",
         "upload": "UPLOAD",
         "download": "DOWNLOAD",
@@ -127,7 +145,8 @@
         "uploadLowerCase": "Upload",
         "downloadLowerCase": "Download",
         "home": "Home",
-        "about": "About"
+        "about": "About",
+        "total": "Test history (latest 10 measurements)"
     },
     "registerSchoolPage" : {
         "title1": "You’re about to register your school",
@@ -136,8 +155,8 @@
         "tip1": "Preferably, on a wired connection",
         "tip2": "Installed on 2 devices that are mostly used",
         "tip3": "Connected only to the school internet",
-        "privacy": "I agree to the data policy which includes retention and publication of IP addresses."
-
+        "privacy": "I agree to the use of data by Giga under the"
+    
     },
     "resultSchool": "RESULTS FOR SCHOOL ID",
     "tryAgain": "Try again",

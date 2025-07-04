@@ -1,147 +1,160 @@
 @import "../../../theme/variables.scss";
 
-.input {
+.container{
+    margin: 10px 0 0px 0;
+    height:90%;
+    min-height: 88%;   
+    background-size: 100% 100%;    
+    border-radius: 0px 0px 10px 10px;
+  }
+ .schoolsuccess{  
+    --bullet-background: #eee;
+    --bullet-background-active: #51E12B;
+    height: 90%;
+  }
+ .swiper-slide {
+   height: 70% !important;
+  }
+  ion-label{
+    font-size: 12px;
+  }
+ .label-txt{
+    color: $text-color;
+    font-size: 20px;
+  }
+  .successInfo{
+    padding-top: 10px;
+    ion-img{  
+      width: auto !important;     
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+    }
+    .icon1{
+      width:124px !important;
+    }
+    .icon2{
+      width:110px !important;
+    }
+    .icon3{
+      width:125px !important;
+    }
+    .success-txt{
+      color: #46C66D;
+      text-align: center;
+      padding-top: 15px;
+      font-size: 20px;
+      text-transform: unset;
+      font-weight: 400;
+    }
+    .success-desc-txt{
+      color: #222222;
+      text-align: center;
+      padding-top: 16px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }  
+  .bottom-layout{
+    padding: 0px 0px;
+    bottom: 24px !important;
+  }
+ 
+
+  .btn_margin {
+    margin-inline-end: 0;
+    margin-inline-start:0;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  ::ng-deep .swiper-pagination-bullet {
+    margin: 0 4px;
+  }
+  .swiper-pagination {
+    bottom: 54px;
+    left: 0;
+    width: 100%;
+  }
+  .last-step {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  .read_content {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
+    text-decoration: underline;
+    color: #277AFF;
+    padding: 16px 0 0 0;
+}
+.register_readMore {
+  font-size: 12px;
+  font-weight: 400;
+  display: flex;
+
+}
+.middle-layout {
+  text-align: left;
+  background-color: #ffffff;
+  display: flex;
+  bottom: 90px;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 0 0;
+  color: #E2E2E2;
+  flex-flow: wrap;
+  position: absolute;
+  left: 0;
+}
+.middle-layout ion-checkbox {
+  --size: 18px;
+  /* Adjust checkbox size */
+  min-width: 18px;
+  min-height: 18px;
+  margin-top: 3px;
+  /* Align checkbox with text */
+  flex-shrink: 0;
+  /* Prevent checkbox from shrinking */
+  border: solid rgba(255, 255, 255, 0.51) 2px;
+  border-radius: 4px;
+}
+.learnmore {
+  font-size: 11px;
+  padding: 0px 30px;
+  padding-top: 10px;
+  color: $light-text1;
+
+  span {
+      font-size: 24px;
+      padding-left: 5px;
+  }
+}
+
+
+.middle-layout .learnmore {
+  flex: 1;
+  /* Allow text to take available space */
+  font-size: 12px;
+  padding: 0;
+  line-height: 16px;
+  /* Ensure text is aligned properly */
+  color: #222222;
+  font-weight: 400;
 }
 
 .privacy-container {
-    display: flex;
-    border: 0px;
-    gap: 10px;
+  display: flex;
+  border: 0px;
+  gap: 10px;
 }
-
-.bottom-layout {
-    position: static;
-    padding: 0;
-    width: 100%;
-    text-align: center;
-    transform: none;
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
 }
-
-.further-info {
-    cursor: pointer;
-    font-family: Cabin;
-    font-size: 11px;
-    padding-top: 10px;
-    color: $light-text1;
-    width: 100%;
+.privacy_height {
+  height: 82% !important;
 }
-
-.learnmore {
-    cursor: pointer;
-    font-size: 11px;
-    padding: 0px 30px;
-    padding-top: 10px;
-    color: $light-text1;
-
-    span {
-        font-size: 24px;
-        padding-left: 5px;
-    }
-}
-
-.middle-layout {
-    background-color: #ffffff;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 0 0;
-    color: #E2E2E2;
-    flex-flow: wrap;
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-}
-
-.dailycheck_btn {
-    width: 100%;
-    margin-bottom: 14px;
-    margin-inline-end: 0px;
-    margin-inline-start: 0px;
-
-    .span {
-        letter-spacing: 1px;
-    }
-}
-
-.middle-layout ion-checkbox {
-    --size: 18px;
-    /* Adjust checkbox size */
-    min-width: 18px;
-    min-height: 18px;
-    margin-top: 3px;
-    /* Align checkbox with text */
-    flex-shrink: 0;
-    /* Prevent checkbox from shrinking */
-    border: solid rgba(255, 255, 255, 0.51) 2px;
-    border-radius: 4px;
-}
-
-.middle-layout .learnmore {
-    flex: 1;
-    /* Allow text to take available space */
-    font-size: 12px;
-    padding: 0;
-    line-height: 1.5;
-    /* Ensure text is aligned properly */
-    color: #222222;
-    text-decoration: underline;
-    font-weight: 400;
-}
-
-.register_title1 {
-    padding: 5px 0;
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 40px;
-    letter-spacing: -0.2px;
-}
-
-.register_title2 {
-    padding: 5px 0;
-    font-size: 16px;
-    font-weight: 400;
-}
-
-.check_tip {
-    width: calc(100%);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 12px;
-    border-bottom: solid 1px #ccc;
-    padding: 10px 0;
-    font-weight: 400;
-}
-
-.check_tip_wraper {
-    width: 100%;
-    padding: 25px 20px 15px;
-}
-
-.register_readMore {
-    font-size: 12px;
-    font-weight: 400;
-    display: flex;
-
-}
-
-
-::ng-deep {
-    ion-loading {
-        ion-backdrop {
-            background-color: #ffffff;
-        }
-    }
-}
-
-.read_content {
-    display: flex;
-    text-decoration: underline;
-    color: #9FC2FF;
-    padding: 45px 0 0 0;
+.underline {
+  text-decoration: underline;
 }

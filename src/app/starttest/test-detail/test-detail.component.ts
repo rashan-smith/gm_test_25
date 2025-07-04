@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NetworkService } from 'src/app/services/network.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -10,9 +11,35 @@ export class TestDetailComponent implements OnInit {
   schoolId: string;
   historicalData: any;
   measurementsData: []
-  constructor(    private storage: StorageService) { }
+  accessInformation = {
+      ip: '',
+      city: '',
+      region: '',
+      country: '',
+      label: '',
+      metro: '',
+      site: '',
+      url: '',
+      fqdn: '',
+      loc: '',
+      org: '',
+      postal: '',
+      timezone: '',
+      asn: '',
+    };
+  constructor(    private storage: StorageService,
+    private networkService: NetworkService
+
+  ) { }
 
   ngOnInit() {    
+    this.networkService.getNetInfo().then((res) => {
+      
+      if (res) {
+        this.accessInformation = res;
+        console.log(this.accessInformation)
+      }
+    });
     this.schoolId = this.storage.get('schoolId');
     // if(this.storage.get('historicalDataAll')) {
     //   this.historicalData =  JSON.parse(this.storage.get('historicalDataAll'))

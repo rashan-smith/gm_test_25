@@ -199,8 +199,9 @@ export class ElectronCapacitorApp {
       // titleBarStyle: 'hidden',
       maximizable: false,
       minimizable: false,
-      resizable: true,
+      resizable: false,
       frame: true,
+      useContentSize: true,    //Make content area exactly 390x700
       transparent: false,
       webPreferences: {
         nodeIntegration: true,

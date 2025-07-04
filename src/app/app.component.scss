@@ -8,6 +8,9 @@
     --width: 95%;
 
 }
+.label_color {
+    color: #131313 !important;
+}
 
 .freq-ques-txt {
     text-align: left;
@@ -150,9 +153,12 @@ ion-content {
 
 }
 
-
+.dropdown_width {
+    width: 110%;
+}
 .select_type_dropdown {
     // Ensure your item has visible text if the background is white
+    
     --background: #fff;
     --color: #6F6F6F;
     margin-top: 10px;

@@ -12,15 +12,15 @@
             <div class="welcometxt2" [translate]="'home.title2' | translate:{ appName }"></div>
           </div>
           <ion-img src="assets/images/welcome_icon.svg" class="welcome_icon"></ion-img>
-          <div class="learn_more_text">
+          <div class="learn_more_text" (click)="openExternalUrl('https://meter.giga.global/')">
             <span  [translate]="'home.learnMore' | translate"></span> <ion-img src="assets/images/Launch.png"
-              (click)="openExternalUrl('https://meter.giga.global/')" class="welcome_icon"></ion-img>
+               class="welcome_icon"></ion-img>
           </div>
          
         </div>
       </div>
       <div class="bottom-layout">
-        <ion-button color="primary" appEnterKeyClick block [routerLink]="['/register-school']"
+        <ion-button color="primary" appEnterKeyClick  block [routerLink]="['/register-school']"
           class="dailycheck_btn"><span class="submit_button_size" [translate]="'home.next'"></span></ion-button>
       </div>
     </div>

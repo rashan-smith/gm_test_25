@@ -16,7 +16,7 @@ export class SelectedDetailComponent implements OnInit {
   constructor( private activatedroute: ActivatedRoute, private readonly router: Router ) { }
 
   ngOnInit() {
-    if(this.router.url.includes('schoolnotfound')) {
+    if(this.router.url.includes('schoolnotfound') || this.router.url.includes('confirmschool') || this.router.url.includes('schooldetails')) {
       this.showSchoolId = false;
     }
     this.sub = this.activatedroute.params.subscribe((params) => {

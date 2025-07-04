@@ -21,9 +21,11 @@ export class SchooldetailsPage {
   selectedCountryName: any;
   detectedCountry: any;
   private sub: any;
+  private translatedText = this.translate.instant('schoolDetails.searchSchool');
+
   private loadingMsg =
     // eslint-disable-next-line max-len
-    '<div class="loadContent"><ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img><p class="white" [translate]= "\'schoolDetails.search\'"></p></div>';
+    `<div class="loadContent"><ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img><p class="green_loader">${this.translatedText}</p></div>`;
   constructor(
     private activatedroute: ActivatedRoute,
     public loading: LoadingService,

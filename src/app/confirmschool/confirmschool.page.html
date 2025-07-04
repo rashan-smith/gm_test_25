@@ -36,10 +36,10 @@
     <div class="notification" *ngIf="showNotification">
       <ion-img name="information-circle-outline"  src="assets/images/info_icon.svg"></ion-img>
 
-      <p class="MakeSureText">
-        Double-check your school selection. Once you tap <b>"Yes"</b> changing your school will require reinstalling the app.
+      <p class="MakeSureText" [innerHTML]="'schoolDetails.confirmText' | translate">
+       
       </p>
-      <ion-img src="assets/images/close_notication.svg" name="close-outline" class="close-icon" (click)="closeNotification()"></ion-img>
+      <!-- <ion-img src="assets/images/close_notication.svg" name="close-outline" class="close-icon" (click)="closeNotification()"></ion-img> -->
 
       <!-- <ion-icon name="close-outline" class="close-icon" (click)="closeNotification()"></ion-icon> -->
     </div>

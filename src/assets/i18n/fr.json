@@ -18,6 +18,13 @@
         "confirm1": "Confirmez les informations de l'école pour inscrire votre école",
         "confirm2": "LES INFORMATIONS CI-DESSUS SONT-ELLES CORRECTES?"
     },
+    "saveEmail" : {
+        "optional": "(Facultatif)",
+        "instruction": "Veuillez utiliser un compte de messagerie lié à votre établissement d'enseignement",
+        "emailRequired": "Un e-mail est requis.",
+        "validEmail": "S'il vous plaît, mettez une adresse email valide.",
+        "emailFormat": "Veuillez saisir une adresse e-mail valide avec un domaine et un point (par exemple, info@school.com)."
+    },
     "invalidLocation": {
         "resultLocation": "- Votre emplacement est {{pays}}.<br />- Les écoles sélectionnées sont de {{paysSélectionné}}. <br />",
         "unableToLocate": "VEUILLEZ SÉLECTIONNER UNE ÉCOLE CORRECTE."
@@ -29,7 +36,12 @@
         "saveEmail":"Veuillez ajouter l'adresse e-mail de votre école",
         "enterEmail": "Texte de saisie",
         "totalSchools": "{{schoolCount}} résultats correspondant à {{schoolId}}",
-        "checkGiga": "Consultez les cartes Giga"
+        "checkGiga": "Consultez les cartes Giga",
+        "searchSchool": "Recherche d'identifiants scolaires",
+        "select": "Sélectionner",
+        "confirmText": "Vérifiez votre sélection d'école. Une fois que vous appuyez sur <b>&quot;Oui&quot;</b>, changer d'école nécessitera de réinstaller l'application.",
+        "skip": "Sauter",
+        "add": "Ajouter"
     },
     "schoolNotFound": {
         "unableToLocate": "Nous n'avons pas pu trouver votre école : {{schoolId}}",
@@ -49,18 +61,23 @@
         "congratulations": "FÉLICITATIONS!",
         "school-registered": "Votre école a été enregistrée sur <br />{{appName}}",
         "success-txt": "VOTRE VÉRIFICATION INTERNET QUOTIDIENNE <br />EST PARAMÉTRÉE",
-        "internet-checks": "Cette application vérifiera votre <br />état de connexion Internet deux fois par jour",
+        "internet-checks": "Cette application vérifiera votre statut Internet 4 fois par jour.",
         "app-run": "CETTE APPLICATION FONCTIONNERA <br />EN ARRIÈRE-PLAN",
         "app-run-desc": "Vos données scolaires seront collectées lorsque l'appareil sera allumé.",
-        "you-can-close": "Vous pouvez fermer l'application."
+        "you-can-close": "Vous pouvez fermer l'application.",
+        "get-started": "Commencer",
+        "go-dashboard": "Aller à votre tableau de bord"
+
     },
     "searchCountry": {
-        "check": "Vérification du pays...",
+        "loading": "ChargementDétection de votre pays",
+        "confirm": "Confirmer",
+        "check": "Détection de votre pays",
         "detected-auto": "Votre pays est détecté automatiquement",
         "country": "Pays",
         "country-not-accurate": "Il semble que le pays que vous avez sélectionné ne corresponde pas à votre emplacement. Êtes-vous sûr de vouloir continuer ?",
         "please-double-check": "Veuillez vérifier votre sélection.",
-        "not-available": "l'application {{appName}} {{appName Suffix}} n'est pas disponible dans ce pays. Veuillez choisir un autre pays."
+        "not-available": "l'application {{appName}} {{appNameSuffix}} n'est pas disponible dans ce pays. Veuillez choisir un autre pays."
     },
     "searchSchool": {
         "search": "Recherche de votre école...",
@@ -103,7 +120,10 @@
         "wifi-network": "Paramètres des réseaux Wifi"
     },
     "startTest": {
+        "status": "Statut",
+        "date": "Date",
         "startTest": "COMMENCER L'ESSAI",
+        "tryAgain": "ESSAYER À NOUVEAU",
         "upload": "TÉLÉCHARGER",
         "download": "TÉLÉCHARGER",
         "testAgain": "TESTEZ À NOUVEAU",
@@ -121,7 +141,8 @@
         "uploadLowerCase": "Téléversement",
         "downloadLowerCase": "Téléchargement",
         "home": "Accueil",
-        "about": "À propos"
+        "about": "À propos",
+        "total": "Historique des tests (10 dernières mesures)"
     },
     "registerSchoolPage" : {
         "title1": "Vous êtes sur le point d’inscrire votre école",
@@ -130,7 +151,7 @@
         "tip1": "De préférence, sur une connexion filaire",
         "tip2": "Installé sur 2 appareils qui sont principalement utilisés",
         "tip3": "Connecté uniquement à l'internet de l'école",
-        "privacy": "J'accepte la politique de données qui comprend la conservation et la publication des adresses IP."
+        "privacy": "J'accepte l'utilisation des données par Giga sous les termes"
     },
     "resultSchool": "RÉSULTATS POUR L'IDENTIFICATION DE L'ÉCOLE",
     "tryAgain": "ESSAYER À NOUVEAU",

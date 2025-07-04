@@ -50,7 +50,7 @@ export class SearchschoolPage {
    */
   searchSchoolById() {
     if (this.schoolId) {
-      this.loading.present(this.loadingMsg, 3000, 'pdcaLoaderClass', 'null');
+      // this.loading.present(this.loadingMsg, 3000, 'pdcaLoaderClass', 'null');
       this.schoolService.getById(this.schoolId).subscribe(
         (response) => {
           this.schoolData = response;
@@ -92,8 +92,8 @@ export class SearchschoolPage {
     if (this.schoolId && this.selectedCountry) {
       const loadingMsg =
       // eslint-disable-next-line max-len
-      '<div class="loadContent"><ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img><p class="green_loader">Searching school IDs</p></div>';
-    this.loading.present(loadingMsg, 30000000, 'pdcaLoaderClass', 'null'); 
+    //   '<div class="loadContent"><ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img><p class="green_loader">Searching School IDs</p></div>';
+    // this.loading.present(loadingMsg, 40000000, 'pdcaLoaderClass', 'null'); 
          this.schoolService
         .getBySchoolIdAndCountryCode(this.schoolId, this.selectedCountry)
         .subscribe(

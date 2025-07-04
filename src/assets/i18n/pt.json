@@ -18,6 +18,13 @@
         "confirm1": "Confirme as informações da escola para registrar sua escola",
         "confirm2": "AS INFORMAÇÕES ACIMA ESTÃO CORRETAS?"
     },
+    "saveEmail" : {
+        "optional": "(Opcional)",
+        "instruction": "Por favor, utilize uma conta de e-mail vinculada à sua instituição de ensino",
+        "emailRequired": "O e-mail é obrigatório.",
+        "validEmail": "Insira um endereço de e-mail válido.",
+        "emailFormat": "Insira um e-mail válido com domínio e ponto (por exemplo, info@school.com)."
+    },
     "invalidLocation": {
         "resultLocation": "- A sua localização é {{country}}.<br />- As escolas selecionadas são do {{selectedCountry}}. <br />",
         "unableToLocate": "POR FAVOR, SELECIONE UMA ESCOLA CORRETA."
@@ -29,7 +36,12 @@
         "saveEmail":"Por favor, adicione o endereço de e-mail da sua escola",
         "enterEmail": "Texto de entrada",
         "totalSchools": "{{schoolCount}} resultados correspondentes a {{schoolId}}",
-        "checkGiga": "Verifique os mapas Giga"
+        "checkGiga": "Verifique os mapas Giga",
+        "searchSchool": "Pesquisando IDs de escolas",
+        "select": "Selecione",
+        "confirmText": "Verifique sua seleção de escola. Depois de tocar em <b>&quot;Sim&quot;</b>, mudar de escola exigirá reinstalar o aplicativo.",
+        "skip": "Pular",
+        "add": "Adicionar"
 
     },
     "schoolNotFound": {
@@ -42,18 +54,23 @@
         "congratulations": "PARABÉNS!",
         "school-registered": "Sua escola foi registada no <br />{{appName}}",
         "success-txt": "O SEU CONTROLO DIÁRIO DE INTERNET <br />ESTÁ CONFIGURADO",
-        "internet-checks": "Este aplicativo verificará a sua <br />situação de internet duas vezes ao dia",
+        "internet-checks": "Este aplicativo verificará seu status de internet 4 vezes por dia.",
         "app-run": "ESTE APLICATIVO FUNCIONARÁ <br />EM SEGUNDO PLANO",
         "app-run-desc": "Seus dados escolares serão coletados quando o dispositivo estiver ligado.",
-        "you-can-close": "Você pode fechar o App."
+        "you-can-close": "Você pode fechar o App.",
+        "get-started": "Começar",
+        "go-dashboard": "Ir para o seu painel"
+
     },
     "searchCountry": {
-        "check": "Verificando país...",
+        "loading": "Carregando",
+        "confirm": "Confirmar",
+        "check": "Detectando seu país",
         "detected-auto": "O seu país foi detetado automaticamente",
         "country": "País",
         "country-not-accurate": "Parece que o país que você selecionou pode não corresponder à sua localização. Tem certeza de que deseja continuar?",
         "please-double-check": "Verifique novamente a sua seleção.",
-        "not-available": "o aplicativo {{appName}} {{appName Suffix}} não está disponível neste país. Por favor escolha outro país."
+        "not-available": "o aplicativo {{appName}} {{appNameSuffix}} não está disponível neste país. Por favor escolha outro país."
     },
     "searchSchool": {
         "search": "Procurando por sua escola...",
@@ -96,7 +113,10 @@
         "wifi-network": "Configurações de redes Wi-Fi"
     },
     "startTest": {
+        "status": "Status",
+        "date": "Data",
         "startTest": "INICIAR TESTE",
+        "tryAgain": "TENTAR NOVAMENTE",
         "upload": "UPLOAD",
         "download": "DOWNLOAD",
         "testAgain": "INICIAR TESTE",
@@ -114,7 +134,9 @@
         "uploadLowerCase": "Envio",
         "downloadLowerCase": "Download",
         "home": "Início",
-        "about": "Sobre"
+        "about": "Sobre",
+        "total": "Histórico de testes (10 últimas medições)"
+
     },
     "registerSchoolPage" : {
         "title1": "Você está prestes a registrar sua escola",
@@ -123,7 +145,7 @@
         "tip1": "De preferência, em uma conexão com fio",
         "tip2": "Instalado em 2 dispositivos que são mais usados",
         "tip3": "Conectado apenas à internet da escola",
-        "privacy":"Concordo com a política de dados que inclui retenção e publicação de endereços IP."
+        "privacy":"Concordo com o uso de dados pela Giga sob os termos"
     },
     "resultSchool": "RESULTADOS PARA O ID DA ESCOLA",
     "tryAgain": "TENTAR NOVAMENTE",

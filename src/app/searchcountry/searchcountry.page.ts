@@ -1123,9 +1123,14 @@ export class SearchcountryPage {
     if (this.detectedCountry === undefined || this.detectedCountry === null) {
       this.detectedCountry = this.selectedCountry;
     }
+    const translatedText = this.translate.instant('searchCountry.loading');
+
     const loadingMsg =
       // eslint-disable-next-line max-len
-      '<div class="loadContent"><ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img><p class="white" [translate]="\'searchCountry.check\'"></p></div>';
+      `<div class="loadContent">
+     <ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img>
+     <p class="green_loader">${translatedText}</p>
+   </div>`;
     this.loading.present(loadingMsg, 9000, 'pdcaLoaderClass', 'null');
 
     this.countryService.getPcdcCountryByCode(this.selectedCountry).subscribe(

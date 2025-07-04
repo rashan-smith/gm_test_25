@@ -8,7 +8,7 @@ import { AbstractControl, FormControl, ValidationErrors, Validators } from '@ang
   styleUrls: ['./save-school-email.component.scss'],
 })
 export class SaveSchoolEmailComponent implements OnInit {
-  emailControl = new FormControl('', [Validators.required, Validators.email, this.emailDomainValidator]);
+  emailControl = new FormControl('', [Validators.email, this.emailDomainValidator]);
 
   constructor(private readonly router: Router) {}
 

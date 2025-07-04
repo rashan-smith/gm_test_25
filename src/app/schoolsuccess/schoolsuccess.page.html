@@ -1,7 +1,7 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
   <div class="container">
-    <ion-slides pager="true" [options]="slideOpts" (ionSlideReachEnd)="reachedEnd()" class="schoolsuccess" #mySlider>
+    <ion-slides  [options]="slideOpts" (ionSlideReachEnd)="reachedEnd()" class="schoolsuccess" #mySlider>
       <ion-slide>
         <div class="top-layout">
           <div class="successInfo">
@@ -32,11 +32,13 @@
         </div>
       </ion-slide>
     </ion-slides>
+    <div class="swiper-pagination"></div>
+
     <div class="bottom-layout">
       <ion-button color="primary" appEnterKeyClick (click)="swipeNext()" class="dailycheck_btn btn_margin" *ngIf="!isLast"
-        [translate]="'Get started'"></ion-button>
+         [translate]="'schoolSuccess.get-started'"></ion-button>
       <ion-button color="primary" appEnterKeyClick (click)="moveToStartTest()" class="dailycheck_btn btn_margin" *ngIf="isLast"
-        [translate]="'Go to your dashboard'"></ion-button>
+      [translate]="'schoolSuccess.go-dashboard'"></ion-button>
     </div>
   </div>
 </ion-content>

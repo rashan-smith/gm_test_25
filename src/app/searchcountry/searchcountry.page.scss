@@ -130,10 +130,13 @@ ion-select:hover {
 }
 
 .scrollable {
-  max-height: 255px;
+  max-height: 250px;
   overflow: auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* nice soft shadow */
-  border: 1px solid #ccc;
+  box-shadow:
+  0 4px 12px rgba(0, 0, 0, 0.15),   /* bottom */
+  4px 0 12px rgba(0, 0, 0, 0.15),   /* right */
+ -4px 0 12px rgba(0, 0, 0, 0.15);   /* left */
+   border: 1px solid #ccc;
 }
 
 .error {
@@ -186,7 +189,7 @@ ion-select:hover {
 .half-border-bottom::after {
   content: "";
   display: block;
-  width: 50%;
+  width: 100%;
   border-bottom: 1px solid #ccc;
   margin-top: 10px; /* space between content and border */
 }

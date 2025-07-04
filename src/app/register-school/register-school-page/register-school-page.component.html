@@ -1,47 +1,66 @@
 <app-pcdc-header></app-pcdc-header>
-<ion-content class="font_open_sans scrollable_content">
-  <div>
-  <ion-button class="button_disable_hover" fill="clear" [routerLink]="['/home']">
-    <ion-img src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
+<ion-content>
+  <div class="container" [ngClass]="{'privacy_height': isLast}">
+    <ion-slides  [options]="slideOpts" (ionSlideReachEnd)="reachedEnd()" class="schoolsuccess" #mySlider>
+      <ion-slide>
+        <div class="top-layout">
+          <div class="successInfo">
+            <ion-img src="assets/images/register_plugin.svg" class="icon1"></ion-img>
+            <div class="success-txt" [translate]="'registerSchool.register-step-1'"></div>
+            <!-- <div class="success-desc-txt" [innerHtml]="'schoolSuccess.school-registered' | translate:{ appName }"></div> -->
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="top-layout">
+          <div class="successInfo">
+            <ion-img src="assets/images/installing_register.svg" class="icon2"></ion-img>
+            <div class="success-txt" [innerHtml]="'registerSchool.register-step-2' | translate"></div>
+            <!-- <div class="success-desc-txt" [innerHtml]="'schoolSuccess.internet-checks' | translate"></div> -->
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="top-layout">
+          <div class="successInfo">
+            <ion-img src="assets/images/start_registeration.svg" class="icon3"></ion-img>
+            <div class="success-txt last-step" [innerHtml]="'registerSchool.register-step-3' | translate"></div>
+            <!-- <div class="success-desc-txt" [innerHtml]="'schoolSuccess.app-run-desc' | translate"></div>
+            <div class="success-desc-txt" [innerHtml]="'schoolSuccess.you-can-close' | translate"></div> -->
 
-  </ion-button>
+          </div>
+          <div class="read_content">
 
-  <div class="register_title1" [translate]="'registerSchoolPage.title1' | translate"></div>
-
-  <div class="register_title2" [translate]="'registerSchoolPage.title2' | translate"></div>
-  <div class="check_tip_wraper">
-    <div class="check_tip"> <ion-img src="assets/images/Icon.svg"></ion-img>
-      <span [translate]="'registerSchoolPage.tip1'| translate"></span>
-    </div>
-    <div class="check_tip"><ion-img src="assets/images/Icon.svg"></ion-img><span [translate]="'registerSchoolPage.tip2'| translate"></span></div>
-    <div class="check_tip"><ion-img src="assets/images/Icon.svg" ></ion-img><span [translate]="'registerSchoolPage.tip3'| translate"></span></div>
-  </div>
-  <div class="read_content">
-
-    <div class="register_readMore" [translate]="'registerSchoolPage.readMore' | translate">
-
-    </div>
-    <ion-img src="assets/images/forward_arrow.svg"></ion-img>
-  </div>
-
-
-  <div class="middle-layout">
-    <label class="privacy-container">
-      <div class="input">
-        <input type="checkbox" [(ngModel)]="isPrivacyChecked" class="checkbox" (change)="toggleCheckbox()" />
-      </div>
-      <div class="learnmore" [translate]="'registerSchoolPage.privacy' | translate">
-      </div>
-    </label>
-    <div class="further-info" [innerHTML]="'home.privacy' | translate:{  targetUrl }"
-      (click)="openExternalUrl('https://www.unicef.org/legal#privacy-policy')">
-    </div>
+            <div class="register_readMore" [translate]="'registerSchoolPage.readMore' | translate">
+        
+            </div>
+            <ion-img src="assets/images/forward_arrow.svg"></ion-img>
+          </div>
+        </div>
+        
+      </ion-slide>
+      
+    </ion-slides>
+    
+ 
     <div class="bottom-layout">
-      <ion-button [disabled]="!isPrivacyChecked" appEnterKeyClick color="primary" (click)="redirectToCountry()"
-        class="dailycheck_btn"><span class="submit_button_size" [translate]="'home.start'"></span></ion-button>
+      <div class="middle-layout" *ngIf="isLast">
+        <label class="privacy-container">
+          <div class="input">
+            <input id="privacy" type="checkbox" [(ngModel)]="isPrivacyChecked" class="checkbox" (change)="toggleCheckbox()" />
+          </div>
+          <div class="learnmore">
+            <span  class="learnmore" [innerHTML]="'registerSchoolPage.privacy' | translate"></span>
+            <span  class="learnmore"> <b class="underline" (click)="openExternalUrl('https://opendatacommons.org/licenses/odbl/1-0/')"> Open Database License (ODBL)</b>, the <b class="underline" (click)="openExternalUrl('https://www.measurementlab.net/privacy/')">M-Lab Privacy Policy</b> and <b class="underline" (click)="openExternalUrl('https://www.unicef.org/legal#privacy-policy')">UNICEF’s Privacy Policy</b>.</span>
+          </div>
+        </label>
+        </div>
+    <div class="swiper-pagination"></div>
 
+      <ion-button color="primary" appEnterKeyClick (click)="swipeNext()" class="dailycheck_btn btn_margin" *ngIf="!isLast"
+         [translate]="'next'"></ion-button>
+      <ion-button color="primary"  [disabled]="!isPrivacyChecked"  appEnterKeyClick (click)="moveToStartTest()" class="dailycheck_btn btn_margin" *ngIf="isLast"
+      [translate]="'registerSchool.start-registeration'"></ion-button>
     </div>
   </div>
-</div>
-
 </ion-content>

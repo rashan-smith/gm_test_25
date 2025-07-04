@@ -21,6 +21,7 @@ import { HistoryService } from '../services/history.service';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../services/storage.service';
 import { Subscription } from 'rxjs';
+import { CountryService } from '../services/country.service';
 
 @Component({
   selector: 'app-starttest',
@@ -43,6 +44,7 @@ export class StarttestPage implements OnInit, OnDestroy {
   isErrorClosed = false;
   connectionInformation: any;
   lastMeasurementId: number;
+  selectedCountry: string;
   mlabInformation = {
     city: '',
     url: '',
@@ -96,6 +98,7 @@ export class StarttestPage implements OnInit, OnDestroy {
   downloadTimer: any;
   uploadTimer: any;
   uploadProgressStarted = false; // To ensure we start upload animation only once
+  school: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -113,8 +116,13 @@ export class StarttestPage implements OnInit, OnDestroy {
     private historyService: HistoryService,
     public translate: TranslateService,
     private ref: ChangeDetectorRef,
-    private storage: StorageService
+    private storage: StorageService,
+    private countryService: CountryService
   ) {
+    if (this.storage.get('schoolId')) {
+      this.school = JSON.parse(this.storage.get('schoolInfo'));
+      console.log(this.school, 'heheh')
+    }
     this.onlineStatus = navigator.onLine;
     this.route.params.subscribe((params) => {
       if (this.onlineStatus) {
@@ -184,6 +192,15 @@ export class StarttestPage implements OnInit, OnDestroy {
 
     });
 
+    this.countryService.getPcdcCountryByCode(this.school.country).subscribe(
+      (response) => {
+        this.selectedCountry = response[0].name;
+      },
+      (err) => {
+        console.log('ERROR: ' + err);
+        this.loading.dismiss();
+      })
+
     this.downloadStartedSub = this.measurementClientService.downloadStarted$.subscribe(data => {
       this.downloadStarted = true;
       this.uploadStarted = false;
@@ -236,8 +253,15 @@ export class StarttestPage implements OnInit, OnDestroy {
   }
 
   tryConnectivity() {
-    let loadingMsg =
-      '<div class="loadContent"><ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img><p class="white">Fetching Internet Provider Info...</p></div>';
+    const translatedText = this.translate.instant('searchCountry.loading');
+
+    const loadingMsg =
+      // eslint-disable-next-line max-len
+      `<div class="loadContent">
+     <ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img>
+     <p class="green_loader">${translatedText}</p>
+   </div>`;
+    
     this.loading.present(loadingMsg, 15000, 'pdcaLoaderClass', 'null');
     this.networkService.getNetInfo().then((res) => {
       this.connectionStatus = 'success';
@@ -246,6 +270,7 @@ export class StarttestPage implements OnInit, OnDestroy {
       }
       if (res) {
         this.accessInformation = res;
+        console.log(this.accessInformation)
       }
     });
   }
@@ -275,8 +300,24 @@ export class StarttestPage implements OnInit, OnDestroy {
  
   startNDT() {
     try {
+      this.uploadProgressStarted = false;
+      this.downloadStarted = false;
+      this.uploadStarted = false;
+      this.progress = 0;
+  
+      // ❗ Clear any ongoing timers
+      if (this.downloadTimer) {
+        clearInterval(this.downloadTimer);
+        this.downloadTimer = null;
+      }
+      if (this.uploadTimer) {
+        clearInterval(this.uploadTimer);
+        this.uploadTimer = null;
+      }
+  
       this.currentState = 'Starting';
       this.uploadStatus = undefined;
+      this.latency = undefined;
       this.connectionStatus = '';
       this.uploadProgressStarted = false;
       this.measurementClientService.runTest();
@@ -287,19 +328,39 @@ export class StarttestPage implements OnInit, OnDestroy {
 
   startDownloadProgress() {
     const target = 50;
-    const interval = 1500; // Increase interval to slow down updates (1.5 sec per update)
-    const step = 0.5; // Reduce step size for a more gradual increase
+    const duration = 10000; // total animation duration in ms (10 seconds)
+    const interval = 200; // update every 200ms
+    const steps = duration / interval;
+    const stepSize = (target - this.progress) / steps;
+  
+    // Clear existing timer
+    if (this.downloadTimer) {
+      clearInterval(this.downloadTimer);
+      this.downloadTimer = null;
+    }
+  
+    // Reset progress if needed
+    if (this.progress > target) {
+      this.progress = 0;
+    }
+  
+    let elapsedSteps = 0;
   
     this.downloadTimer = setInterval(() => {
-      if (this.progress < target && this.downloadStarted) {
-        this.progress += step; // Increase progress very slowly
-        if (this.progress >= target) {
+      if (this.downloadStarted && this.progress < target) {
+        this.progress += stepSize;
+        elapsedSteps++;
+  
+        if (this.progress >= target || elapsedSteps >= steps) {
           this.progress = target;
           clearInterval(this.downloadTimer);
+          this.downloadTimer = null;
         }
-        this.ref.detectChanges(); // Ensure UI updates smoothly
+  
+        this.ref.detectChanges(); // trigger UI update
       } else {
         clearInterval(this.downloadTimer);
+        this.downloadTimer = null;
       }
     }, interval);
   }

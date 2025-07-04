@@ -409,3 +409,13 @@ ion-breadcrumb::part(native) {
 .accordion-sec ion-accordion-group ion-accordion ion-icon {
   margin-inline: 15px !important;
 }
+
+
+.loadContent {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;     /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  height: 100vh;           /* Full screen height */
+  text-align: center;
+}
