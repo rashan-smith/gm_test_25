@@ -111,6 +111,8 @@ export class ElectronCapacitorApp {
   private SplashScreen: CapacitorSplashScreen | null = null;
   private TrayIcon: Tray | null = null;
   private CapacitorFileConfig: CapacitorElectronConfig;
+  private isQuiting = false;
+
   private TrayMenuTemplate: (MenuItem | MenuItemConstructorOptions)[] = [
     new MenuItem({
       label: 'Open',
@@ -134,7 +136,10 @@ export class ElectronCapacitorApp {
   private mainWindowState;
   private loadWebApp;
   private customScheme: string;
-
+  public requestQuit() {
+    this.isQuiting = true;
+    app.quit();
+  }
   constructor(
     capacitorFileConfig: CapacitorElectronConfig,
     trayMenuTemplate?: (MenuItemConstructorOptions | MenuItem)[],
@@ -333,15 +338,13 @@ export class ElectronCapacitorApp {
         event.preventDefault();
       }
     });
-    // this.MainWindow.on('close',(event)=>{
-    //   if(!isQuiting){
-    //     event.preventDefault();
-    //     this.MainWindow.hide();
-    //     return false;
-    //   } else {
-    //     app.quit();
-    //   }
-    // });
+    this.MainWindow.on('close',(event)=>{
+      if(!this.isQuiting){
+        event.preventDefault();
+        this.MainWindow.hide();
+        return false;
+      }
+    });
     // Link electron plugins into the system.
     setupCapacitorElectronPlugins();
 
@@ -389,24 +392,24 @@ export class ElectronCapacitorApp {
     }
 
     // Auto lunching code added by Kajal
-    var measureAppAutoLuncher = new AutoLaunch({
-      name: 'Unicef PDCA',
-    });
+    // var measureAppAutoLuncher = new AutoLaunch({
+    //   name: 'Unicef PDCA',
+    // });
 
-    measureAppAutoLuncher?.enable();
-    measureAppAutoLuncher
-      ?.isEnabled()
-      .then(function (isEnabled) {
-        if (isEnabled) {
-          return;
-        }
-        measureAppAutoLuncher?.enable();
-      })
-      .catch(function (err) {
-        // handle error
-        Sentry.captureException(err);
-        console.log(err);
-      });
+    // measureAppAutoLuncher?.enable();
+    // measureAppAutoLuncher
+    //   ?.isEnabled()
+    //   .then(function (isEnabled) {
+    //     if (isEnabled) {
+    //       return;
+    //     }
+    //     measureAppAutoLuncher?.enable();
+    //   })
+    //   .catch(function (err) {
+    //     // handle error
+    //     Sentry.captureException(err);
+    //     console.log(err);
+    //   });
     // End of Auto lunching code
   }
 }

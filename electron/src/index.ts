@@ -47,7 +47,7 @@ const trayMenuTemplate: (MenuItemConstructorOptions | MenuItem)[] = [
     label: 'Quit App', click: function () {
       isQuiting = true;
       // myCapacitorApp.getMainWindow().close();
-      app.quit();
+      myCapacitorApp.requestQuit();
     }
   })
 ];
@@ -206,17 +206,17 @@ autoUpdater.on('error', (error) => {
   // Check for updates if we are in a packaged app.
   // autoUpdater.checkForUpdatesAndNotify();
 }
-if (mainWindow) {
-  mainWindow.on('close', (event) => {
-    if (!isQuiting) {
-      event.preventDefault();
-      mainWindow.hide();
-      return false;
-    } else {
-      app.quit();
-    }
-  });
-}
+// if (mainWindow) {
+//   mainWindow.on('close', (event) => {
+//     if (!isQuiting) {
+//       event.preventDefault();
+//       mainWindow.hide();
+//       return false;
+//     } else {
+//       app.quit();
+//     }
+//   });
+// }
 // Handle when all of our windows are close (platforms have their own expectations).
 app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
