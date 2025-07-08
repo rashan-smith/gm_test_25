@@ -32,6 +32,7 @@ object Constants {
   const val SERVER_INFO_END_URL = "https://mlab-ns.appspot.com/"
   const val SCHEDULE_TYPE_DAILY = "daily"
   const val SCHEDULE_TYPE_START = "start"
+  const val SCHEDULE_TYPE_MANUAL = "manual"
   const val DEVICE_TYPE_ANDROID = "android"
   const val DEVICE_TYPE_CHROMEBOOK = "chromebook"
 

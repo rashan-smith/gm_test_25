@@ -19,7 +19,7 @@ import { SharedService } from '../services/shared-service.service';
 import { HistoryService } from '../services/history.service';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../services/storage.service';
-
+import { Capacitor, registerPlugin } from '@capacitor/core';
 @Component({
   selector: 'app-starttest',
   templateUrl: 'starttest.page.html',
@@ -82,6 +82,8 @@ export class StarttestPage implements OnInit {
   public currentDate: any;
   public connectionStatus: any;
   private sub: any;
+  isNative: boolean;
+  gigaAppPlugin: any;
   constructor(
     private route: ActivatedRoute,
     public loading: LoadingService,
@@ -100,6 +102,8 @@ export class StarttestPage implements OnInit {
     private ref: ChangeDetectorRef,
     private storage: StorageService
   ) {
+    this.isNative = Capacitor.isNativePlatform();
+    this.gigaAppPlugin = registerPlugin<any>('GigaAppPlugin');
     this.onlineStatus = navigator.onLine;
     this.route.params.subscribe((params) => {
       if (this.onlineStatus) {
@@ -143,6 +147,12 @@ export class StarttestPage implements OnInit {
       },
       false
     );
+
+    this.gigaAppPlugin.addListener('speedUpdate', (data: any) => {
+    console.log('GIGA NetworkTestService Data:', data);
+    console.log('GIGA NetworkTestService DownloadSpeed:', data.downloadSpeed);
+    console.log('GIGA NetworkTestService UploadSpeed:', data.uploadSpeed);
+    });
 
     this.sharedService.on('settings:changed', (nameValue) => {
       if (nameValue.name == 'applicationLanguage') {
@@ -232,7 +242,11 @@ export class StarttestPage implements OnInit {
       this.currentState = 'Starting';
       this.uploadStatus = undefined;
       this.connectionStatus = '';
-      this.measurementClientService.runTest();
+      if (this.isNative) {
+        this.gigaAppPlugin.executeManualSpeedTest()
+      } else { 
+        this.measurementClientService.runTest();
+      }
     } catch (e) {
       console.log(e);
     }

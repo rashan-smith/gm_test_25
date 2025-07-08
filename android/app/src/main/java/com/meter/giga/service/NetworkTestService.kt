@@ -17,6 +17,7 @@ import com.meter.giga.domain.entity.response.ServerInfoResponseEntity
 import com.meter.giga.domain.usecases.GetClientInfoUseCase
 import com.meter.giga.domain.usecases.GetServerInfoUseCase
 import com.meter.giga.domain.usecases.PostSpeedTestUseCase
+import com.meter.giga.ionic_plugin.GigaAppPlugin
 import com.meter.giga.prefrences.AlarmSharedPref
 import com.meter.giga.utils.Constants.CHANNEL_ID
 import com.meter.giga.utils.Constants.DEVICE_TYPE_ANDROID
@@ -79,6 +80,7 @@ class NetworkTestService : LifecycleService() {
     startForeground(NOTIFICATION_ID, createNotification("Starting speed test..."))
     val prefs = AlarmSharedPref(this)
     val scheduleType = intent?.getStringExtra(SCHEDULE_TYPE) ?: SCHEDULE_TYPE_DAILY
+    Log.d("GIGA NetworkTestService SCHEDULE_TYPE", scheduleType)
     val schoolId = prefs.schoolId
     val gigaSchoolId = prefs.gigaSchoolId
     val browserId = prefs.browserId
@@ -228,6 +230,7 @@ class NetworkTestService : LifecycleService() {
       val msg = "DL: %.2f Mbps | UL: %.2f Mbps".format(downloadSpeed, uploadSpeed)
       lastDownloadResponse = clientResponse
       updateNotification(msg)
+      GigaAppPlugin.sendSpeedUpdate(downloadSpeed, uploadSpeed)
     }
 
     /**
@@ -244,6 +247,7 @@ class NetworkTestService : LifecycleService() {
       val msg = "DL: %.2f Mbps | UL: %.2f Mbps".format(downloadSpeed, uploadSpeed)
       lastUploadResponse = clientResponse
       updateNotification(msg)
+      GigaAppPlugin.sendSpeedUpdate(downloadSpeed, uploadSpeed)
     }
 
     /**

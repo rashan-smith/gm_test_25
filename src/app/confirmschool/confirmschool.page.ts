@@ -14,8 +14,7 @@ import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { SettingsService } from '../services/settings.service';
 import { TranslateService } from '@ngx-translate/core';
-import { registerPlugin } from '@capacitor/core';
-const GigaAppPlugin = registerPlugin<any>('GigaAppPlugin');
+import { Capacitor, registerPlugin } from '@capacitor/core';
 @Component({
   selector: 'app-confirmschool',
   templateUrl: 'confirmschool.page.html',
@@ -30,6 +29,8 @@ export class ConfirmschoolPage {
   detectedCountry: any;
   sub: any;
   appName = environment.appName;
+  isNative: boolean;
+  gigaAppPlugin: any;
   constructor(
     private activatedroute: ActivatedRoute,
     public router: Router,
@@ -43,6 +44,8 @@ export class ConfirmschoolPage {
   ) {
     const appLang = this.settings.get('applicationLanguage');
     this.translate.use(appLang.code);
+    this.isNative = Capacitor.isNativePlatform();
+    this.gigaAppPlugin = registerPlugin<any>('GigaAppPlugin');
     this.sub = this.activatedroute.params.subscribe((params) => {
       this.schoolId = params.schoolId;
       this.selectedCountry = params.selectedCountry;
@@ -98,7 +101,9 @@ export class ConfirmschoolPage {
               this.storage.set('country_code', this.selectedCountry);
               this.storage.set('school_id', this.school.school_id);
               this.storage.set('schoolInfo', JSON.stringify(this.school));
-              this.storeRegistrationDataAndScheduleSpeedTest(response, this.school.school_id, this.school.giga_id_school, this.selectedCountry, c?.ip )
+              if (this.isNative) { 
+                this.storeRegistrationDataAndScheduleSpeedTest(response, this.school.school_id, this.school.giga_id_school, this.selectedCountry, c?.ip);
+              }
               this.loading.dismiss();
               this.router.navigate(['/schoolsuccess']);
               this.settings.setSetting('scheduledTesting', true);
@@ -163,7 +168,7 @@ export class ConfirmschoolPage {
     console.log("GIGA Params : gigaSchoolId : ", gigaSchoolId);
     console.log("GIGA Params : countryCode : ", countryCode);
     console.log("GIGA Params : ipAddress : ", ipAddress);
-    const result = await GigaAppPlugin.storeAndScheduleSpeedTest({
+    const result = await this.gigaAppPlugin.storeAndScheduleSpeedTest({
       "browser_id": browserId || "",
       "school_id": schoolId || "",
       "giga_school_id": gigaSchoolId || "",

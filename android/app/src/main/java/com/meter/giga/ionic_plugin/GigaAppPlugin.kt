@@ -3,6 +3,8 @@ package com.meter.giga.ionic_plugin
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.util.Log
 import com.getcapacitor.JSObject
 import com.getcapacitor.Plugin
@@ -13,11 +15,14 @@ import com.meter.giga.ararm_scheduler.AlarmHelper
 import com.meter.giga.ararm_scheduler.AlarmHelper.getNextSlotRange
 import com.meter.giga.ararm_scheduler.AlarmHelper.getSlotStartHour
 import com.meter.giga.prefrences.AlarmSharedPref
+import com.meter.giga.service.NetworkTestService
 import com.meter.giga.utils.Constants.REGISTRATION_BROWSER_ID
 import com.meter.giga.utils.Constants.REGISTRATION_COUNTRY_CODE
 import com.meter.giga.utils.Constants.REGISTRATION_GIGA_SCHOOL_ID
 import com.meter.giga.utils.Constants.REGISTRATION_IP_ADDRESS
 import com.meter.giga.utils.Constants.REGISTRATION_SCHOOL_ID
+import com.meter.giga.utils.Constants.SCHEDULE_TYPE
+import com.meter.giga.utils.Constants.SCHEDULE_TYPE_MANUAL
 
 @CapacitorPlugin(name = "GigaAppPlugin")
 class GigaAppPlugin : Plugin() {
@@ -25,10 +30,38 @@ class GigaAppPlugin : Plugin() {
   // Create singleton instance of Giga App Plugin
   companion object {
     private var pluginInstance: GigaAppPlugin? = null
+
+    fun sendSpeedUpdate(downloadSpeed: Double, uploadSpeed: Double) {
+      pluginInstance?.let {
+        val data = JSObject().apply {
+          put("downloadSpeed", downloadSpeed)
+          put("uploadSpeed", uploadSpeed)
+        }
+        Log.d("NetworkTestService", "sendSpeedUpdate: ${data}")
+        it.notifyListeners("speedUpdate", data)
+      }
+    }
   }
 
   override fun load() {
     pluginInstance = this
+  }
+
+  /**
+   * This function is invoked from ionic app UI
+   * to start the manual speed test on user button click
+   * @param call : This contains all the passed params
+   * as key value pair
+   */
+  @PluginMethod
+  fun executeManualSpeedTest(call: PluginCall) {
+    Log.d("GIGA GigaAppPlugin", "Manual Speed Test")
+    val context = bridge.context
+    val intent = Intent(context, NetworkTestService::class.java)
+    intent.putExtra(SCHEDULE_TYPE, SCHEDULE_TYPE_MANUAL)
+    context.startForegroundService(intent)
+    call.resolve()
+    call.resolve()
   }
 
   /**
