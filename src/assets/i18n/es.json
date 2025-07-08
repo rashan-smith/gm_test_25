@@ -62,6 +62,13 @@
         "go-dashboard": "Ir a tu panel"
 
     },
+    "registerSchool": {
+        "register-step-1": "Estás a punto de registrar tu escuela",
+        "register-part-2": "Asegúrate de que las computadoras estén conectadas por cable",
+        "register-step-2": "Asegúrate de que la aplicación esté instalada en 2 dispositivos que se usen regularmente",
+        "register-step-3": "Asegúrate de estar conectado solo al internet de la escuela",
+        "start-registeration": "Iniciar registro"
+    },
     "searchCountry": {
         "loading": "Cargando",
         "confirm": "Confirmar",
