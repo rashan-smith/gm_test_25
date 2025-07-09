@@ -25,8 +25,8 @@ import electronServe from 'electron-serve';
 import windowStateKeeper from 'electron-window-state';
 import { join } from 'path';
 import * as Sentry from '@sentry/node';
+import type { SeverityLevel } from '@sentry/types';
 import { Console } from 'console';
-import { Severity } from '@sentry/node';
 var AutoLaunch = require('auto-launch');
 var isQuiting = false;
 
@@ -224,7 +224,7 @@ export class ElectronCapacitorApp {
 
     this.MainWindow?.on('unresponsive', () => {
       Sentry.captureMessage('Window became unresponsive', {
-        level: Severity.Error,
+        level: 'error' as SeverityLevel,
         extra: {
           windowId: this.MainWindow?.id,
         },
