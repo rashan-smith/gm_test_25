@@ -200,6 +200,9 @@ export class StarttestPage implements OnInit {
       if (this.loading.isStillLoading()) {
         this.loading.dismiss();
       }
+      if (res) {
+        this.accessInformation = res;
+      }
     });
   }
 
@@ -265,11 +268,6 @@ export class StarttestPage implements OnInit {
         this.progressGaugeState.current = this.progressGaugeState.maximum;
         this.latency = ((data.passedResults['NDTResult.S2C'].LastServerMeasurement.BBRInfo.MinRTT +
           data.passedResults['NDTResult.C2S'].LastServerMeasurement.BBRInfo.MinRTT) / 2 / 1000).toFixed(0);
-        let historicalData = this.historyService.get();
-        if (historicalData !== null && historicalData !== undefined) {
-          this.accessInformation =
-            historicalData.measurements[0].accessInformation;
-        }
         this.ref.markForCheck();
         this.refreshHistory();
       } else if (data.testStatus === 'onerror') {

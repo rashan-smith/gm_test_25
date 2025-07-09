@@ -6,6 +6,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 const TEN_MINUTES = 1000 * 60 * 10;
+const MINUTE = 60 * 1000;
+const SIX_HOURS = 1000 * 60 * 60 * 6;
+
 const DAY = 1000 * 60 * 60 * 24;
 @Injectable({
   providedIn: 'root',
@@ -215,38 +218,44 @@ export class SettingsService {
   }
 
   async getFeatureFlags() {
-    const macAddress = this.storageSerivce.get('macAddress');
-    console.log('Checking for flags', { macAddress });
-    if (!macAddress) {
-      console.log('No macAddress found');
+    const gigaId = this.storageSerivce.get('gigaId');
+    console.log('Checking for flags', { giga_id_school: gigaId });
+    if (!gigaId) {
+      console.log('No gigaId found');
       return {};
     }
     let featureFlags = this.storageSerivce.get('featureFlags');
     if (featureFlags) {
       featureFlags = JSON.parse(featureFlags);
     }
-    console.log({ featureFlags, macAddress });
-    if (featureFlags?.updateDate && new Date(parseInt(featureFlags.updateDate, 10)).getTime() > Date.now() - DAY) {
+    console.log({ featureFlags, giga_id_school: gigaId });
+    if (
+      featureFlags?.updateDate &&
+      new Date(parseInt(featureFlags.updateDate, 10)).getTime() >
+        Date.now() - SIX_HOURS
+    ) {
       return featureFlags;
-    };
+    }
     try {
-      const newFlags = await this.http.get(environment.restAPI + `dailycheckapp_schools/features_flags`, {
-        observe: 'response',
-        headers: new HttpHeaders({
-          'Content-type': 'application/json',
-        }),
-        params: {
-          mac_address: macAddress
-        }
-      }).pipe(map((response: any) => response.body)).toPromise();
-      console.log({ newFlags });
+      const newFlags = await this.http
+        .get(environment.restAPI + `schools/features_flags/${gigaId}`, {
+          observe: 'response',
+          headers: new HttpHeaders({
+            'Content-type': 'application/json',
+          }),
+        })
+        .pipe(map((response: any) => response.body))
+        .toPromise();
       if (!newFlags || newFlags.data.length === 0) {
         return featureFlags;
       }
 
-      this.storageSerivce.set('featureFlags', JSON.stringify({ ...newFlags.data, updateDate: Date.now() }));
+      this.storageSerivce.set(
+        'featureFlags',
+        JSON.stringify({ ...newFlags.data, updateDate: Date.now() })
+      );
 
-      return newFlags;
+      return newFlags?.data || {};
     } catch (e) {
       console.log(e);
       return featureFlags;

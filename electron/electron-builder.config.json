@@ -1,5 +1,7 @@
 {
   "appId": "com.unicef.pdca",
+  "productName": "Giga Meter",
+  "artifactName": "Giga-Meter-Setup-${version}.${ext}",
   "directories": {
     "buildResources": "resources"
   },
