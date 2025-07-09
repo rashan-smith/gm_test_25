@@ -10,6 +10,7 @@ import { environment } from '../environments/environment'; // './esrc/environmen
 import { PingResult, PingService } from './services/ping.service';
 import { IndexedDBService } from './services/indexed-db.service';
 import { SyncService } from './services/sync.service';
+import { Capacitor, registerPlugin } from '@capacitor/core';
 
 // const shell = require('electron').shell;
 @Component({
@@ -26,6 +27,7 @@ export class AppComponent {
   app_version: any;
   appName = environment.appName;
   showAboutMenu = environment.showAboutMenu;
+  isNative: boolean;
   constructor(
     private menu: MenuController,
     private storage: StorageService,
@@ -38,6 +40,7 @@ export class AppComponent {
     private localStorageService: IndexedDBService,
     private syncService: SyncService
   ) {
+    this.isNative = Capacitor.isNativePlatform();
     translate.setDefaultLang('en');
     const appLang = this.settingsService.get('applicationLanguage') ?? {
       code: 'en',
@@ -80,9 +83,12 @@ export class AppComponent {
     );
     this.refreshHistory();
     this.initiatePingService();
-    setInterval(() => {
-      this.scheduleService.initiate();
-    }, 60000);
+    console.log("GIGA isNative", this.isNative)
+    if (!this.isNative) {
+      setInterval(() => {
+        this.scheduleService.initiate();
+      }, 60000);
+    }
   }
 
   startSyncingPeriodicProcess() {
