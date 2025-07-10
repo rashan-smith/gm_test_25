@@ -14,9 +14,10 @@ import { Capacitor, registerPlugin } from '@capacitor/core';
 
 // const shell = require('electron').shell;
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+    selector: 'app-root',
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.scss'],
+    standalone: false
 })
 export class AppComponent {
   school: any;

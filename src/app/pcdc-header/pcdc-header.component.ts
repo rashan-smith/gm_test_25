@@ -4,9 +4,10 @@ import { environment as env } from '../../environments/environment';
 import { SettingsService } from '../services/settings.service';
 
 @Component({
-  selector: 'app-pcdc-header',
-  templateUrl: './pcdc-header.component.html',
-  styleUrls: ['./pcdc-header.component.scss'],
+    selector: 'app-pcdc-header',
+    templateUrl: './pcdc-header.component.html',
+    styleUrls: ['./pcdc-header.component.scss'],
+    standalone: false
 })
 export class PcdcHeaderComponent implements OnInit {
   languages = env?.languages ?? [];
@@ -44,7 +45,6 @@ export class PcdcHeaderComponent implements OnInit {
   closeApp() {
     this.settingsService
       .getIpcRenderer()
-      ?.ipcRenderer
-      ?.send('closeFromUi', 'minimize');
+      .send('closeFromUi', 'minimize');
   }
 }

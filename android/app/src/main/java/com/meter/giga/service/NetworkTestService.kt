@@ -451,7 +451,7 @@ class NetworkTestService : LifecycleService() {
           Log.e("GIGA NetworkTestService", "Error: ${e.message}")
         } finally {
           delay(5000)
-          stopSelf()
+          Log.d("GIGA NetworkTestService", "Speed Test Completed}")
         }
       }
     }

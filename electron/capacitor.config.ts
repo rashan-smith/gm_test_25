@@ -1,7 +1,14 @@
-import { ElectronCapacitorConfig } from '@capacitor-community/electron';
+import { CapacitorConfig } from '@capacitor/cli';
 
-const config: ElectronCapacitorConfig  = {
-  appId: 'com.meter.giga',
+interface ExtendedCapacitorConfig extends CapacitorConfig {
+  electron?: {
+    trayIconAndMenuEnabled?: boolean;
+    electronIsDev?: boolean;
+  };
+}
+
+const config: ExtendedCapacitorConfig = {
+  appId: 'io.ionic.starter',
   appName: 'unicef-pdca',
   webDir: 'www',
   bundledWebRuntime: false,
