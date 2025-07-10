@@ -10,6 +10,8 @@ import { IonAccordionGroup, IonSlides } from '@ionic/angular';
   selector: 'app-register-school-page',
   templateUrl: './register-school-page.component.html',
   styleUrls: ['./register-school-page.component.scss'],
+  standalone: false
+
 })
 export class RegisterSchoolPageComponent implements OnInit {
   @ViewChild(IonAccordionGroup, { static: true })
@@ -23,7 +25,11 @@ export class RegisterSchoolPageComponent implements OnInit {
     pagination: {
       el: '.swiper-pagination', // target class for bullets
       clickable: true
-    }
+    },
+    watchSlidesProgress: true,
+    observeSlideChildren: true,
+    observer: true,
+    observeParents: true,
 
   };
   isFirst = true;
@@ -78,7 +84,27 @@ export class RegisterSchoolPageComponent implements OnInit {
   }
   async checkCurrentSlide() {
     const index = await this.slides.getActiveIndex();
+    const total = await this.slides.length(); // Total number of slides
+
     this.isFirst = index === 0;
+    this.isLast = index === total - 1;
+    console.log(this.isFirst, this.isLast, index)
   }
+
+  updatePaginationIndexClass(index: number) {
+    const paginationEl = document.querySelector('.swiper-pagination');
+    if (paginationEl) {
+      // Remove previous index-* classes
+      paginationEl.classList.forEach(cls => {
+        if (cls.startsWith('index-')) {
+          paginationEl.classList.remove(cls);
+        }
+      });
+  
+      // Add the current index class
+      paginationEl.classList.add(`index-${index}`);
+    }
+  }
+  
 
 }
