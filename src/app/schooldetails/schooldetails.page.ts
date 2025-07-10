@@ -6,9 +6,10 @@ import { LoadingService } from '../services/loading.service';
 import { SettingsService } from '../services/settings.service';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-schooldetails',
-  templateUrl: 'schooldetails.page.html',
-  styleUrls: ['schooldetails.page.scss'],
+    selector: 'app-schooldetails',
+    templateUrl: 'schooldetails.page.html',
+    styleUrls: ['schooldetails.page.scss'],
+    standalone: false
 })
 export class SchooldetailsPage {
   @ViewChild(IonAccordionGroup, { static: true })

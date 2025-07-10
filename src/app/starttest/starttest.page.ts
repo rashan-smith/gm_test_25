@@ -24,9 +24,10 @@ import { Subscription } from 'rxjs';
 import { CountryService } from '../services/country.service';
 
 @Component({
-  selector: 'app-starttest',
-  templateUrl: 'starttest.page.html',
-  styleUrls: ['starttest.page.scss'],
+    selector: 'app-starttest',
+    templateUrl: 'starttest.page.html',
+    styleUrls: ['starttest.page.scss'],
+    standalone: false
 })
 export class StarttestPage implements OnInit, OnDestroy {
   @ViewChild(IonAccordionGroup, { static: true })
