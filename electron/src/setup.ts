@@ -361,7 +361,7 @@ export class ElectronCapacitorApp {
       setTimeout(() => {
         if ((this.CapacitorFileConfig.electron as any)?.electronIsDev) {
           this.MainWindow.webContents.openDevTools();
-          this.MainWindow.setSize(800, 600);
+          this.MainWindow.setSize(390, 700);
         }
         CapElectronEventEmitter.emit(
           'CAPELECTRON_DeeplinkListenerInitialized',

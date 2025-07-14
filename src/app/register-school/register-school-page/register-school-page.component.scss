@@ -1,7 +1,7 @@
 @import "../../../theme/variables.scss";
 
 .container {
-  margin: 10px 0 0px 0;
+  margin: 30px 0 0px 0;
   height: 90%;
   min-height: 88%;
   background-size: 100% 100%;
@@ -11,7 +11,7 @@
 .schoolsuccess {
   --bullet-background: #eee;
   --bullet-background-active: #51E12B;
-  height: 90%;
+  height: 70%;
 }
 
 .swiper-slide {
@@ -99,8 +99,9 @@ ion-label {
   display: flex;
   padding-bottom: 10px;
   text-decoration: underline;
+  cursor: pointer;
   color: #277AFF;
-  padding: 16px 0 0 0;
+  padding: 16px 0 16px 0;
 }
 
 .register_readMore {
@@ -188,6 +189,8 @@ ion-label {
 
 .underline {
   text-decoration: underline;
+  cursor: pointer;
+
 }
 
 .txt-font {

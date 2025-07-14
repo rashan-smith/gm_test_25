@@ -256,13 +256,13 @@ export class StarttestPage implements OnInit, OnDestroy {
   tryConnectivity() {
     const translatedText = this.translate.instant('searchCountry.loading');
 
-    const loadingMsg =
-      // eslint-disable-next-line max-len
-      `<div class="loadContent">
-     <ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img>
-     <p class="green_loader">${translatedText}</p>
-   </div>`;
-    
+   this.translate.get('searchCountry.loading').subscribe((translatedText) => {
+    const loadingMsg = `
+      <div class="loadContent">
+        <ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img>
+        <p class="green_loader">${translatedText}</p>
+      </div>`;
+  
     this.loading.present(loadingMsg, 15000, 'pdcaLoaderClass', 'null');
     this.networkService.getNetInfo().then((res) => {
       this.connectionStatus = 'success';
@@ -274,6 +274,8 @@ export class StarttestPage implements OnInit, OnDestroy {
         console.log(this.accessInformation)
       }
     });
+  });
+    
   }
 
   refreshHistory() {

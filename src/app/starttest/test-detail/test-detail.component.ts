@@ -6,6 +6,8 @@ import { StorageService } from 'src/app/services/storage.service';
   selector: 'app-test-detail',
   templateUrl: './test-detail.component.html',
   styleUrls: ['./test-detail.component.scss'],
+  standalone: false
+  
 })
 export class TestDetailComponent implements OnInit {
   schoolId: string;

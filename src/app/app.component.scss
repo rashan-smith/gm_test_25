@@ -154,7 +154,10 @@ ion-content {
 }
 
 .dropdown_width {
-    width: 110%;
+    width: 98%;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.50);
+    margin-bottom: 2px;
+
 }
 .select_type_dropdown {
     // Ensure your item has visible text if the background is white
@@ -222,6 +225,14 @@ ion-content {
     &:hover {
         background: none;
     }
+}
+.dropdown_list {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+
+  &:hover {
+    background: none;
+  }
 }
 
 .searchCountry {
@@ -396,5 +407,30 @@ ion-content {
 
   .sc-ion-label-md-h {
     color: #474747;
+  }
+  
+  .half-border-bottom::after {
+    content: "";
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    margin-top: 1px; /* space between content and border */
+  }
+  ::ng-deep {
+    ion-content {
+  
+      // Target WebKit browsers (Chrome, Edge, Safari)
+    &::-webkit-scrollbar {
+        width: 8px;
+      }
+      &::-webkit-scrollbar-thumb {  
+        border-radius: 4px;
+        border: 2px solid transparent;
+      }  
+      scrollbar-color: #a3acbb transparent;
+      scrollbar-width: thin;
+    }
+    
+     
   }
   
