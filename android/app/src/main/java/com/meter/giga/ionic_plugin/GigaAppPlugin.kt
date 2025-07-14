@@ -36,6 +36,13 @@ class GigaAppPlugin : Plugin() {
   companion object {
     private var pluginInstance: GigaAppPlugin? = null
 
+    /**
+     * This function used to pass the last speed test measurements
+     * TO UI
+     * @param downloadSpeed : Download Speed
+     * @param uploadSpeed : Upload Speed
+     * @param testStatus : upload/download
+     */
     fun sendSpeedUpdate(downloadSpeed: Double, uploadSpeed: Double, testStatus: String) {
       pluginInstance?.let {
         val data = JSObject().apply {
@@ -48,6 +55,12 @@ class GigaAppPlugin : Plugin() {
       }
     }
 
+    /**
+     * This function used to pass the final speed test measurements
+     * TO UI
+     * @param speedTestData : Speed Test Result Entity contains all
+     * speed test details
+     */
     fun sendSpeedTestCompleted(speedTestData: SpeedTestResultRequestEntity) {
       pluginInstance?.let {
         Log.d("GIGA NetworkTestService", "sendSpeedTestCompleted")
@@ -64,6 +77,10 @@ class GigaAppPlugin : Plugin() {
       }
     }
 
+    /**
+     * This function used to pass the speed test measurements failed
+     * TO UI
+     */
     fun sendSpeedTestCompletedWithError() {
       pluginInstance?.let {
         Log.d("GIGA NetworkTestService", "sendSpeedTestCompletedWithError")
@@ -74,6 +91,10 @@ class GigaAppPlugin : Plugin() {
       }
     }
 
+    /**
+     * This function used to pass the speed test measurements started
+     * TO UI
+     */
     fun sendSpeedTestStarted() {
       pluginInstance?.let {
         Log.d("GIGA NetworkTestService", "sendSpeedTestStarted")
