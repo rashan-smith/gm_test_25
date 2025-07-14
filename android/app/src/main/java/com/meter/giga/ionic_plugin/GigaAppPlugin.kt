@@ -11,9 +11,14 @@ import com.getcapacitor.Plugin
 import com.getcapacitor.PluginCall
 import com.getcapacitor.PluginMethod
 import com.getcapacitor.annotation.CapacitorPlugin
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
 import com.meter.giga.ararm_scheduler.AlarmHelper
 import com.meter.giga.ararm_scheduler.AlarmHelper.getNextSlotRange
 import com.meter.giga.ararm_scheduler.AlarmHelper.getSlotStartHour
+import com.meter.giga.domain.entity.SpeedTestResultEntity
+import com.meter.giga.domain.entity.request.SpeedTestResultRequestEntity
 import com.meter.giga.prefrences.AlarmSharedPref
 import com.meter.giga.service.NetworkTestService
 import com.meter.giga.utils.Constants.REGISTRATION_BROWSER_ID
@@ -31,14 +36,51 @@ class GigaAppPlugin : Plugin() {
   companion object {
     private var pluginInstance: GigaAppPlugin? = null
 
-    fun sendSpeedUpdate(downloadSpeed: Double, uploadSpeed: Double) {
+    fun sendSpeedUpdate(downloadSpeed: Double, uploadSpeed: Double, testStatus: String) {
       pluginInstance?.let {
         val data = JSObject().apply {
           put("downloadSpeed", downloadSpeed)
           put("uploadSpeed", uploadSpeed)
+          put("testStatus", testStatus)
         }
-        Log.d("NetworkTestService", "sendSpeedUpdate: ${data}")
-        it.notifyListeners("speedUpdate", data)
+        Log.d("GIGA NetworkTestService", "sendSpeedUpdate: $data")
+        it.notifyListeners("speedTestUpdate", data)
+      }
+    }
+
+    fun sendSpeedTestCompleted(speedTestData: SpeedTestResultRequestEntity) {
+      pluginInstance?.let {
+        Log.d("GIGA NetworkTestService", "sendSpeedTestCompleted")
+        val speedTestResultEntity = SpeedTestResultEntity(
+          speedTestData = speedTestData,
+          testStatus = "complete"
+        )
+        val jsonString = GsonBuilder()
+          .serializeNulls()
+          .create().toJson(speedTestResultEntity)
+        val data = JSObject(jsonString)
+        Log.d("GIGA NetworkTestService", "sendSpeedTestCompleted $data")
+        it.notifyListeners("speedTestUpdate", data as JSObject?)
+      }
+    }
+
+    fun sendSpeedTestCompletedWithError() {
+      pluginInstance?.let {
+        Log.d("GIGA NetworkTestService", "sendSpeedTestCompletedWithError")
+        val data = JSObject().apply {
+          put("testStatus", "onerror")
+        }
+        it.notifyListeners("speedTestUpdate", data)
+      }
+    }
+
+    fun sendSpeedTestStarted() {
+      pluginInstance?.let {
+        Log.d("GIGA NetworkTestService", "sendSpeedTestStarted")
+        val data = JSObject().apply {
+          put("testStatus", "onstart")
+        }
+        it.notifyListeners("speedTestUpdate", data)
       }
     }
   }

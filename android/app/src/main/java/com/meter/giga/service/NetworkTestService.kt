@@ -89,7 +89,7 @@ class NetworkTestService : LifecycleService() {
     val appVersion = GigaUtil.getAppVersionName(this)
     val isRunningOnChromebook = GigaUtil.isRunningOnChromebook(this)
     val client = NDTTestImpl(
-      createHttpClient(),
+      null,
       scheduleType,
       schoolId,
       gigaSchoolId,
@@ -99,6 +99,7 @@ class NetworkTestService : LifecycleService() {
       ipAddress,
       countryCode
     )
+    GigaAppPlugin.sendSpeedTestStarted()
     client.startTest(NDTTest.TestType.DOWNLOAD_AND_UPLOAD)
     return START_STICKY
   }
@@ -174,7 +175,7 @@ class NetworkTestService : LifecycleService() {
    * the callback implementation for the download, upload progress
    */
   private inner class NDTTestImpl(
-    okHttpClient: OkHttpClient,
+    okHttpClient: OkHttpClient?,
     private val scheduleType: String,
     private val schoolId: String,
     private val gigaSchoolId: String,
@@ -187,10 +188,10 @@ class NetworkTestService : LifecycleService() {
     NDTTest(okHttpClient) {
     var downloadSpeed = 0.0;
     var uploadSpeed = 0.0;
-    var lastDownloadMeasurement: Measurement? = null
-    var lastUploadMeasurement: Measurement? = null
-    var lastDownloadResponse: ClientResponse? = null
-    var lastUploadResponse: ClientResponse? = null
+    var lastDownloadMeasurement: Measurement? = GigaUtil.getDefaultMeasurements()
+    var lastUploadMeasurement: Measurement? = GigaUtil.getDefaultMeasurements()
+    var lastDownloadResponse: ClientResponse? = GigaUtil.getDefaultClientInfo("download")
+    var lastUploadResponse: ClientResponse? = GigaUtil.getDefaultClientInfo("upload")
     var allDoneInvoked: Int = 0
 
     /**
@@ -230,7 +231,7 @@ class NetworkTestService : LifecycleService() {
       val msg = "DL: %.2f Mbps | UL: %.2f Mbps".format(downloadSpeed, uploadSpeed)
       lastDownloadResponse = clientResponse
       updateNotification(msg)
-      GigaAppPlugin.sendSpeedUpdate(downloadSpeed, uploadSpeed)
+      GigaAppPlugin.sendSpeedUpdate(downloadSpeed, uploadSpeed, "download")
     }
 
     /**
@@ -247,7 +248,7 @@ class NetworkTestService : LifecycleService() {
       val msg = "DL: %.2f Mbps | UL: %.2f Mbps".format(downloadSpeed, uploadSpeed)
       lastUploadResponse = clientResponse
       updateNotification(msg)
-      GigaAppPlugin.sendSpeedUpdate(downloadSpeed, uploadSpeed)
+      GigaAppPlugin.sendSpeedUpdate(downloadSpeed, uploadSpeed, "upload")
     }
 
     /**
@@ -398,7 +399,7 @@ class NetworkTestService : LifecycleService() {
 
             if (clientInfoRequest != null && serverInfoRequest != null) {
               speedTestResultRequestEntity = GigaUtil.createSpeedTestPayload(
-                lastUploadMeasurement ?: GigaUtil.getDefaultMeasurements(),
+                lastUploadMeasurement,
                 lastDownloadMeasurement ?: GigaUtil.getDefaultMeasurements(),
                 clientInfoRequest,
                 serverInfoRequest,
@@ -414,8 +415,8 @@ class NetworkTestService : LifecycleService() {
                 browserId,
                 countryCode,
                 ipAddress,
-                lastDownloadResponse ?: GigaUtil.getDefaultClientInfo("download"),
-                lastUploadResponse ?: GigaUtil.getDefaultClientInfo("upload"),
+                lastDownloadResponse,
+                lastUploadResponse,
 
                 )
               val postSpeedTestUseCase = PostSpeedTestUseCase()
@@ -441,6 +442,7 @@ class NetworkTestService : LifecycleService() {
                     "GIGA NetworkTestService",
                     "Speed Test Data Published Successfully"
                   )
+                  GigaAppPlugin.sendSpeedTestCompleted(speedTestResultRequestEntity)
                 }
               }
             }
@@ -449,6 +451,7 @@ class NetworkTestService : LifecycleService() {
           }
         } catch (e: Exception) {
           Log.e("GIGA NetworkTestService", "Error: ${e.message}")
+          GigaAppPlugin.sendSpeedTestCompletedWithError()
         } finally {
           delay(5000)
           Log.d("GIGA NetworkTestService", "Speed Test Completed}")
