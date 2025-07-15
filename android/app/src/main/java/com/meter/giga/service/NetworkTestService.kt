@@ -227,7 +227,8 @@ class NetworkTestService : LifecycleService() {
 
       val speed = DataConverter.convertToMbps(clientResponse)
       downloadSpeed = speed.toDouble()
-      Log.d("GIGA NetworkTestService", "download speed: $speed")
+      Log.d("GIGA NetworkTestService", "uploadSpeed speed: $uploadSpeed")
+      Log.d("GIGA NetworkTestService", "downloadSpeed speed: $downloadSpeed")
       val msg = "DL: %.2f Mbps | UL: %.2f Mbps".format(downloadSpeed, uploadSpeed)
       lastDownloadResponse = clientResponse
       updateNotification(msg)
@@ -244,7 +245,8 @@ class NetworkTestService : LifecycleService() {
 
       val speed = DataConverter.convertToMbps(clientResponse)
       uploadSpeed = speed.toDouble();
-      Log.d("GIGA NetworkTestService", "upload speed: $speed")
+      Log.d("GIGA NetworkTestService", "uploadSpeed speed: $uploadSpeed")
+      Log.d("GIGA NetworkTestService", "downloadSpeed speed: $downloadSpeed")
       val msg = "DL: %.2f Mbps | UL: %.2f Mbps".format(downloadSpeed, uploadSpeed)
       lastUploadResponse = clientResponse
       updateNotification(msg)

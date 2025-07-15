@@ -136,6 +136,8 @@ export class StarttestPage implements OnInit {
         } else if (data.testStatus === 'upload') {
           console.log('Running Test (Upload)');
           this.currentState = 'Running Test (Upload)';
+          this.currentRate = data.downloadSpeed?.toFixed(2);
+          this.currentRateDownload = data.downloadSpeed?.toFixed(2);
           this.currentRate = data.uploadSpeed?.toFixed(2);
           this.currentRateUpload = data.uploadSpeed?.toFixed(2);
           this.ref.markForCheck();
@@ -144,6 +146,8 @@ export class StarttestPage implements OnInit {
           this.currentState = 'Running Test (Download)';
           this.currentRate = data.downloadSpeed?.toFixed(2);
           this.currentRateDownload = data.downloadSpeed?.toFixed(2);
+          this.currentRate = data.uploadSpeed?.toFixed(2);
+          this.currentRateUpload = data.uploadSpeed?.toFixed(2);
           this.ref.markForCheck();
           console.log('GIGA', 'Executed download');
         } else if (data.testStatus === 'complete') {
@@ -168,7 +172,7 @@ export class StarttestPage implements OnInit {
             data.speedTestData.results.ndtResultC2S.lastServerMeasurement
               .bbrInfo.minRTT == null
           ) {
-            this.latency = 0;
+            this.latency = '0';
           } else {
             this.latency = (
               (data.speedTestData.results.ndtResultS2C.lastServerMeasurement
