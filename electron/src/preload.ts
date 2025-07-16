@@ -16,4 +16,8 @@ contextBridge.exposeInMainWorld("ipcRenderer", {
   }
 });
 
+
 contextBridge.exposeInMainWorld("shell", {shell});
+contextBridge.exposeInMainWorld('electronAPI', {
+  getWifiList: () => ipcRenderer.invoke('get-wifi-list')
+});

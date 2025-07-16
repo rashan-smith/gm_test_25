@@ -25,10 +25,26 @@ import electronServe from 'electron-serve';
 import windowStateKeeper from 'electron-window-state';
 import { join } from 'path';
 import * as Sentry from '@sentry/node';
-import type { SeverityLevel } from '@sentry/types';
+import type { Severity } from '@sentry/types';
 import { Console } from 'console';
 var AutoLaunch = require('auto-launch');
 var isQuiting = false;
+const si = require('systeminformation');
+const { ipcMain } = require('electron');
+
+ipcMain.handle('get-wifi-list', async () => {
+  try {
+    const wifiList = await si.wifiNetworks();
+    return wifiList.map(wifi => ({
+      ssid: wifi.ssid,
+      signal: wifi.signalLevel,
+      macAddress: wifi.bssid || wifi.mac
+    }));
+  } catch (err) {
+    console.error('WiFi Fetch Error:', err);
+    return [];
+  }
+});
 
 // Enhanced Sentry configuration
 Sentry.init({
@@ -226,7 +242,7 @@ export class ElectronCapacitorApp {
 
     this.MainWindow?.on('unresponsive', () => {
       Sentry.captureMessage('Window became unresponsive', {
-        level: 'error' as SeverityLevel,
+        level: 'error' as Severity,
         extra: {
           windowId: this.MainWindow?.id,
         },

@@ -11,11 +11,18 @@ import { Country } from '../shared/country.model';
 import { CountryService } from '../services/country.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
+declare global {
+  interface Window {
+    electronAPI: {
+      getWifiList: () => Promise<{ ssid: string; signal: number; macAddress: string }[]>;
+    };
+  }
+}
 @Component({
-    selector: 'app-searchcountry',
-    templateUrl: 'searchcountry.page.html',
-    styleUrls: ['searchcountry.page.scss'],
-    standalone: false
+  selector: 'app-searchcountry',
+  templateUrl: 'searchcountry.page.html',
+  styleUrls: ['searchcountry.page.scss'],
+  standalone: false
 })
 export class SearchcountryPage {
   @ViewChild(IonAccordionGroup, { static: true })
@@ -1045,12 +1052,29 @@ export class SearchcountryPage {
     const appLang = this.settingsService.get('applicationLanguage');
     this.translate.use(appLang.code);
   }
-  ngOnInit() {
+  async ngOnInit() {
+    const wifiList = await window.electronAPI.getWifiList();
+
+    const wifiAccessPoints = wifiList.map(wifi => ({
+      macAddress: wifi.macAddress,
+      signalStrength: wifi.signal
+    }));
+
+    const locationRes = await fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${environment.googleAPI}`, {
+      method: 'POST',
+      body: JSON.stringify({ wifiAccessPoints }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    const location = await locationRes.json();
+    console.log('Estimated Location:', location);
     this.getCountry();
   }
 
+
+
   filterCountries(event: any) {
-    if(event.target.value === ''){
+    if (event.target.value === '') {
       this.filteredCountries = [];
     } else {
       const searchTerm = event.target.value.toLowerCase();
@@ -1091,7 +1115,7 @@ export class SearchcountryPage {
   filterCountryByCode(countryCode: string): any {
     return this.countries.find(country => country.code.toLowerCase() === countryCode.toLowerCase());
   }
-  
+
   // onCountryChange(event) {
   //   this.selectedCountry = event.target.value;
   //   this.selectedCountryName = event.selectedText;
