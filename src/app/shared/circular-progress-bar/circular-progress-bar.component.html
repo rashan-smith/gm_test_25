@@ -12,11 +12,11 @@
         'error': error,
         'green': !error
       }"></circle>
-    <image *ngIf="secondLabel === 'DOWNLOAD'" href="assets/images/download_meter.svg" width="8" height="8" x="15" y="42"
+    <image *ngIf="secondLabel === 'DOWNLOAD'" href="assets/images/download_meter.svg" width="8" height="8" x="15" y="36"
       alt="Error Icon" />
-    <image *ngIf="secondLabel === 'UPLOAD'" href="assets/images/upload_meter.svg" width="8" height="8" x="24" y="42"
+    <image *ngIf="secondLabel === 'UPLOAD'" href="assets/images/upload_meter.svg" width="8" height="8" x="24" y="36"
       alt="Error Icon" />
-    <text *ngIf="secondLabel === 'DOWNLOAD' || secondLabel === 'UPLOAD'" x="54" y="50" [attr.font-size]="10"
+    <text *ngIf="secondLabel === 'DOWNLOAD' || secondLabel === 'UPLOAD'" x="54" y="44" [attr.font-size]="10"
       text-anchor="middle" alignment-baseline="top" [attr.font-weight]="400" [ngClass]="getTextClass()">
       {{ secondLabel === 'DOWNLOAD' ? ('startTest.download' | translate) : ('startTest.upload' | translate) }}
     </text>
@@ -39,11 +39,11 @@
       [ngClass]="getTextClass()">
       {{ error ? 'TRY AGAIN' : secondLabel ? secondLabel : firstLabel }}
     </text> -->
-    <text *ngIf="secondLabel === 'UPLOAD'" [attr.x]="currentRateUpload < 10 ? 32 : currentRateUpload > 99 ? 22 : 25" y="66" text-anchor="bottom" [attr.font-size]="18" text-anchor="bottom"  [attr.font-weight]="700" 
+    <text *ngIf="secondLabel === 'UPLOAD'" [attr.x]="currentRateUpload < 10 ? 32 : currentRateUpload > 99.9 ? 24 : 27" y="62" text-anchor="bottom" [attr.font-size]="18" text-anchor="bottom"  [attr.font-weight]="700" 
       [ngClass]="getGreenColorClass()" alignment-baseline="middle">
       {{currentRateUpload && currentRateUpload | number: '1.2-2'}}
     </text>
-    <text *ngIf="secondLabel === 'DOWNLOAD'"  [attr.x]="currentRateDownload < 10 ? 32 : currentRateDownload > 99 ? 22 : 25" y="66" text-anchor="bottom" [attr.font-size]="18"
+    <text *ngIf="secondLabel === 'DOWNLOAD'"  [attr.x]="currentRateDownload < 10 ? 32 : currentRateDownload > 99.9 ? 24 : 27" y="62" text-anchor="bottom" [attr.font-size]="18"
       text-anchor="bottom" [attr.font-weight]="700" alignment-baseline="middle" [ngClass]="getGreenColorClass()">
       {{ currentRateDownload && currentRateDownload | number: '1.2-2'}}
     </text>
