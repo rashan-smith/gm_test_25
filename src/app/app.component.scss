@@ -26,7 +26,6 @@ ion-content {
 
     ion-list {
         ion-item {
-            padding-right: 20px;
             color: #000;
             cursor: pointer;
 
@@ -157,6 +156,7 @@ ion-content {
     width: 98%;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.50);
     margin-bottom: 2px;
+    margin-left: 2px;
 
 }
 .select_type_dropdown {
@@ -335,7 +335,6 @@ ion-content {
     .list-md {
       z-index: 9999;
       position: relative;
-      padding: 10px;
       margin: 0;
       border-radius: 5px;
       padding-left: 0;
@@ -384,7 +383,6 @@ ion-content {
     .list-md {
       z-index: 9999;
       position: relative;
-      padding: 10px;
       margin: 0;
       border-radius: 5px;
       padding-left: 0;
@@ -412,7 +410,7 @@ ion-content {
   .half-border-bottom::after {
     content: "";
     display: block;
-    width: 100%;
+    width: 108%;
     border-bottom: 1px solid #ccc;
     margin-top: 1px; /* space between content and border */
   }
