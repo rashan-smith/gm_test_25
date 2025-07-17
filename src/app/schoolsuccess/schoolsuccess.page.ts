@@ -20,7 +20,13 @@ export class SchoolsuccessPage {
   schools: any;
   schoolId: any;
   slideOpts = {
+    initialSlide: 0,
     speed: 400,
+    pagination: {
+      el: '.swiper-pagination', // target class for bullets
+      clickable: true
+    }
+  
   };
   isLast = false;
   appName = environment.appName;

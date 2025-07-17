@@ -196,11 +196,13 @@ export class ElectronCapacitorApp {
       y: this.mainWindowState?.y,
       width: this.mainWindowState?.width,
       height: this.mainWindowState?.height,
-      titleBarStyle: 'hidden',
+      // titleBarStyle: 'hidden',
       maximizable: false,
       minimizable: false,
-      resizable: true,
-      transparent: true,
+      resizable: false,
+      frame: true,
+      useContentSize: true,    //Make content area exactly 390x700
+      transparent: false,
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: true,
@@ -246,7 +248,7 @@ export class ElectronCapacitorApp {
       }
     );
 
-    this.MainWindow?.setSize(376, 550);
+    this.MainWindow?.setSize(390, 700);
     this.mainWindowState?.manage(this.MainWindow);
 
     if (this.CapacitorFileConfig?.backgroundColor) {
@@ -359,7 +361,7 @@ export class ElectronCapacitorApp {
       setTimeout(() => {
         if ((this.CapacitorFileConfig.electron as any)?.electronIsDev) {
           this.MainWindow.webContents.openDevTools();
-          this.MainWindow.setSize(800, 600);
+          this.MainWindow.setSize(390, 700);
         }
         CapElectronEventEmitter.emit(
           'CAPELECTRON_DeeplinkListenerInitialized',

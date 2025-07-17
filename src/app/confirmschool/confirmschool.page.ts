@@ -16,10 +16,10 @@ import { SettingsService } from '../services/settings.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Capacitor, registerPlugin } from '@capacitor/core';
 @Component({
-    selector: 'app-confirmschool',
-    templateUrl: 'confirmschool.page.html',
-    styleUrls: ['confirmschool.page.scss'],
-    standalone: false
+  selector: 'app-confirmschool',
+  templateUrl: 'confirmschool.page.html',
+  styleUrls: ['confirmschool.page.scss'],
+  standalone: false,
 })
 export class ConfirmschoolPage {
   @ViewChild(IonAccordionGroup, { static: true })
@@ -27,6 +27,8 @@ export class ConfirmschoolPage {
   school: any;
   schoolId: any;
   selectedCountry: any;
+  selectedCountryName: any;
+  showNotification = true;
   detectedCountry: any;
   sub: any;
   appName = environment.appName;
@@ -51,6 +53,8 @@ export class ConfirmschoolPage {
       this.schoolId = params.schoolId;
       this.selectedCountry = params.selectedCountry;
       this.detectedCountry = params.detectedCountry;
+      this.selectedCountryName = params.selectedCountryName;
+
       if (this.router.getCurrentNavigation()) {
         this.school = this.router.getCurrentNavigation().extras.state as School;
       }
@@ -65,9 +69,9 @@ export class ConfirmschoolPage {
       new Date(),
       'yyyy-MM-ddah:mm:ssZZZZZ'
     );
+    const translatedText = this.translate.instant('searchCountry.loading');
 
-    const loadingMsg =
-      '<div class="loadContent"><ion-img src="assets/loader/loader.gif" class="loaderGif"></ion-img><p class="white">Loading...</p></div>';
+    const loadingMsg = `<div class="loadContent"><ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img><p class="green_loader">${translatedText}</p></div>`;
     this.loading.present(loadingMsg, 4000, 'pdcaLoaderClass', 'null');
 
     // this.networkService.getAccessInformation().subscribe(c => {
@@ -102,11 +106,27 @@ export class ConfirmschoolPage {
               this.storage.set('country_code', this.selectedCountry);
               this.storage.set('school_id', this.school.school_id);
               this.storage.set('schoolInfo', JSON.stringify(this.school));
-              if (this.isNative) { 
-                this.storeRegistrationDataAndScheduleSpeedTest(response, this.school.school_id, this.school.giga_id_school, this.selectedCountry, c?.ip);
+              if (this.isNative) {
+                this.storeRegistrationDataAndScheduleSpeedTest(
+                  response,
+                  this.school.school_id,
+                  this.school.giga_id_school,
+                  this.selectedCountry,
+                  c?.ip
+                );
               }
               this.loading.dismiss();
-              this.router.navigate(['/schoolsuccess']);
+              this.router.navigate(['/save-email']);
+              this.router.navigate(
+                [
+                  'save-email',
+                  this.school.school_id,
+                  this.selectedCountry,
+                  this.detectedCountry,
+                ],
+                { state: this.school }
+              );
+
               this.settings.setSetting('scheduledTesting', true);
             }),
             (err) => {
@@ -116,6 +136,7 @@ export class ConfirmschoolPage {
                 this.schoolId,
                 this.selectedCountry,
                 this.detectedCountry,
+                this.selectedCountryName,
               ]);
               /* Redirect to no result found page */
             };
@@ -162,22 +183,41 @@ export class ConfirmschoolPage {
     });
   }
 
- async storeRegistrationDataAndScheduleSpeedTest(browserId: any, schoolId: String, gigaSchoolId: String, countryCode: String, ipAddress: String){
-    console.log("GIGA GigaAppPlugin : Schedule Speed Test ");
-    console.log("GIGA Params : browserId : ", browserId);
-    console.log("GIGA Params : schoolId : ", schoolId);
-    console.log("GIGA Params : gigaSchoolId : ", gigaSchoolId);
-    console.log("GIGA Params : countryCode : ", countryCode);
-    console.log("GIGA Params : ipAddress : ", ipAddress);
+  backToSaved(schoolObj) {
+    this.router.navigate(
+      [
+        'schooldetails',
+        schoolObj?.school_id || this.schoolId,
+        this.selectedCountry,
+        this.detectedCountry,
+        this.selectedCountryName,
+      ],
+      { state: schoolObj }
+    );
+  }
+
+  async storeRegistrationDataAndScheduleSpeedTest(
+    browserId: any,
+    schoolId: String,
+    gigaSchoolId: String,
+    countryCode: String,
+    ipAddress: String
+  ) {
+    console.log('GIGA GigaAppPlugin : Schedule Speed Test ');
+    console.log('GIGA Params : browserId : ', browserId);
+    console.log('GIGA Params : schoolId : ', schoolId);
+    console.log('GIGA Params : gigaSchoolId : ', gigaSchoolId);
+    console.log('GIGA Params : countryCode : ', countryCode);
+    console.log('GIGA Params : ipAddress : ', ipAddress);
     const result = await this.gigaAppPlugin.storeAndScheduleSpeedTest({
-      "browser_id": browserId || "",
-      "school_id": schoolId || "",
-      "giga_school_id": gigaSchoolId || "",
-      "country_code": countryCode || "",
-      "ip_address": ipAddress || ""
+      browser_id: browserId || '',
+      school_id: schoolId || '',
+      giga_school_id: gigaSchoolId || '',
+      country_code: countryCode || '',
+      ip_address: ipAddress || '',
     });
-    console.log("GIGA Plugin Call Result : ", result);
-  };
+    console.log('GIGA Plugin Call Result : ', result);
+  }
 
   async getDeviceInfo() {
     const info = await Device.getInfo();
@@ -199,5 +239,18 @@ export class ConfirmschoolPage {
   async getDeviceId() {
     const deviceId = await Device.getId();
     return deviceId;
+  }
+
+  closeNotification() {
+    this.showNotification = false;
+  }
+
+  backToSearchDetail() {
+    this.router.navigate([
+      'searchschool',
+      this.selectedCountry,
+      this.detectedCountry,
+      this.selectedCountryName,
+    ]);
   }
 }

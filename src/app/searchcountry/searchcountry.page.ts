@@ -19,6 +19,8 @@ import { environment } from 'src/environments/environment';
 })
 export class SearchcountryPage {
   @ViewChild(IonAccordionGroup, { static: true })
+  automaticSearched = false;
+  selectedFromList: boolean = false;
   accordionGroup: IonAccordionGroup;
   detectedCountry: any;
   selectedCountry: any;
@@ -1028,6 +1030,9 @@ export class SearchcountryPage {
   ];
   appName = environment.appName;
   appNameSuffix = environment.appNameSuffix;
+  searchTerm: string = '';
+  filteredCountries: Country[] = [];
+
   constructor(
     private storage: StorageService,
     private networkService: NetworkService,
@@ -1043,6 +1048,27 @@ export class SearchcountryPage {
   ngOnInit() {
     this.getCountry();
   }
+
+  filterCountries(event: any) {
+    if(event.target.value === ''){
+      this.filteredCountries = [];
+    } else {
+      const searchTerm = event.target.value.toLowerCase();
+      this.filteredCountries = this.countries.filter(country =>
+        country.name.toLowerCase().includes(searchTerm)
+      );
+      this.selectedFromList = false;
+    }
+  }
+
+  selectCountry(country: Country) {
+    this.selectedCountry = country.code;
+    this.selectedFromList = true;
+    this.searchTerm = country.name;
+    this.filteredCountries = [];
+    this.automaticSearched = false;
+  }
+
   getCountry() {
     /* Store school id and giga id inside storage */
     let countryData = {};
@@ -1055,8 +1081,17 @@ export class SearchcountryPage {
         ip_address: c.ip,
         country_code: c.country,
       };
+      this.automaticSearched = true;
+      this.searchTerm = this.filterCountryByCode(this.selectedCountry).name;
+    }, error => {
+      this.automaticSearched = false;
     });
   }
+
+  filterCountryByCode(countryCode: string): any {
+    return this.countries.find(country => country.code.toLowerCase() === countryCode.toLowerCase());
+  }
+  
   // onCountryChange(event) {
   //   this.selectedCountry = event.target.value;
   //   this.selectedCountryName = event.selectedText;
@@ -1089,10 +1124,15 @@ export class SearchcountryPage {
     if (this.detectedCountry === undefined || this.detectedCountry === null) {
       this.detectedCountry = this.selectedCountry;
     }
+    const translatedText = this.translate.instant('searchCountry.loading');
+
     const loadingMsg =
       // eslint-disable-next-line max-len
-      '<div class="loadContent"><ion-img src="assets/loader/loader.gif" class="loaderGif"></ion-img><p class="white" [translate]="\'searchCountry.check\'"></p></div>';
-    this.loading.present(loadingMsg, 3000, 'pdcaLoaderClass', 'null');
+      `<div class="loadContent">
+     <ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img>
+     <p class="green_loader">${translatedText}</p>
+   </div>`;
+    this.loading.present(loadingMsg, 9000, 'pdcaLoaderClass', 'null');
 
     this.countryService.getPcdcCountryByCode(this.selectedCountry).subscribe(
       (response) => {
@@ -1107,10 +1147,13 @@ export class SearchcountryPage {
         this.loading.dismiss();
         if (this.pcdcCountry.length > 0) {
           this.isPcdcCountry = true;
+          console.log(this.pcdcCountry)
+          const selectedCountryName = this.pcdcCountry[0].name
           this.router.navigate([
             'searchschool',
             this.selectedCountry,
             this.detectedCountry,
+            selectedCountryName
           ]);
         } else {
           this.isPcdcCountry = false;

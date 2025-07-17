@@ -17,6 +17,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
 // import { NgxElectronModule } from 'ngx-electron';
 import { PcdcHeaderComponent } from '../pcdc-header/pcdc-header.component';
+import { CircularProgressBarComponent } from './circular-progress-bar/circular-progress-bar.component';
+import { SelectedDetailComponent } from './selected-detail/selected-detail.component';
+import { EnterKeyClickDirective } from './directives/enter-key-click.directive';
 
 export const createTranslateLoader = (http: HttpClient) =>
   new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,6 +34,9 @@ export const createTranslateLoader = (http: HttpClient) =>
     FormatProbabilityMeasurementPipe,
     CapitalizePipe,
     TruncatePipe,
+    CircularProgressBarComponent,
+    SelectedDetailComponent,
+    // EnterKeyClickDirective
   ],
   imports: [
     CommonModule,
@@ -56,6 +62,9 @@ export const createTranslateLoader = (http: HttpClient) =>
     CapitalizePipe,
     TruncatePipe,
     NgPipesModule,
+    CircularProgressBarComponent,
+    SelectedDetailComponent,
+    // EnterKeyClickDirective
   ],
   providers: [
     MeasurePipePipe,
@@ -67,7 +76,7 @@ export const createTranslateLoader = (http: HttpClient) =>
     CapitalizePipe,
     TruncatePipe,
     Network,
-    DatePipe,
+    DatePipe
   ],
 })
 export class SharedModule {}

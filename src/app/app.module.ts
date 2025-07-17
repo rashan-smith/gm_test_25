@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { ErrorHandler } from '@angular/core';
 
@@ -14,6 +14,7 @@ import { SentryErrorHandler } from './core/sentry-error-handler';
 /* Import token interceptor */
 import { TokenInterceptor } from './auth/token.interceptor';
 import { environment } from 'src/environments/environment';
+import { FormsModule } from '@angular/forms';
 
 export function tokenGetter() {
   return environment.token;
@@ -22,10 +23,12 @@ export function tokenGetter() {
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    SharedModule,
-    AppRoutingModule
+    FormsModule,
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    SharedModule, 
+    AppRoutingModule, 
+    HttpClientModule
   ],
   providers: [
     {

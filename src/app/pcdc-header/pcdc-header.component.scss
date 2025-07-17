@@ -4,9 +4,47 @@
 
 .header-toolbar {
     text-align: end;
+    padding: 0;
 }
-.custom-select{
+
+.header-native-toolbar {
+    text-align: end;
+    padding: 0;
+    padding-top: 48px;
+}
+.margin_icon {
+    margin: 10px;
+}
+.size {
+    --padding-start: 0px;
+    --padding-end: 0px;
+    height: 16px;
+    width: 16px;
+}
+
+.custom-select {
     width: 0;
+}
+
+.giga_meter_logo {
+    max-width: 97px;
+}
+
+.selected-label {
+    display: flex;
+    text-decoration: underline !important;
+    align-items: center;
+    text-decoration: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    .language-icon {
+        width: 16px; // Adjust as needed
+        height: 16px;
+        margin-right: 8px; // Adds spacing between icon and text
+    }
 }
 .bold-text {
     font-weight: bold;
