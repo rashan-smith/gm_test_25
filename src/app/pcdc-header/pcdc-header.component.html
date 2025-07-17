@@ -1,5 +1,5 @@
 <ion-header no-shadow>
-  <ion-toolbar class="header-native-toolbar">
+  <ion-toolbar [ngClass]="isNativeApp() ? 'header-native-toolbar' : 'header-toolbar'">
     <!-- <div slot="start"> -->
       <!-- <ion-img src="assets/images/gigameter_logo.png" [routerLink]="['/home']" class="giga_meter_logo"></ion-img> -->
 

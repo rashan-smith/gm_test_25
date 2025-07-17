@@ -3,12 +3,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { environment as env } from '../../environments/environment';
 import { SettingsService } from '../services/settings.service';
 import { MenuController } from '@ionic/angular';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
-    selector: 'app-pcdc-header',
-    templateUrl: './pcdc-header.component.html',
-    styleUrls: ['./pcdc-header.component.scss'],
-    standalone: false
+  selector: 'app-pcdc-header',
+  templateUrl: './pcdc-header.component.html',
+  styleUrls: ['./pcdc-header.component.scss'],
+  standalone: false,
 })
 export class PcdcHeaderComponent implements OnInit {
   languages = env?.languages ?? [];
@@ -17,6 +18,7 @@ export class PcdcHeaderComponent implements OnInit {
   test = false;
   appName = env?.appName ?? '';
   appNameSuffix = env?.appNameSuffix ?? '';
+  isNative: boolean;
   constructor(
     private translate: TranslateService,
     private settingsService: SettingsService,
@@ -26,16 +28,21 @@ export class PcdcHeaderComponent implements OnInit {
     this.selectedLanguage =
       this.settingsService.get('applicationLanguage')?.code ??
       translate.defaultLang;
-    this.selectedLanguageName = this.languages.find(
-      (l) => l?.code === this.selectedLanguage
-    )?.label ?? '';
+    this.selectedLanguageName =
+      this.languages.find((l) => l?.code === this.selectedLanguage)?.label ??
+      '';
     translate.use(this.selectedLanguage);
     this.test = env?.mode === 'dev';
+    this.isNative = Capacitor.isNativePlatform();
   }
-  ngOnInit() { }
+
+  isNativeApp(): boolean {
+    return this.isNative;
+  }
+  ngOnInit() {}
   onLanguageChange() {
     this.menuCtrl.enable(true, 'third'); // Ensure the menu is enabled
-    this.menuCtrl.open('third');     
+    this.menuCtrl.open('third');
     // Update local storage when the language changes
     // this.settingsService.setSetting(
     //   'applicationLanguage',
@@ -47,9 +54,7 @@ export class PcdcHeaderComponent implements OnInit {
     // window.location.reload();
   }
   closeApp() {
-    this.settingsService
-      .getIpcRenderer()
-      .send('closeFromUi', 'minimize');
+    this.settingsService.getIpcRenderer().send('closeFromUi', 'minimize');
   }
 
   openMenu(menuId: string) {
