@@ -1,7 +1,7 @@
 <app-pcdc-header></app-pcdc-header>
 <ion-content>
   <div class="container" [ngClass]="{'privacy_height': isLast}">
-    <ion-button *ngIf="isFirst" class="button_disable_hover" fill="clear" [routerLink]="['/home']">
+    <ion-button  class="button_disable_hover" fill="clear" (click)="handleBackClick()">
       <ion-img src="assets/images/back_button.svg" name="arrow-back-outline" class="backIcon"></ion-img>
     </ion-button>
     <ion-slides (ionSlideDidChange)="checkCurrentSlide()" 
@@ -21,17 +21,14 @@
           <div class="successInfo">
             <ion-img src="assets/images/installing_register.svg" class="icon2"></ion-img>
             <div class="success-txt" [innerHtml]="'registerSchool.register-step-2' | translate"></div>
-            <!-- <div class="success-desc-txt" [innerHtml]="'schoolSuccess.internet-checks' | translate"></div> -->
           </div>
         </div>
       </ion-slide>
       <ion-slide>
         <div class="top-layout">
-          <div class="successInfo">
+          <div class="successInfo-slide3">
             <ion-img src="assets/images/start_registeration.svg" class="icon3"></ion-img>
             <div class="success-txt last-step" [innerHtml]="'registerSchool.register-step-3' | translate"></div>
-            <!-- <div class="success-desc-txt" [innerHtml]="'schoolSuccess.app-run-desc' | translate"></div>
-            <div class="success-desc-txt" [innerHtml]="'schoolSuccess.you-can-close' | translate"></div> -->
 
           </div>
 
