@@ -1,7 +1,12 @@
 package com.meter.giga.domain.entity.request
 
+import com.google.gson.annotations.SerializedName
+
 data class LastServerMeasurementRequestEntity(
-  val bbrInfo: BBRInfoRequestEntity?,
-  val connectionInfo: ConnectionInfoRequestEntity?,
-  val tcpInfo: TCPInfoRequestEntity?
+    @SerializedName("BBRInfo")
+    val bbrInfo: BBRInfoRequestEntity?,
+    @SerializedName("ConnectionInfo")
+    val connectionInfo: ConnectionInfoRequestEntity?,
+    @SerializedName("TCPInfo")
+    val tcpInfo: TCPInfoRequestEntity?
 )

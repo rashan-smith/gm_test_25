@@ -163,6 +163,10 @@ export class StarttestPage implements OnInit, OnDestroy {
           this.currentRateDownload = data.downloadSpeed?.toFixed(2);
           this.currentRate = data.uploadSpeed?.toFixed(2);
           this.currentRateUpload = data.uploadSpeed?.toFixed(2);
+          if (!this.uploadProgressStarted) {
+            this.uploadProgressStarted = true;
+            this.startUploadProgress();
+          }
           this.ref.markForCheck();
           console.log('GIGA', 'Executed upload ');
         } else if (data.testStatus === 'download') {
@@ -171,37 +175,40 @@ export class StarttestPage implements OnInit, OnDestroy {
           this.currentRateDownload = data.downloadSpeed?.toFixed(2);
           this.currentRate = data.uploadSpeed?.toFixed(2);
           this.currentRateUpload = data.uploadSpeed?.toFixed(2);
+          if (this.downloadStarted) {
+            this.startDownloadProgress();
+          }
           this.ref.markForCheck();
           console.log('GIGA', 'Executed download');
         } else if (data.testStatus === 'complete') {
           this.currentState = 'Completed';
           this.currentDate = new Date();
           this.currentRate =
-            data.speedTestData.results.ndtResultS2C.lastClientMeasurement.meanClientMbps?.toFixed(
-              2
-            );
+            data.speedTestData.Results[
+              'NDTResult.S2C'
+            ].LastClientMeasurement.MeanClientMbps?.toFixed(2);
           this.currentRateUpload =
-            data.speedTestData.results.ndtResultC2S.lastClientMeasurement.meanClientMbps?.toFixed(
-              2
-            );
+            data.speedTestData.Results[
+              'NDTResult.C2S'
+            ].LastClientMeasurement.MeanClientMbps?.toFixed(2);
           this.currentRateDownload =
-            data.speedTestData.results.ndtResultS2C.lastClientMeasurement.meanClientMbps?.toFixed(
-              2
-            );
+            data.speedTestData.Results[
+              'NDTResult.S2C'
+            ].LastClientMeasurement.MeanClientMbps?.toFixed(2);
           this.progressGaugeState.current = this.progressGaugeState.maximum;
           if (
-            data.speedTestData.results.ndtResultS2C.lastServerMeasurement
-              .bbrInfo.minRTT == null ||
-            data.speedTestData.results.ndtResultC2S.lastServerMeasurement
-              .bbrInfo.minRTT == null
+            data.speedTestData.Results['NDTResult.S2C'].LastServerMeasurement
+              .BBRInfo.MinRTT == null ||
+            data.speedTestData.Results['NDTResult.C2S'].LastServerMeasurement
+              .BBRInfo.MinRTT == null
           ) {
             this.latency = '0';
           } else {
             this.latency = (
-              (data.speedTestData.results.ndtResultS2C.lastServerMeasurement
-                .bbrInfo.minRTT +
-                data.speedTestData.results.ndtResultC2S.lastServerMeasurement
-                  .bbrInfo.minRTT) /
+              (data.speedTestData.Results['NDTResult.S2C'].LastServerMeasurement
+                .BBRInfo.MinRTT +
+                data.speedTestData.Results['NDTResult.C2S']
+                  .LastServerMeasurement.BBRInfo.MinRTT) /
               2 /
               1000
             ).toFixed(0);
