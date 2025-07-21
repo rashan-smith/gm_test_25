@@ -15,8 +15,7 @@ import { environment } from 'src/environments/environment';
   selector: 'app-searchcountry',
   templateUrl: 'searchcountry.page.html',
   styleUrls: ['searchcountry.page.scss'],
-  standalone: false
-
+  standalone: false,
 })
 export class SearchcountryPage {
   @ViewChild(IonAccordionGroup, { static: true })
@@ -1055,7 +1054,7 @@ export class SearchcountryPage {
       this.filteredCountries = [];
     } else {
       const searchTerm = event.target.value.toLowerCase();
-      this.filteredCountries = this.countries.filter(country =>
+      this.filteredCountries = this.countries.filter((country) =>
         country.name.toLowerCase().includes(searchTerm)
       );
       this.selectedFromList = false;
@@ -1074,23 +1073,28 @@ export class SearchcountryPage {
     /* Store school id and giga id inside storage */
     let countryData = {};
 
-    this.networkService.getNetInfo().then((c) => {
-      console.log(c);
-      this.selectedCountry = c.country;
-      this.detectedCountry = c.country;
-      countryData = {
-        ip_address: c.ip,
-        country_code: c.country,
-      };
-      this.automaticSearched = true;
-      this.searchTerm = this.filterCountryByCode(this.selectedCountry).name;
-    }, error => {
-      this.automaticSearched = false;
-    });
+    this.networkService.getNetInfo().then(
+      (c) => {
+        console.log(c);
+        this.selectedCountry = c.country;
+        this.detectedCountry = c.country;
+        countryData = {
+          ip_address: c.ip,
+          country_code: c.country,
+        };
+        this.automaticSearched = true;
+        this.searchTerm = this.filterCountryByCode(this.selectedCountry).name;
+      },
+      (error) => {
+        this.automaticSearched = false;
+      }
+    );
   }
 
   filterCountryByCode(countryCode: string): any {
-    return this.countries.find(country => country.code.toLowerCase() === countryCode.toLowerCase());
+    return this.countries.find(
+      (country) => country.code.toLowerCase() === countryCode.toLowerCase()
+    );
   }
 
   // onCountryChange(event) {
@@ -1136,20 +1140,20 @@ export class SearchcountryPage {
         console.log('pcdc country', response);
       },
       (err) => {
-        console.log('ERROR: ' + err);
+        console.log('ERROR: ' + JSON.stringify(err));
         this.loading.dismiss();
       },
       () => {
         this.loading.dismiss();
         if (this.pcdcCountry.length > 0) {
           this.isPcdcCountry = true;
-          console.log(this.pcdcCountry)
-          const selectedCountryName = this.pcdcCountry[0].name
+          console.log(this.pcdcCountry);
+          const selectedCountryName = this.pcdcCountry[0].name;
           this.router.navigate([
             'searchschool',
             this.selectedCountry,
             this.detectedCountry,
-            selectedCountryName
+            selectedCountryName,
           ]);
         } else {
           this.isPcdcCountry = false;
@@ -1183,5 +1187,4 @@ export class SearchcountryPage {
     this.isPcdcCountry = true; // temporarily assume it's valid during input
     this.filterCountries(event);
   }
-
 }

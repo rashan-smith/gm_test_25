@@ -182,30 +182,30 @@ export class StarttestPage implements OnInit, OnDestroy {
           this.currentState = 'Completed';
           this.currentDate = new Date();
           this.currentRate =
-            data.speedTestData.Results[
+            data.speedTestData.results[
               'NDTResult.S2C'
             ].LastClientMeasurement.MeanClientMbps?.toFixed(2);
           this.currentRateUpload =
-            data.speedTestData.Results[
+            data.speedTestData.results[
               'NDTResult.C2S'
             ].LastClientMeasurement.MeanClientMbps?.toFixed(2);
           this.currentRateDownload =
-            data.speedTestData.Results[
+            data.speedTestData.results[
               'NDTResult.S2C'
             ].LastClientMeasurement.MeanClientMbps?.toFixed(2);
           this.progressGaugeState.current = this.progressGaugeState.maximum;
           if (
-            data.speedTestData.Results['NDTResult.S2C'].LastServerMeasurement
+            data.speedTestData.results['NDTResult.S2C'].LastServerMeasurement
               .BBRInfo.MinRTT == null ||
-            data.speedTestData.Results['NDTResult.C2S'].LastServerMeasurement
+            data.speedTestData.results['NDTResult.C2S'].LastServerMeasurement
               .BBRInfo.MinRTT == null
           ) {
             this.latency = '0';
           } else {
             this.latency = (
-              (data.speedTestData.Results['NDTResult.S2C'].LastServerMeasurement
+              (data.speedTestData.results['NDTResult.S2C'].LastServerMeasurement
                 .BBRInfo.MinRTT +
-                data.speedTestData.Results['NDTResult.C2S']
+                data.speedTestData.results['NDTResult.C2S']
                   .LastServerMeasurement.BBRInfo.MinRTT) /
               2 /
               1000

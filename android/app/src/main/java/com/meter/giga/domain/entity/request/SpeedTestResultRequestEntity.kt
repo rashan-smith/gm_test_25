@@ -25,13 +25,13 @@ data class SpeedTestResultRequestEntity(
   val latency: String?,
   @SerializedName("Notes")
   val notes: String?,
-  @SerializedName("Results")
+  @SerializedName("results")
   val results: ResultsRequestEntity?,
   @SerializedName("school_id")
   val schoolId: String?,
   @SerializedName("ServerInfo")
   val serverInfo: ServerInfoRequestEntity?,
-  @SerializedName("Timestamp")
+  @SerializedName("timestamp")
   val timestamp: String?,
   @SerializedName("timestamplocal")
   val timestampLocal: String?,
