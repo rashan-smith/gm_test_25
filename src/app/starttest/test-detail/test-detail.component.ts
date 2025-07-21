@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CountryService } from 'src/app/services/country.service';
 import { NetworkService } from 'src/app/services/network.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -11,6 +12,7 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class TestDetailComponent implements OnInit {
   schoolId: string;
+  school: any
   historicalData: any;
   measurementsData: []
   accessInformation = {
@@ -29,12 +31,25 @@ export class TestDetailComponent implements OnInit {
       timezone: '',
       asn: '',
     };
+    selectedCountry: any;
   constructor(    private storage: StorageService,
-    private networkService: NetworkService
+    private networkService: NetworkService,
+    private countryService: CountryService
 
   ) { }
 
   ngOnInit() {    
+    if (this.storage.get('schoolId')) {
+      this.school = JSON.parse(this.storage.get('schoolInfo'));
+       this.countryService.getPcdcCountryByCode(this.school.country).subscribe(
+      (response) => {
+        this.selectedCountry = response[0].name;
+      },
+      (err) => {
+        console.log('ERROR: ' + err);
+      })
+    }
+    
     this.networkService.getNetInfo().then((res) => {
       
       if (res) {

@@ -12,10 +12,11 @@ import { CountryService } from '../services/country.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 @Component({
-    selector: 'app-searchcountry',
-    templateUrl: 'searchcountry.page.html',
-    styleUrls: ['searchcountry.page.scss'],
-    standalone: false
+  selector: 'app-searchcountry',
+  templateUrl: 'searchcountry.page.html',
+  styleUrls: ['searchcountry.page.scss'],
+  standalone: false
+
 })
 export class SearchcountryPage {
   @ViewChild(IonAccordionGroup, { static: true })
@@ -1050,7 +1051,7 @@ export class SearchcountryPage {
   }
 
   filterCountries(event: any) {
-    if(event.target.value === ''){
+    if (event.target.value === '') {
       this.filteredCountries = [];
     } else {
       const searchTerm = event.target.value.toLowerCase();
@@ -1091,7 +1092,7 @@ export class SearchcountryPage {
   filterCountryByCode(countryCode: string): any {
     return this.countries.find(country => country.code.toLowerCase() === countryCode.toLowerCase());
   }
-  
+
   // onCountryChange(event) {
   //   this.selectedCountry = event.target.value;
   //   this.selectedCountryName = event.selectedText;
@@ -1124,14 +1125,9 @@ export class SearchcountryPage {
     if (this.detectedCountry === undefined || this.detectedCountry === null) {
       this.detectedCountry = this.selectedCountry;
     }
-    const translatedText = this.translate.instant('searchCountry.loading');
-
     const loadingMsg =
       // eslint-disable-next-line max-len
-      `<div class="loadContent">
-     <ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img>
-     <p class="green_loader">${translatedText}</p>
-   </div>`;
+      '<div class="loadContent"><ion-img src="assets/loader/new_loader.gif" class="loaderGif"></ion-img><p class="white" [translate]="\'searchCountry.check\'"></p></div>';
     this.loading.present(loadingMsg, 9000, 'pdcaLoaderClass', 'null');
 
     this.countryService.getPcdcCountryByCode(this.selectedCountry).subscribe(
@@ -1170,4 +1166,22 @@ export class SearchcountryPage {
     //this.router.navigate(['schoolnotfound', this.schoolId]);
     //this.router.navigate(['searchschool', this.selectedCountry, this.detectedCountry]);
   }
+  onSearchInput(event: any): void {
+    const value = event.target.value?.trim();
+
+    if (!value) {
+      // Reset everything if input is empty
+      this.isPcdcCountry = true;
+      this.selectedCountry = '';
+      this.filteredCountries = [];
+      this.selectedFromList = false;
+      this.automaticSearched = true;
+      return;
+    }
+
+    // Otherwise, do normal filtering
+    this.isPcdcCountry = true; // temporarily assume it's valid during input
+    this.filterCountries(event);
+  }
+
 }
