@@ -159,7 +159,6 @@ export class StarttestPage implements OnInit, OnDestroy {
         } else if (data.testStatus === 'upload') {
           console.log('Running Test (Upload)');
           this.currentState = 'Running Test (Upload)';
-          this.currentRate = data.downloadSpeed?.toFixed(2);
           this.currentRateDownload = data.downloadSpeed?.toFixed(2);
           this.currentRate = data.uploadSpeed?.toFixed(2);
           this.currentRateUpload = data.uploadSpeed?.toFixed(2);
@@ -173,7 +172,6 @@ export class StarttestPage implements OnInit, OnDestroy {
           this.currentState = 'Running Test (Download)';
           this.currentRate = data.downloadSpeed?.toFixed(2);
           this.currentRateDownload = data.downloadSpeed?.toFixed(2);
-          this.currentRate = data.uploadSpeed?.toFixed(2);
           this.currentRateUpload = data.uploadSpeed?.toFixed(2);
           if (this.downloadStarted) {
             this.startDownloadProgress();

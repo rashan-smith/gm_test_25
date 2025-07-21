@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
+import com.getcapacitor.JSArray
 import com.getcapacitor.JSObject
 import com.getcapacitor.Plugin
 import com.getcapacitor.PluginCall
@@ -28,6 +29,9 @@ import com.meter.giga.utils.Constants.REGISTRATION_IP_ADDRESS
 import com.meter.giga.utils.Constants.REGISTRATION_SCHOOL_ID
 import com.meter.giga.utils.Constants.SCHEDULE_TYPE
 import com.meter.giga.utils.Constants.SCHEDULE_TYPE_MANUAL
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
 @CapacitorPlugin(name = "GigaAppPlugin")
 class GigaAppPlugin : Plugin() {
@@ -125,6 +129,31 @@ class GigaAppPlugin : Plugin() {
     context.startForegroundService(intent)
     call.resolve()
     call.resolve()
+  }
+
+  @PluginMethod
+  fun getHistoricalSpeedTestData(call: PluginCall) {
+    try {
+      val context = bridge.context
+      val alarmPrefs = AlarmSharedPref(context)
+      val speedTestHistoricalData = alarmPrefs.oldSpeedTestData
+      val jsonArray = JSONArray(speedTestHistoricalData)
+      Log.d("GIGA GigaAppPlugin jsonArray", "$jsonArray")
+      // Convert JSONArray to JSArray
+      val jsArray = JSArray()
+      for (i in 0 until jsonArray.length()) {
+        val jsonObjectString = jsonArray.getString(i)
+        val innerJsonObject = JSONObject(jsonObjectString)
+        Log.d("GIGA GigaAppPlugin jsonArray", "$innerJsonObject")
+        jsArray.put(innerJsonObject)
+      }
+
+      val result = JSObject()
+      result.put("historicalData", jsArray)
+      call.resolve(result)
+    } catch (e: JSONException) {
+      call.reject("Failed to parse JSON array", e)
+    }
   }
 
   /**

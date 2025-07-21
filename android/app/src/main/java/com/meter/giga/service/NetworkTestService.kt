@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.lifecycleScope
+import com.google.gson.Gson
 import com.meter.giga.R
 import com.meter.giga.domain.entity.request.ClientInfoRequestEntity
 import com.meter.giga.domain.entity.request.ServerInfoRequestEntity
@@ -81,23 +82,14 @@ class NetworkTestService : LifecycleService() {
     val prefs = AlarmSharedPref(this)
     val scheduleType = intent?.getStringExtra(SCHEDULE_TYPE) ?: SCHEDULE_TYPE_DAILY
     Log.d("GIGA NetworkTestService SCHEDULE_TYPE", scheduleType)
-    val schoolId = prefs.schoolId
-    val gigaSchoolId = prefs.gigaSchoolId
-    val browserId = prefs.browserId
-    val ipAddress = prefs.ipAddress
-    val countryCode = prefs.countryCode
     val appVersion = GigaUtil.getAppVersionName(this)
     val isRunningOnChromebook = GigaUtil.isRunningOnChromebook(this)
     val client = NDTTestImpl(
-      null,
+      createHttpClient(),
       scheduleType,
-      schoolId,
-      gigaSchoolId,
       appVersion,
       isRunningOnChromebook,
-      browserId,
-      ipAddress,
-      countryCode
+      prefs
     )
     GigaAppPlugin.sendSpeedTestStarted()
     client.startTest(NDTTest.TestType.DOWNLOAD_AND_UPLOAD)
@@ -177,13 +169,9 @@ class NetworkTestService : LifecycleService() {
   private inner class NDTTestImpl(
     okHttpClient: OkHttpClient?,
     private val scheduleType: String,
-    private val schoolId: String,
-    private val gigaSchoolId: String,
     private val appVersion: String,
     private val isRunningOnChromebook: Boolean,
-    private val browserId: String,
-    private val ipAddress: String,
-    private val countryCode: String
+    private val prefs: AlarmSharedPref
   ) :
     NDTTest(okHttpClient) {
     var downloadSpeed = 0.0;
@@ -193,6 +181,11 @@ class NetworkTestService : LifecycleService() {
     var lastDownloadResponse: ClientResponse? = GigaUtil.getDefaultClientInfo("download")
     var lastUploadResponse: ClientResponse? = GigaUtil.getDefaultClientInfo("upload")
     var allDoneInvoked: Int = 0
+    val schoolId = prefs.schoolId
+    val gigaSchoolId = prefs.gigaSchoolId
+    val browserId = prefs.browserId
+    val ipAddress = prefs.ipAddress
+    val countryCode = prefs.countryCode
 
     /**
      * Callback function implementation when download measurement are available
@@ -274,13 +267,13 @@ class NetworkTestService : LifecycleService() {
       if (allDoneInvoked == 2) {
         publishSpeedTestData(
           scheduleType,
-          schoolId,
-          gigaSchoolId,
+//          schoolId,
+//          gigaSchoolId,
           appVersion,
           isRunningOnChromebook,
-          browserId,
-          countryCode,
-          ipAddress
+//          browserId,
+//          countryCode,
+//          ipAddress
         )
         allDoneInvoked = 0
       }
@@ -300,13 +293,13 @@ class NetworkTestService : LifecycleService() {
      */
     private fun publishSpeedTestData(
       scheduleType: String,
-      schoolId: String,
-      gigaSchoolId: String,
+//      schoolId: String,
+//      gigaSchoolId: String,
       appVersion: String,
       isRunningOnChromebook: Boolean,
-      browserId: String,
-      countryCode: String,
-      ipAddress: String
+//      browserId: String,
+//      countryCode: String,
+//      ipAddress: String
     ) {
       Log.d("GIGA NetworkTestService", "publishSpeedTestData Invoked")
       lifecycleScope.launch(Dispatchers.IO) {
@@ -402,7 +395,7 @@ class NetworkTestService : LifecycleService() {
             if (clientInfoRequest != null && serverInfoRequest != null) {
               speedTestResultRequestEntity = GigaUtil.createSpeedTestPayload(
                 lastUploadMeasurement,
-                lastDownloadMeasurement ?: GigaUtil.getDefaultMeasurements(),
+                lastDownloadMeasurement,
                 clientInfoRequest,
                 serverInfoRequest,
                 schoolId,
@@ -418,9 +411,22 @@ class NetworkTestService : LifecycleService() {
                 countryCode,
                 ipAddress,
                 lastDownloadResponse,
-                lastUploadResponse,
-
-                )
+                lastUploadResponse
+              )
+              val existingSpeedTestData = prefs.oldSpeedTestData
+              Log.d(
+                "GIGA NetworkTestService",
+                "Existing Speed Test Data $existingSpeedTestData"
+              )
+              val updateSpeedTestData = GigaUtil.addJsonItem(
+                existingSpeedTestData,
+                Gson().toJson(speedTestResultRequestEntity)
+              )
+              Log.d(
+                "GIGA NetworkTestService",
+                "Updated Speed Test Data $updateSpeedTestData"
+              )
+              prefs.oldSpeedTestData = updateSpeedTestData
               val postSpeedTestUseCase = PostSpeedTestUseCase()
               val postSpeedTestResultState =
                 postSpeedTestUseCase.invoke(speedTestResultRequestEntity)

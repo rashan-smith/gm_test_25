@@ -15,6 +15,7 @@ object Constants {
   const val SCHEDULE_TYPE = "SCHEDULE_TYPE"
   const val KEY_BROWSER_ID = "BROWSER_ID"
   const val KEY_IP_ADDRESS = "IP_ADDRESS"
+  const val KEY_OLD_SPEEDTEST_DATA = "KEY_OLD_SPEEDTEST_DATA"
   const val KEY_COUNTRY_CODE = "COUNTRY_CODE"
   const val KEY_SCHOOL_ID = "SCHOOL_ID"
   const val KEY_GIGA_SCHOOL_ID = "GIGA_SCHOOL_ID"
@@ -27,11 +28,12 @@ object Constants {
   const val CLIENT_INFO_END_URL = "https://ipinfo.io/"
 
   // Add token to fetch client info
-  const val CLIENT_INFO_TOKEN = ""
+  const val CLIENT_INFO_TOKEN = "9906baf67eda8b"
   const val SPEED_TEST_END_URL = "https://uni-ooi-giga-meter-backend-dev.azurewebsites.net/api/v1/"
 
   // Add ndt7 token to perform speedtest
-  const val SPEED_TEST_TOKEN = ""
+  const val SPEED_TEST_TOKEN =
+    "If5Nv65nP*iZa.HM*xvAR3g3k3V6#SZZnxXzTHFQg.KdLW.Je5zVnP_FV5ar4xnLBZaKoBo17fUivqger4TANU_eY_0ls8*utrKDUYj74yL45JCkuTam6Xshe*CWOUi7b2cqB.V8w2.H__fCCHeYw7dwZU66bWWFansSwAzwNg#MZPho4403gysMmOHICOIH*wVMddmfFdheqGCSkC8kv.aLFuE8r0IyRvC5JXEauDGG2YjssVSSSUq8RrVdfxzeDXiRtV7R"
   const val SERVER_INFO_END_URL = "https://mlab-ns.appspot.com/"
   const val SCHEDULE_TYPE_DAILY = "daily"
   const val SCHEDULE_TYPE_START = "start"

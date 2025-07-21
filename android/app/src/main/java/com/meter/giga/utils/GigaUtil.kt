@@ -15,6 +15,7 @@ import net.measurementlab.ndt7.android.models.ClientResponse
 import net.measurementlab.ndt7.android.models.ConnectionInfo
 import net.measurementlab.ndt7.android.models.Measurement
 import net.measurementlab.ndt7.android.models.TCPInfo
+import org.json.JSONArray
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -119,7 +120,7 @@ object GigaUtil {
       meanUploadClientMbps = if (it.elapsedTime == 0L) {
         0.0
       } else {
-        (it.numBytes / (it.elapsedTime * 1000)) * 0.008
+        (it.numBytes / (it.elapsedTime / 1000)) * 0.008
       }
     }
     var meanDownloadClientMbps: Double? = null
@@ -127,7 +128,7 @@ object GigaUtil {
       meanDownloadClientMbps = if (it.elapsedTime == 0L) {
         0.0
       } else {
-        (it.numBytes / (it.elapsedTime * 1000)) * 0.008
+        (it.numBytes / (it.elapsedTime / 1000)) * 0.008
       }
     }
     return SpeedTestResultRequestEntity(
@@ -137,8 +138,8 @@ object GigaUtil {
       clientInfo = clientInfoRequestEntity,
       countryCode = countryCode,
       deviceType = deviceType,
-      download = if (meanDownloadClientMbps != null) meanDownloadClientMbps * 1000 else 0.0,
-      upload = if (meanUploadClientMbps != null) meanUploadClientMbps * 1000 else 0.0,
+      download = (meanDownloadClientMbps ?: 0.0) * 1000,
+      upload = (meanUploadClientMbps ?: 0.0) * 1000,
       gigaIdSchool = gigaSchoolId,
       ipAddress = if (ipAddress == "") clientInfoRequestEntity.ip else ipAddress,
       latency = (if (uploadMeasurement?.tcpInfo?.minRtt != null) uploadMeasurement.tcpInfo!!.minRtt!! / 1000 else 0.0).toInt()
@@ -147,19 +148,19 @@ object GigaUtil {
       results = ResultsRequestEntity(
         ndtResultC2S = SpeedTestMeasurementRequestEntity(
           lastClientMeasurement = LastClientMeasurementRequestEntity(
-            elapsedTime = lastDownloadResponse?.appInfo?.elapsedTime?.toDouble(),
-            meanClientMbps = meanDownloadClientMbps,
-            numBytes = lastDownloadResponse?.appInfo?.numBytes?.toInt()
-          ),
-          lastServerMeasurement = downloadMeasurement?.toEntity()
-        ),
-        ndtResultS2C = SpeedTestMeasurementRequestEntity(
-          lastClientMeasurement = LastClientMeasurementRequestEntity(
             elapsedTime = lastUploadResponse?.appInfo?.elapsedTime?.toDouble(),
             meanClientMbps = meanUploadClientMbps,
             numBytes = lastUploadResponse?.appInfo?.numBytes?.toInt()
           ),
           lastServerMeasurement = uploadMeasurement?.toEntity()
+        ),
+        ndtResultS2C = SpeedTestMeasurementRequestEntity(
+          lastClientMeasurement = LastClientMeasurementRequestEntity(
+            elapsedTime = lastDownloadResponse?.appInfo?.elapsedTime?.toDouble(),
+            meanClientMbps = meanDownloadClientMbps,
+            numBytes = lastDownloadResponse?.appInfo?.numBytes?.toInt()
+          ),
+          lastServerMeasurement = downloadMeasurement?.toEntity()
         )
       ),
       schoolId = schoolId,
@@ -257,5 +258,26 @@ object GigaUtil {
         elapsedTime = null
       )
     )
+  }
+
+  fun addJsonItem(existingArrayStr: String, jsonString: String): String {
+    val jsonArray = JSONArray(existingArrayStr)
+
+    // Convert to mutable list of strings
+    val itemList = mutableListOf<String>()
+    for (i in 0 until jsonArray.length()) {
+      itemList.add(jsonArray.getString(i))
+    }
+
+    // Enforce FIFO max size = 10
+    if (itemList.size >= 10) {
+      itemList.removeAt(0) // Remove oldest
+    }
+
+    itemList.add(jsonString) // Add new item
+
+    // Store updated array
+    val updatedArray = JSONArray(itemList)
+    return updatedArray.toString()
   }
 }

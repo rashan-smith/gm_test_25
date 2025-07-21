@@ -81,7 +81,7 @@ class Downloader(
   }
 
   fun beginDownload(url: String, httpClient: OkHttpClient?) {
-    Log.d("GIGA", "beginDownload")
+    Log.d("GIGA", "beginDownload $url")
     webSocket = SocketFactory.establishSocketConnection(url, httpClient, this)
   }
 
