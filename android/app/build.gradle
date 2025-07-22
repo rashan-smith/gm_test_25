@@ -32,7 +32,7 @@ android {
     debug {
       minifyEnabled false
       applicationIdSuffix ".debug"
-      versionNameSuffix "-debug"
+      versionNameSuffix
     }
     release {
       minifyEnabled true
