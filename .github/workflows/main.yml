@@ -1,0 +1,22 @@
+name: Run WACK Certification
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run_wack_certification:
+    name: Run WACK Certification Job
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Run WACK Certification
+        uses: ChristopheLav/wack-certification@v1
+        with:
+          name: "WACK (x64)"
+          package-path: "/release/DemoApp.msixbundle"
+          report-name: "DemoApp.Certification.xml"
+          ignore-rules: "38,81"
+          threat-as-warning-rules: "83"
