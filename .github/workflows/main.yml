@@ -1,0 +1,7 @@
+- uses: ChristopheLav/wack-certification@v1
+  with:
+    name: 'WACK (x64)'
+    package-path: '/release/DemoApp.msixbundle'
+    report-name: 'DemoApp.Certification.xml'
+    ignore-rules: '38,81'
+    threat-as-warning-rules: '83'
