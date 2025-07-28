@@ -3,6 +3,10 @@ name: Run WACK Certification
 on:
   workflow_dispatch:
 
+permissions:
+  checks: write
+  contents: read
+
 jobs:
   run_wack_certification:
     name: Run WACK Certification Job
